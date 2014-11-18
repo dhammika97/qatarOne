@@ -311,8 +311,7 @@ $app->post('/fixedadlist', function() use ($app) {
             $db = new DbHandler();
 
             // creating new user
-            $user_id = $db->createFixedAdvertisment($body);
-            //echo $user_id;
+            $user_id = $db->createFixedAdvertisment($body);           
             
             if ($user_id == 0) {
                 $response["error"] = false;
