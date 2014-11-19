@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2014 at 08:14 PM
+-- Generation Time: Nov 19, 2014 at 07:48 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -28,28 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `advertisment` (
   `advertisment_id` int(11) NOT NULL,
-  `advertisment_name` varchar(100) NOT NULL,
-  `advertisment_mode` varchar(20) NOT NULL,
-  `advertisment_phoneno1` varchar(20) NOT NULL,
-  `advertisment_phoneno2` varchar(20) NOT NULL,
-  `advertisment_phoneno_display` varchar(1) NOT NULL,
-  `advertisment_telemarketmode` varchar(20) NOT NULL,
-  `advertisment_locationid` int(11) NOT NULL,
-  `advertisment_cityid` int(11) NOT NULL,
-  `advertisment_title` varchar(200) NOT NULL,
-  `advertisment_description` varchar(800) NOT NULL,
-  `advertisment_price` decimal(10,0) NOT NULL,
-  `advertisment_imageurl` varchar(100) NOT NULL,
-  `advertisment_type` varchar(10) NOT NULL,
-  `advertisment_for` varchar(10) NOT NULL,
-  `advertisment_rating_like` int(11) NOT NULL,
-  `advertisment_rating_dislike` int(11) NOT NULL,
-  `advertisment_commentid` int(11) NOT NULL,
-  `advertisment_entereddate` datetime NOT NULL,
-  `advertisment_enteredby` varchar(10) NOT NULL,
-  `advertisment_approvedstatus` varchar(10) NOT NULL,
-  `advertisment_status` varchar(10) NOT NULL,
-  `advertisment_categorysubid` int(11) NOT NULL
+  PRIMARY KEY (`advertisment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -59,13 +38,13 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `category_id` int(5) NOT NULL,
+  `category_id` int(5) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(250) NOT NULL,
   `category_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_enteredBy` int(11) NOT NULL,
   `category_status` int(1) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -74,58 +53,15 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 CREATE TABLE IF NOT EXISTS `category_sub` (
-  `category_sub_id` int(4) NOT NULL,
+  `category_sub_id` int(4) NOT NULL AUTO_INCREMENT,
   `category_sub_name` varchar(250) NOT NULL,
   `category_sub_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_sub_enteredBy` int(5) NOT NULL,
   `category_sub_status` int(1) NOT NULL,
   `category_sub_parentId` int(4) NOT NULL,
-  PRIMARY KEY (`category_sub_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
-
-CREATE TABLE IF NOT EXISTS `comments` (
-  `comments_id` int(11) NOT NULL,
-  `comments_description` varchar(100) NOT NULL,
-  `comments_enteredtime` datetime NOT NULL,
-  `comments_enteredby` varchar(10) NOT NULL,
-  `comments_approvedstatus` varchar(10) NOT NULL,
-  `comments_status` varchar(10) NOT NULL,
-  `comments_advertismentid` int(11) NOT NULL,
-  `comments_jobid` int(11) NOT NULL,
-  `comments_vehicleid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `event`
---
-
-CREATE TABLE IF NOT EXISTS `event` (
-  `event_id` int(11) NOT NULL,
-  `event_type` varchar(10) NOT NULL,
-  `event_eventDate` datetime NOT NULL,
-  `event_description` varchar(100) NOT NULL,
-  `event_imageurl` varchar(100) NOT NULL,
-  `event_videourl` varchar(100) NOT NULL,
-  `event_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `event_enteredBy` int(5) NOT NULL,
-  `event_status` int(1) NOT NULL,
-  PRIMARY KEY (`event_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `event`
---
-
-INSERT INTO `event` (`event_id`, `event_type`, `event_eventDate`, `event_description`, `event_imageurl`, `event_videourl`, `event_enteredDate`, `event_enteredBy`, `event_status`) VALUES
-(0, 'xcv', '0000-00-00 00:00:00', 'xcv', '', '', '2014-11-04 18:30:00', 1, 1);
+  PRIMARY KEY (`category_sub_id`),
+  KEY `category_sub_id` (`category_sub_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -198,17 +134,29 @@ CREATE TABLE IF NOT EXISTS `job` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Table structure for table `locations`
 --
 
-CREATE TABLE IF NOT EXISTS `payment` (
-  `payment_id` int(11) NOT NULL,
-  `payment_type` varchar(10) NOT NULL,
-  `payment_mode` varchar(10) NOT NULL,
-  `payment_description` varchar(50) NOT NULL,
-  `payment_note` varchar(400) NOT NULL,
-  `payment_userid` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `locations` (
+  `location_id` int(5) NOT NULL AUTO_INCREMENT,
+  `location_name` varchar(100) NOT NULL,
+  `location_cordinates` varchar(20) NOT NULL,
+  PRIMARY KEY (`location_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suburbs`
+--
+
+CREATE TABLE IF NOT EXISTS `suburbs` (
+  `suburb_id` int(5) NOT NULL AUTO_INCREMENT,
+  `suburb_location_id` int(5) NOT NULL,
+  `suburb_name` varchar(100) NOT NULL,
+  `suburb_cordinates` varchar(20) NOT NULL,
+  PRIMARY KEY (`suburb_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
