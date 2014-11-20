@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2014 at 08:22 PM
+-- Generation Time: Nov 20, 2014 at 01:26 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -136,6 +136,35 @@ CREATE TABLE IF NOT EXISTS `locations` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pagecontent`
+--
+
+CREATE TABLE IF NOT EXISTS `pagecontent` (
+  `pageContent_id` int(1) NOT NULL AUTO_INCREMENT,
+  `pageContent_pageId` int(1) NOT NULL,
+  `pageContent_pageTitle` varchar(100) NOT NULL,
+  `pageContent_Description` longtext NOT NULL,
+  `pageContent_lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pageContent_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pages`
+--
+
+CREATE TABLE IF NOT EXISTS `pages` (
+  `page_id` int(2) NOT NULL AUTO_INCREMENT,
+  `page_title` varchar(100) NOT NULL,
+  `page_status` int(1) NOT NULL,
+  `page_addedBy` int(2) NOT NULL,
+  PRIMARY KEY (`page_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `suburbs`
 --
 
@@ -173,7 +202,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_category` int(1) NOT NULL,
   `user_profiletype` int(1) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `user_fullname`, `user_city`, `user_country`, `user_address1`, `user_address2`, `user_telephoneno1`, `user_telephoneno2`, `user_imageurl`, `user_entereddate`, `user_type`, `user_status`, `user_paymentstatus`, `user_category`, `user_profiletype`) VALUES
+(1, 'test', 'test', 'test', 'test', '', '', '', '', '', '', '', '2014-11-20 07:53:11', 0, 0, 0, 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
