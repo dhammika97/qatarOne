@@ -81,15 +81,15 @@ class DbHandler {
      * Retreving user by user id
      */
  	public function GetUserDetail($user_id) {
-       
-        $stmt = $this->conn->prepare("SELECT * FROM user where user_id= ?");
-        $stmt->bind_param("i", $user_id);
-        if ($stmt->execute()) {           
-            $user = $stmt->get_result()->fetch_assoc();           
-            return $user;
-        } else {
-            return NULL;
-        }
+      
+		$db = new database();
+		$table = 'user';
+		$rows ='*';
+		$where = 'user_id = "'.$user_id.'"';
+		
+        $db->select($table,$rows,$where,'','');
+	    $user = $db->getResults();
+        return $user;	
     }
 	
 
