@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2014 at 04:29 PM
+-- Generation Time: Nov 20, 2014 at 05:59 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -107,6 +107,23 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `events`
+--
+
+CREATE TABLE IF NOT EXISTS `events` (
+  `evenet_id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_title` varchar(255) NOT NULL,
+  `event_date` date NOT NULL,
+  `event_shortDescription` varchar(255) NOT NULL,
+  `event_description` longtext NOT NULL,
+  `event_image` varchar(255) NOT NULL,
+  `event_status` int(1) NOT NULL,
+  PRIMARY KEY (`evenet_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fixedads`
 --
 
@@ -131,6 +148,23 @@ CREATE TABLE IF NOT EXISTS `locations` (
   `location_name` varchar(100) NOT NULL,
   `location_cordinates` varchar(20) NOT NULL,
   PRIMARY KEY (`location_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `packagetypes`
+--
+
+CREATE TABLE IF NOT EXISTS `packagetypes` (
+  `package_id` int(2) NOT NULL AUTO_INCREMENT,
+  `package_name` varchar(100) NOT NULL,
+  `package_Description` longtext NOT NULL,
+  `package_price` decimal(10,0) NOT NULL,
+  `package_adLimit` int(2) NOT NULL,
+  `package_addedBy` int(3) NOT NULL,
+  `package_status` int(1) NOT NULL,
+  PRIMARY KEY (`package_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
