@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2014 at 01:26 PM
+-- Generation Time: Nov 20, 2014 at 04:29 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -113,9 +113,9 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
 CREATE TABLE IF NOT EXISTS `fixedads` (
   `fixedads_id` int(11) NOT NULL AUTO_INCREMENT,
   `fixedads_type` int(2) NOT NULL,
-  `fixedads_imageurl` varchar(100) NOT NULL,
-  `fixedads_enetredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `fixedads_enteredBy` int(10) NOT NULL,
+  `fixedads_image` varchar(255) NOT NULL,
+  `fixedads_enetredDate` datetime NOT NULL,
+  `fixedads_url` varchar(255) NOT NULL,
   `fixedads_status` int(1) NOT NULL,
   PRIMARY KEY (`fixedads_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -165,6 +165,21 @@ CREATE TABLE IF NOT EXISTS `pages` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sliders`
+--
+
+CREATE TABLE IF NOT EXISTS `sliders` (
+  `slider_id` int(10) NOT NULL AUTO_INCREMENT,
+  `slider_title` varchar(100) NOT NULL,
+  `slider_image` varchar(255) NOT NULL,
+  `slider_url` int(255) NOT NULL,
+  `slider_status` int(1) NOT NULL,
+  PRIMARY KEY (`slider_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `suburbs`
 --
 
@@ -187,20 +202,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_username` varchar(50) NOT NULL,
   `user_password` text NOT NULL,
   `user_email` varchar(50) NOT NULL,
-  `user_fullname` varchar(200) NOT NULL,
-  `user_city` varchar(50) NOT NULL,
-  `user_country` varchar(100) NOT NULL,
-  `user_address1` varchar(100) NOT NULL,
-  `user_address2` varchar(100) NOT NULL,
-  `user_telephoneno1` varchar(20) NOT NULL,
-  `user_telephoneno2` varchar(20) NOT NULL,
-  `user_imageurl` varchar(50) NOT NULL,
-  `user_entereddate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_firstname` varchar(100) NOT NULL,
+  `user_lastname` varchar(100) NOT NULL,
+  `user_address1` varchar(255) NOT NULL,
+  `user_address2` varchar(255) NOT NULL,
+  `user_city` varchar(100) NOT NULL,
+  `user_contactNo` varchar(15) NOT NULL,
+  `user_registeredDate` datetime NOT NULL,
   `user_type` int(1) NOT NULL,
   `user_status` int(1) NOT NULL,
-  `user_paymentstatus` int(1) NOT NULL,
-  `user_category` int(1) NOT NULL,
-  `user_profiletype` int(1) NOT NULL,
+  `user_accessToken` text NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -208,8 +219,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `user_fullname`, `user_city`, `user_country`, `user_address1`, `user_address2`, `user_telephoneno1`, `user_telephoneno2`, `user_imageurl`, `user_entereddate`, `user_type`, `user_status`, `user_paymentstatus`, `user_category`, `user_profiletype`) VALUES
-(1, 'test', 'test', 'test', 'test', '', '', '', '', '', '', '', '2014-11-20 07:53:11', 0, 0, 0, 0, 0);
+INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `user_firstname`, `user_lastname`, `user_address1`, `user_address2`, `user_city`, `user_contactNo`, `user_registeredDate`, `user_type`, `user_status`, `user_accessToken`) VALUES
+(1, 'dhammika', 'test', 'dhammika97@gmail.com', 'dhammika', 'gunaratne', '176/4, walatenna', 'gallellagama', 'kandy', '777339803', '2014-11-20 00:00:00', 1, 0, 'teskjsjjdfshdfhsdbfjhsbdfsdfsf');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
