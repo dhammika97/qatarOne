@@ -75,22 +75,28 @@ function authenticate(\Slim\Route $route) {
             echoRespnse(200, $result);
         });
 
-/**
-     * Retreving user by user id
-     */
- 	public function GetUserDetail($user_id) {
-      
-		$db = new database();
-		$table = 'user';
-		$rows ='*';
-		$where = 'user_id = "'.$user_id.'"';
-		
-        $db->select($table,$rows,$where,'','');
-	    $user = $db->getResults();
-        return $user;
-		
-		
-    }
+/$app->get('/userlist/:id',  function($user_id) {
+            $response = array();
+            $DbHandler = new DbHandler();
+			
+			
+            $result = $DbHandler->GetUserDetail($user_id);
+			
+            if ($result != NULL) {
+			
+                $response["error"] = false;
+				$response['user'] = $result;
+                echoRespnse(200	, $response);
+			   
+			   
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+			
+			
+        });	 }
 
 /**
  * Create user 
