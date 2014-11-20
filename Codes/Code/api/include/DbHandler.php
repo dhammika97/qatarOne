@@ -64,7 +64,7 @@ class DbHandler {
      * Retreving all users
     */
   public function getAllUsers() {
-        $stmt = $this->conn->prepare("SELECT user_id, user_username, user_password, user_email,user_fullname,user_city, user_country, user_address1, user_address2, user_telephoneno1, user_telephoneno2, user_imageurl, user_entereddate, user_type, user_status, user_paymentstatus, user_category, user_profiletype FROM user");   
+        $stmt = $this->conn->prepare("SELECT * FROM user");   
 		$stmt->execute();
         $user_list = $stmt->get_result();
         $stmt->close();
