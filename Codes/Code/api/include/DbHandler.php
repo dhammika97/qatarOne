@@ -59,15 +59,21 @@ class DbHandler {
     }
 
   
+  //===================Changes are starting from here============
    	
   /**
      * Retreving all users
     */
   public function getAllUsers() {
-        $stmt = $this->conn->prepare("SELECT user_id, user_username, user_password, user_email,user_fullname,user_city, user_country, user_address1, user_address2, user_telephoneno1, user_telephoneno2, user_imageurl, user_entereddate, user_type, user_status, user_paymentstatus, user_category, user_profiletype FROM user");   
-		$stmt->execute();
-        $user_list = $stmt->get_result();
-        $stmt->close();
+       
+	    $db = new database();
+	  
+	  
+		$table = 'user';
+		$rows ='*';
+		
+        $db->select($table,$rows,'','','');
+	    $user_list = $db->getResults();
         return $user_list;
     }
 
@@ -87,12 +93,31 @@ class DbHandler {
     }
 	
 
-    /**
+     /**
      * Creating user
      */
 
 	public function createUser( $body) {
-        $stmt = $this->conn->prepare("INSERT INTO user(user_username, 
+      
+			$db = new database();
+			$table  = "user";
+			$values = "'".$body['user_username']."'",
+                                                    "'".$body['user_password']."'",
+                                                    "'".$body['user_email']."'",
+                                                    "'".$body['user_fullname']."'",
+                                                    "'".$body['user_city']."'",
+                                                    "'".$body['user_country']."'",
+                                                    "'".$body['user_address1']."'",
+                                                    "'".$body['user_address2']."'",
+                                                    "'".$body['user_telephoneno1']."'",
+                                                    "'".$body['user_telephoneno2']."'",
+                                                    "'".$body['user_imageurl']."'",
+                                                    "'".$body['user_type']."'",
+													"'".$body['user_status']."'",
+                                                    "'".$body['user_paymentstatus']."'",
+                                                    "'".$body['user_category']."'",
+                                                    "'".$body['user_profiletype']"'";
+			$rows   = "user_username, 
                                                     user_password,
                                                     user_email,
                                                     user_fullname,
@@ -103,42 +128,21 @@ class DbHandler {
                                                     user_telephoneno1,
                                                     user_telephoneno2,
                                                     user_imageurl,
-                                                    user_entereddate,
                                                     user_type,
                                                     user_status, 
                                                     user_paymentstatus, 
                                                     user_category, 
-                                                    user_profiletype) 
-                                        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("sssssssssssssssss", $body['user_username'],
-                                                    $body['user_password'],
-                                                    $body['user_email'],
-                                                    $body['user_fullname'],
-                                                    $body['user_city'],
-                                                    $body['user_country'],
-                                                    $body['user_address1'],
-                                                    $body['user_address2'],
-                                                    $body['user_telephoneno1'],
-                                                    $body['user_telephoneno2'],
-                                                    $body['user_imageurl'],
-                                                    $body['user_entereddate'],
-                                                    $body['user_type'],$body['user_status'],
-                                                    $body['user_paymentstatus'],
-                                                    $body['user_category'],
-                                                    $body['user_profiletype']);
-        $result = $stmt->execute();
-        $stmt->close();
-
-         // Check for successful insertion
-            if ($result) {
-                // User successfully inserted
-                return USER_CREATED_SUCCESSFULLY;
-            } else {
-                // Failed to create user
-                return USER_CREATE_FAILED;
-            }
-					
+                                                    user_profiletype";
+			
+			if($db->insert($table,$values,$rows) ){
+				return true;
+			}else{
+				return false;
+			}			
     }
+	
+	
+	//========================Chages are done upto here===============================
 
     /**
      * Update user by user id
