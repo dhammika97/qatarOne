@@ -1,16 +1,15 @@
 <?php
 session_start();
+require_once 'include/database.php';
 require_once 'include/DbHandler.php';
 require_once 'include/PassHash.php';
 require_once 'include/SessionHandler.php';
+require_once 'include/functions.php';
 require 'libs/Slim/Slim.php';
  
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 $app->add(new \Slim\Middleware\ContentTypes());
-
-// User id from db - Global Variable
-$user_id = NULL;
 
 
     header('Access-Control-Allow-Origin: *');
@@ -65,82 +64,33 @@ function authenticate(\Slim\Route $route) {
 
  $app->get('/userlist',  function() {
            
+		   
+		   
             $response = array();
-            $db = new DbHandler();
-
-            // fetching all users
-            $result = $db->getAllUsers();
-
-            $response["error"] = false;
-            $response["user_list"] = array();
-            
-            while ($user = $result->fetch_assoc()) {
-                $tmp = array();               
-                $tmp["user_id"] = $user["user_id"];
-				$tmp["user_username"] = $user["user_username"];
-				$tmp["user_password"] = $user["user_password"];
-				$tmp["user_email"] = $user["user_email"];                
-                $tmp["user_fullname"] = $user["user_fullname"];
-                $tmp["user_city"] = $user["user_city"];
-                $tmp["user_country"] = $user["user_country"];
-                $tmp["user_address1"] = $user["user_address1"];
-                $tmp["user_address2"] = $user["user_address2"];
-                $tmp["user_telephoneno1"] = $user["user_telephoneno1"];
-                $tmp["user_telephoneno2"] = $user["user_telephoneno2"];
-                $tmp["user_imageurl"] = $user["user_imageurl"];
-                $tmp["user_entereddate"] = $user["user_entereddate"];
-                $tmp["user_type"] = $user["user_type"];
-                $tmp["user_status"] = $user["user_status"];
-                $tmp["user_paymentstatus"] = $user["user_paymentstatus"];
-                $tmp["user_category"] = $user["user_category"];
-                $tmp["user_profiletype"] = $user["user_profiletype"];
-                array_push($response["user_list"], $tmp);
-            }
-
-            echoRespnse(200, $response);
+            $DbHandler = new DbHandler();
+				
+			$result = $DbHandler->getAllUsers();
+			$result['error'] = false;
+		
+            echoRespnse(200, $result);
         });
 
 /**
- * Get user by user id
- * url - /userlist
- * method - GET
- * params -user id*/
-
- $app->get('/userlist/:id',  function($user_id) {
-            $response = array();
-            $db = new DbHandler();
-
-            // fetch user
-            $result = $db->GetUserDetail($user_id);
-
-            if ($result != NULL) {
-                $response["error"] = false;
-                $tmp["user_id"] = $result["user_id"];
-                $tmp["user_username"] = $result["user_username"];
-                $tmp["user_password"] = $result["user_password"];
-                $tmp["user_email"] = $result["user_email"];                
-                $tmp["user_fullname"] = $result["user_fullname"];
-                $tmp["user_city"] = $result["user_city"];
-                $tmp["user_country"] = $result["user_country"];
-                $tmp["user_address1"] = $result["user_address1"];
-                $tmp["user_address2"] = $result["user_address2"];
-                $tmp["user_telephoneno1"] = $result["user_telephoneno1"];
-                $tmp["user_telephoneno2"] = $result["user_telephoneno2"];
-                $tmp["user_imageurl"] = $result["user_imageurl"];
-                $tmp["user_entereddate"] = $result["user_entereddate"];
-                $tmp["user_type"] = $result["user_type"];
-                $tmp["user_status"] = $result["user_status"];
-                $tmp["user_paymentstatus"] = $result["user_paymentstatus"];
-                $tmp["user_category"] = $result["user_category"];
-                $tmp["user_profiletype"] = $result["user_profiletype"];                 
-                echoRespnse(200, $tmp);
-            } else {
-                $response["error"] = true;
-                $response["message"] = "The requested resource doesn't exists";
-                echoRespnse(404, $response);
-            }
-        });
+     * Retreving user by user id
+     */
+ 	public function GetUserDetail($user_id) {
+      
+		$db = new database();
+		$table = 'user';
+		$rows ='*';
+		$where = 'user_id = "'.$user_id.'"';
 		
+        $db->select($table,$rows,$where,'','');
+	    $user = $db->getResults();
+        return $user;
+		
+		
+    }
 
 /**
  * Create user 
@@ -149,21 +99,21 @@ function authenticate(\Slim\Route $route) {
  * params -user object*/
 
 $app->post('/userlist', function() use ($app) {
-            // check for required params
-           // verifyRequiredParams(array('task'));
-
+           
+		   echo 'sdf';
+   
             $response = array();
-           // $user = $app->request->post('user');
             $request = \Slim\Slim::getInstance()->request();
             $body = $request->getBody();
+            $DbHandler = new DbHandler();
 
-            $db = new DbHandler();
-
-            // creating new user
-            $user_id = $db->createUser($body);
-            //echo $user_id;
+			//print_r($body);
+			
+            creating new user
+            $user_id = $DbHandler->createUser($body);
             
-            if ($user_id == 0) {
+            
+            if ($user_id == false) {
                 $response["error"] = false;
                 $response["message"] = "user created successfully";                
                 echoRespnse(201, $response);
@@ -173,6 +123,10 @@ $app->post('/userlist', function() use ($app) {
                 echoRespnse(200, $response);
             }            
         });
+		
+		//======================Updated upto here=========================//
+		
+		
 
 /**
  * Update user 
