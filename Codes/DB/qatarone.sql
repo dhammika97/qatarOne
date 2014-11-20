@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2014 at 05:59 PM
+-- Generation Time: Nov 20, 2014 at 06:28 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -255,6 +255,21 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `user_firstname`, `user_lastname`, `user_address1`, `user_address2`, `user_city`, `user_contactNo`, `user_registeredDate`, `user_type`, `user_status`, `user_accessToken`) VALUES
 (1, 'dhammika', 'test', 'dhammika97@gmail.com', 'dhammika', 'gunaratne', '176/4, walatenna', 'gallellagama', 'kandy', '777339803', '2014-11-20 00:00:00', 1, 0, 'teskjsjjdfshdfhsdbfjhsbdfsdfsf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userpackge`
+--
+
+CREATE TABLE IF NOT EXISTS `userpackge` (
+  `userpkg_id` int(11) NOT NULL AUTO_INCREMENT,
+  `userpkg_userId` int(11) NOT NULL,
+  `userpkg_pkgId` int(11) NOT NULL,
+  `userpkg_expirey` date NOT NULL,
+  `userpkg_status` int(1) NOT NULL,
+  PRIMARY KEY (`userpkg_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
