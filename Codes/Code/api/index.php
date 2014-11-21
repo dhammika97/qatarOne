@@ -517,62 +517,55 @@ function echoRespnse($status_code, $response) {
 //=========================CATEGORIES-SERVICES==================================
 
 
-//list sub categories
+/**
+ * list all categories 
+ * url - /category
+ * method - get
+ * params -  */
+ 
+ 
 $app->get('/category', function() use ($db) {
-
-
+	
+	$DbHandler = new DbHandler();
     $response = array();
-
-
-    if (!$result = $db->getAllCategories()) {
+	$result = $DbHandler->getAllCategories();		
+	
+	
+    if (!$result) {
 
         $response["error"] = TRUE;
         $response["message"] = "The requested resource doesn't exists";
         echoRespnse(404, $response);
     } else {
 
-        $response["error"] = false;
-        $x = 0;
-        while ($categories = mysqli_fetch_array($result)) {
-
-
-            $response[$x]["category_id"] = $categories["category_id"];
-            $response[$x]["category_name"] = $categories["category_name"];
-            $response[$x]["category_entereddate"] = $categories["category_entereddate"];
-            $response[$x]["category_enteredby"] = $categories["category_enteredby"];
-            $response[$x]["category_status"] = $categories["category_status"];
-
-
-            $x++;
-        }
-
-        /** For debuging
-         *  echo '<pre>';
-          print_r($response);
-          echo '</pre>';
-         */
-        // echo json response 
-        echoRespnse(200, $response);
+        $result["error"] = false;
+        echoRespnse(200, $result);
     }
 });
 
 
-//
-$app->get('/category/:id', function($category_id) use ($db) {
+
+/**
+ * list categories by id
+ * url - /category
+ * method - get
+ * params - user_id */
+
+$app->get('/category/:id', function($category_id){
 
 
     $response = array();
+	$DbHandler = new DbHandler();
+	
+	
+    $row = $DbHandler->GetCategoryDetail($category_id);
+	
 
-    $row = $db->GetCategoryDetail($category_id);
-
+	//print_r( $row );
+	
     if ($row != NULL) {
-        $response["error"] = false;
-        $response["category_id"] = $row["category_id"];
-        $response["category_name"] = $row["category_name"];
-        $response["category_entereddate"] = $row["category_entereddate"];
-        $response["category_enteredby"] = $row["category_enteredby"];
-
-        echoRespnse(200, $response);
+        $row["error"] = false;
+        echoRespnse(200, $row);
     } else {
 
         $response["error"] = true;
@@ -581,70 +574,69 @@ $app->get('/category/:id', function($category_id) use ($db) {
     }
 });
 
+
+
+/**
+ * Add category
+ * url - /category
+ * method - post
+ * params -  */
 
 $app->post('/category', function() use ($app, $db) {
 
 
     $response = array();
     $category = array();
+	$DbHandler = new DbHandler();
     global $user_ID;
+	
+    $category['category_name'] = $app->request()->post('category_name');
+    $category['category_enteredBy'] = $user_ID = 1;
 
+	//print_r($category);
 
-
-    $category['name'] = $app->request()->post('category_name');
-    //User ID should be a global variable
-    $category['enteredby'] = $user_ID;
-
-
-    if ($db->addCategory($category)) {
+    if ($DbHandler->addCategory($category)) {
 
         $response["error"] = false;
         $response["message"] = "Successfully created the category";
         echoRespnse(201, $response);
 
-        //For debuging
-//            echo '<pre>';
-//            print_r($response);
-//            echo '</pre>';
+    
     } else {
 
         $response["error"] = true;
-        $response["message"] = "category not created ";
-        echoRespnse(412, $response);
-
-        // For debuging
-//            echo '<pre>';
-//            print_r($response);
-//            echo '</pre>';
+        $response["message"] = "User Already exists";
+        echoRespnse(200, $response);
     }
 });
 
 
-
-
-
+/**
+ * Update category
+ * url - /category/id
+ * method - post
+ * params -  id*/ //UNDER CONSTRUCTION
 $app->put('/category/:categoryId', function ($id) use ($db, $app) {
 
+	$DbHandler = new DbHandler();
+	$request = $app->request();
+	$category = json_decode( $request->getBody() );	
+	//$body['category_name'] = $app->request()->put('category_name');
 
-
-
-
-    $category['name'] = $app->request()->put('category_name');
-
-
-
-    if ($result = $db->updateCateory($category['name'], $id)) {
+    if ($result = $DbHandler->updateCateory($category, $id)) {
 
         $response["error"] = FALSE;
         $response["message"] = "Successfully Updated";
         echoRespnse(200, $response);
+		
     } else {
 
         $response["error"] = TRUE;
-        $response["message"] = "Updated falid";
+        $response["message"] = "Updated failed";
         echoRespnse(401, $response);
     }
 });
+
 
 
 $app->delete('/category/:categoryId', function ($id) use($db, $app) {
