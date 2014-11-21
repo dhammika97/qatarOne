@@ -203,24 +203,18 @@ $app->post('/userlist', function() use ($app) {
 				
         });
  					
-		
-		
-		//======================Updated upto here=========================//
-		
-		
-
-
- 		
-/**
+		/**
  * Delete user 
- * url - /userlist/:id'
+ * url - /userlist/:id
  * method - DELETE
  * params - user_id */
+ 
 $app->delete('/userlist/:id',  function($user_id) use($app) {
           
-            $db = new DbHandler();
+		 
+            $DbHandler = new DbHandler();
             $response = array();
-            $result = $db->deleteUser($user_id);
+            $result = $DbHandler->deleteUser($user_id);
 			
             if ($result) {
                 // user deleted successfully				
@@ -233,6 +227,12 @@ $app->delete('/userlist/:id',  function($user_id) use($app) {
             }
             echoRespnse(200, $response);
         });
+		
+		
+		//======================Updated upto here=========================//
+		
+		
+
 		
 /**
  * Retreive Fixed advertisment list 
