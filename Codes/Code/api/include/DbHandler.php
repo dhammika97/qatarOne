@@ -93,52 +93,46 @@ class DbHandler {
     }
 	
 
-     /**
+      /**
      * Creating user
      */
-
-	public function createUser( $body) {
+   
+	public function createUser( $users) {
       
 			$db = new database();
 			$table  = "user";
-			$values = "'".$body['user_username']."'",
-                                                    "'".$body['user_password']."'",
-                                                    "'".$body['user_email']."'",
-                                                    "'".$body['user_fullname']."'",
-                                                    "'".$body['user_city']."'",
-                                                    "'".$body['user_country']."'",
-                                                    "'".$body['user_address1']."'",
-                                                    "'".$body['user_address2']."'",
-                                                    "'".$body['user_telephoneno1']."'",
-                                                    "'".$body['user_telephoneno2']."'",
-                                                    "'".$body['user_imageurl']."'",
-                                                    "'".$body['user_type']."'",
-													"'".$body['user_status']."'",
-                                                    "'".$body['user_paymentstatus']."'",
-                                                    "'".$body['user_category']."'",
-                                                    "'".$body['user_profiletype']"'";
+			 $values = "'".$users['user_username']."', 
+						  '".$users['user_password']."', 
+						  '".$users['user_email']."', 
+						  '".$users['user_firstname']."', 
+						  '".$users['user_lastname']."', 
+						  '".$users['user_address1']."', 
+						  '".$users['user_address2']."', 
+						  '".$users['user_city']."',
+						  '".$users['user_contactNo']."', 
+						  '".$users['user_type']."',
+						  '".$users['user_type']."'";
+						  
+						  
 			$rows   = "user_username, 
-                                                    user_password,
-                                                    user_email,
-                                                    user_fullname,
-                                                    user_city,
-                                                    user_country,
-                                                    user_address1,
-                                                    user_address2,
-                                                    user_telephoneno1,
-                                                    user_telephoneno2,
-                                                    user_imageurl,
-                                                    user_type,
-                                                    user_status, 
-                                                    user_paymentstatus, 
-                                                    user_category, 
-                                                    user_profiletype";
+                       user_password,
+                       user_email,
+                       user_firstname,
+                       user_lastname,
+                       user_address1,
+                       user_address2,
+                       user_city,
+                       user_contactNo,
+                       user_type,
+                       user_accessToken";
 			
 			if($db->insert($table,$values,$rows) ){
 				return true;
 			}else{
 				return false;
-			}			
+			}
+			
+					
     }
 	
 	
