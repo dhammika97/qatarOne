@@ -75,7 +75,13 @@ function authenticate(\Slim\Route $route) {
             echoRespnse(200, $result);
         });
 
-/$app->get('/userlist/:id',  function($user_id) {
+		
+/**
+ * Get user by user id
+ * url - /userlist
+ * method - GET
+ * params -user id*/		
+$app->get('/userlist/:id',  function($user_id) {
             $response = array();
             $DbHandler = new DbHandler();
 			
@@ -153,6 +159,51 @@ $app->post('/userlist', function() use ($app) {
 			}
 	       
         });
+		
+/**
+ * Update user 
+ * url - /userlist
+ * method - PUT
+ * params -user object, user_id */
+		
+	$app->put('/userlist/:id',  function($user_id) {
+            $request = \Slim\Slim::getInstance()->request();
+			//$body = $request->getBody();
+			
+		    $DbHandler = new DbHandler();
+            $response = array();
+			
+			$users['user_username'] = $request->post('user_username');
+			$users['user_password']= $request->post('user_password');
+			$users['user_email'] = $request->post('user_email');
+			$users['user_firstname']= $request->post('user_firstname');
+			$users['user_lastname'] = $request->post('user_lastname');
+			$users['user_address1']= $request->post('user_address1');
+			$users['user_address2'] = $request->post('user_address2');
+			$users['user_city']= $request->post('user_city');
+			$users['user_contactNo'] = $request->post('user_contactNo');
+			$users['user_type']= $request->post('user_type');
+			
+			
+            $result = $DbHandler->updateUser($user_id, $users);
+			
+			
+			
+            if ($result) {
+               
+                $response["error"] = false;
+                $response["message"] = "User updated successfully";
+            } else {
+                
+                $response["error"] = true;
+                $response["message"] = "User failed to update. Please try again!";
+            }
+			
+           echoRespnse(200, $response);		
+				
+        });
+ 					
+		
 		
 		//======================Updated upto here=========================//
 		
