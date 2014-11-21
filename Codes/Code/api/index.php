@@ -106,28 +106,52 @@ function authenticate(\Slim\Route $route) {
 
 $app->post('/userlist', function() use ($app) {
            
-		   echo 'sdf';
-   
+		   
+			$users  = array();
             $response = array();
             $request = \Slim\Slim::getInstance()->request();
-            $body = $request->getBody();
             $DbHandler = new DbHandler();
-
-			//print_r($body);
 			
-            creating new user
-            $user_id = $DbHandler->createUser($body);
-            
-            
-            if ($user_id == false) {
-                $response["error"] = false;
-                $response["message"] = "user created successfully";                
-                echoRespnse(201, $response);
-            } else {
-                $response["error"] = true;
-                $response["message"] = "Failed to create user. Please try again";
-                echoRespnse(200, $response);
-            }            
+			$users['user_username'] = $request->post('user_username');
+			$users['user_password']= $request->post('user_password');
+			$users['user_email'] = $request->post('user_email');
+			$users['user_firstname']= $request->post('user_firstname');
+			$users['user_lastname'] = $request->post('user_lastname');
+			$users['user_address1']= $request->post('user_address1');
+			$users['user_address2'] = $request->post('user_address2');
+			$users['user_city']= $request->post('user_city');
+			$users['user_contactNo'] = $request->post('user_contactNo');
+			$users['user_type']= $request->post('user_type');
+			
+			$users['user_accessToken']= $request->post('user_accessToken');
+			
+			//VALIDATING INPUTS - all fileds are Required
+			$check = true;
+			foreach( $users as $user){
+			
+				   if($user == ''){
+					
+					
+					$response["error"] = true;
+					$response["message"] = "Required field are empty";
+				    echoRespnse(200, $response);
+					$check = false;
+					break;
+					
+				}
+			}
+			
+			
+			if($check){
+			
+			
+			    $DbHandler->createUser($users);
+				$response["error"] = false;
+				$response["message"] = "user created successfully";
+				echoRespnse(200, $response);
+			
+			}
+	       
         });
 		
 		//======================Updated upto here=========================//
