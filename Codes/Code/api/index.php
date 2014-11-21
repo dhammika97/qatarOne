@@ -209,35 +209,7 @@ $app->post('/userlist', function() use ($app) {
 		
 		
 
-/**
- * Update user 
- * url - /userlist
- * method - PUT
- * params -user object, user_id */
-		
-	$app->put('/userlist/:id',  function($user_id) {
-            $request = \Slim\Slim::getInstance()->request();
-			$body = $request->getBody();
-			
-			$db = new DbHandler();
-            $response = array();
-			
-			 // updating user
-            $result = $db->updateUser($user_id, $body);
-			
-            if ($result) {
-                // user updated successfully
-                $response["error"] = false;
-                $response["message"] = "User updated successfully";
-            } else {
-                // user failed to update
-                $response["error"] = true;
-                $response["message"] = "User failed to update. Please try again!";
-            }
-			
-            echoRespnse(200, $response);		
-				
-        });
+
  		
 /**
  * Delete user 
