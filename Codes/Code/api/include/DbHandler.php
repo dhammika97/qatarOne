@@ -370,6 +370,86 @@ class DbHandler {
 				return false;
 			}       
     }
+	
+	//==============================CATEGORIES============================
+	
+	//list all
+	public function getAllCategories(){
+
+	$db = new database();
+	  
+	  
+		$table = 'category';
+		$rows ='*';
+		$where = 'category_status = "1" ';
+		
+        $db->select($table,$rows,$where,'','');
+	    $category_list = $db->getResults();
+        return $category_list;
+		
+}	
+
+
+//List single category
+public function GetCategoryDetail($category_id){
+		
+		$db = new database();
+		$table = 'category';
+		$rows ='*';
+		$where = 'category_id = "'.$category_id.'" AND category_status = "1" ';
+		
+        $db->select($table,$rows,$where,'','');
+	    $user = $db->getResults();
+		
+		
+        return $user;	
+		
+}
+
+// Add category
+
+public function addCategory($category){
+	
+	$db = new database();
+
+	// $table1 = 'category';
+    // $rows1 ='category_name';
+	// $where1 = 'category_name = "'.$category['category_name'].'"';
+	
+	// $db->select($table1,$rows1,$where1,'','');
+	// $categoryNumRows = $db->getNumRows();
+	
+	// if( $categoryNumRows > 1 ){
+		
+		// return false
+	// }
+	
+	
+	$table  = "category";
+	$values = "'".$category['category_name']."', '".$category['category_enteredBy']."'";				  
+	$rows   = "category_name, category_enteredBy";
+			
+	if($db->insert($table,$values,$rows) ){
+		return true;
+	}
+}
+	
+//Update category
+public function updateCateory( $category, $category_id){
+	
+		$db = new database();
+		   
+		$table = 'category';
+		$rows  = $category;
+		$where = 'category_id = "'.$category_id.'"';
+		   
+           if($db->update($table,$rows,$where) ){
+				return true;
+		   }else{
+				return false;
+		   }
+	
+	
 
 }
 
