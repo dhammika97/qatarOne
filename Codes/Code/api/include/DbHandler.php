@@ -136,6 +136,24 @@ class DbHandler {
     }
 	
 	
+	/**
+     * Update user by user id
+     */
+    public function updateUser($user_id, $users) {       
+           $db = new database();
+		   
+		   $table = 'user';
+		   $rows  = $users ;
+		   $where = 'user_id = "'.$user_id.'"';
+		   
+           if($db->update($table,$rows,$where) ){
+				return true;
+		   }else{
+				return false;
+		   }
+    }
+	
+	
 	//========================Chages are done upto here===============================
 
     /**
