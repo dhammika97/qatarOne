@@ -153,70 +153,27 @@ class DbHandler {
 		   }
     }
 	
-	
-	//========================Chages are done upto here===============================
-
-    /**
-     * Update user by user id
-     */
-    public function updateUser($user_id, $body) {       
-            $stmt = $this->conn->prepare( " UPDATE user 
-                                        SET user_username=?, 
-                                                    user_password=?,
-                                                    user_email=?,
-                                                    user_fullname=?,
-                                                    user_city=?,
-                                                    user_country=?,
-                                                    user_address1=?,
-                                                    user_address2=?,
-                                                    user_telephoneno1=?,
-                                                    user_telephoneno2=?,
-                                                    user_imageurl=?,
-                                                    user_entereddate=?,
-                                                    user_type=?,
-                                                    user_status=?, 
-                                                    user_paymentstatus=?, 
-                                                    user_category=?, 
-                                                    user_profiletype=?
-                                                    WHERE user_id=?");
-        $stmt->bind_param("sssssssssssssssssi",  $body['user_username'],
-                                                    $body['user_password'],
-                                                    $body['user_email'],
-                                                    $body['user_fullname'],
-                                                    $body['user_city'],
-                                                    $body['user_country'],
-                                                    $body['user_address1'],
-                                                    $body['user_address2'],
-                                                    $body['user_telephoneno1'],
-                                                    $body['user_telephoneno2'],
-                                                    $body['user_imageurl'],
-                                                    $body['user_entereddate'],
-                                                    $body['user_type'],
-                                                    $body['user_status'],
-                                                    $body['user_paymentstatus'],
-                                                    $body['user_category'],
-                                                    $body['user_profiletype'],
-                                                    $user_id);
-        $stmt->execute();
-        $num_affected_rows = $stmt->affected_rows;
-        $stmt->close();
-        return $num_affected_rows >0;
-            
-    }
-	
-
-     /**
+	  /**
      * DELETE user by user id
      */
 	 public function deleteUser($user_id) {
 	 
-        $stmt = $this->conn->prepare("DELETE FROM user WHERE user_id= ?");
-        $stmt->bind_param("s", $user_id);
-        $stmt->execute();
-        $num_affected_rows = $stmt->affected_rows;
-        $stmt->close();
-        return $num_affected_rows > 0;
+		$db = new database();
+		$table = 'user';
+		$where = 'user_id = "'.$user_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		}
+        //return $num_affected_rows > 0;
+		
     }
+	
+	
+	//========================Chages are done upto here===============================
+
+    
+	
+
 	
   /**
      * Get all fixed add list user by fixed advertisment id
