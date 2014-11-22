@@ -888,17 +888,17 @@ $app->put('/suburbs/:id',  function($suburb_id) use ($app) {
  * url - /suburbs/:id
  * method - DELETE
  * params - suburb id */ 
-$app->delete('/suburbs/:id',  function($location_id) use($app) {
+$app->delete('/suburbs/:id',  function($suburb_id) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->deleteLocation($location_id);
+		$result = $DbHandler->deleteSuburb($suburb_id);
 		
 		if ($result) {			
 			$response["error"] = false;
-			$response["message"] = "Location deleted succesfully";
+			$response["message"] = "Suburb deleted succesfully";
 		} else {
 			$response["error"] = true;
-			$response["message"] = "Location failed to delete. Please try again!";
+			$response["message"] = "Suburb failed to delete. Please try again!";
 		}
 		echoRespnse(200, $response);
 });
