@@ -296,6 +296,15 @@ class DbHandler {
 			return false;
 		}
 	}
+	
+	public function getAllLocations(){
+		$db = new database();
+		$table = 'locations';
+		$rows ='*';	
+		$db->select($table,$rows,'','','');
+		$location_list = $db->getResults();
+		return $location_list;
+	}
 }
 
 ?>
