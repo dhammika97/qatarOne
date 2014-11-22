@@ -539,38 +539,40 @@ class DbHandler {
 		}
 	}
 	
-	public function addEvent($page){
+	public function addEvent($event){
 		$db = new database();
-		$table1 = 'pages';
-		$rows1 ='page_title';
-		$where1 = 'page_title = "'.$page['page_title'].'"';
+		$table1 = 'events';
+		$rows1 ='event_title';
+		$where1 = 'event_title = "'.$event['event_title'].'"';
 		$db->select($table1,$rows1,$where1,'','');
 		$pageNumRows = $db->getNumRows();	
 		if( $pageNumRows > 1 ){
 			return false;
 		}
-		$table  = "pages";
-		$values = "'".$page['page_title']."', '".$page['page_addedBy']."'";				
-		$rows   = "page_title, page_addedBy";		
+		
+		$table  = "events";
+		$values = "'".$event['event_title']."', '".$event['event_date']."', 
+				  '".$event['event_shortDescription']."', '".$event['event_description']."', '".$event['event_image']."'";				
+		$rows   = "event_title, event_date, event_shortDescription, event_description,event_image";		 
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}
 	}
-	public function updateEvent($page, $page_id){
+	public function updateEvent($event, $event_id){
 		$db = new database();  
-		$table = 'pages';
-		$rows  = $page;
-		$where = 'page_id = "'.$page_id.'"';
+		$table = 'events';
+		$rows  = $event;
+		$where = 'evenet_id = "'.$event_id.'"';
 		if($db->update($table,$rows,$where) ){
 			return true;
 		}else{
 			return false;
 		}
 	}	
-	public function deleteEvent($page_id){
+	public function deleteEvent($event_id){
 		$db = new database();
-		$table = 'pages';
-		$where = 'page_id = "'.$page_id.'"';
+		$table = 'events';
+		$where = 'evenet_id = "'.$event_id.'"';
 		if ($db->delete($table,$where) ){
 				return true;
 		}
@@ -578,18 +580,18 @@ class DbHandler {
 	
 	public function getAllEvents(){
 		$db = new database();  
-		$table = 'pages';
+		$table = 'events';
 		$rows ='*';
-		$where = 'page_status = "1" ';
+		$where = 'event_status = "1" ';
 		$db->select($table,$rows,$where,'','');
 		$pages_list = $db->getResults();
 		return $pages_list;
 	}
-	public function GetEventDetail($page_id){
+	public function GetEventDetail($evenet_id){
 		$db = new database();
-		$table = 'pages';
+		$table = 'events';
 		$rows ='*';
-		$where = 'page_id = "'.$page_id.'" AND page_status = "1" ';
+		$where = 'evenet_id = "'.$evenet_id.'" AND event_status = "1" ';
 		$db->select($table,$rows,$where,'','');
 		$page = $db->getResults();
 		return $page;			
