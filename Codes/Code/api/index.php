@@ -469,7 +469,7 @@ $app->delete('/subCategory/:subCategoryId', function ($id) {
 $app->get('/locations',  function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
-		$result = $DbHandler->getAllUsers();
+		$result = $DbHandler->getAllLocations();
 		$result['error'] = false;
         echoRespnse(200, $result);
 });
