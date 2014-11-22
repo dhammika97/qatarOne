@@ -547,16 +547,14 @@ $app->put('/locations/:id',  function($location_id) use ($app) {
 $app->delete('/locations/:id',  function($location_id) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->deleteUser($user_id);
+		$result = $DbHandler->deleteLocation($location_id);
 		
-		if ($result) {
-			// user deleted successfully				
+		if ($result) {			
 			$response["error"] = false;
-			$response["message"] = "User deleted succesfully";
+			$response["message"] = "Location deleted succesfully";
 		} else {
-			// task failed to delete
 			$response["error"] = true;
-			$response["message"] = "User failed to delete. Please try again!";
+			$response["message"] = "Location failed to delete. Please try again!";
 		}
 		echoRespnse(200, $response);
 });
