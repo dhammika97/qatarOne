@@ -456,6 +456,24 @@ public function deleteCategory($category_id){
 		}	
 	
 	}
+	
+	
+	
+//====================================SUB-CATEGORIES===================================	
+
+//public function getAllsubCategorys(){
+//	
+//		$table = 'category_sub';
+//		$rows ='*';
+//		$Where= 'category_sub_status = "1"';
+//		
+//        $db->select($table,$rows,$Where,'','');
+//	    $subcategories = $db->getResults();
+//        return $subcategories;
+//	
+//	}
+
+
 
 }
 
