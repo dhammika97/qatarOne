@@ -1015,7 +1015,7 @@ $app->delete('/event/:id', function ($id) {
 $app->get('/slider',  function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
-		$result = $DbHandler->getAllSlider();
+		$result = $DbHandler->getAllSliders();
 		$result['error'] = false;
         echoRespnse(200, $result);
 });
@@ -1031,7 +1031,7 @@ $app->get('/slider/:id',  function($slider_id) {
 		$result = $DbHandler->GetSliderDetail($slider_id);
         if ($result != NULL) {
         	$response["error"] = false;
-				$response['user'] = $result;
+				$response['slider'] = $result;
                 echoRespnse(200	, $response);
             } else {
                 $response["error"] = true;
@@ -1074,7 +1074,7 @@ $app->put('/slider/:id',  function($slider_id) use ($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$slider =  $request->getBody();
-		$result = $DbHandler->updateSuburb($slider_id, $slider);
+		$result = $DbHandler->updateSlider($slider_id, $slider);
 		if ($result) {
 			$response["error"] = false;
 			$response["message"] = "slider updated successfully";
@@ -1090,10 +1090,10 @@ $app->put('/slider/:id',  function($slider_id) use ($app) {
  * url - /slider/:id
  * method - DELETE
  * params - slider id */ 
-$app->delete('/slider/:id',  function($suburb_id) use($app) {
+$app->delete('/slider/:id',  function($slider_id) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->deleteSuburb($suburb_id);
+		$result = $DbHandler->deleteSlider($slider_id);
 		
 		if ($result) {			
 			$response["error"] = false;
