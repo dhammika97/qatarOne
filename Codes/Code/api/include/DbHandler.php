@@ -281,7 +281,21 @@ class DbHandler {
 		if ($db->delete($table,$where) ){
 				return true;
 		}
-	}	
+	}
+	
+	public function createLocation($location){
+		$db = new database();
+		$table  = "locations";
+		$values = "'".$location['location_name']."', 
+				'".$location['location_cordinates']."'";					  
+		$rows   = "location_name, 
+				   location_cordinates";		
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
 
 ?>

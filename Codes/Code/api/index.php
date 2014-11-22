@@ -68,7 +68,7 @@ $app->get('/user',  function() {
  * url - /userlist
  * method - GET
  * params -user id*/		
-$app->get('/userl/:id',  function($user_id) {
+$app->get('/user/:id',  function($user_id) {
 		$response = array();
 		$DbHandler = new DbHandler();	
 		$result = $DbHandler->GetUserDetail($user_id);
@@ -459,6 +459,108 @@ $app->delete('/subCategory/:subCategoryId', function ($id) {
 		}	   
 		echoRespnse(200, $response);
 });
+
+/**
+ * Get all locations
+ * url - /locations
+ * method - GET
+ * params - api Key*/
+
+$app->get('/locations',  function() {
+		$response = array();
+		$DbHandler = new DbHandler();		
+		$result = $DbHandler->getAllUsers();
+		$result['error'] = false;
+        echoRespnse(200, $result);
+});
+
+/**
+ * Get location by location id
+ * url - /locations
+ * method - GET
+ * params -user id*/		
+$app->get('/locations/:id',  function($user_id) {
+		$response = array();
+		$DbHandler = new DbHandler();	
+		$result = $DbHandler->GetUserDetail($user_id);
+        if ($result != NULL) {
+        	$response["error"] = false;
+				$response['user'] = $result;
+                echoRespnse(200	, $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+        });	 
+
+/**
+ * Create locations 
+ * url - /locations
+ * method - POST
+ * params -location object*/
+
+$app->post('/locations', function() use ($app) {
+		$location  = array();
+		$response = array();
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+
+		$location = $request->getBody();		
+		//verifyRequiredParams(array("user_email", "user_password"));
+		if($DbHandler->createLocation($location)){
+			$response["error"] = false;
+			$response["message"] = "location created successfully";
+			echoRespnse(200, $response);				
+			}else{
+			$response["error"] = true;
+			$response["message"] = "location creation failed";	
+		}
+});
+		
+/**
+ * Update location 
+ * url - /locations
+ * method - PUT
+ * params - location object */
+$app->put('/locations/:id',  function($location_id) use ($app) {
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+		$response = array();
+		$users =  $request->getBody();
+		$result = $DbHandler->updateUser($user_id, $users);
+		if ($result) {
+			$response["error"] = false;
+			$response["message"] = "User updated successfully";
+		} else {                
+			$response["error"] = true;
+			$response["message"] = "User failed to update. Please try again!";
+		}
+		echoRespnse(200, $response);				
+});
+ 					
+/**
+ * Delete location
+ * url - /locations/:id
+ * method - DELETE
+ * params - location id */ 
+$app->delete('/locations/:id',  function($location_id) use($app) {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->deleteUser($user_id);
+		
+		if ($result) {
+			// user deleted successfully				
+			$response["error"] = false;
+			$response["message"] = "User deleted succesfully";
+		} else {
+			// task failed to delete
+			$response["error"] = true;
+			$response["message"] = "User failed to delete. Please try again!";
+		}
+		echoRespnse(200, $response);
+});
+
 
 $app->run();
 		
