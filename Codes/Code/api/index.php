@@ -59,7 +59,7 @@ function authenticate(\Slim\Route $route) {
  * method - GET
  * params - api Key*/
 
- $app->get('/userlist',  function() {
+ $app->get('/user',  function() {
            
 		   
 		   
@@ -78,7 +78,7 @@ function authenticate(\Slim\Route $route) {
  * url - /userlist
  * method - GET
  * params -user id*/		
-$app->get('/userlist/:id',  function($user_id) {
+$app->get('/userl/:id',  function($user_id) {
             $response = array();
             $DbHandler = new DbHandler();
 			
@@ -108,56 +108,30 @@ $app->get('/userlist/:id',  function($user_id) {
  * method - POST
  * params -user object*/
 
-$app->post('/userlist', function() use ($app) {
+$app->post('/user', function() use ($app) {
            
 		   
 			$users  = array();
             $response = array();
-            $request = \Slim\Slim::getInstance()->request();
+            $request = $app->request();
             $DbHandler = new DbHandler();
-			
-			$users['user_username'] = $request->post('user_username');
-			$users['user_password']= $request->post('user_password');
-			$users['user_email'] = $request->post('user_email');
-			$users['user_firstname']= $request->post('user_firstname');
-			$users['user_lastname'] = $request->post('user_lastname');
-			$users['user_address1']= $request->post('user_address1');
-			$users['user_address2'] = $request->post('user_address2');
-			$users['user_city']= $request->post('user_city');
-			$users['user_contactNo'] = $request->post('user_contactNo');
-			$users['user_type']= $request->post('user_type');
-			
-			$users['user_accessToken']= $request->post('user_accessToken');
-			
-			
-			
-			
-			//VALIDATING INPUTS - all fileds are Required
-			$check = true;
-			foreach( $users as $user){
-			
-				   if($user == ''){
-					
-					
-					$response["error"] = true;
-					$response["message"] = "Required field are empty";
-				    echoRespnse(200, $response);
-					$check = false;
-					break;
-					
-				}
-			}
-			
-			
-			if($check){
-			
-			
-			    $DbHandler->createUser($users);
+
+			$users = $request->getBody();		
+			//verifyRequiredParams(array("user_email", "user_password"));
+			if($DbHandler->createUser($users)){
 				$response["error"] = false;
 				$response["message"] = "user created successfully";
-				echoRespnse(200, $response);
-			
+				echoRespnse(200, $response);	
+				
+				}else{
+					
+				$response["error"] = true;
+				$response["message"] = "user created unsuccessfull";	
+					
 			}
+			
+			
+		
 	       
         });
 		
@@ -167,23 +141,13 @@ $app->post('/userlist', function() use ($app) {
  * method - PUT
  * params -user object, user_id */
 		
-	$app->put('/userlist/:id',  function($user_id) {
-            $request = \Slim\Slim::getInstance()->request();
+	$app->put('/user/:id',  function($user_id) use ($app) {
+            $request = $app->request();
 			//$body = $request->getBody();
 			
 		    $DbHandler = new DbHandler();
             $response = array();
-			
-			$users['user_username'] = $request->post('user_username');
-			$users['user_password']= $request->post('user_password');
-			$users['user_email'] = $request->post('user_email');
-			$users['user_firstname']= $request->post('user_firstname');
-			$users['user_lastname'] = $request->post('user_lastname');
-			$users['user_address1']= $request->post('user_address1');
-			$users['user_address2'] = $request->post('user_address2');
-			$users['user_city']= $request->post('user_city');
-			$users['user_contactNo'] = $request->post('user_contactNo');
-			$users['user_type']= $request->post('user_type');
+			$users =  $request->getBody();
 			
 			
             $result = $DbHandler->updateUser($user_id, $users);
@@ -210,7 +174,7 @@ $app->post('/userlist', function() use ($app) {
  * method - DELETE
  * params - user_id */
  
-$app->delete('/userlist/:id',  function($user_id) use($app) {
+$app->delete('/user/:id',  function($user_id) use($app) {
           
 		 
             $DbHandler = new DbHandler();
@@ -591,34 +555,7 @@ $app->post('/fixedadlist', function() use ($app) {
 ///**
 // * Verifying required params posted or not
 // */
-//function verifyRequiredParams($required_fields) {
-//    $error = false;
-//    $error_fields = "";
-//    $request_params = array();
-//    $request_params = $_REQUEST;
-//    // Handling PUT request params
-//    if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
-//        $app = \Slim\Slim::getInstance();
-//        parse_str($app->request()->getBody(), $request_params);
-//    }
-//    foreach ($required_fields as $field) {
-//        if (!isset($request_params[$field]) || strlen(trim($request_params[$field])) <= 0) {
-//            $error = true;
-//            $error_fields .= $field . ', ';
-//        }
-//    }
-//
-//    if ($error) {
-//        // Required field(s) are missing or empty
-//        // echo error json and stop the app
-//        $response = array();
-//        $app = \Slim\Slim::getInstance();
-//        $response["error"] = true;
-//        $response["message"] = 'Required field(s) ' . substr($error_fields, 0, -2) . ' is missing or empty';
-//        echoRespnse(400, $response);
-//        $app->stop();
-//    }
-//}
+
 //
 ///**
 // * Validating email address
@@ -728,7 +665,7 @@ $app->post('/category', function() use ($app) {
 	$DbHandler = new DbHandler();
     global $user_ID;
 	
-    $category['category_name'] = $app->request()->post('category_name');
+    $category = $app->request()->getBody();
     $category['category_enteredBy'] = $user_ID = 1;
 	
 
@@ -749,35 +686,35 @@ $app->post('/category', function() use ($app) {
     }
 });
 
-//
-///**
+
+
 // * Update category
 // * url - /category/id
 // * method - post
-// * params -  id*/ //UNDER CONSTRUCTION
-//$app->put('/category/:categoryId', function ($id) use ($app) {
-//
-//	$DbHandler = new DbHandler();
-//	$request = $app->request();
-//	$category = json_decode( $request->getBody() );	
-//	//$body['category_name'] = $app->request()->put('category_name');
-//
-//    if ($result = $DbHandler->updateCateory($category, $id)) {
-//
-//        $response["error"] = FALSE;
-//        $response["message"] = "Successfully Updated";
-//        echoRespnse(200, $response);
-//		
-//    } else {
-//
-//        $response["error"] = TRUE;
-//        $response["message"] = "Updated failed";
-//        echoRespnse(401, $response);
-//    }
-//});
-//
-//
-//
+// * params -  id //UNDER CONSTRUCTION
+$app->put('/category/:categoryId', function ($id) use ($app) {
+
+	$DbHandler = new DbHandler();
+	$request = $app->request();
+	$category = $request->getBody();	
+	
+
+    if ($result = $DbHandler->updateCateory($category, $id)) {
+
+        $response["error"] = FALSE;
+        $response["message"] = "Successfully Updated";
+        echoRespnse(200, $response);
+		
+    } else {
+
+        $response["error"] = TRUE;
+        $response["message"] = "Updated failed";
+        echoRespnse(401, $response);
+    }
+});
+
+
+
 $app->delete('/category/:categoryId', function ($id) {
 
 	$DbHandler = new DbHandler();
@@ -803,144 +740,159 @@ $app->delete('/category/:categoryId', function ($id) {
 //=========================SUB-CATEGORIES-SERVICES==================================
 
 
-//==== GET===========
+// * list all sub-category
+// * url - /subCategory
+// * method - get
+// * params - 
 
 $app->get('/subCategory', function()  {
 
-	//$DbHandler = new DbHandler();
-//    $response = array();
-//	$result = $db->getAllsubCategorys();
-//	
-//	print_r($result);
+	$DbHandler = new DbHandler();
+    $response = array();
+	$result = $DbHandler->getAllsubCategorys();
+	
+	
 
-   // if (!$result) {
-//
-//        $response["error"] = TRUE;
-//        $response["message"] = "The requested resource doesn't exists";
-//        echoRespnse(404, $response);
-//		
-//    } else {
-//
-//        $response["error"] = false;
-//        echoRespnse(200, $response);
-//    }
+    if (!$result) {
+
+        $result["error"] = TRUE;
+        $result["message"] = "The requested resource doesn't exists";
+        echoRespnse(404, $result);
+		
+    } else {
+
+        $result["error"] = false;
+        echoRespnse(200, $result);
+    }
 });
 
-////==== GET/ID===========
-//
-//$app->get('/subCategory/:id', function($subCategory_id) use ($db) {
-//
-//
-//    $response = array();
-//
-//    $row = $db->GetsubCategoryDetail($subCategory_id);
-//
-//
-//    if ($row != NULL) {
-//        $response["error"] = false;
-//        $response["category_sub_id"] = $row["category_sub_id"];
-//        $response["category_sub_name"] = $row["category_sub_name"];
-//        $response["category_sub_entereddate"] = $row["category_sub_entereddate"];
-//        $response["category_sub_enteredby"] = $row["category_sub_enteredby"];
-//        $response["category_sub_status"] = $row["category_sub_status"];
-//        $response["category_sub_categoryid"] = $row["category_sub_categoryid"];
-//
-//
-//
-//        echoRespnse(200, $response);
-//    } else {
-//
-//        $response["error"] = true;
-//        $response["message"] = "The requested resource doesn't exists";
-//        echoRespnse(404, $response);
-//    }
-//});
-//
-//
-////==== POST===========
-//
-//$app->post('/subCategory', function() use ($app, $db) {
-//
-//
-//    $response = array();
-//    $category = array();
-//    global $user_ID;
-//
-//
-//
-//    $subCategory['name'] = $app->request()->post('category_name');
-//    $subCategory['mainCatID'] = $app->request()->post('mainCatID');
-//    //User ID should be a global variable
-//    $subCategory['enteredby'] = $user_ID;
-//
-//
-//
-//
-//    if ($db->addsubCategory($subCategory)) {
-//
-//        $response["error"] = false;
-//        $response["message"] = "Successfully created the category";
-//        echoRespnse(201, $response);
-//    } else {
-//
-//        $response["error"] = true;
-//        $response["message"] = "category not created ";
-//        echoRespnse(412, $response);
-//    }
-//});
-//
-//
-//
-//
-//
-////==== PUT===========
-//
-//
-//$app->put('/subCategory/:subCategoryId', function ($id) use ($db, $app) {
-//
-//   
-//    
-//   
-//    
-//    $subCategory['category_sub_name'] = $app->request()->put('category_sub_name');
-//    $subCategory['mainCatID']         = $app->request()->put('mainCatID');
-//    $subCategory['status']            = $app->request()->put('status');
-//    
-//    
-//    
-//    if ($result = $db->updatesubCategory($subCategory, $id)) {
-//
-//        $response["error"] = FALSE;
-//        $response["message"] = "Successfully Updated";
-//        echoRespnse(200, $response);
-//        
-//    }else{
-//        
-//        $response["error"] = TRUE;
-//        $response["message"] = "Updated falid";
-//        echoRespnse(401, $response);
-//    }
-//});
-//
-//
-//$app->delete('/subCategory/:subCategoryId', function ($id) use($db, $app){
-//    
-//    $response = array();
-//    
-//    if($db->deleteSubCategory($id)){
-//        
-//     $response['error'] = FALSE;
-//     $response['message'] = 'Successfully Deleted';
-//    }else{
-//     $response['error'] = TRUE;
-//     $response['message'] = 'Not Deleted';   
-//        
-//    }
-//   
-//    echoRespnse(200, $response);
-//});
-//
+// * list all sub-category
+// * url - /subCategory
+// * method - get
+// * params - subcategoryID
 
+$app->get('/subCategory/:id', function($subCategory_id) {
+
+	$DbHandler = new DbHandler();
+    $response = array();
+
+    $row = $DbHandler->GetsubCategoryDetail($subCategory_id);
+
+ 	//print_r($row);
+
+    if ($row != NULL) {
+        $row["error"] = false;
+        
+        echoRespnse(200, $row);
+		
+    } else {
+
+        $response["error"] = true;
+        $response["message"] = "The requested resource doesn't exists";
+        echoRespnse(404, $response);
+    }
+});
+
+// * Add sub-category
+// * url - /subCategory
+// * method - post
+// * params - 
+
+$app->post('/subCategory', function() use ($app) {
+
+	$DbHandler = new DbHandler();
+    $response = array();
+    $category = array();
+    
+	$request = $app->request();
+    $subCategory = $request->getBody();
+	
+	$user_ID = "1";
+    //User ID should be a global variable
+    $subCategory['category_sub_enteredBy'] = $user_ID;
+
+	//print_r($subCategory);
+
+
+    if ($DbHandler->addsubCategory($subCategory)) {
+
+        $response["error"] = false;
+        $response["message"] = "Successfully created the category";
+        echoRespnse(201, $response);
+    } else {
+
+        $response["error"] = true;
+        $response["message"] = "category not created ";
+        echoRespnse(412, $response);
+    }
+});
+
+
+
+
+
+// * Add sub-category
+// * url - /subCategory
+// * method - post
+// * params - 
+
+$app->put('/subCategory/:subCategoryId', function ($id) use ( $app) {
+
+    $DbHandler = new DbHandler();
+	$request = $app->request();
+    $subCategory = $request->getBody();
+   
+   
+	  
+    if ($result = $DbHandler->updatesubCategory($subCategory, $id)) {
+
+        $response["error"] = FALSE;
+        $response["message"] = "Successfully Updated";
+        echoRespnse(200, $response);
+        
+    }else{
+        
+        $response["error"] = TRUE;
+        $response["message"] = "Updated falid";
+        echoRespnse(401, $response);
+    }
+	
+});
+
+
+$app->delete('/subCategory/:subCategoryId', function ($id) {
+    $DbHandler = new DbHandler();
+    $response = array();
+    
+    if($DbHandler->deleteSubCategory($id)){
+        
+     $response['error'] = FALSE;
+     $response['message'] = 'Successfully Deleted';
+    }else{
+     $response['error'] = TRUE;
+     $response['message'] = 'Not Deleted';   
+        
+    }
+   
+    echoRespnse(200, $response);
+});
+
+
+
+//========================================LOGIN-SERVICE========================
+
+
+//$app->post('/login', function(){
+//	
+//	$DbHandler = new DbHandler();
+//    $response = array();
+//	$request = \Slim\Slim::getInstance()->request();
+//	$loginCredentials = $request->getBody();
+//	
+//	$DbHandler->login($loginCredentials);
+//	
+//	
+//});
 
 
 $app->run();
