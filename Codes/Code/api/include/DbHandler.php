@@ -593,7 +593,63 @@ class DbHandler {
 		$db->select($table,$rows,$where,'','');
 		$page = $db->getResults();
 		return $page;			
-	}	
+	}
+	
+	public function createSlider($suburb){
+		$db = new database();
+		$table  = "suburbs";
+		$values = "'".$suburb['suburb_location_id']."', 
+				'".$suburb['suburb_name']."',
+				'".$suburb['suburb_cordinates']."'";					  
+		$rows   = "suburb_location_id, 
+				   suburb_name,
+				   suburb_cordinates";		
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function getAllSliders(){
+		$db = new database();
+		$table = 'suburbs';
+		$rows ='*';	
+		$db->select($table,$rows,'','','');
+		$location_list = $db->getResults();
+		return $location_list;
+	}
+	
+	public function GetSliderDetail($suburb_id){
+		$db = new database();
+		$table = 'suburbs';
+		$rows ='*';
+		$where = 'suburb_id = "'.$suburb_id.'"';
+		$db->select($table,$rows,$where,'','');
+		$page = $db->getResults();
+		return $page;
+	}
+	
+	public function updateSlider($suburb_id, $suburbs){
+		$db = new database();	
+		$table = 'suburbs';
+		$rows  = $suburbs ;
+		$where = 'suburb_id = "'.$suburb_id.'"';
+		if($db->update($table,$rows,$where) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function deleteSlider($suburb_id){
+		$db = new database();
+		$table = 'suburbs';
+		$where = 'suburb_id = "'.$suburb_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		}
+	}
 }
 
 ?>
