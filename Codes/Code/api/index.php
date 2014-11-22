@@ -559,6 +559,45 @@ $app->delete('/locations/:id',  function($location_id) use($app) {
 		echoRespnse(200, $response);
 });
 
+/**
+ * User Login
+ * url - /login
+ * method - POST
+ * params -email, password */
+$app->post('/login', function() use ($app) {    
+						
+				// reading post params						 
+				$email = $app->request()->post('email');
+				$password = $app->request()->post('password');
+				$response = array();
+
+                //$password_hash = PassHash::hash($password);
+				// echo $password_hash;		
+
+				$db = new DbHandler();
+				// check for correct email and password
+				if ($db->checkLogin($email, $password)) {
+					//get the user by email
+					$logged_User = $db->getUserByEmail($email);
+	                
+					if ($logged_User != NULL) {
+						$response["error"] = false;
+						$response['accessToken'] = $logged_User['user_accessToken'];
+                        $response['user_status'] = $logged_User['user_status'];
+					} else {
+						// unknown error occurred
+						$response['error'] = true;
+						$response['message'] = "An error occurred. Please try again";
+					}
+				} else {
+					// user credentials are wrong
+					$response['error'] = true;
+					$response['message'] = 'Login failed. Incorrect credentials';
+				}
+	
+				echoRespnse(200, $response);
+				
+	});
 
 $app->run();
 		
