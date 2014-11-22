@@ -89,7 +89,7 @@ class DbHandler {
      */
    
 	public function createUser( $users) {
-      
+      		$date= date('y-m-d');
 			$db = new database();
 			$table  = "user";
 			 $values = "'".$users['user_username']."', 
@@ -101,6 +101,7 @@ class DbHandler {
 						  '".$users['user_address2']."', 
 						  '".$users['user_city']."',
 						  '".$users['user_contactNo']."', 
+						  '".$date."', 
 						  '".$users['user_type']."',
 						  '".$users['user_type']."'";
 						  
@@ -114,6 +115,7 @@ class DbHandler {
                        user_address2,
                        user_city,
                        user_contactNo,
+					   user_registeredDate,
                        user_type,
                        user_accessToken";
 			
@@ -524,25 +526,25 @@ public function addCategory($category){
 		return true;
 	}
 }
-//	
-////Update category
-//public function updateCateory( $category, $category_id){
-//	
-//		$db = new database();
-//		   
-//		$table = 'category';
-//		$rows  = $category;
-//		$where = 'category_id = "'.$category_id.'"';
-//		   
-//           if($db->update($table,$rows,$where) ){
-//				return true;
-//		   }else{
-//				return false;
-//		   }
-//	
-//	
-//
-//}
+	
+//Update category
+public function updateCateory( $category, $category_id){
+	
+		$db = new database();
+		   
+		$table = 'category';
+		$rows  = $category;
+		$where = 'category_id = "'.$category_id.'"';
+		   
+           if($db->update($table,$rows,$where) ){
+				return true;
+		   }else{
+				return false;
+		   }
+	
+	
+
+}
 
 public function deleteCategory($category_id){
 	
@@ -559,19 +561,88 @@ public function deleteCategory($category_id){
 	
 //====================================SUB-CATEGORIES===================================	
 
-//public function getAllsubCategorys(){
+public function getAllsubCategorys(){
+	
+		$db = new database();
+		$table = 'category_sub';
+		$rows ='*';
+		$Where= 'category_sub_status = "1"';
+		
+        $db->select($table,$rows,$Where,'','');
+	    $subcategories = $db->getResults();
+        return $subcategories;
+	
+	}
+public function GetsubCategoryDetail($id){
+		
+		$db = new database();
+		$table = 'category_sub';
+		$rows ='*';
+		$where = 'category_sub_id = "'.$id.'" AND category_sub_status = "1" ';
+		
+        $db->select($table,$rows,$where,'','');
+	    $subcategory = $db->getResults();
+		
+		
+        return $subcategory;	
+		
+	
+	}
+public function addsubCategory($category){
+		
+	 $db = new database();
+
+	// $table1 = 'category_sub';
+//     $rows1 ='category_name';
+//	 $where1 = 'category_name = "'.$category['category_name'].'"';
 //	
-//		$table = 'category_sub';
-//		$rows ='*';
-//		$Where= 'category_sub_status = "1"';
+//	 $db->select($table1,$rows1,$where1,'','');
+//	 $categoryNumRows = $db->getNumRows();
+//	
+//	 if( $categoryNumRows > 1 ){
 //		
-//        $db->select($table,$rows,$Where,'','');
-//	    $subcategories = $db->getResults();
-//        return $subcategories;
-//	
-//	}
-
-
+//		 return false;
+//	 }
+	
+	
+	$table  = "category_sub";
+	$values = "'".$category['category_sub_name']."', '".$category['category_sub_enteredBy']."' , '".$category['category_sub_parentId']."'";				  
+	$rows   = "category_sub_name, category_sub_enteredBy, category_sub_parentId";
+			
+	if($db->insert($table,$values,$rows) ){
+		return true;
+	}
+		
+	
+	}
+	
+public function updatesubCategory($subCategory, $category_sub_id){
+		
+		$db = new database();
+		   
+		   $table = 'category_sub';
+		   $rows  = $subCategory ;
+		   $where = 'category_sub_id = "'.$category_sub_id.'"';
+		   
+           if($db->update($table,$rows,$where) ){
+				return true;
+		   }else{
+				return false;
+		   }
+	
+	}	
+	
+public function deleteSubCategory($category_sub_id){
+	
+		
+		$db = new database();
+		$table = 'category_sub';
+		$where = 'category_sub_id = "'.$category_sub_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		}
+	
+	}	
 
 }
 
