@@ -9,20 +9,21 @@ class DbHandler {
 
 
 
-    /**
-     * Validating user api key
-     * If the api key is there in db, it is a valid key
-     * @param String $api_key user api key
+      /**
+     * Validating user Access Token 
+     * If the Access Token  is there in db, it is a valid key
+     * @param String $user_accessToken,  user Access Token 
      * @return boolean
      */
-    public function isValidApiKey($api_key) {
-        $stmt = $this->conn->prepare("SELECT id from users WHERE api_key = ?");
-        $stmt->bind_param("s", $api_key);
-        $stmt->execute();
-        $stmt->store_result();
-        $num_rows = $stmt->num_rows;
-        $stmt->close();
-        return $num_rows > 0;
+    public function isValidAccessToken($user_accessToken) {     
+       	$db = new database();
+		$table = 'user';
+		$rows ='*';
+		$where = 'user_accessToken = "'.$user_accessToken.'"';
+		
+        $db->select($table,$rows,$where,'','');
+	    $user = $db->getResults();
+        return $user;	
     }
 
 
@@ -155,6 +156,106 @@ class DbHandler {
 			return true;
 		}
         //return $num_affected_rows > 0;
+		
+    }
+
+
+        /**
+     * Get all fixed add list 
+     */
+    
+     public function getAllFixedAd() {
+        
+        $db = new database();    
+    
+        $table = 'fixedads';
+        $rows ='*';
+    
+        $db->select($table,$rows,'','','');
+        $fixedad_list = $db->getResults();
+        return $fixedad_list;
+    
+    }
+
+
+    
+  /**
+     * Get All Fixed Advertisments 
+ */
+
+    public function GetFixedAdvertismentDetail($fixedads_id) {           
+
+      $db = new database();
+      $table = 'fixedads';
+      $rows ='*';
+      $where = 'fixedads_id = "'.$fixedads_id.'"';
+    
+      $db->select($table,$rows,$where,'','');
+      $user = $db->getResults();
+      return $user; 
+    }
+
+
+    
+  /**
+     * Create   Fixed Advertisment 
+ */
+
+    public function createFixedAdvertisment( $fixed_advertisment) {
+
+      $db = new database();
+      $table  = "fixedads";
+      $values = "'".$fixed_advertisment['fixedads_type']."',
+              '".$fixed_advertisment['fixedads_image']."', 
+              '".$fixed_advertisment['fixedads_enetredDate']."', 
+              '".$fixed_advertisment['fixedads_url']."',              
+              '".$fixed_advertisment['fixedads_status']."'";
+              
+              
+      $rows   = "fixedads_type, 
+                       fixedads_image,
+                       fixedads_enetredDate,
+                       fixedads_url,
+                       fixedads_status";
+      
+      if($db->insert($table,$values,$rows) ){
+        return true;
+      }else{
+        return false;
+      }
+                    
+    }
+
+    /**
+     * Update Fixed Advertisment by Fixed Advertisment id
+     */
+    public function updateFixedAdvertisment($fixedads_id, $fixed_advertisment) {       
+           $db = new database();
+		   
+		   $table = 'fixedads';
+		   $rows  = $fixed_advertisment ;
+		   $where = 'fixedads_id = "'.$fixedads_id.'"';
+		   
+           if($db->update($table,$rows,$where) ){
+				return true;
+		   }else{
+				return false;
+		   }
+    }
+	
+  /**
+     * DELETE Fixed Advertisment by Fixed Advertisment id
+     */
+	 public function deleteFixedAdvertisment($fixedads_id) {
+	 
+		$db = new database();
+		$table = 'fixedads';
+		$where = 'fixedads_id = "'.$fixedads_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		} else{
+				return false;
+		   }   
 		
     }
 	
