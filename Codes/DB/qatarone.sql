@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2014 at 07:14 PM
+-- Generation Time: Nov 22, 2014 at 01:02 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -67,12 +67,27 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
 
 CREATE TABLE IF NOT EXISTS `category` (
   `category_id` int(5) NOT NULL AUTO_INCREMENT,
+  `category_parentId` int(5) NOT NULL,
   `category_name` varchar(250) NOT NULL,
   `category_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_enteredBy` int(11) NOT NULL,
   `category_status` int(1) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `category_parentId`, `category_name`, `category_enteredDate`, `category_enteredBy`, `category_status`) VALUES
+(1, 0, 'Classifides', '2014-11-21 06:01:14', 1, 1),
+(2, 0, 'Job Seeker', '2014-11-21 06:02:44', 1, 1),
+(3, 1, 'Antiques', '2014-11-21 09:29:09', 1, 1),
+(4, 1, 'Art', '2014-11-21 09:29:09', 1, 1),
+(5, 1, 'Baby', '2014-11-21 09:29:50', 1, 1),
+(6, 1, 'Books', '2014-11-21 09:29:50', 1, 1),
+(7, 2, 'Accounting/ Finance', '2014-11-21 09:31:54', 1, 1),
+(8, 2, 'Admin/ Human Resources', '2014-11-21 09:31:54', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -102,7 +117,17 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
   `category_sub_parentId` int(4) NOT NULL,
   PRIMARY KEY (`category_sub_id`),
   KEY `category_sub_id` (`category_sub_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `category_sub`
+--
+
+INSERT INTO `category_sub` (`category_sub_id`, `category_sub_name`, `category_sub_enteredDate`, `category_sub_enteredBy`, `category_sub_status`, `category_sub_parentId`) VALUES
+(1, 'Audit & Taxation', '2014-11-21 09:33:40', 1, 1, 7),
+(2, 'Banking & Financial', '2014-11-21 09:33:40', 1, 1, 7),
+(3, 'Antiquities', '2014-11-21 09:35:25', 1, 1, 3),
+(4, 'Antique Books & Manuscripts', '2014-11-21 09:35:25', 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -148,6 +173,23 @@ CREATE TABLE IF NOT EXISTS `locations` (
   `location_name` varchar(100) NOT NULL,
   `location_cordinates` varchar(20) NOT NULL,
   PRIMARY KEY (`location_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `news_id` int(10) NOT NULL AUTO_INCREMENT,
+  `news_title` varchar(255) NOT NULL,
+  `news_shortDescription` varchar(255) NOT NULL,
+  `news_Description` longtext NOT NULL,
+  `news_image` varchar(255) NOT NULL,
+  `news_date` datetime NOT NULL,
+  `news_status` int(1) NOT NULL,
+  PRIMARY KEY (`news_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -247,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_status` int(1) NOT NULL,
   `user_accessToken` text NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `user`
@@ -266,6 +308,7 @@ CREATE TABLE IF NOT EXISTS `userpackge` (
   `userpkg_id` int(11) NOT NULL AUTO_INCREMENT,
   `userpkg_userId` int(11) NOT NULL,
   `userpkg_pkgId` int(11) NOT NULL,
+  `userpkg_remainAds` int(4) NOT NULL,
   `userpkg_expirey` date NOT NULL,
   `userpkg_status` int(1) NOT NULL,
   PRIMARY KEY (`userpkg_id`)
