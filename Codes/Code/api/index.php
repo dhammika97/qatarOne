@@ -17,6 +17,7 @@ $app->add(new \Slim\Middleware\ContentTypes());
 	header('Content-Type: application/json');
 	
 
+
 /**
  * Adding Middle Layer to authenticate every request
  * Checking if the request has valid api key in the 'Authorization' header
@@ -31,24 +32,20 @@ function authenticate(\Slim\Route $route) {
     if (isset($headers['Authorization'])) {
         $db = new DbHandler();
 
-        // get the api key
-        $api_key = $headers['Authorization'];
-        // validating api key
-        if (!$db->isValidApiKey($api_key)) {
-            // api key is not present in users table
+        // get the access token
+        $user_accessToken = $headers['Authorization'];
+        // validating Access Token
+        if (!$db->isValidAccessToken($user_accessToken)) {
+            // acess token not present in users table
             $response["error"] = true;
-            $response["message"] = "Access Denied. Invalid Api key";
+            $response["message"] = "Access Denied. Invalid Access Token";
             echoRespnse(401, $response);
             $app->stop();
-        } else {
-            global $user_id;
-            // get user primary key id
-            $user_id = $db->getUserId($api_key);
-        }
+        }        
     } else {
-        // api key is missing in header
+        // User Access Token is missing in header
         $response["error"] = true;
-        $response["message"] = "Api key is misssing";
+        $response["message"] = "User Access Token key is misssing";
         echoRespnse(400, $response);
         $app->stop();
     }
@@ -231,8 +228,142 @@ $app->delete('/userlist/:id',  function($user_id) use($app) {
             }
             echoRespnse(200, $response);
         });
+
+
+
 		
-		
+		/**
+ * Retreive Fixed advertisment list 
+ * url - /fixedAds
+ * method - GET
+ * params - */
+
+$app->get('/fixedAds',  function() {
+           
+            $response = array();
+            $DbHandler = new DbHandler();
+                
+            $result = $DbHandler->getAllFixedAd();
+            $result['error'] = false;
+        
+            echoRespnse(200, $result);
+        });
+
+
+
+ /**
+ * Get Fixed advertisment by advertisment id
+ * url - /fixedAds/:id
+ * method - GET
+ * params -fixedads_id */
+
+ $app->get('/fixedAds/:id',  function($fixedads_id) {
+            $response = array();
+            $DbHandler = new DbHandler();       
+            
+            $result = $DbHandler->GetFixedAdvertismentDetail($fixedads_id);
+
+            if ($result != NULL) {            
+                $response["error"] = false;
+                $response['user'] = $result;
+                echoRespnse(200 , $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+            
+        });
+
+
+
+
+/**
+ * Create Fixed advertisment 
+ * url - /fixedAds
+ * method - POST
+ * params -fixed advertisment  object*/
+
+$app->post('/fixedAds',"authenticate",function() use ($app) {
+            // check for required paramsss
+           // verifyRequiredParams(array('task'));
+
+            $response = array();           
+            $request = \Slim\Slim::getInstance()->request();
+            $fixed_advertisment = $request->getBody();
+           // echo $body;
+            $db = new DbHandler();
+
+            // creating new Fixed advertisment 
+            $result = $db->createFixedAdvertisment($fixed_advertisment);
+            //echo $user_id;
+            
+            if ($result) {
+                $response["error"] = false;
+                $response["message"] = "Fixed Advertisment created successfully";                
+                echoRespnse(201, $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "Failed to create Fixed Advertisment. Please try again";
+                echoRespnse(200, $response);
+            }            
+        });
+
+
+ 
+/**
+ * Update  Fixed advertisment  
+ * url - /fixedadlist/:id
+ * method - PUT
+ * params -Fixed advertisment object, fixedads_id */
+        
+    $app->put('/fixedAds/:id',"authenticate",  function($fixedads_id) {
+            $request = \Slim\Slim::getInstance()->request();
+            $fixed_advertisment = $request->getBody();
+            
+            $db = new DbHandler();
+            $response = array();
+            
+             // updating Fixed advertisment 
+            $result = $db->updateFixedAdvertisment($fixedads_id, $fixed_advertisment);
+           
+            if ($result) {
+                // Fixed advertisment  updated successfully
+                $response["error"] = false;
+                $response["message"] = "Fixed Advertisment updated successfully";
+            } else {
+                // Fixed advertisment  failed to update
+                $response["error"] = true;
+                $response["message"] = "Fixed Advertisment failed to update. Please try again!";
+            }
+            
+            echoRespnse(200, $response);        
+                
+        });
+
+/**
+ * Delete Fixed advertisment   
+ * url - /userlist/:id'
+ * method - DELETE
+ * params - user_id */
+	$app->delete('/fixedAds/:id',"authenticate" , function($fixedads_id) use($app) {
+          
+            $db = new DbHandler();
+            $response = array();
+            $result = $db->deleteFixedAdvertisment($fixedads_id);
+            
+            if ($result) {
+                // user deleted successfully                
+                $response["error"] = false;
+                $response["message"] = "Fixed Advertisment deleted succesfully";
+            } else {
+                // task failed to delete
+                $response["error"] = true;
+                $response["message"] = "Fixed Advertisment failed to delete. Please try again!";
+            }
+            echoRespnse(200, $response);
+        });
+
 		//======================Updated upto here=========================//
 		
 		
