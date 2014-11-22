@@ -470,7 +470,52 @@ class DbHandler {
 		$db->select($table,$rows,$where,'','');
 		$page = $db->getResults();
 		return $page;			
-	}	
+	}
+	
+	
+	public function createSuburb($location){
+		$db = new database();
+		$table  = "locations";
+		$values = "'".$location['location_name']."', 
+				'".$location['location_cordinates']."'";					  
+		$rows   = "location_name, 
+				   location_cordinates";		
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function getAllSuburbs(){
+		$db = new database();
+		$table = 'locations';
+		$rows ='*';	
+		$db->select($table,$rows,'','','');
+		$location_list = $db->getResults();
+		return $location_list;
+	}
+	
+	public function updateSuburb($location_id, $locations){
+		$db = new database();	
+		$table = 'locations';
+		$rows  = $locations ;
+		$where = 'location_id = "'.$location_id.'"';
+		if($db->update($table,$rows,$where) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function deleteSuburb($location_id){
+		$db = new database();
+		$table = 'locations';
+		$where = 'location_id = "'.$location_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		}
+	}
 }
 
 ?>
