@@ -823,10 +823,10 @@ $app->get('/suburbs',  function() {
  * url - /suburbs
  * method - GET
  * params -suburb id*/		
-$app->get('/suburbs/:id',  function($user_id) {
+$app->get('/suburbs/:id',  function($suburb_id) {
 		$response = array();
 		$DbHandler = new DbHandler();	
-		$result = $DbHandler->GetUserDetail($user_id);
+		$result = $DbHandler->GetSuburbDetail($suburb_id);
         if ($result != NULL) {
         	$response["error"] = false;
 				$response['user'] = $result;
