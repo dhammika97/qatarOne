@@ -518,11 +518,11 @@ class DbHandler {
 		return $page;
 	}
 	
-	public function updateSuburb($location_id, $locations){
+	public function updateSuburb($suburb_id, $suburbs){
 		$db = new database();	
-		$table = 'locations';
-		$rows  = $locations ;
-		$where = 'location_id = "'.$location_id.'"';
+		$table = 'suburbs';
+		$rows  = $suburbs ;
+		$where = 'suburb_id = "'.$suburb_id.'"';
 		if($db->update($table,$rows,$where) ){
 			return true;
 		}else{
