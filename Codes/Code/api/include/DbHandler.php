@@ -508,11 +508,11 @@ class DbHandler {
 		return $location_list;
 	}
 	
-	public function getSuburbDetail($location_id){
+	public function GetSuburbDetail($suburb_id){
 		$db = new database();
-		$table = 'locations';
+		$table = 'suburbs';
 		$rows ='*';
-		$where = 'location_id = "'.$location_id.'"';
+		$where = 'suburb_id = "'.$suburb_id.'"';
 		$db->select($table,$rows,$where,'','');
 		$page = $db->getResults();
 		return $page;
