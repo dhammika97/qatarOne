@@ -904,6 +904,111 @@ $app->delete('/suburbs/:id',  function($location_id) use($app) {
 });
 
 
+// * list all sub-category
+// * url - /subCategory
+// * method - get
+// * params - 
+
+$app->get('/subCategory', function()  {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->getAllsubCategorys();	
+		if (!$result) {
+			$result["error"] = TRUE;
+			$result["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $result);
+		} else {
+			$result["error"] = false;
+			echoRespnse(200, $result);
+		}
+});
+
+// * list all sub-category
+// * url - /subCategory
+// * method - get
+// * params - subcategoryID
+
+$app->get('/subCategory/:id', function($subCategory_id) {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$row = $DbHandler->GetsubCategoryDetail($subCategory_id);
+		if ($row != NULL) {
+			$row["error"] = false;
+			echoRespnse(200, $row);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}
+});
+
+// * Add sub-category
+// * url - /subCategory
+// * method - post
+// * params - 
+
+$app->post('/subCategory', function() use ($app) {	
+		$DbHandler = new DbHandler();
+		$response = array();
+		$category = array();
+		$request = $app->request();
+		$subCategory = $request->getBody();
+		$user_ID = "1";
+		//User ID should be a global variable
+		$subCategory['category_sub_enteredBy'] = $user_ID;
+		//print_r($subCategory);
+		if ($DbHandler->addsubCategory($subCategory)) {
+			$response["error"] = false;
+			$response["message"] = "Successfully created the category";
+			echoRespnse(201, $response);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "category not created ";
+			echoRespnse(412, $response);
+		}
+});
+
+
+// * Edit sub-category
+// * url - /subCategory
+// * method - post
+// * params - 
+
+$app->put('/subCategory/:subCategoryId', function ($id) use ( $app) {
+		$DbHandler = new DbHandler();
+		$request = $app->request();
+		$subCategory = $request->getBody();		  
+		if ($result = $DbHandler->updatesubCategory($subCategory, $id)) {
+			$response["error"] = FALSE;
+			$response["message"] = "Successfully Updated";
+			echoRespnse(200, $response);
+		}else{
+			$response["error"] = TRUE;
+			$response["message"] = "Updated falid";
+			echoRespnse(401, $response);
+		}
+});
+
+
+// * Delete sub-category
+// * url - /subCategory
+// * method - delete
+// * params - 
+
+$app->delete('/subCategory/:subCategoryId', function ($id) {
+		$DbHandler = new DbHandler();
+		$response = array();
+		if($DbHandler->deleteSubCategory($id)){
+			$response['error'] = FALSE;
+			$response['message'] = 'Successfully Deleted';
+		}else{
+			$response['error'] = TRUE;
+			$response['message'] = 'Not Deleted';   	
+		}	   
+		echoRespnse(200, $response);
+});
+
+
 $app->run();
 		
 		
