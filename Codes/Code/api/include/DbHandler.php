@@ -430,34 +430,34 @@ class DbHandler {
 		$db = new database();
 		$table1 = 'pagecontent';
 		$rows1 ='pageContent_pageTitle';
-		$where1 = 'pageContent_pageTitle = "'.$page['pageContent_pageTitle'].'"';
+		$where1 = 'pageContent_pageTitle = "'.$pageContent['pageContent_pageTitle'].'"';
 		$db->select($table1,$rows1,$where1,'','');
 		$pageNumRows = $db->getNumRows();	
 		if( $pageNumRows > 1 ){
 			return false;
 		}
 		$table  = "pagecontent";
-		$values = "'".$page['page_title']."', '".$page['page_addedBy']."'";				
-		$rows   = "page_title, page_addedBy";		
+		$values = "'".$pageContent['pageContent_pageTitle']."', '".$pageContent['pageContent_Description']."'";				
+		$rows   = "pageContent_pageTitle, pageContent_Description";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}
 	}
-	public function updatePagesContent($page, $page_id){
+	public function updatePagesContent($pageContent, $pageContent_id){
 		$db = new database();  
-		$table = 'pages';
-		$rows  = $page;
-		$where = 'page_id = "'.$page_id.'"';
+		$table = 'pagecontent';
+		$rows  = $pageContent;
+		$where = 'pageContent_id = "'.$pageContent_id.'"';
 		if($db->update($table,$rows,$where) ){
 			return true;
 		}else{
 			return false;
 		}
 	}	
-	public function deletePageContent($page_id){
+	public function deletePageContent($pageContent_id){
 		$db = new database();
-		$table = 'pages';
-		$where = 'page_id = "'.$page_id.'"';
+		$table = 'pagecontent';
+		$where = 'pageContent_id = "'.$pageContent_id.'"';
 		if ($db->delete($table,$where) ){
 				return true;
 		}
@@ -465,18 +465,18 @@ class DbHandler {
 	
 	public function getAllPagesContent(){
 		$db = new database();  
-		$table = 'pages';
+		$table = 'pagecontent';
 		$rows ='*';
-		$where = 'page_status = "1" ';
-		$db->select($table,$rows,$where,'','');
+		
+		$db->select($table,$rows,'','','');
 		$pages_list = $db->getResults();
 		return $pages_list;
 	}
-	public function GetPageContentDetail($page_id){
+	public function GetPageContentDetail($pageContent_id){
 		$db = new database();
-		$table = 'pages';
+		$table = 'pagecontent';
 		$rows ='*';
-		$where = 'page_id = "'.$page_id.'" AND page_status = "1" ';
+		$where = 'pageContent_id = "'.$pageContent_id.'"';
 		$db->select($table,$rows,$where,'','');
 		$page = $db->getResults();
 		return $page;			
