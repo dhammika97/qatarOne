@@ -133,6 +133,8 @@ $app->post('/userlist', function() use ($app) {
 			$users['user_accessToken']= $request->post('user_accessToken');
 			
 			
+			
+			
 			//VALIDATING INPUTS - all fileds are Required
 			$check = true;
 			foreach( $users as $user){
@@ -309,18 +311,21 @@ $app->delete('/userlist/:id',  function($user_id) use($app) {
 // * method - POST
 // * params -fixed advertisment  object*/
 //
-//$app->post('/fixedadlist', function() use ($app) {
-//            // check for required params
-//           // verifyRequiredParams(array('task'));
-//
-//            $response = array();           
-//            $request = \Slim\Slim::getInstance()->request();
-//            $body = $request->getBody();
-//
-//            $db = new DbHandler();
-//
-//            // creating new user
-//            $user_id = $db->createFixedAdvertisment($body);           
+$app->post('/fixedadlist', function() use ($app) {
+            // check for required params
+           // verifyRequiredParams(array('task'));
+
+            $response = array();           
+            $request = \Slim\Slim::getInstance()->request();
+            $body = $request->getBody();
+			$tmp = json_decode($body);
+			echo $tmp;
+			
+
+            //$db = new DbHandler();
+
+            // creating new user
+            //$user_id = $db->createFixedAdvertisment($body);           
 //            
 //            if ($user_id == 0) {
 //                $response["error"] = false;
@@ -331,7 +336,7 @@ $app->delete('/userlist/:id',  function($user_id) use($app) {
 //                $response["message"] = "Failed to create Fixed Advertisment. Please try again";
 //                echoRespnse(200, $response);
 //            }            
-//        });
+        });
 //
 //
 ///**
@@ -662,51 +667,34 @@ $app->delete('/category/:categoryId', function ($id) {
 
 
 
-//
-//
-////=========================SUB-CATEGORIES-SERVICES==================================
-//
-//
-////==== GET===========
-//
-//$app->get('/subCategory', function() use ($db) {
-//
-//
+
+
+//=========================SUB-CATEGORIES-SERVICES==================================
+
+
+//==== GET===========
+
+$app->get('/subCategory', function()  {
+
+	//$DbHandler = new DbHandler();
 //    $response = array();
-//
-//
-//    if (!$result = $db->getAllsubCategorys()) {
+//	$result = $db->getAllsubCategorys();
+//	
+//	print_r($result);
+
+   // if (!$result) {
 //
 //        $response["error"] = TRUE;
 //        $response["message"] = "The requested resource doesn't exists";
 //        echoRespnse(404, $response);
+//		
 //    } else {
 //
 //        $response["error"] = false;
-//        $x = 0;
-//        while ($categories = mysqli_fetch_array($result)) {
-//
-//
-//            $response[$x]["category_sub_id"] = $categories["category_sub_id"];
-//            $response[$x]["category_sub_name"] = $categories["category_sub_name"];
-//            $response[$x]["category_sub_entereddate"] = $categories["category_sub_entereddate"];
-//            $response[$x]["category_sub_status"] = $categories["category_sub_status"];
-//            $response[$x]["category_sub_enteredby"] = $categories["category_sub_enteredby"];
-//            $response[$x]["category_sub_categoryid"] = $categories["category_sub_categoryid"];
-//
-//            $x++;
-//        }
-//
-//        /** For debuging
-//         *  echo '<pre>';
-//          print_r($response);
-//          echo '</pre>';
-//         */
-//        // echo json response 
 //        echoRespnse(200, $response);
 //    }
-//});
-//
+});
+
 ////==== GET/ID===========
 //
 //$app->get('/subCategory/:id', function($subCategory_id) use ($db) {
