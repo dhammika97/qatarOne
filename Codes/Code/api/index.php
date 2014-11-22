@@ -338,7 +338,7 @@ $app->put('/category/:categoryId', function ($id) use ($app) {
 });
 
 
-// * Update category
+// * Delete category
 // * url - /category/id
 // * method - delete
 // * params -  id 
@@ -421,7 +421,7 @@ $app->post('/subCategory', function() use ($app) {
 });
 
 
-// * Add sub-category
+// * Edit sub-category
 // * url - /subCategory
 // * method - post
 // * params - 
@@ -442,7 +442,7 @@ $app->put('/subCategory/:subCategoryId', function ($id) use ( $app) {
 });
 
 
-// * Add sub-category
+// * Delete sub-category
 // * url - /subCategory
 // * method - delete
 // * params - 
