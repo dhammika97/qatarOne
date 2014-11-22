@@ -88,6 +88,7 @@ $app->get('/userlist/:id',  function($user_id) {
 			
             $result = $DbHandler->GetUserDetail($user_id);
 			
+			
             if ($result != NULL) {
 			
                 $response["error"] = false;
@@ -102,7 +103,7 @@ $app->get('/userlist/:id',  function($user_id) {
             }
 			
 			
-        });	 }
+        });	 
 
 /**
  * Create user 
@@ -130,6 +131,7 @@ $app->post('/userlist', function() use ($app) {
 			$users['user_type']= $request->post('user_type');
 			
 			$users['user_accessToken']= $request->post('user_accessToken');
+			
 			
 			//VALIDATING INPUTS - all fileds are Required
 			$check = true;
@@ -232,299 +234,299 @@ $app->delete('/userlist/:id',  function($user_id) use($app) {
 		//======================Updated upto here=========================//
 		
 		
+//
+//		
+///**
+// * Retreive Fixed advertisment list 
+// * url - /fixedadlist
+// * method - GET
+// * params - */
+//
+//$app->get('/fixedadlist',  function() {
+//           
+//            $response = array();
+//            $db = new DbHandler();
+//
+//            // fetching all users
+//            $result = $db->getAllFixedAd();
+//
+//            $response["error"] = false;
+//            $response["fixedadlist_list"] = array();
+//            
+//            while ($user = $result->fetch_assoc()) {
+//                $tmp = array();               
+//                $tmp["fixedads_type"] = $user["fixedads_type"];
+//                $tmp["fixedads_description"] = $user["fixedads_description"];
+//                $tmp["fixedads_note"] = $user["fixedads_note"];
+//                $tmp["fixedads_imageurl"] = $user["fixedads_imageurl"];                
+//                $tmp["fixedads_videourl"] = $user["fixedads_videourl"];
+//                $tmp["fixedads_enetreddate"] = $user["fixedads_enetreddate"];
+//                $tmp["fixedads_enteredby"] = $user["fixedads_enteredby"];
+//                $tmp["fixedads_approvedstatus"] = $user["fixedads_approvedstatus"];
+//                $tmp["fixedads_status"] = $user["fixedads_status"];    
+//                array_push($response["fixedadlist_list"], $tmp);
+//            }
+//
+//            echoRespnse(200, $response);
+//        });
+//
+///**
+// * Get Fixed advertisment by advertisment id
+// * url - /fixedadlist/:id
+// * method - GET
+// * params -fixedads_id */
+//
+// $app->get('/fixedadlist/:id',  function($fixedads_id) {
+//            $response = array();
+//            $db = new DbHandler();
+//
+//            // fetch user
+//            $result = $db->GetFixedAdvertismentDetail($fixedads_id);
+//
+//            if ($result != NULL) {
+//                $response["error"] = false;
+//                $tmp["fixedads_type"] = $result["fixedads_type"];
+//                $tmp["fixedads_description"] = $result["fixedads_description"];
+//                $tmp["fixedads_note"] = $user["fixedads_note"];
+//                $tmp["fixedads_imageurl"] = $result["fixedads_imageurl"];                
+//                $tmp["fixedads_videourl"] = $result["fixedads_videourl"];
+//                $tmp["fixedads_enetreddate"] = $result["fixedads_enetreddate"];
+//                $tmp["fixedads_enteredby"] = $result["fixedads_enteredby"];
+//                $tmp["fixedads_approvedstatus"] = $result["fixedads_approvedstatus"];
+//                $tmp["fixedads_status "] = $result["fixedads_status "];                 
+//                echoRespnse(200, $tmp);
+//            } else {
+//                $response["error"] = true;
+//                $response["message"] = "The requested resource doesn't exists";
+//                echoRespnse(404, $response);
+//            }
+//        });
+//
+//
+///**
+// * Create Fixed advertisment 
+// * url - /fixedadlist
+// * method - POST
+// * params -fixed advertisment  object*/
+//
+//$app->post('/fixedadlist', function() use ($app) {
+//            // check for required params
+//           // verifyRequiredParams(array('task'));
+//
+//            $response = array();           
+//            $request = \Slim\Slim::getInstance()->request();
+//            $body = $request->getBody();
+//
+//            $db = new DbHandler();
+//
+//            // creating new user
+//            $user_id = $db->createFixedAdvertisment($body);           
+//            
+//            if ($user_id == 0) {
+//                $response["error"] = false;
+//                $response["message"] = "Fixed Advertisment created successfully";                
+//                echoRespnse(201, $response);
+//            } else {
+//                $response["error"] = true;
+//                $response["message"] = "Failed to create Fixed Advertisment. Please try again";
+//                echoRespnse(200, $response);
+//            }            
+//        });
+//
+//
+///**
+// * Update  Fixed advertisment  
+// * url - /fixedadlist/:id
+// * method - PUT
+// * params -Fixed advertisment object, fixedads_id */
+//        
+//    $app->put('/fixedadlist/:id',  function($fixedads_id) {
+//            $request = \Slim\Slim::getInstance()->request();
+//            $body = $request->getBody();
+//            
+//            $db = new DbHandler();
+//            $response = array();
+//            
+//             // updating user
+//            $result = $db->updateFixedAdvertisment($fixedads_id, $body);
+//            
+//            if ($result) {
+//                // user updated successfully
+//                $response["error"] = false;
+//                $response["message"] = "Fixed Advertisment updated successfully";
+//            } else {
+//                // user failed to update
+//                $response["error"] = true;
+//                $response["message"] = "Fixed Advertisment failed to update. Please try again!";
+//            }
+//            
+//            echoRespnse(200, $response);        
+//                
+//        });
+//        
+//
+//        /**
+// * Delete Fixed advertisment   
+// * url - /userlist/:id'
+// * method - DELETE
+// * params - user_id */
+//$app->delete('/fixedadlist/:id',  function($fixedads_id) use($app) {
+//          
+//            $db = new DbHandler();
+//            $response = array();
+//            $result = $db->deleteFixedAdvertisment($fixedads_id);
+//            
+//            if ($result) {
+//                // user deleted successfully                
+//                $response["error"] = false;
+//                $response["message"] = "Fixed Advertisment deleted succesfully";
+//            } else {
+//                // task failed to delete
+//                $response["error"] = true;
+//                $response["message"] = "Fixed Advertisment failed to delete. Please try again!";
+//            }
+//            echoRespnse(200, $response);
+//        });
+//        
+///**
+// * User Registration
+// * url - /userlist
+// * method - GET
+// * params - api Key*/
+//  
+// $app->get('/userlist','authenticate',  function() {
+//           
+//            $response = array();
+//            $db = new DbHandler();
+//
+//            // fetching all user books
+//            $result = $db->getAllUsers();
+//
+//            $response["error"] = false;
+//            $response["user_list"] = array();
+//
+//            // looping through result and preparing user list array
+//            while ($user = $result->fetch_assoc()) {
+//                $tmp = array();               
+//                $tmp["id"] = $user["id"];
+//				$tmp["user_name"] = $user["user_name"];
+//				$tmp["first_name"] = $user["first_name"];
+//				$tmp["last_name"] = $user["last_name"];                
+//                $tmp["designation"] = $user["designation"];
+//                array_push($response["user_list"], $tmp);
+//            }
+//
+//            echoRespnse(200, $response);
+//        });
+//		
+//$app->post('/login','setUserAccessToken', function() use ($app) {    
+// 						
+//				// reading post params						 
+//				$email = $app->request()->post('email');
+//				$password = $app->request()->post('password');
+//				$response = array();
+//	
+//				$db = new DbHandler();
+//				// check for correct email and password
+//				if ($db->checkLogin($email, $password)) {
+//					// get the user by email
+//					$user = $db->getUserByEmail($email);
+//	
+//					if ($user != NULL) {
+//						$response["error"] = false;						
+//						$response['apiKey'] = $user['api_key'];
+//						$response['accessToken'] = $_SESSION['user_access_token'];
+//					} else {
+//						// unknown error occurred
+//						$response['error'] = true;
+//						$response['message'] = "An error occurred. Please try again";
+//					}
+//				} else {
+//					// user credentials are wrong
+//					$response['error'] = true;
+//					$response['message'] = 'Login failed. Incorrect credentials';
+//				}
+//	
+//				echoRespnse(200, $response);
+//				//}
+//	});
+//
+//
+///**
+// * Verifying required params posted or not
+// */
+//function verifyRequiredParams($required_fields) {
+//    $error = false;
+//    $error_fields = "";
+//    $request_params = array();
+//    $request_params = $_REQUEST;
+//    // Handling PUT request params
+//    if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+//        $app = \Slim\Slim::getInstance();
+//        parse_str($app->request()->getBody(), $request_params);
+//    }
+//    foreach ($required_fields as $field) {
+//        if (!isset($request_params[$field]) || strlen(trim($request_params[$field])) <= 0) {
+//            $error = true;
+//            $error_fields .= $field . ', ';
+//        }
+//    }
+//
+//    if ($error) {
+//        // Required field(s) are missing or empty
+//        // echo error json and stop the app
+//        $response = array();
+//        $app = \Slim\Slim::getInstance();
+//        $response["error"] = true;
+//        $response["message"] = 'Required field(s) ' . substr($error_fields, 0, -2) . ' is missing or empty';
+//        echoRespnse(400, $response);
+//        $app->stop();
+//    }
+//}
+//
+///**
+// * Validating email address
+// */
+//function validateEmail($email) {
+//    $app = \Slim\Slim::getInstance();
+//    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+//        $response["error"] = true;
+//        $response["message"] = 'Email address is not valid';
+//        echoRespnse(400, $response);
+//        $app->stop();
+//    }
+//}
 
-		
-/**
- * Retreive Fixed advertisment list 
- * url - /fixedadlist
- * method - GET
- * params - */
-
-$app->get('/fixedadlist',  function() {
-           
-            $response = array();
-            $db = new DbHandler();
-
-            // fetching all users
-            $result = $db->getAllFixedAd();
-
-            $response["error"] = false;
-            $response["fixedadlist_list"] = array();
-            
-            while ($user = $result->fetch_assoc()) {
-                $tmp = array();               
-                $tmp["fixedads_type"] = $user["fixedads_type"];
-                $tmp["fixedads_description"] = $user["fixedads_description"];
-                $tmp["fixedads_note"] = $user["fixedads_note"];
-                $tmp["fixedads_imageurl"] = $user["fixedads_imageurl"];                
-                $tmp["fixedads_videourl"] = $user["fixedads_videourl"];
-                $tmp["fixedads_enetreddate"] = $user["fixedads_enetreddate"];
-                $tmp["fixedads_enteredby"] = $user["fixedads_enteredby"];
-                $tmp["fixedads_approvedstatus"] = $user["fixedads_approvedstatus"];
-                $tmp["fixedads_status"] = $user["fixedads_status"];    
-                array_push($response["fixedadlist_list"], $tmp);
-            }
-
-            echoRespnse(200, $response);
-        });
-
-/**
- * Get Fixed advertisment by advertisment id
- * url - /fixedadlist/:id
- * method - GET
- * params -fixedads_id */
-
- $app->get('/fixedadlist/:id',  function($fixedads_id) {
-            $response = array();
-            $db = new DbHandler();
-
-            // fetch user
-            $result = $db->GetFixedAdvertismentDetail($fixedads_id);
-
-            if ($result != NULL) {
-                $response["error"] = false;
-                $tmp["fixedads_type"] = $result["fixedads_type"];
-                $tmp["fixedads_description"] = $result["fixedads_description"];
-                $tmp["fixedads_note"] = $user["fixedads_note"];
-                $tmp["fixedads_imageurl"] = $result["fixedads_imageurl"];                
-                $tmp["fixedads_videourl"] = $result["fixedads_videourl"];
-                $tmp["fixedads_enetreddate"] = $result["fixedads_enetreddate"];
-                $tmp["fixedads_enteredby"] = $result["fixedads_enteredby"];
-                $tmp["fixedads_approvedstatus"] = $result["fixedads_approvedstatus"];
-                $tmp["fixedads_status "] = $result["fixedads_status "];                 
-                echoRespnse(200, $tmp);
-            } else {
-                $response["error"] = true;
-                $response["message"] = "The requested resource doesn't exists";
-                echoRespnse(404, $response);
-            }
-        });
-
-
-/**
- * Create Fixed advertisment 
- * url - /fixedadlist
- * method - POST
- * params -fixed advertisment  object*/
-
-$app->post('/fixedadlist', function() use ($app) {
-            // check for required params
-           // verifyRequiredParams(array('task'));
-
-            $response = array();           
-            $request = \Slim\Slim::getInstance()->request();
-            $body = $request->getBody();
-
-            $db = new DbHandler();
-
-            // creating new user
-            $user_id = $db->createFixedAdvertisment($body);           
-            
-            if ($user_id == 0) {
-                $response["error"] = false;
-                $response["message"] = "Fixed Advertisment created successfully";                
-                echoRespnse(201, $response);
-            } else {
-                $response["error"] = true;
-                $response["message"] = "Failed to create Fixed Advertisment. Please try again";
-                echoRespnse(200, $response);
-            }            
-        });
-
-
-/**
- * Update  Fixed advertisment  
- * url - /fixedadlist/:id
- * method - PUT
- * params -Fixed advertisment object, fixedads_id */
-        
-    $app->put('/fixedadlist/:id',  function($fixedads_id) {
-            $request = \Slim\Slim::getInstance()->request();
-            $body = $request->getBody();
-            
-            $db = new DbHandler();
-            $response = array();
-            
-             // updating user
-            $result = $db->updateFixedAdvertisment($fixedads_id, $body);
-            
-            if ($result) {
-                // user updated successfully
-                $response["error"] = false;
-                $response["message"] = "Fixed Advertisment updated successfully";
-            } else {
-                // user failed to update
-                $response["error"] = true;
-                $response["message"] = "Fixed Advertisment failed to update. Please try again!";
-            }
-            
-            echoRespnse(200, $response);        
-                
-        });
-        
-
-        /**
- * Delete Fixed advertisment   
- * url - /userlist/:id'
- * method - DELETE
- * params - user_id */
-$app->delete('/fixedadlist/:id',  function($fixedads_id) use($app) {
-          
-            $db = new DbHandler();
-            $response = array();
-            $result = $db->deleteFixedAdvertisment($fixedads_id);
-            
-            if ($result) {
-                // user deleted successfully                
-                $response["error"] = false;
-                $response["message"] = "Fixed Advertisment deleted succesfully";
-            } else {
-                // task failed to delete
-                $response["error"] = true;
-                $response["message"] = "Fixed Advertisment failed to delete. Please try again!";
-            }
-            echoRespnse(200, $response);
-        });
-        
-/**
- * User Registration
- * url - /userlist
- * method - GET
- * params - api Key*/
-  
- $app->get('/userlist','authenticate',  function() {
-           
-            $response = array();
-            $db = new DbHandler();
-
-            // fetching all user books
-            $result = $db->getAllUsers();
-
-            $response["error"] = false;
-            $response["user_list"] = array();
-
-            // looping through result and preparing user list array
-            while ($user = $result->fetch_assoc()) {
-                $tmp = array();               
-                $tmp["id"] = $user["id"];
-				$tmp["user_name"] = $user["user_name"];
-				$tmp["first_name"] = $user["first_name"];
-				$tmp["last_name"] = $user["last_name"];                
-                $tmp["designation"] = $user["designation"];
-                array_push($response["user_list"], $tmp);
-            }
-
-            echoRespnse(200, $response);
-        });
-		
-$app->post('/login','setUserAccessToken', function() use ($app) {    
- 						
-				// reading post params						 
-				$email = $app->request()->post('email');
-				$password = $app->request()->post('password');
-				$response = array();
-	
-				$db = new DbHandler();
-				// check for correct email and password
-				if ($db->checkLogin($email, $password)) {
-					// get the user by email
-					$user = $db->getUserByEmail($email);
-	
-					if ($user != NULL) {
-						$response["error"] = false;						
-						$response['apiKey'] = $user['api_key'];
-						$response['accessToken'] = $_SESSION['user_access_token'];
-					} else {
-						// unknown error occurred
-						$response['error'] = true;
-						$response['message'] = "An error occurred. Please try again";
-					}
-				} else {
-					// user credentials are wrong
-					$response['error'] = true;
-					$response['message'] = 'Login failed. Incorrect credentials';
-				}
-	
-				echoRespnse(200, $response);
-				//}
-	});
-
-
-/**
- * Verifying required params posted or not
- */
-function verifyRequiredParams($required_fields) {
-    $error = false;
-    $error_fields = "";
-    $request_params = array();
-    $request_params = $_REQUEST;
-    // Handling PUT request params
-    if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
-        $app = \Slim\Slim::getInstance();
-        parse_str($app->request()->getBody(), $request_params);
-    }
-    foreach ($required_fields as $field) {
-        if (!isset($request_params[$field]) || strlen(trim($request_params[$field])) <= 0) {
-            $error = true;
-            $error_fields .= $field . ', ';
-        }
-    }
-
-    if ($error) {
-        // Required field(s) are missing or empty
-        // echo error json and stop the app
-        $response = array();
-        $app = \Slim\Slim::getInstance();
-        $response["error"] = true;
-        $response["message"] = 'Required field(s) ' . substr($error_fields, 0, -2) . ' is missing or empty';
-        echoRespnse(400, $response);
-        $app->stop();
-    }
-}
-
-/**
- * Validating email address
- */
-function validateEmail($email) {
-    $app = \Slim\Slim::getInstance();
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $response["error"] = true;
-        $response["message"] = 'Email address is not valid';
-        echoRespnse(400, $response);
-        $app->stop();
-    }
-}
-
-/**
- * Echoing json response to client
- * @param String $status_code Http response code
- * @param Int $response Json response
- */
-function echoRespnse($status_code, $response) {
-    $app = \Slim\Slim::getInstance();
-    // Http response code
-    $app->status($status_code);
-
-    // setting response content type to json
-    $app->contentType('application/json');
-
-    echo json_encode($response);
-}
-
-
+///**
+// * Echoing json response to client
+// * @param String $status_code Http response code
+// * @param Int $response Json response
+// */
+//function echoRespnse($status_code, $response) {
+//    $app = \Slim\Slim::getInstance();
+//    // Http response code
+//    $app->status($status_code);
+//
+//    // setting response content type to json
+//    $app->contentType('application/json');
+//
+//    echo json_encode($response);
+//}
+//
+//
 
 
 //=========================CATEGORIES-SERVICES==================================
 
 
-/**
- * list all categories 
- * url - /category
- * method - get
- * params -  */
+
+// * list all categories 
+// * url - /category
+// * method - get
+// * params -  
  
  
-$app->get('/category', function() use ($db) {
+$app->get('/category', function() {
 	
 	$DbHandler = new DbHandler();
     $response = array();
@@ -545,11 +547,11 @@ $app->get('/category', function() use ($db) {
 
 
 
-/**
- * list categories by id
- * url - /category
- * method - get
- * params - user_id */
+
+// * list categories by id
+// * url - /category
+// * method - get
+// * params - user_id 
 
 $app->get('/category/:id', function($category_id){
 
@@ -576,13 +578,13 @@ $app->get('/category/:id', function($category_id){
 
 
 
-/**
- * Add category
- * url - /category
- * method - post
- * params -  */
 
-$app->post('/category', function() use ($app, $db) {
+// * Add category
+// * url - /category
+// * method - post
+// * params -  
+
+$app->post('/category', function() use ($app) {
 
 
     $response = array();
@@ -592,6 +594,7 @@ $app->post('/category', function() use ($app, $db) {
 	
     $category['category_name'] = $app->request()->post('category_name');
     $category['category_enteredBy'] = $user_ID = 1;
+	
 
 	//print_r($category);
 
@@ -610,40 +613,42 @@ $app->post('/category', function() use ($app, $db) {
     }
 });
 
-
-/**
- * Update category
- * url - /category/id
- * method - post
- * params -  id*/ //UNDER CONSTRUCTION
-$app->put('/category/:categoryId', function ($id) use ($db, $app) {
+//
+///**
+// * Update category
+// * url - /category/id
+// * method - post
+// * params -  id*/ //UNDER CONSTRUCTION
+//$app->put('/category/:categoryId', function ($id) use ($app) {
+//
+//	$DbHandler = new DbHandler();
+//	$request = $app->request();
+//	$category = json_decode( $request->getBody() );	
+//	//$body['category_name'] = $app->request()->put('category_name');
+//
+//    if ($result = $DbHandler->updateCateory($category, $id)) {
+//
+//        $response["error"] = FALSE;
+//        $response["message"] = "Successfully Updated";
+//        echoRespnse(200, $response);
+//		
+//    } else {
+//
+//        $response["error"] = TRUE;
+//        $response["message"] = "Updated failed";
+//        echoRespnse(401, $response);
+//    }
+//});
+//
+//
+//
+$app->delete('/category/:categoryId', function ($id) {
 
 	$DbHandler = new DbHandler();
-	$request = $app->request();
-	$category = json_decode( $request->getBody() );	
-	//$body['category_name'] = $app->request()->put('category_name');
-
-    if ($result = $DbHandler->updateCateory($category, $id)) {
-
-        $response["error"] = FALSE;
-        $response["message"] = "Successfully Updated";
-        echoRespnse(200, $response);
-		
-    } else {
-
-        $response["error"] = TRUE;
-        $response["message"] = "Updated failed";
-        echoRespnse(401, $response);
-    }
-});
-
-
-
-$app->delete('/category/:categoryId', function ($id) use($db, $app) {
 
     $response = array();
 
-    if ($db->deleteCategory($id)) {
+    if ($DbHandler->deleteCategory($id)) {
 
         $response['error'] = FALSE;
         $response['message'] = 'Successfully Deleted';
@@ -657,165 +662,165 @@ $app->delete('/category/:categoryId', function ($id) use($db, $app) {
 
 
 
-
-
-//=========================SUB-CATEGORIES-SERVICES==================================
-
-
-//==== GET===========
-
-$app->get('/subCategory', function() use ($db) {
-
-
-    $response = array();
-
-
-    if (!$result = $db->getAllsubCategorys()) {
-
-        $response["error"] = TRUE;
-        $response["message"] = "The requested resource doesn't exists";
-        echoRespnse(404, $response);
-    } else {
-
-        $response["error"] = false;
-        $x = 0;
-        while ($categories = mysqli_fetch_array($result)) {
-
-
-            $response[$x]["category_sub_id"] = $categories["category_sub_id"];
-            $response[$x]["category_sub_name"] = $categories["category_sub_name"];
-            $response[$x]["category_sub_entereddate"] = $categories["category_sub_entereddate"];
-            $response[$x]["category_sub_status"] = $categories["category_sub_status"];
-            $response[$x]["category_sub_enteredby"] = $categories["category_sub_enteredby"];
-            $response[$x]["category_sub_categoryid"] = $categories["category_sub_categoryid"];
-
-            $x++;
-        }
-
-        /** For debuging
-         *  echo '<pre>';
-          print_r($response);
-          echo '</pre>';
-         */
-        // echo json response 
-        echoRespnse(200, $response);
-    }
-});
-
-//==== GET/ID===========
-
-$app->get('/subCategory/:id', function($subCategory_id) use ($db) {
-
-
-    $response = array();
-
-    $row = $db->GetsubCategoryDetail($subCategory_id);
-
-
-    if ($row != NULL) {
-        $response["error"] = false;
-        $response["category_sub_id"] = $row["category_sub_id"];
-        $response["category_sub_name"] = $row["category_sub_name"];
-        $response["category_sub_entereddate"] = $row["category_sub_entereddate"];
-        $response["category_sub_enteredby"] = $row["category_sub_enteredby"];
-        $response["category_sub_status"] = $row["category_sub_status"];
-        $response["category_sub_categoryid"] = $row["category_sub_categoryid"];
-
-
-
-        echoRespnse(200, $response);
-    } else {
-
-        $response["error"] = true;
-        $response["message"] = "The requested resource doesn't exists";
-        echoRespnse(404, $response);
-    }
-});
-
-
-//==== POST===========
-
-$app->post('/subCategory', function() use ($app, $db) {
-
-
-    $response = array();
-    $category = array();
-    global $user_ID;
-
-
-
-    $subCategory['name'] = $app->request()->post('category_name');
-    $subCategory['mainCatID'] = $app->request()->post('mainCatID');
-    //User ID should be a global variable
-    $subCategory['enteredby'] = $user_ID;
-
-
-
-
-    if ($db->addsubCategory($subCategory)) {
-
-        $response["error"] = false;
-        $response["message"] = "Successfully created the category";
-        echoRespnse(201, $response);
-    } else {
-
-        $response["error"] = true;
-        $response["message"] = "category not created ";
-        echoRespnse(412, $response);
-    }
-});
-
-
-
-
-
-//==== PUT===========
-
-
-$app->put('/subCategory/:subCategoryId', function ($id) use ($db, $app) {
-
-   
-    
-   
-    
-    $subCategory['category_sub_name'] = $app->request()->put('category_sub_name');
-    $subCategory['mainCatID']         = $app->request()->put('mainCatID');
-    $subCategory['status']            = $app->request()->put('status');
-    
-    
-    
-    if ($result = $db->updatesubCategory($subCategory, $id)) {
-
-        $response["error"] = FALSE;
-        $response["message"] = "Successfully Updated";
-        echoRespnse(200, $response);
-        
-    }else{
-        
-        $response["error"] = TRUE;
-        $response["message"] = "Updated falid";
-        echoRespnse(401, $response);
-    }
-});
-
-
-$app->delete('/subCategory/:subCategoryId', function ($id) use($db, $app){
-    
-    $response = array();
-    
-    if($db->deleteSubCategory($id)){
-        
-     $response['error'] = FALSE;
-     $response['message'] = 'Successfully Deleted';
-    }else{
-     $response['error'] = TRUE;
-     $response['message'] = 'Not Deleted';   
-        
-    }
-   
-    echoRespnse(200, $response);
-});
-
+//
+//
+////=========================SUB-CATEGORIES-SERVICES==================================
+//
+//
+////==== GET===========
+//
+//$app->get('/subCategory', function() use ($db) {
+//
+//
+//    $response = array();
+//
+//
+//    if (!$result = $db->getAllsubCategorys()) {
+//
+//        $response["error"] = TRUE;
+//        $response["message"] = "The requested resource doesn't exists";
+//        echoRespnse(404, $response);
+//    } else {
+//
+//        $response["error"] = false;
+//        $x = 0;
+//        while ($categories = mysqli_fetch_array($result)) {
+//
+//
+//            $response[$x]["category_sub_id"] = $categories["category_sub_id"];
+//            $response[$x]["category_sub_name"] = $categories["category_sub_name"];
+//            $response[$x]["category_sub_entereddate"] = $categories["category_sub_entereddate"];
+//            $response[$x]["category_sub_status"] = $categories["category_sub_status"];
+//            $response[$x]["category_sub_enteredby"] = $categories["category_sub_enteredby"];
+//            $response[$x]["category_sub_categoryid"] = $categories["category_sub_categoryid"];
+//
+//            $x++;
+//        }
+//
+//        /** For debuging
+//         *  echo '<pre>';
+//          print_r($response);
+//          echo '</pre>';
+//         */
+//        // echo json response 
+//        echoRespnse(200, $response);
+//    }
+//});
+//
+////==== GET/ID===========
+//
+//$app->get('/subCategory/:id', function($subCategory_id) use ($db) {
+//
+//
+//    $response = array();
+//
+//    $row = $db->GetsubCategoryDetail($subCategory_id);
+//
+//
+//    if ($row != NULL) {
+//        $response["error"] = false;
+//        $response["category_sub_id"] = $row["category_sub_id"];
+//        $response["category_sub_name"] = $row["category_sub_name"];
+//        $response["category_sub_entereddate"] = $row["category_sub_entereddate"];
+//        $response["category_sub_enteredby"] = $row["category_sub_enteredby"];
+//        $response["category_sub_status"] = $row["category_sub_status"];
+//        $response["category_sub_categoryid"] = $row["category_sub_categoryid"];
+//
+//
+//
+//        echoRespnse(200, $response);
+//    } else {
+//
+//        $response["error"] = true;
+//        $response["message"] = "The requested resource doesn't exists";
+//        echoRespnse(404, $response);
+//    }
+//});
+//
+//
+////==== POST===========
+//
+//$app->post('/subCategory', function() use ($app, $db) {
+//
+//
+//    $response = array();
+//    $category = array();
+//    global $user_ID;
+//
+//
+//
+//    $subCategory['name'] = $app->request()->post('category_name');
+//    $subCategory['mainCatID'] = $app->request()->post('mainCatID');
+//    //User ID should be a global variable
+//    $subCategory['enteredby'] = $user_ID;
+//
+//
+//
+//
+//    if ($db->addsubCategory($subCategory)) {
+//
+//        $response["error"] = false;
+//        $response["message"] = "Successfully created the category";
+//        echoRespnse(201, $response);
+//    } else {
+//
+//        $response["error"] = true;
+//        $response["message"] = "category not created ";
+//        echoRespnse(412, $response);
+//    }
+//});
+//
+//
+//
+//
+//
+////==== PUT===========
+//
+//
+//$app->put('/subCategory/:subCategoryId', function ($id) use ($db, $app) {
+//
+//   
+//    
+//   
+//    
+//    $subCategory['category_sub_name'] = $app->request()->put('category_sub_name');
+//    $subCategory['mainCatID']         = $app->request()->put('mainCatID');
+//    $subCategory['status']            = $app->request()->put('status');
+//    
+//    
+//    
+//    if ($result = $db->updatesubCategory($subCategory, $id)) {
+//
+//        $response["error"] = FALSE;
+//        $response["message"] = "Successfully Updated";
+//        echoRespnse(200, $response);
+//        
+//    }else{
+//        
+//        $response["error"] = TRUE;
+//        $response["message"] = "Updated falid";
+//        echoRespnse(401, $response);
+//    }
+//});
+//
+//
+//$app->delete('/subCategory/:subCategoryId', function ($id) use($db, $app){
+//    
+//    $response = array();
+//    
+//    if($db->deleteSubCategory($id)){
+//        
+//     $response['error'] = FALSE;
+//     $response['message'] = 'Successfully Deleted';
+//    }else{
+//     $response['error'] = TRUE;
+//     $response['message'] = 'Not Deleted';   
+//        
+//    }
+//   
+//    echoRespnse(200, $response);
+//});
+//
 
 
 
