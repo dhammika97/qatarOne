@@ -104,17 +104,17 @@ private $numrows;
 		if($limit!=""){
 			$q .= ' limit '.$limit;
 		}
-		$query = mysql_query($q);
-		$numRows = mysql_num_rows($query);
+		$query = mysqli_query($this->con,$q);
+		$numRows = mysqli_num_rows($query);
 		$this->numrows = $numRows;
 		if($numRows){
-			while($row=mysql_fetch_assoc($query)){
+			while($row=mysqli_fetch_assoc($query)){
 				$show[] = $row;	
 			}
 			$this->json = json_encode($show);
 		}
 		
-		mysql_free_result($query);
+		mysqli_free_result($query);
 		$this->disconnect();
 	}
 	
@@ -143,8 +143,8 @@ private $numrows;
 		if($values != ""){
 			$insert .= " values (".$values.");";
 		}
-		$ins = mysql_query($insert);
-		$this->insertid = mysql_insert_id();
+		$ins = mysqli_query($this->con,$insert);
+		$this->insertid = mysqli_insert_id();
 		if($ins){
 			return true;
 		}else{
@@ -161,7 +161,7 @@ private $numrows;
 		}else{
 			$del = 'delete '.$table;
 		}
-		$delete = mysql_query($del);
+		$delete = mysqli_query($this->con,$del);
 		if($delete){
 			return true;
 		}else{
@@ -186,7 +186,7 @@ private $numrows;
 			}
 		}
 		$update .= ' where '.$where;
-		if($up = mysql_query($update)){
+		if($up = mysqli_query($this->con,$update)){
 			return true;	
 		}else{
 			return false;	
@@ -196,9 +196,9 @@ private $numrows;
 	
 	
 	function tableExists($table){
-		$tablesInDb = @mysql_query('show tables from '.$this->db_name.' like "'.$table.'"')	;
+		$tablesInDb = @mysqli_query($this->con,'show tables from '.$this->db_name.' like "'.$table.'"')	;
 		if($tablesInDb){
-			if(mysql_num_rows($tablesInDb)==1){
+			if(mysqli_num_rows($tablesInDb)==1){
 				return true;
 			}else{
 				return false;
