@@ -27,27 +27,14 @@ private $numrows;
 		if(!$this->con){
 			$myconn = mysqli_connect($this->db_host,$this->db_user,$this->db_pass,$this->db_name);
 			$this->con = $myconn;
-			/*if($myconn){
-				$select_db = mysql_select_db($this->db_name,$myconn);
-				if($select_db){
-					$this->con = true;
-					return true;
-				}else{
-					return false;	
-				}
-			}else{
-				return false;
-			}*/
 		}else{
 			return true;	
 		}
 	}
 	
-	
 	function disconnect(){
 		if($this->con){
 			if(mysqli_close($this->con)){
-				//$this->con = false;
 				return true;
 			}else{
 				return false;	
@@ -69,7 +56,6 @@ private $numrows;
 		}
 		//echo $q;
 		$query = mysqli_query($this->con,$q);
-		//echo $query;
 		$numRows = mysqli_num_rows($query);
 		$this->numrows = $numRows;
 		if($numRows){
