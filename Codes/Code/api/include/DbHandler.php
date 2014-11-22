@@ -483,13 +483,15 @@ class DbHandler {
 	}
 	
 	
-	public function createSuburb($location){
+	public function createSuburb($suburb){
 		$db = new database();
-		$table  = "locations";
-		$values = "'".$location['location_name']."', 
-				'".$location['location_cordinates']."'";					  
-		$rows   = "location_name, 
-				   location_cordinates";		
+		$table  = "suburbs";
+		$values = "'".$suburb['suburb_location_id']."', 
+				'".$suburb['suburb_name']."',
+				'".$suburb['suburb_cordinates']."'";					  
+		$rows   = "suburb_location_id, 
+				   suburb_name,
+				   suburb_cordinates";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}else{
@@ -499,7 +501,7 @@ class DbHandler {
 	
 	public function getAllSuburbs(){
 		$db = new database();
-		$table = 'locations';
+		$table = 'suburbs';
 		$rows ='*';	
 		$db->select($table,$rows,'','','');
 		$location_list = $db->getResults();
