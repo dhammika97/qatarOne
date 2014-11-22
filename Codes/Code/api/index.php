@@ -475,24 +475,23 @@ $app->get('/locations',  function() {
 });
 
 /**
- * Get location by location id
- * url - /locations
+ * get location details
+ * url - /locations/:id
  * method - GET
- * params -user id*/		
-$app->get('/locations/:id',  function($user_id) {
+ * params - location id */ 
+$app->GET('/locations/:id',  function($location_id) {
+		$DbHandler = new DbHandler();
 		$response = array();
-		$DbHandler = new DbHandler();	
-		$result = $DbHandler->GetUserDetail($user_id);
-        if ($result != NULL) {
-        	$response["error"] = false;
-				$response['user'] = $result;
-                echoRespnse(200	, $response);
-            } else {
-                $response["error"] = true;
-                $response["message"] = "The requested resource doesn't exists";
-                echoRespnse(404, $response);
-            }
-        });	 
+		$row = $DbHandler->getLocationDetail($location_id);
+		if ($row != NULL) {
+			$row["error"] = false;
+			echoRespnse(200, $row);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}
+}); 
 
 /**
  * Create locations 
@@ -558,6 +557,8 @@ $app->delete('/locations/:id',  function($location_id) use($app) {
 		}
 		echoRespnse(200, $response);
 });
+
+
 
 // * list all pages
 // * url - /subCategory
