@@ -327,6 +327,16 @@ class DbHandler {
 		}
 	}
 	
+	public function getLocationDetail($location_id){
+		$db = new database();
+		$table = 'locations';
+		$rows ='*';
+		$where = 'location_id = "'.$location_id.'"';
+		$db->select($table,$rows,$where,'','');
+		$page = $db->getResults();
+		return $page;
+	}
+	
 	public function addPage($page){
 		$db = new database();
 		$table1 = 'pages';
@@ -494,6 +504,16 @@ class DbHandler {
 		$db->select($table,$rows,'','','');
 		$location_list = $db->getResults();
 		return $location_list;
+	}
+	
+	public function getSuburbDetail($location_id){
+		$db = new database();
+		$table = 'locations';
+		$rows ='*';
+		$where = 'location_id = "'.$location_id.'"';
+		$db->select($table,$rows,$where,'','');
+		$page = $db->getResults();
+		return $page;
 	}
 	
 	public function updateSuburb($location_id, $locations){
