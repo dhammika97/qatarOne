@@ -58,7 +58,7 @@ class DbHandler {
 		$db = new database();
 		$table  = "user";
 		$values = "'".$users['user_username']."', 
-					  '".$users['user_password']."', 
+					  '".md5 ($users['user_password'])."', 
 					  '".$users['user_email']."', 
 					  '".$users['user_firstname']."', 
 					  '".$users['user_lastname']."', 
@@ -204,8 +204,8 @@ class DbHandler {
 			return false;
 		}
 		$table  = "category";
-		$values = "'".$category['category_name']."', '".$category['category_enteredBy']."'";				  
-		$rows   = "category_name, category_enteredBy";		
+		$values = "'".$category['category_name']."', '".$category['category_enteredBy']."' , '".$category['category_parentId']."'";				
+		$rows   = "category_name, category_enteredBy, category_parentId";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}
@@ -305,6 +305,62 @@ class DbHandler {
 		$location_list = $db->getResults();
 		return $location_list;
 	}
+	
+	public function addPage($page){
+		$db = new database();
+		$table1 = 'pages';
+		$rows1 ='page_title';
+		$where1 = 'page_title = "'.$page['page_title'].'"';
+		$db->select($table1,$rows1,$where1,'','');
+		$pageNumRows = $db->getNumRows();	
+		if( $pageNumRows > 1 ){
+			return false;
+		}
+		$table  = "pages";
+		$values = "'".$page['page_title']."', '".$page['page_addedBy']."'";				
+		$rows   = "page_title, page_addedBy";		
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}
+	}
+	public function updatePages($page, $page_id){
+		$db = new database();  
+		$table = 'pages';
+		$rows  = $page;
+		$where = 'page_id = "'.$page_id.'"';
+		if($db->update($table,$rows,$where) ){
+			return true;
+		}else{
+			return false;
+		}
+	}	
+	public function deletePage($page_id){
+		$db = new database();
+		$table = 'pages';
+		$where = 'page_id = "'.$page_id.'"';
+		if ($db->delete($table,$where) ){
+				return true;
+		}
+	}
+	
+	public function getAllPages(){
+		$db = new database();  
+		$table = 'pages';
+		$rows ='*';
+		$where = 'category_status = "1" ';
+		$db->select($table,$rows,$where,'','');
+		$pages_list = $db->getResults();
+		return $pages_list;
+	}
+	public function GetPageDetail($page_id){
+		$db = new database();
+		$table = 'pages';
+		$rows ='*';
+		$where = 'page_id = "'.$page_id.'" AND page_status = "1" ';
+		$db->select($table,$rows,$where,'','');
+		$page = $db->getResults();
+		return $page;			
+	}	
 }
 
 ?>
