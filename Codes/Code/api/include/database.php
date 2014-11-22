@@ -2,18 +2,18 @@
 /**
  * @author Dhammika Gunaratne
  * @email dhammika97@gmail.com
- * @copyright 2011
+ * @copyright 2014
  */
 class database{
 
 private $db_host = "localhost";
 private $db_user = "root";
 private $db_pass = "";
-private $db_name = "quatarone";
+private $db_name = "qatarone";
 
 //require_once 'Config.php';
 
-private $con = false;
+private $con ;
 private $results = array();
 private $insertid ;
 private $json;
@@ -25,8 +25,9 @@ private $numrows;
 
 	function connect(){
 		if(!$this->con){
-			$myconn = mysql_connect($this->db_host,$this->db_user,$this->db_pass);
-			if($myconn){
+			$myconn = mysqli_connect($this->db_host,$this->db_user,$this->db_pass,$this->db_name);
+			$this->con = $myconn;
+			/*if($myconn){
 				$select_db = mysql_select_db($this->db_name,$myconn);
 				if($select_db){
 					$this->con = true;
@@ -36,7 +37,7 @@ private $numrows;
 				}
 			}else{
 				return false;
-			}
+			}*/
 		}else{
 			return true;	
 		}
@@ -45,8 +46,8 @@ private $numrows;
 	
 	function disconnect(){
 		if($this->con){
-			if(@mysql_close($myconn)){
-				$this->con = false;
+			if(mysqli_close($this->con)){
+				//$this->con = false;
 				return true;
 			}else{
 				return false;	
@@ -67,12 +68,13 @@ private $numrows;
 			$q .= ' limit '.$limit;
 		}
 		//echo $q;
-		$query = mysql_query($q);
-		$numRows = mysql_num_rows($query);
+		$query = mysqli_query($this->con,$q);
+		//echo $query;
+		$numRows = mysqli_num_rows($query);
 		$this->numrows = $numRows;
 		if($numRows){
 			for($i=0; $i<$numRows; $i++){
-				$r= mysql_fetch_array($query);
+				$r= mysqli_fetch_array($query);
 				$key = array_keys($r);
 				for($x=0; $x<count($key); $x++){
 					if($numRows > 1){
@@ -87,7 +89,7 @@ private $numrows;
 		}else{
 			return false;	
 		}
-		mysql_free_result($query);
+		mysqli_free_result($query);
 		$this->disconnect();
 	}
 	
