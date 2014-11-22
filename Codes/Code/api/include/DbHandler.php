@@ -261,6 +261,185 @@ class DbHandler {
 		
     }
 	
+	//==============================CATEGORIES============================
+	
+	//list all
+	public function getAllCategories(){
+
+	$db = new database();
+	  
+	  
+		$table = 'category';
+		$rows ='*';
+		$where = 'category_status = "1" ';
+		
+        $db->select($table,$rows,$where,'','');
+	    $category_list = $db->getResults();
+        return $category_list;
+		
+}	
+
+
+//List single category
+public function GetCategoryDetail($category_id){
+		
+		$db = new database();
+		$table = 'category';
+		$rows ='*';
+		$where = 'category_id = "'.$category_id.'" AND category_status = "1" ';
+		
+        $db->select($table,$rows,$where,'','');
+	    $user = $db->getResults();
+		
+		
+        return $user;	
+		
+}
+
+// Add category
+
+public function addCategory($category){
+	
+	$db = new database();
+
+	 $table1 = 'category';
+     $rows1 ='category_name';
+	 $where1 = 'category_name = "'.$category['category_name'].'"';
+	
+	 $db->select($table1,$rows1,$where1,'','');
+	 $categoryNumRows = $db->getNumRows();
+	
+	 if( $categoryNumRows > 1 ){
+		
+		 return false;
+	 }
+	
+	
+	$table  = "category";
+	$values = "'".$category['category_name']."', '".$category['category_enteredBy']."'";				  
+	$rows   = "category_name, category_enteredBy";
+			
+	if($db->insert($table,$values,$rows) ){
+		return true;
+	}
+}
+	
+//Update category
+public function updateCateory( $category, $category_id){
+	
+		$db = new database();
+		   
+		$table = 'category';
+		$rows  = $category;
+		$where = 'category_id = "'.$category_id.'"';
+		   
+           if($db->update($table,$rows,$where) ){
+				return true;
+		   }else{
+				return false;
+		   }
+	
+	
+
+}
+
+public function deleteCategory($category_id){
+	
+		$db = new database();
+		$table = 'category';
+		$where = 'category_id = "'.$category_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		}	
+	
+	}
+	
+	
+	
+//====================================SUB-CATEGORIES===================================	
+
+public function getAllsubCategorys(){
+	
+		$db = new database();
+		$table = 'category_sub';
+		$rows ='*';
+		$Where= 'category_sub_status = "1"';
+		
+        $db->select($table,$rows,$Where,'','');
+	    $subcategories = $db->getResults();
+        return $subcategories;
+	
+	}
+public function GetsubCategoryDetail($id){
+		
+		$db = new database();
+		$table = 'category_sub';
+		$rows ='*';
+		$where = 'category_sub_id = "'.$id.'" AND category_sub_status = "1" ';
+		
+        $db->select($table,$rows,$where,'','');
+	    $subcategory = $db->getResults();
+		
+		
+        return $subcategory;	
+		
+	
+	}
+public function addsubCategory($category){
+		
+	 $db = new database();
+
+	// $table1 = 'category_sub';
+//     $rows1 ='category_name';
+//	 $where1 = 'category_name = "'.$category['category_name'].'"';
+//	
+//	 $db->select($table1,$rows1,$where1,'','');
+//	 $categoryNumRows = $db->getNumRows();
+//	
+//	 if( $categoryNumRows > 1 ){
+//		
+//		 return false;
+//	 }
+	
+	
+	$table  = "category_sub";
+	$values = "'".$category['category_sub_name']."', '".$category['category_sub_enteredBy']."' , '".$category['category_sub_parentId']."'";				  
+	$rows   = "category_sub_name, category_sub_enteredBy, category_sub_parentId";
+			
+	if($db->insert($table,$values,$rows) ){
+		return true;
+	}
+		
+	
+	}
+	
+public function updatesubCategory($subCategory, $category_sub_id){
+		
+		$db = new database();
+		   
+		   $table = 'category_sub';
+		   $rows  = $subCategory ;
+		   $where = 'category_sub_id = "'.$category_sub_id.'"';
+		   
+           if($db->update($table,$rows,$where) ){
+				return true;
+		   }else{
+				return false;
+		   }
+	
+	}	
+	
+public function deleteSubCategory($category_sub_id){
+	
+		
+		$db = new database();
+		$table = 'category_sub';
+		$where = 'category_sub_id = "'.$category_sub_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		}
+	
+	}	
 	
 	//========================Chages are done upto here===============================
 
@@ -464,185 +643,7 @@ class DbHandler {
 //			}       
 //    }
 	
-	//==============================CATEGORIES============================
 	
-	//list all
-	public function getAllCategories(){
-
-	$db = new database();
-	  
-	  
-		$table = 'category';
-		$rows ='*';
-		$where = 'category_status = "1" ';
-		
-        $db->select($table,$rows,$where,'','');
-	    $category_list = $db->getResults();
-        return $category_list;
-		
-}	
-
-
-//List single category
-public function GetCategoryDetail($category_id){
-		
-		$db = new database();
-		$table = 'category';
-		$rows ='*';
-		$where = 'category_id = "'.$category_id.'" AND category_status = "1" ';
-		
-        $db->select($table,$rows,$where,'','');
-	    $user = $db->getResults();
-		
-		
-        return $user;	
-		
-}
-
-// Add category
-
-public function addCategory($category){
-	
-	$db = new database();
-
-	 $table1 = 'category';
-     $rows1 ='category_name';
-	 $where1 = 'category_name = "'.$category['category_name'].'"';
-	
-	 $db->select($table1,$rows1,$where1,'','');
-	 $categoryNumRows = $db->getNumRows();
-	
-	 if( $categoryNumRows > 1 ){
-		
-		 return false;
-	 }
-	
-	
-	$table  = "category";
-	$values = "'".$category['category_name']."', '".$category['category_enteredBy']."'";				  
-	$rows   = "category_name, category_enteredBy";
-			
-	if($db->insert($table,$values,$rows) ){
-		return true;
-	}
-}
-	
-//Update category
-public function updateCateory( $category, $category_id){
-	
-		$db = new database();
-		   
-		$table = 'category';
-		$rows  = $category;
-		$where = 'category_id = "'.$category_id.'"';
-		   
-           if($db->update($table,$rows,$where) ){
-				return true;
-		   }else{
-				return false;
-		   }
-	
-	
-
-}
-
-public function deleteCategory($category_id){
-	
-		$db = new database();
-		$table = 'category';
-		$where = 'category_id = "'.$category_id.'" ';
-		if ($db->delete($table,$where) ){
-			return true;
-		}	
-	
-	}
-	
-	
-	
-//====================================SUB-CATEGORIES===================================	
-
-public function getAllsubCategorys(){
-	
-		$db = new database();
-		$table = 'category_sub';
-		$rows ='*';
-		$Where= 'category_sub_status = "1"';
-		
-        $db->select($table,$rows,$Where,'','');
-	    $subcategories = $db->getResults();
-        return $subcategories;
-	
-	}
-public function GetsubCategoryDetail($id){
-		
-		$db = new database();
-		$table = 'category_sub';
-		$rows ='*';
-		$where = 'category_sub_id = "'.$id.'" AND category_sub_status = "1" ';
-		
-        $db->select($table,$rows,$where,'','');
-	    $subcategory = $db->getResults();
-		
-		
-        return $subcategory;	
-		
-	
-	}
-public function addsubCategory($category){
-		
-	 $db = new database();
-
-	// $table1 = 'category_sub';
-//     $rows1 ='category_name';
-//	 $where1 = 'category_name = "'.$category['category_name'].'"';
-//	
-//	 $db->select($table1,$rows1,$where1,'','');
-//	 $categoryNumRows = $db->getNumRows();
-//	
-//	 if( $categoryNumRows > 1 ){
-//		
-//		 return false;
-//	 }
-	
-	
-	$table  = "category_sub";
-	$values = "'".$category['category_sub_name']."', '".$category['category_sub_enteredBy']."' , '".$category['category_sub_parentId']."'";				  
-	$rows   = "category_sub_name, category_sub_enteredBy, category_sub_parentId";
-			
-	if($db->insert($table,$values,$rows) ){
-		return true;
-	}
-		
-	
-	}
-	
-public function updatesubCategory($subCategory, $category_sub_id){
-		
-		$db = new database();
-		   
-		   $table = 'category_sub';
-		   $rows  = $subCategory ;
-		   $where = 'category_sub_id = "'.$category_sub_id.'"';
-		   
-           if($db->update($table,$rows,$where) ){
-				return true;
-		   }else{
-				return false;
-		   }
-	
-	}	
-	
-public function deleteSubCategory($category_sub_id){
-	
-		
-		$db = new database();
-		$table = 'category_sub';
-		$where = 'category_sub_id = "'.$category_sub_id.'" ';
-		if ($db->delete($table,$where) ){
-			return true;
-		}
-	
-	}	
 
 }
 
