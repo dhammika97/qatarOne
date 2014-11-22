@@ -306,6 +306,18 @@ class DbHandler {
 		return $location_list;
 	}
 	
+	public function updateLocation($location_id, $locations){
+		$db = new database();	
+		$table = 'locations';
+		$rows  = $locations ;
+		$where = 'location_id = "'.$location_id.'"';
+		if($db->update($table,$rows,$where) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	public function addPage($page){
 		$db = new database();
 		$table1 = 'pages';
