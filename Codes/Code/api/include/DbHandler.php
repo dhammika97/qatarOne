@@ -597,15 +597,17 @@ class DbHandler {
 		return $page;			
 	}
 	
-	public function createSlider($suburb){
+	public function createSlider($slider){
 		$db = new database();
-		$table  = "suburbs";
-		$values = "'".$suburb['suburb_location_id']."', 
-				'".$suburb['suburb_name']."',
-				'".$suburb['suburb_cordinates']."'";					  
-		$rows   = "suburb_location_id, 
-				   suburb_name,
-				   suburb_cordinates";		
+		$table  = "sliders";
+		$values = "'".$slider['slider_title']."', 
+				'".$slider['slider_image']."',
+				'".$slider['slider_url']."',
+				'".$slider['slider_status']."'";					  
+		$rows   = "slider_title, 
+				   slider_image,
+				   slider_url,
+				   slider_status";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}else{
@@ -615,28 +617,28 @@ class DbHandler {
 	
 	public function getAllSliders(){
 		$db = new database();
-		$table = 'suburbs';
+		$table = 'sliders';
 		$rows ='*';	
 		$db->select($table,$rows,'','','');
 		$location_list = $db->getResults();
 		return $location_list;
 	}
 	
-	public function GetSliderDetail($suburb_id){
+	public function GetSliderDetail($slider_id){
 		$db = new database();
-		$table = 'suburbs';
+		$table = 'sliders';
 		$rows ='*';
-		$where = 'suburb_id = "'.$suburb_id.'"';
+		$where = 'slider_id = "'.$slider_id.'"';
 		$db->select($table,$rows,$where,'','');
 		$page = $db->getResults();
 		return $page;
 	}
 	
-	public function updateSlider($suburb_id, $suburbs){
+	public function updateSlider($slider_id, $slider){
 		$db = new database();	
-		$table = 'suburbs';
-		$rows  = $suburbs ;
-		$where = 'suburb_id = "'.$suburb_id.'"';
+		$table = 'sliders';
+		$rows  = $slider ;
+		$where = 'slider_id = "'.$slider_id.'"';
 		if($db->update($table,$rows,$where) ){
 			return true;
 		}else{
@@ -644,10 +646,10 @@ class DbHandler {
 		}
 	}
 	
-	public function deleteSlider($suburb_id){
+	public function deleteSlider($slider_id){
 		$db = new database();
-		$table = 'suburbs';
-		$where = 'suburb_id = "'.$suburb_id.'" ';
+		$table = 'sliders';
+		$where = 'slider_id = "'.$slider_id.'" ';
 		if ($db->delete($table,$where) ){
 			return true;
 		}
