@@ -904,15 +904,15 @@ $app->delete('/suburbs/:id',  function($suburb_id) use($app) {
 });
 
 
-// * list all sub-category
+// * list all events
 // * url - /subCategory
 // * method - get
 // * params - 
 
-$app->get('/subCategory', function()  {
+$app->get('/event', function()  {
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->getAllsubCategorys();	
+		$result = $DbHandler->getAllEvents();	
 		if (!$result) {
 			$result["error"] = TRUE;
 			$result["message"] = "The requested resource doesn't exists";
@@ -923,15 +923,15 @@ $app->get('/subCategory', function()  {
 		}
 });
 
-// * list all sub-category
-// * url - /subCategory
+// * list event details
+// * url - /event/:id
 // * method - get
-// * params - subcategoryID
+// * params - id
 
-$app->get('/subCategory/:id', function($subCategory_id) {
+$app->get('/event/:id', function($event_id) {
 		$DbHandler = new DbHandler();
 		$response = array();
-		$row = $DbHandler->GetsubCategoryDetail($subCategory_id);
+		$row = $DbHandler->GetEventDetail($event_id);
 		if ($row != NULL) {
 			$row["error"] = false;
 			echoRespnse(200, $row);
@@ -947,38 +947,35 @@ $app->get('/subCategory/:id', function($subCategory_id) {
 // * method - post
 // * params - 
 
-$app->post('/subCategory', function() use ($app) {	
+$app->post('/event', function() use ($app) {	
 		$DbHandler = new DbHandler();
 		$response = array();
 		$category = array();
 		$request = $app->request();
-		$subCategory = $request->getBody();
-		$user_ID = "1";
-		//User ID should be a global variable
-		$subCategory['category_sub_enteredBy'] = $user_ID;
-		//print_r($subCategory);
-		if ($DbHandler->addsubCategory($subCategory)) {
+		$event = $request->getBody();
+		
+		if ($DbHandler->addEvent($event)) {
 			$response["error"] = false;
-			$response["message"] = "Successfully created the category";
+			$response["message"] = "Successfully created the event";
 			echoRespnse(201, $response);
 		} else {
 			$response["error"] = true;
-			$response["message"] = "category not created ";
+			$response["message"] = "event not created ";
 			echoRespnse(412, $response);
 		}
 });
 
 
-// * Edit sub-category
-// * url - /subCategory
-// * method - post
+// * Edit event
+// * url - /event
+// * method - put
 // * params - 
 
-$app->put('/subCategory/:subCategoryId', function ($id) use ( $app) {
+$app->put('/event/:id', function ($id) use ( $app) {
 		$DbHandler = new DbHandler();
 		$request = $app->request();
-		$subCategory = $request->getBody();		  
-		if ($result = $DbHandler->updatesubCategory($subCategory, $id)) {
+		$event = $request->getBody();		  
+		if ($result = $DbHandler->updateEvent($event, $id)) {
 			$response["error"] = FALSE;
 			$response["message"] = "Successfully Updated";
 			echoRespnse(200, $response);
@@ -990,15 +987,15 @@ $app->put('/subCategory/:subCategoryId', function ($id) use ( $app) {
 });
 
 
-// * Delete sub-category
-// * url - /subCategory
+// * Delete event
+// * url - /event
 // * method - delete
 // * params - 
 
-$app->delete('/subCategory/:subCategoryId', function ($id) {
+$app->delete('/event/:id', function ($id) {
 		$DbHandler = new DbHandler();
 		$response = array();
-		if($DbHandler->deleteSubCategory($id)){
+		if($DbHandler->deleteEvent($id)){
 			$response['error'] = FALSE;
 			$response['message'] = 'Successfully Deleted';
 		}else{
