@@ -1009,6 +1009,106 @@ $app->delete('/subCategory/:subCategoryId', function ($id) {
 });
 
 
+/**
+ * Get all slider
+ * url - /slider
+ * method - GET
+ * params - api Key*/
+
+$app->get('/slider',  function() {
+		$response = array();
+		$DbHandler = new DbHandler();		
+		$result = $DbHandler->getAllSlider();
+		$result['error'] = false;
+        echoRespnse(200, $result);
+});
+
+/**
+ * Get slider by slider id
+ * url - /slider
+ * method - GET
+ * params -slider id*/		
+$app->get('/slider/:id',  function($slider_id) {
+		$response = array();
+		$DbHandler = new DbHandler();	
+		$result = $DbHandler->GetSliderDetail($slider_id);
+        if ($result != NULL) {
+        	$response["error"] = false;
+				$response['user'] = $result;
+                echoRespnse(200	, $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+        });	 
+
+/**
+ * Create slider 
+ * url - /slider
+ * method - POST
+ * params -slider object*/
+
+$app->post('/slider', function() use ($app) {
+		$slider  = array();
+		$response = array();
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+
+		$slider = $request->getBody();		
+		//verifyRequiredParams(array("user_email", "user_password"));
+		if($DbHandler->createSlider($slider)){
+			$response["error"] = false;
+			$response["message"] = "slider created successfully";
+			echoRespnse(200, $response);				
+			}else{
+			$response["error"] = true;
+			$response["message"] = "slider creation failed";	
+		}
+});
+		
+/**
+ * Update slider 
+ * url - /slider
+ * method - PUT
+ * params - slider object */
+$app->put('/slider/:id',  function($slider_id) use ($app) {
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+		$response = array();
+		$slider =  $request->getBody();
+		$result = $DbHandler->updateSuburb($slider_id, $slider);
+		if ($result) {
+			$response["error"] = false;
+			$response["message"] = "slider updated successfully";
+		} else {                
+			$response["error"] = true;
+			$response["message"] = "slider failed to update. Please try again!";
+		}
+		echoRespnse(200, $response);				
+});
+ 					
+/**
+ * Delete slider
+ * url - /slider/:id
+ * method - DELETE
+ * params - slider id */ 
+$app->delete('/slider/:id',  function($suburb_id) use($app) {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->deleteSuburb($suburb_id);
+		
+		if ($result) {			
+			$response["error"] = false;
+			$response["message"] = "slider deleted succesfully";
+		} else {
+			$response["error"] = true;
+			$response["message"] = "slider failed to delete. Please try again!";
+		}
+		echoRespnse(200, $response);
+});
+
+
 $app->run();
 		
 		
