@@ -701,14 +701,14 @@ $app->post('/login', function() use ($app) {
 			
 });
 
-// * list all pages
-// * url - /subCategory
+// * list all pagesCantent
+// * url - /pageContent
 // * method - get
 // * params - 
-$app->get('/page', function()  {
+$app->get('/pageContent', function()  {
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->getAllPages();	
+		$result = $DbHandler->getAllPagesContent();	
 		if (!$result) {
 			$result["error"] = TRUE;
 			$result["message"] = "The requested resource doesn't exists";
@@ -719,14 +719,14 @@ $app->get('/page', function()  {
 		}
 });
 
-// * list single page
+// * list single pageContent
 // * url - /page
 // * method - get
 // * params - subcategoryID
-$app->get('/page/:id', function($page_id) {
+$app->get('/pageContent/:id', function($pageContent_id) {
 		$DbHandler = new DbHandler();
 		$response = array();
-		$row = $DbHandler->GetPageDetail($page_id);
+		$row = $DbHandler->GetPageContentDetail($pageContent_id);
 		if ($row != NULL) {
 			$row["error"] = false;
 			echoRespnse(200, $row);
@@ -737,22 +737,22 @@ $app->get('/page/:id', function($page_id) {
 		}
 });
 
-// * Add page
-// * url - /page
+// * Add pageContent
+// * url - /pageContent
 // * method - post
 // * params - 
 
-$app->post('/page', function() use ($app) {	
+$app->post('/pageContent', function() use ($app) {	
 		$DbHandler = new DbHandler();
 		$response = array();
 		$category = array();
 		$request = $app->request();
-		$page = $request->getBody();
+		$pageContent = $request->getBody();
 		$user_ID = "1";
 		//User ID should be a global variable
-		$page['page_addedBy'] = $user_ID;
+		$pageContent['page_addedBy'] = $user_ID;
 		//print_r($subCategory);
-		if ($DbHandler->addPage($page)) {
+		if ($DbHandler->addPageContent($pageContent)) {
 			$response["error"] = false;
 			$response["message"] = "Successfully created the category";
 			echoRespnse(201, $response);
@@ -762,16 +762,16 @@ $app->post('/page', function() use ($app) {
 			echoRespnse(412, $response);
 		}
 });
-// * Edit page
-// * url - /page
+// * Edit pageContent
+// * url - /pageContent/:id
 // * method - put
 // * params - 
 
-$app->put('/page/:pageid', function ($id) use ( $app) {
+$app->put('/pageContent/:pageContentId', function ($pageContentId) use ( $app) {
 		$DbHandler = new DbHandler();
 		$request = $app->request();
-		$page = $request->getBody();		  
-		if ($result = $DbHandler->updatePages($page, $id)) {
+		$pageContent = $request->getBody();		  
+		if ($result = $DbHandler->updatePagesContent($pageContent, $pageContentId)) {
 			$response["error"] = FALSE;
 			$response["message"] = "Successfully Updated";
 			echoRespnse(200, $response);
@@ -786,10 +786,10 @@ $app->put('/page/:pageid', function ($id) use ( $app) {
  * url - /page/:id
  * method - DELETE
  * params - page id */ 
-$app->delete('/page/:id',  function($page_id) use($app) {
+$app->delete('/pageContent/:pageContentId',  function($pageContentId) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->deletePage($page_id);
+		$result = $DbHandler->deletePageContent($pageContentId);
 		
 		if ($result) {
 			// user deleted successfully				
