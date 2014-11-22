@@ -416,24 +416,24 @@ class DbHandler {
 
    }
    	
-	public function addPage($page){
+	public function addPageContent($pageContent){
 		$db = new database();
-		$table1 = 'pages';
-		$rows1 ='page_title';
-		$where1 = 'page_title = "'.$page['page_title'].'"';
+		$table1 = 'pagecontent';
+		$rows1 ='pageContent_pageTitle';
+		$where1 = 'pageContent_pageTitle = "'.$page['pageContent_pageTitle'].'"';
 		$db->select($table1,$rows1,$where1,'','');
 		$pageNumRows = $db->getNumRows();	
 		if( $pageNumRows > 1 ){
 			return false;
 		}
-		$table  = "pages";
+		$table  = "pagecontent";
 		$values = "'".$page['page_title']."', '".$page['page_addedBy']."'";				
 		$rows   = "page_title, page_addedBy";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}
 	}
-	public function updatePages($page, $page_id){
+	public function updatePagesContent($page, $page_id){
 		$db = new database();  
 		$table = 'pages';
 		$rows  = $page;
@@ -444,7 +444,7 @@ class DbHandler {
 			return false;
 		}
 	}	
-	public function deletePage($page_id){
+	public function deletePageContent($page_id){
 		$db = new database();
 		$table = 'pages';
 		$where = 'page_id = "'.$page_id.'"';
@@ -453,7 +453,7 @@ class DbHandler {
 		}
 	}
 	
-	public function getAllPages(){
+	public function getAllPagesContent(){
 		$db = new database();  
 		$table = 'pages';
 		$rows ='*';
@@ -462,7 +462,7 @@ class DbHandler {
 		$pages_list = $db->getResults();
 		return $pages_list;
 	}
-	public function GetPageDetail($page_id){
+	public function GetPageContentDetail($page_id){
 		$db = new database();
 		$table = 'pages';
 		$rows ='*';
