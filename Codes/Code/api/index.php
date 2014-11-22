@@ -867,18 +867,18 @@ $app->post('/suburbs', function() use ($app) {
  * url - /suburbs
  * method - PUT
  * params - suburb object */
-$app->put('/suburbs/:id',  function($location_id) use ($app) {
+$app->put('/suburbs/:id',  function($suburb_id) use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 		$response = array();
-		$location =  $request->getBody();
-		$result = $DbHandler->updateLocation($location_id, $location);
+		$suburb =  $request->getBody();
+		$result = $DbHandler->updateSuburb($suburb_id, $suburb);
 		if ($result) {
 			$response["error"] = false;
-			$response["message"] = "Location updated successfully";
+			$response["message"] = "Suburb updated successfully";
 		} else {                
 			$response["error"] = true;
-			$response["message"] = "Location failed to update. Please try again!";
+			$response["message"] = "Suburb failed to update. Please try again!";
 		}
 		echoRespnse(200, $response);				
 });
