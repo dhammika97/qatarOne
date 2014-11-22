@@ -530,10 +530,10 @@ class DbHandler {
 		}
 	}
 	
-	public function deleteSuburb($location_id){
+	public function deleteSuburb($suburb_id){
 		$db = new database();
-		$table = 'locations';
-		$where = 'location_id = "'.$location_id.'" ';
+		$table = 'suburbs';
+		$where = 'suburb_id = "'.$suburb_id.'" ';
 		if ($db->delete($table,$where) ){
 			return true;
 		}
