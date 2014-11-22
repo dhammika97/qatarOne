@@ -802,6 +802,107 @@ $app->delete('/page/:id',  function($page_id) use($app) {
 		echoRespnse(200, $response);
 });
 
+
+/**
+ * Get all suburbs
+ * url - /suburbs
+ * method - GET
+ * params - api Key*/
+
+$app->get('/suburbs',  function() {
+		$response = array();
+		$DbHandler = new DbHandler();		
+		$result = $DbHandler->getAllLocations();
+		$result['error'] = false;
+        echoRespnse(200, $result);
+});
+
+/**
+ * Get suburbs by suburb id
+ * url - /suburbs
+ * method - GET
+ * params -suburb id*/		
+$app->get('/suburbs/:id',  function($user_id) {
+		$response = array();
+		$DbHandler = new DbHandler();	
+		$result = $DbHandler->GetUserDetail($user_id);
+        if ($result != NULL) {
+        	$response["error"] = false;
+				$response['user'] = $result;
+                echoRespnse(200	, $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+        });	 
+
+/**
+ * Create suburbs 
+ * url - /suburbs
+ * method - POST
+ * params -suburb object*/
+
+$app->post('/suburbs', function() use ($app) {
+		$location  = array();
+		$response = array();
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+
+		$location = $request->getBody();		
+		//verifyRequiredParams(array("user_email", "user_password"));
+		if($DbHandler->createLocation($location)){
+			$response["error"] = false;
+			$response["message"] = "location created successfully";
+			echoRespnse(200, $response);				
+			}else{
+			$response["error"] = true;
+			$response["message"] = "location creation failed";	
+		}
+});
+		
+/**
+ * Update suburbs 
+ * url - /suburbs
+ * method - PUT
+ * params - suburb object */
+$app->put('/suburbs/:id',  function($location_id) use ($app) {
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+		$response = array();
+		$location =  $request->getBody();
+		$result = $DbHandler->updateLocation($location_id, $location);
+		if ($result) {
+			$response["error"] = false;
+			$response["message"] = "Location updated successfully";
+		} else {                
+			$response["error"] = true;
+			$response["message"] = "Location failed to update. Please try again!";
+		}
+		echoRespnse(200, $response);				
+});
+ 					
+/**
+ * Delete suburbs
+ * url - /suburbs/:id
+ * method - DELETE
+ * params - suburb id */ 
+$app->delete('/suburbs/:id',  function($location_id) use($app) {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->deleteLocation($location_id);
+		
+		if ($result) {			
+			$response["error"] = false;
+			$response["message"] = "Location deleted succesfully";
+		} else {
+			$response["error"] = true;
+			$response["message"] = "Location failed to delete. Please try again!";
+		}
+		echoRespnse(200, $response);
+});
+
+
 $app->run();
 		
 		
