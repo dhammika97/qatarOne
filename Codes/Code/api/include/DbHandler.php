@@ -318,6 +318,15 @@ class DbHandler {
 		}
 	}
 	
+	public function deleteLocation($location_id){
+		$db = new database();
+		$table = 'locations';
+		$where = 'location_id = "'.$location_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		}
+	}
+	
 	public function addPage($page){
 		$db = new database();
 		$table1 = 'pages';
