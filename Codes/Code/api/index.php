@@ -559,45 +559,146 @@ $app->delete('/locations/:id',  function($location_id) use($app) {
 		echoRespnse(200, $response);
 });
 
+// * list all pages
+// * url - /subCategory
+// * method - get
+// * params - 
+$app->get('/page', function()  {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->getAllPages();	
+		if (!$result) {
+			$result["error"] = TRUE;
+			$result["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $result);
+		} else {
+			$result["error"] = false;
+			echoRespnse(200, $result);
+		}
+});
+
+// * list single page
+// * url - /page
+// * method - get
+// * params - subcategoryID
+$app->get('/page/:id', function($page_id) {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$row = $DbHandler->GetPageDetail($page_id);
+		if ($row != NULL) {
+			$row["error"] = false;
+			echoRespnse(200, $row);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}
+});
+
+// * Add page
+// * url - /page
+// * method - post
+// * params - 
+
+$app->post('/page', function() use ($app) {	
+		$DbHandler = new DbHandler();
+		$response = array();
+		$category = array();
+		$request = $app->request();
+		$page = $request->getBody();
+		$user_ID = "1";
+		//User ID should be a global variable
+		$page['page_addedBy'] = $user_ID;
+		//print_r($subCategory);
+		if ($DbHandler->addPage($page)) {
+			$response["error"] = false;
+			$response["message"] = "Successfully created the category";
+			echoRespnse(201, $response);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "category not created ";
+			echoRespnse(412, $response);
+		}
+});
+// * Edit page
+// * url - /page
+// * method - put
+// * params - 
+
+$app->put('/page/:pageid', function ($id) use ( $app) {
+		$DbHandler = new DbHandler();
+		$request = $app->request();
+		$page = $request->getBody();		  
+		if ($result = $DbHandler->updatePages($page, $id)) {
+			$response["error"] = FALSE;
+			$response["message"] = "Successfully Updated";
+			echoRespnse(200, $response);
+		}else{
+			$response["error"] = TRUE;
+			$response["message"] = "Updated falid";
+			echoRespnse(401, $response);
+		}
+});
+/**
+ * Delete pages
+ * url - /page/:id
+ * method - DELETE
+ * params - page id */ 
+$app->delete('/page/:id',  function($page_id) use($app) {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->deletePage($page_id);
+		
+		if ($result) {
+			// user deleted successfully				
+			$response["error"] = false;
+			$response["message"] = "User deleted succesfully";
+		} else {
+			// task failed to delete
+			$response["error"] = true;
+			$response["message"] = "User failed to delete. Please try again!";
+		}
+		echoRespnse(200, $response);
+});
+
 /**
  * User Login
  * url - /login
  * method - POST
  * params -email, password */
-$app->post('/login', function() use ($app) {    
-						
-				// reading post params						 
-				$email = $app->request()->post('email');
-				$password = $app->request()->post('password');
-				$response = array();
-
-                //$password_hash = PassHash::hash($password);
-				// echo $password_hash;		
-
-				$db = new DbHandler();
-				// check for correct email and password
-				if ($db->checkLogin($email, $password)) {
-					//get the user by email
-					$logged_User = $db->getUserByEmail($email);
-	                
-					if ($logged_User != NULL) {
-						$response["error"] = false;
-						$response['accessToken'] = $logged_User['user_accessToken'];
-                        $response['user_status'] = $logged_User['user_status'];
-					} else {
-						// unknown error occurred
-						$response['error'] = true;
-						$response['message'] = "An error occurred. Please try again";
-					}
-				} else {
-					// user credentials are wrong
-					$response['error'] = true;
-					$response['message'] = 'Login failed. Incorrect credentials';
-				}
+$app->post('/login', function() use ($app) {    						
+		// reading post params						 
+		$email = $app->request()->post('email');
+		$password = $app->request()->post('password');
+		$response = array();
 	
-				echoRespnse(200, $response);
-				
-	});
+		//$password_hash = PassHash::hash($password);
+		// echo $password_hash;		
+	
+		$db = new DbHandler();
+		// check for correct email and password
+		if ($db->checkLogin($email, $password)) {
+			//get the user by email
+			$logged_User = $db->getUserByEmail($email);
+			
+			if ($logged_User != NULL) {
+				$response["error"] = false;
+				$response['accessToken'] = $logged_User['user_accessToken'];
+				$response['user_status'] = $logged_User['user_status'];
+			} else {
+				// unknown error occurred
+				$response['error'] = true;
+				$response['message'] = "An error occurred. Please try again";
+			}
+		} else {
+			// user credentials are wrong
+			$response['error'] = true;
+			$response['message'] = 'Login failed. Incorrect credentials';
+		}
+	
+		echoRespnse(200, $response);
+			
+});
 
 $app->run();
 		
