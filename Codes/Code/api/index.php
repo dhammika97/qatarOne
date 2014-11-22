@@ -813,7 +813,7 @@ $app->delete('/pageContent/:pageContentId',  function($pageContentId) use($app) 
 $app->get('/suburbs',  function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
-		$result = $DbHandler->getAllLocations();
+		$result = $DbHandler->getAllSuburbs();
 		$result['error'] = false;
         echoRespnse(200, $result);
 });
@@ -850,15 +850,15 @@ $app->post('/suburbs', function() use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 
-		$location = $request->getBody();		
+		$suburb = $request->getBody();		
 		//verifyRequiredParams(array("user_email", "user_password"));
-		if($DbHandler->createLocation($location)){
+		if($DbHandler->createSuburb($suburb)){
 			$response["error"] = false;
-			$response["message"] = "location created successfully";
+			$response["message"] = "Suburb created successfully";
 			echoRespnse(200, $response);				
 			}else{
 			$response["error"] = true;
-			$response["message"] = "location creation failed";	
+			$response["message"] = "Suburb creation failed";	
 		}
 });
 		
