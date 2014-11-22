@@ -527,14 +527,14 @@ $app->put('/locations/:id',  function($location_id) use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 		$response = array();
-		$users =  $request->getBody();
-		$result = $DbHandler->updateUser($user_id, $users);
+		$location =  $request->getBody();
+		$result = $DbHandler->updateLocation($location_id, $location);
 		if ($result) {
 			$response["error"] = false;
-			$response["message"] = "User updated successfully";
+			$response["message"] = "Location updated successfully";
 		} else {                
 			$response["error"] = true;
-			$response["message"] = "User failed to update. Please try again!";
+			$response["message"] = "Location failed to update. Please try again!";
 		}
 		echoRespnse(200, $response);				
 });
