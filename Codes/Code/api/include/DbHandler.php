@@ -654,6 +654,68 @@ class DbHandler {
 			return true;
 		}
 	}
+	
+	public function createNews($news){
+		$db = new database();
+		$table  = "news";
+		$values = "'".$news['news_title']."', 
+				'".$news['news_shortDescription']."',
+				'".$news['news_Description']."',
+				'".$news['news_image']."',
+				'".$news['news_date']."',
+				'".$news['news_status']."'";					  
+		$rows   = "news_title, 
+				   news_shortDescription,
+				   news_Description,
+				   news_image,
+				   news_date,
+				   news_status";		
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function getAllNews(){
+		$db = new database();
+		$table = 'news';
+		$rows ='*';	
+		$db->select($table,$rows,'','','');
+		$location_list = $db->getResults();
+		return $location_list;
+	}
+	
+	public function GetNewsDetail($news_id){
+		$db = new database();
+		$table = 'news';
+		$rows ='*';
+		$where = 'news_id = "'.$news_id.'"';
+		$db->select($table,$rows,$where,'','');
+		$page = $db->getResults();
+		return $page;
+	}
+	
+	public function updateNews($news_id, $news){
+		$db = new database();	
+		$table = 'news';
+		$rows  = $news ;
+		$where = 'news_id = "'.$news_id.'"';
+		if($db->update($table,$rows,$where) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function deleteNews($news_id){
+		$db = new database();
+		$table = 'news';
+		$where = 'news_id = "'.$news_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		}
+	}
 }
 
 ?>
