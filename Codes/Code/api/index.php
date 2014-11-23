@@ -55,7 +55,7 @@ function authenticate(\Slim\Route $route) {
  * method - GET
  * params - api Key*/
 
-$app->get('/user',  function() {
+$app->get('/user', 'authenticate', function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
 		$result = $DbHandler->getAllUsers();
@@ -68,7 +68,7 @@ $app->get('/user',  function() {
  * url - /userlist
  * method - GET
  * params -user id*/		
-$app->get('/user/:id',  function($user_id) {
+$app->get('/user/:id', 'authenticate', function($user_id) {
 		$response = array();
 		$DbHandler = new DbHandler();	
 		$result = $DbHandler->GetUserDetail($user_id);
@@ -89,7 +89,7 @@ $app->get('/user/:id',  function($user_id) {
  * method - POST
  * params -user object*/
 
-$app->post('/user', function() use ($app) {
+$app->post('/user', 'authenticate', function() use ($app) {
 		$users  = array();
 		$response = array();
 		$request = $app->request();
@@ -112,7 +112,7 @@ $app->post('/user', function() use ($app) {
  * url - /userlist
  * method - PUT
  * params -user object, user_id */
-$app->put('/user/:id',  function($user_id) use ($app) {
+$app->put('/user/:id', 'authenticate', function($user_id) use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 		$response = array();
@@ -133,7 +133,7 @@ $app->put('/user/:id',  function($user_id) use ($app) {
  * url - /userlist/:id
  * method - DELETE
  * params - user_id */ 
-$app->delete('/user/:id',  function($user_id) use($app) {
+$app->delete('/user/:id', 'authenticate', function($user_id) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->deleteUser($user_id);
@@ -190,7 +190,7 @@ $app->get('/fixedAds',  function() {
  * method - POST
  * params -fixed advertisment  object*/
 
-$app->post('/fixedAds',"authenticate",function() use ($app) {
+$app->post('/fixedAds', 'authenticate', function() use ($app) {
 		// check for required paramsss
 	   	// verifyRequiredParams(array('task'));
 		$response = array();           
@@ -214,7 +214,7 @@ $app->post('/fixedAds',"authenticate",function() use ($app) {
  * url - /fixedadlist/:id
  * method - PUT
  * params -Fixed advertisment object, fixedads_id */        
-$app->put('/fixedAds/:id',"authenticate",  function($fixedads_id) {
+$app->put('/fixedAds/:id', 'authenticate', function($fixedads_id) {
 		$request = \Slim\Slim::getInstance()->request();
 		$fixed_advertisment = $request->getBody();
 		
@@ -240,7 +240,7 @@ $app->put('/fixedAds/:id',"authenticate",  function($fixedads_id) {
  * method - DELETE
  * params - user_id */
  
-$app->delete('/fixedAds/:id',"authenticate" , function($fixedads_id) use($app) {          
+$app->delete('/fixedAds/:id', 'authenticate', function($fixedads_id) use($app) {          
 		$db = new DbHandler();
 		$response = array();
 		$result = $db->deleteFixedAdvertisment($fixedads_id);
@@ -300,7 +300,7 @@ $app->get('/category/:id', function($category_id){
 // * url - /category
 // * method - post
 // * params -  
-$app->post('/category', function() use ($app) {
+$app->post('/category', 'authenticate', function() use ($app) {
 		$response = array();
 		$category = array();
 		$DbHandler = new DbHandler();
@@ -322,7 +322,7 @@ $app->post('/category', function() use ($app) {
 // * url - /category/id
 // * method - post
 // * params -  id 
-$app->put('/category/:categoryId', function ($id) use ($app) {
+$app->put('/category/:categoryId', 'authenticate', function ($id) use ($app) {
 		$DbHandler = new DbHandler();
 		$request = $app->request();
 		$category = $request->getBody();		
@@ -342,7 +342,7 @@ $app->put('/category/:categoryId', function ($id) use ($app) {
 // * url - /category/id
 // * method - delete
 // * params -  id 
-$app->delete('/category/:categoryId', function ($id) {
+$app->delete('/category/:categoryId', 'authenticate', function ($id) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		if ($DbHandler->deleteCategory($id)) {
@@ -399,7 +399,7 @@ $app->get('/subCategory/:id', function($subCategory_id) {
 // * method - post
 // * params - 
 
-$app->post('/subCategory', function() use ($app) {	
+$app->post('/subCategory', 'authenticate', function() use ($app) {	
 		$DbHandler = new DbHandler();
 		$response = array();
 		$category = array();
@@ -426,7 +426,7 @@ $app->post('/subCategory', function() use ($app) {
 // * method - post
 // * params - 
 
-$app->put('/subCategory/:subCategoryId', function ($id) use ( $app) {
+$app->put('/subCategory/:subCategoryId', 'authenticate', function ($id) use ( $app) {
 		$DbHandler = new DbHandler();
 		$request = $app->request();
 		$subCategory = $request->getBody();		  
@@ -447,7 +447,7 @@ $app->put('/subCategory/:subCategoryId', function ($id) use ( $app) {
 // * method - delete
 // * params - 
 
-$app->delete('/subCategory/:subCategoryId', function ($id) {
+$app->delete('/subCategory/:subCategoryId', 'authenticate', function ($id) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		if($DbHandler->deleteSubCategory($id)){
@@ -499,7 +499,7 @@ $app->GET('/locations/:id',  function($location_id) {
  * method - POST
  * params -location object*/
 
-$app->post('/locations', function() use ($app) {
+$app->post('/locations', 'authenticate', function() use ($app) {
 		$location  = array();
 		$response = array();
 		$request = $app->request();
@@ -522,7 +522,7 @@ $app->post('/locations', function() use ($app) {
  * url - /locations
  * method - PUT
  * params - location object */
-$app->put('/locations/:id',  function($location_id) use ($app) {
+$app->put('/locations/:id', 'authenticate', function($location_id) use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 		$response = array();
@@ -543,7 +543,7 @@ $app->put('/locations/:id',  function($location_id) use ($app) {
  * url - /locations/:id
  * method - DELETE
  * params - location id */ 
-$app->delete('/locations/:id',  function($location_id) use($app) {
+$app->delete('/locations/:id', 'authenticate', function($location_id) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->deleteLocation($location_id);
@@ -601,7 +601,7 @@ $app->get('/page/:id', function($page_id) {
 // * method - post
 // * params - 
 
-$app->post('/page', function() use ($app) {	
+$app->post('/page', 'authenticate', function() use ($app) {	
 		$DbHandler = new DbHandler();
 		$response = array();
 		$category = array();
@@ -626,7 +626,7 @@ $app->post('/page', function() use ($app) {
 // * method - put
 // * params - 
 
-$app->put('/page/:pageid', function ($id) use ( $app) {
+$app->put('/page/:pageid', 'authenticate', function ($id) use ( $app) {
 		$DbHandler = new DbHandler();
 		$request = $app->request();
 		$page = $request->getBody();		  
@@ -645,7 +645,7 @@ $app->put('/page/:pageid', function ($id) use ( $app) {
  * url - /page/:id
  * method - DELETE
  * params - page id */ 
-$app->delete('/page/:id',  function($page_id) use($app) {
+$app->delete('/page/:id', 'authenticate', function($page_id) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->deletePage($page_id);
@@ -674,7 +674,7 @@ $app->post('/login', function() use ($app) {
 		$response = array();
 	
 		//$password_hash = PassHash::hash($password);
-		// echo $password_hash;		
+		//echo $password_hash;		
 	
 		$db = new DbHandler();
 		// check for correct email and password
@@ -742,7 +742,7 @@ $app->get('/pageContent/:id', function($pageContent_id) {
 // * method - post
 // * params - 
 
-$app->post('/pageContent', function() use ($app) {	
+$app->post('/pageContent', 'authenticate', function() use ($app) {	
 		$DbHandler = new DbHandler();
 		$response = array();
 		$category = array();
@@ -767,7 +767,7 @@ $app->post('/pageContent', function() use ($app) {
 // * method - put
 // * params - 
 
-$app->put('/pageContent/:pageContentId', function ($pageContentId) use ( $app) {
+$app->put('/pageContent/:pageContentId', 'authenticate', function ($pageContentId) use ( $app) {
 		$DbHandler = new DbHandler();
 		$request = $app->request();
 		$pageContent = $request->getBody();		  
@@ -786,7 +786,7 @@ $app->put('/pageContent/:pageContentId', function ($pageContentId) use ( $app) {
  * url - /page/:id
  * method - DELETE
  * params - page id */ 
-$app->delete('/pageContent/:pageContentId',  function($pageContentId) use($app) {
+$app->delete('/pageContent/:pageContentId', 'authenticate', function($pageContentId) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->deletePageContent($pageContentId);
@@ -844,7 +844,7 @@ $app->get('/suburbs/:id',  function($suburb_id) {
  * method - POST
  * params -suburb object*/
 
-$app->post('/suburbs', function() use ($app) {
+$app->post('/suburbs', 'authenticate', function() use ($app) {
 		$location  = array();
 		$response = array();
 		$request = $app->request();
@@ -867,7 +867,7 @@ $app->post('/suburbs', function() use ($app) {
  * url - /suburbs
  * method - PUT
  * params - suburb object */
-$app->put('/suburbs/:id',  function($suburb_id) use ($app) {
+$app->put('/suburbs/:id', 'authenticate', function($suburb_id) use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 		$response = array();
@@ -888,7 +888,7 @@ $app->put('/suburbs/:id',  function($suburb_id) use ($app) {
  * url - /suburbs/:id
  * method - DELETE
  * params - suburb id */ 
-$app->delete('/suburbs/:id',  function($suburb_id) use($app) {
+$app->delete('/suburbs/:id', 'authenticate', function($suburb_id) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->deleteSuburb($suburb_id);
@@ -947,7 +947,7 @@ $app->get('/event/:id', function($event_id) {
 // * method - post
 // * params - 
 
-$app->post('/event', function() use ($app) {	
+$app->post('/event', 'authenticate', function() use ($app) {	
 		$DbHandler = new DbHandler();
 		$response = array();
 		$category = array();
@@ -971,7 +971,7 @@ $app->post('/event', function() use ($app) {
 // * method - put
 // * params - 
 
-$app->put('/event/:id', function ($id) use ( $app) {
+$app->put('/event/:id', 'authenticate', function ($id) use ( $app) {
 		$DbHandler = new DbHandler();
 		$request = $app->request();
 		$event = $request->getBody();		  
@@ -992,7 +992,7 @@ $app->put('/event/:id', function ($id) use ( $app) {
 // * method - delete
 // * params - 
 
-$app->delete('/event/:id', function ($id) {
+$app->delete('/event/:id', 'authenticate', function ($id) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		if($DbHandler->deleteEvent($id)){
@@ -1046,7 +1046,7 @@ $app->get('/slider/:id',  function($slider_id) {
  * method - POST
  * params -slider object*/
 
-$app->post('/slider', function() use ($app) {
+$app->post('/slider', 'authenticate', function() use ($app) {
 		$slider  = array();
 		$response = array();
 		$request = $app->request();
@@ -1069,7 +1069,7 @@ $app->post('/slider', function() use ($app) {
  * url - /slider
  * method - PUT
  * params - slider object */
-$app->put('/slider/:id',  function($slider_id) use ($app) {
+$app->put('/slider/:id', 'authenticate',  function($slider_id) use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 		$response = array();
@@ -1090,7 +1090,7 @@ $app->put('/slider/:id',  function($slider_id) use ($app) {
  * url - /slider/:id
  * method - DELETE
  * params - slider id */ 
-$app->delete('/slider/:id',  function($slider_id) use($app) {
+$app->delete('/slider/:id', 'authenticate', function($slider_id) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->deleteSlider($slider_id);
@@ -1146,7 +1146,7 @@ $app->get('/news/:id',  function($news_id) {
  * method - POST
  * params -news object*/
 
-$app->post('/news', function() use ($app) {
+$app->post('/news', 'authenticate', function() use ($app) {
 		$news  = array();
 		$response = array();
 		$request = $app->request();
@@ -1169,7 +1169,7 @@ $app->post('/news', function() use ($app) {
  * url - /news
  * method - PUT
  * params - news object */
-$app->put('/news/:id',  function($news_id) use ($app) {
+$app->put('/news/:id', 'authenticate', function($news_id) use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 		$response = array();
@@ -1190,7 +1190,7 @@ $app->put('/news/:id',  function($news_id) use ($app) {
  * url - /news/:id
  * method - DELETE
  * params - news id */ 
-$app->delete('/news/:id',  function($news_id) use($app) {
+$app->delete('/news/:id', 'authenticate', function($news_id) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->deleteNews($news_id);
@@ -1212,7 +1212,7 @@ $app->delete('/news/:id',  function($news_id) use($app) {
  * method - GET
  * params - api Key*/
 
-$app->get('/packageType',  function() {
+$app->get('/packageType', function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
 		$result = $DbHandler->getAllPackageTypes();
@@ -1225,7 +1225,7 @@ $app->get('/packageType',  function() {
  * url - /packageType
  * method - GET
  * params -packageType id*/		
-$app->get('/packageType/:id',  function($packageType_id) {
+$app->get('/packageType/:id', function($packageType_id) {
 		$response = array();
 		$DbHandler = new DbHandler();	
 		$result = $DbHandler->GetPackageTypeDetail($packageType_id);
@@ -1246,7 +1246,7 @@ $app->get('/packageType/:id',  function($packageType_id) {
  * method - POST
  * params -packageType object*/
 
-$app->post('/packageType', function() use ($app) {
+$app->post('/packageType', 'authenticate', function() use ($app) {
 		$packageType  = array();
 		$response = array();
 		$request = $app->request();
@@ -1269,7 +1269,7 @@ $app->post('/packageType', function() use ($app) {
  * url - /packageType
  * method - PUT
  * params - packageType object */
-$app->put('/packageType/:id',  function($packageType_id) use ($app) {
+$app->put('/packageType/:id', 'authenticate', function($packageType_id) use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 		$response = array();
@@ -1290,7 +1290,7 @@ $app->put('/packageType/:id',  function($packageType_id) use ($app) {
  * url - /packageType/:id
  * method - DELETE
  * params - packageType id */ 
-$app->delete('/packageType/:id',  function($packageType_id) use($app) {
+$app->delete('/packageType/:id', 'authenticate', function($packageType_id) use($app) {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->deletePackageType($packageType_id);

@@ -394,24 +394,24 @@ class DbHandler {
 	}	
 
 public function checkLogin($user_email, $user_password) {
-	  $db = new database();	
-      $table = 'user';
-      $rows ='*';
-      $where = 'user_email= "'.$user_email.'"';
-    
-      $db->select($table,$rows,$where,'','');
-      $logged_User = $db->getResults();
-    
-     if ($logged_User != NULL) {
-         if (PassHash::check_password($logged_User["user_password"], $user_password)) {
-           		return TRUE;
-       		} else {	      		
-           		return FALSE;
-       		}
-        } else {                  
-       		return FALSE;
-        }       
-   }
+	$db = new database();	
+	$table = 'user';
+	$rows ='*';
+	$where = 'user_email= "'.$user_email.'"';
+	
+	$db->select($table,$rows,$where,'','');
+	$logged_User = $db->getResults();
+	//return true;
+	if ($logged_User != NULL) {
+		if (PassHash::check_password($logged_User["user_password"], $user_password)) {
+			return TRUE;
+		} else {	      		
+			return FALSE;
+		}
+	} else {                  
+		return FALSE;
+	}      
+}
 
 	public function getUserByEmail($user_email) {
       $db = new database();
