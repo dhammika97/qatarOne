@@ -393,7 +393,7 @@ class DbHandler {
 		return $page;			
 	}	
 
-	 public function checkLogin($user_email, $user_password) {
+public function checkLogin($user_email, $user_password) {
 	  $db = new database();	
       $table = 'user';
       $rows ='*';
@@ -402,12 +402,12 @@ class DbHandler {
       $db->select($table,$rows,$where,'','');
       $logged_User = $db->getResults();
     
-     if ($logged_User != NULL) {            
+     if ($logged_User != NULL) {
          if (PassHash::check_password($logged_User["user_password"], $user_password)) {
            		return TRUE;
-       		} else {           		      		
+       		} else {	      		
            		return FALSE;
-       		}               
+       		}
         } else {                  
        		return FALSE;
         }       
