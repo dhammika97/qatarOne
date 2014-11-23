@@ -1106,6 +1106,105 @@ $app->delete('/slider/:id',  function($slider_id) use($app) {
 });
 
 
+/**
+ * Get all news
+ * url - /news
+ * method - GET
+ * params - api Key*/
+
+$app->get('/news',  function() {
+		$response = array();
+		$DbHandler = new DbHandler();		
+		$result = $DbHandler->getAllNews();
+		$result['error'] = false;
+        echoRespnse(200, $result);
+});
+
+/**
+ * Get news by news id
+ * url - /news
+ * method - GET
+ * params -news id*/		
+$app->get('/news/:id',  function($news_id) {
+		$response = array();
+		$DbHandler = new DbHandler();	
+		$result = $DbHandler->GetNewsDetail($news_id);
+        if ($result != NULL) {
+        	$response["error"] = false;
+				$response['news'] = $result;
+                echoRespnse(200	, $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+        });	 
+
+/**
+ * Create news 
+ * url - /news
+ * method - POST
+ * params -news object*/
+
+$app->post('/news', function() use ($app) {
+		$news  = array();
+		$response = array();
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+
+		$news = $request->getBody();		
+		//verifyRequiredParams(array("user_email", "user_password"));
+		if($DbHandler->createNews($news)){
+			$response["error"] = false;
+			$response["message"] = "news created successfully";
+			echoRespnse(200, $response);				
+			}else{
+			$response["error"] = true;
+			$response["message"] = "news creation failed";	
+		}
+});
+		
+/**
+ * Update news 
+ * url - /news
+ * method - PUT
+ * params - news object */
+$app->put('/news/:id',  function($news_id) use ($app) {
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+		$response = array();
+		$news =  $request->getBody();
+		$result = $DbHandler->updateNews($news_id, $news);
+		if ($result) {
+			$response["error"] = false;
+			$response["message"] = "news updated successfully";
+		} else {                
+			$response["error"] = true;
+			$response["message"] = "news failed to update. Please try again!";
+		}
+		echoRespnse(200, $response);				
+});
+ 					
+/**
+ * Delete news
+ * url - /news/:id
+ * method - DELETE
+ * params - news id */ 
+$app->delete('/news/:id',  function($news_id) use($app) {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->deleteNews($news_id);
+		
+		if ($result) {			
+			$response["error"] = false;
+			$response["message"] = "news deleted succesfully";
+		} else {
+			$response["error"] = true;
+			$response["message"] = "news failed to delete. Please try again!";
+		}
+		echoRespnse(200, $response);
+});
+
 $app->run();
 		
 		
