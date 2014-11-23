@@ -1205,6 +1205,107 @@ $app->delete('/news/:id',  function($news_id) use($app) {
 		echoRespnse(200, $response);
 });
 
+
+/**
+ * Get all packageType
+ * url - /packageType
+ * method - GET
+ * params - api Key*/
+
+$app->get('/packageType',  function() {
+		$response = array();
+		$DbHandler = new DbHandler();		
+		$result = $DbHandler->getAllPackageTypes();
+		$result['error'] = false;
+        echoRespnse(200, $result);
+});
+
+/**
+ * Get packageType by packageType id
+ * url - /packageType
+ * method - GET
+ * params -packageType id*/		
+$app->get('/packageType/:id',  function($packageType_id) {
+		$response = array();
+		$DbHandler = new DbHandler();	
+		$result = $DbHandler->GetPackageTypeDetail($packageType_id);
+        if ($result != NULL) {
+        	$response["error"] = false;
+				$response['packageType'] = $result;
+                echoRespnse(200	, $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+        });	 
+
+/**
+ * Create packageType 
+ * url - /packageType
+ * method - POST
+ * params -packageType object*/
+
+$app->post('/packageType', function() use ($app) {
+		$packageType  = array();
+		$response = array();
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+
+		$packageType = $request->getBody();		
+		//verifyRequiredParams(array("user_email", "user_password"));
+		if($DbHandler->createPackageType($packageType)){
+			$response["error"] = false;
+			$response["message"] = "package type created successfully";
+			echoRespnse(200, $response);				
+			}else{
+			$response["error"] = true;
+			$response["message"] = "package type creation failed";	
+		}
+});
+		
+/**
+ * Update packageType 
+ * url - /packageType
+ * method - PUT
+ * params - packageType object */
+$app->put('/packageType/:id',  function($packageType_id) use ($app) {
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+		$response = array();
+		$packageType =  $request->getBody();
+		$result = $DbHandler->updatePackageType($packageType_id, $packageType);
+		if ($result) {
+			$response["error"] = false;
+			$response["message"] = "package type updated successfully";
+		} else {                
+			$response["error"] = true;
+			$response["message"] = "package type failed to update. Please try again!";
+		}
+		echoRespnse(200, $response);				
+});
+ 					
+/**
+ * Delete packageType
+ * url - /packageType/:id
+ * method - DELETE
+ * params - packageType id */ 
+$app->delete('/packageType/:id',  function($packageType_id) use($app) {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->deletePackageType($packageType_id);
+		
+		if ($result) {			
+			$response["error"] = false;
+			$response["message"] = "package type deleted succesfully";
+		} else {
+			$response["error"] = true;
+			$response["message"] = "package type failed to delete. Please try again!";
+		}
+		echoRespnse(200, $response);
+});
+
+
 $app->run();
 		
 		

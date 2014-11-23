@@ -716,6 +716,68 @@ class DbHandler {
 			return true;
 		}
 	}
+	
+	public function createPackageType($packageType){
+		$db = new database();
+		$table  = "packagetypes";
+		$values = "'".$packageType['package_name']."', 
+				'".$packageType['package_Description']."',
+				'".$packageType['package_price']."',
+				'".$packageType['package_adLimit']."',
+				'".$packageType['package_addedBy']."',
+				'".$packageType['package_status']."'";					  
+		$rows   = "package_name, 
+				   package_Description,
+				   package_price,
+				   package_adLimit,
+				   package_addedBy,
+				   package_status";		
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function getAllPackageTypes(){
+		$db = new database();
+		$table = 'packagetypes';
+		$rows ='*';	
+		$db->select($table,$rows,'','','');
+		$location_list = $db->getResults();
+		return $location_list;
+	}
+	
+	public function GetPackageTypeDetail($packageType_id){
+		$db = new database();
+		$table = 'packagetypes';
+		$rows ='*';
+		$where = 'package_id = "'.$packageType_id.'"';
+		$db->select($table,$rows,$where,'','');
+		$page = $db->getResults();
+		return $page;
+	}
+	
+	public function updatePackageType($packageType_id, $packageType){
+		$db = new database();	
+		$table = 'packagetypes';
+		$rows  = $packageType ;
+		$where = 'package_id = "'.$packageType_id.'"';
+		if($db->update($table,$rows,$where) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function deletePackageType($packageType_id){
+		$db = new database();
+		$table = 'packagetypes';
+		$where = 'package_id = "'.$packageType_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		}
+	}
 }
 
 ?>
