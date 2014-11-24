@@ -397,7 +397,7 @@ public function checkLogin($user_email, $user_password) {
 	$db = new database();	
 	$table = 'user';
 	$rows ='*';
-	$where = 'user_email= "'.$user_email.'"';
+	$where = 'user_email= "'.$user_email.'" AND user_status = 1 AND user_type = 0 or user_email= "'.$user_email.'" AND user_status = 1 AND user_type = 1';
 	
 	$db->select($table,$rows,$where,'','');
 	$logged_User = $db->getResults();

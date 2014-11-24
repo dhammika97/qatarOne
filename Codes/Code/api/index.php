@@ -685,7 +685,7 @@ $app->post('/login', function() use ($app) {
 			if ($logged_User != NULL) {
 				$response["error"] = false;
 				$response['accessToken'] = $logged_User['user_accessToken'];
-				$response['user_status'] = $logged_User['user_status'];
+				$response['message'] = "Successfully authenticated";
 			} else {
 				// unknown error occurred
 				$response['error'] = true;
