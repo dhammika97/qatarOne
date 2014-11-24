@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="QatartOne">
+<head>
+<meta charset="utf-8">
+<title>Admin Console</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Add custom CSS here -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+</head>
+<body ng-controller="masterController">
+	<div id="wrapper">
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> 
+                <span class="sr-only">Toggle navigation</span> 
+                <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+          	</button>
+          	<a class="navbar-brand" href="#">Admin</a> </div>
+        	<div ng-include="'app/partials/leftNav.html'"></div> 
+      </nav>
+      <div id="page-wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+          	<div ng-view></div>
+          </div>
+        </div>
+        <!-- /.row --> 
+        
+      </div>
+      <!-- /#page-wrapper --> 
+      
+    </div>
+    <!-- /#wrapper -->
+    
+<script type="text/javascript" src="libs/angular/angular.min.js"></script>
+<script type="text/javascript" src="libs/angular/angular-route.min.js"></script>
+
+<script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/controllers/controllers.js"></script>
+<script type="text/javascript" src="app/factories/factories.js"></script>
+<script src="libs/jquery-1.10.2.js"></script>
+<script src="libs/bootstrap.js"></script>
+</body>
+</html>
