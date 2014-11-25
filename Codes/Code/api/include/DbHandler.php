@@ -60,15 +60,16 @@ class DbHandler {
 		$values = "'".$users['user_username']."', 
 					  '".md5 ($users['user_password'])."', 
 					  '".$users['user_email']."', 
-					  '".$users['user_firstname']."', 
-					  '".$users['user_lastname']."', 
-					  '".$users['user_address1']."', 
-					  '".$users['user_address2']."', 
-					  '".$users['user_city']."',
-					  '".$users['user_contactNo']."', 
+					  '".isset($users['user_firstname'])."', 
+					  '".isset($users['user_lastname'])."', 
+					  '".isset($users['user_address1'])."', 
+					  '".isset($users['user_address2'])."', 
+					  '".isset($users['user_city'])."',
+					  '".isset($users['user_contactNo'])."', 
 					  '".$date."', 
 					  '".$users['user_type']."',
-					  '".$users['user_type']."'";					  
+					  '1',
+					  '".strtoupper(md5(uniqid(rand(), true)))."'";					  
 		$rows   = "user_username, 
 				   user_password,
 				   user_email,
@@ -80,6 +81,7 @@ class DbHandler {
 				   user_contactNo,
 				   user_registeredDate,
 				   user_type,
+				   user_status,
 				   user_accessToken";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
