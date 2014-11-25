@@ -59,8 +59,15 @@ $app->get('/user', 'authenticate', function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
 		$result = $DbHandler->getAllUsers();
-		$result['error'] = false;
-        echoRespnse(200, $result);
+		if(!$result){
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}else{
+			$response["error"] = false;
+			$response['users'] = $result;
+			echoRespnse(200, $response);
+		}
 });
 
 /**
@@ -74,14 +81,14 @@ $app->get('/user/:id', 'authenticate', function($user_id) {
 		$result = $DbHandler->GetUserDetail($user_id);
         if ($result != NULL) {
         	$response["error"] = false;
-				$response['user'] = $result;
-                echoRespnse(200	, $response);
-            } else {
-                $response["error"] = true;
-                $response["message"] = "The requested resource doesn't exists";
-                echoRespnse(404, $response);
-            }
-        });	 
+			$response['user'] = $result;
+			echoRespnse(200	, $response);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}
+	});	 
 
 /**
  * Create user 
@@ -103,7 +110,8 @@ $app->post('/user', 'authenticate', function() use ($app) {
 			echoRespnse(200, $response);				
 			}else{
 			$response["error"] = true;
-			$response["message"] = "user created unsuccessfull";	
+			$response["message"] = "user created unsuccessfull";
+			echoRespnse(400, $response);
 		}
 });
 		
@@ -121,11 +129,12 @@ $app->put('/user/:id', 'authenticate', function($user_id) use ($app) {
 		if ($result) {
 			$response["error"] = false;
 			$response["message"] = "User updated successfully";
+			echoRespnse(200, $response);
 		} else {                
 			$response["error"] = true;
 			$response["message"] = "User failed to update. Please try again!";
+			echoRespnse(400, $response);
 		}
-		echoRespnse(200, $response);				
 });
  					
 /**
@@ -142,12 +151,13 @@ $app->delete('/user/:id', 'authenticate', function($user_id) use($app) {
 			// user deleted successfully				
 			$response["error"] = false;
 			$response["message"] = "User deleted succesfully";
+			echoRespnse(200, $response);
 		} else {
 			// task failed to delete
 			$response["error"] = true;
 			$response["message"] = "User failed to delete. Please try again!";
+			echoRespnse(404, $response);
 		}
-		echoRespnse(200, $response);
 });
 		
 /**
@@ -160,8 +170,15 @@ $app->get('/fixedAds',  function() {
 		$response = array();
 		$DbHandler = new DbHandler();			
 		$result = $DbHandler->getAllFixedAd();
-		$result['error'] = false;
-		echoRespnse(200, $result);
+		if(!$result){
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}else{
+			$response["error"] = false;
+			$response['fixedAds'] = $result;
+			echoRespnse(200, $response);
+		}
 	});
 
 /**
@@ -175,7 +192,7 @@ $app->get('/fixedAds',  function() {
 		$result = $DbHandler->GetFixedAdvertismentDetail($fixedads_id);
 		if ($result != NULL) {            
 			$response["error"] = false;
-			$response['user'] = $result;
+			$response['fixedAd'] = $result;
 			echoRespnse(200 , $response);
 		} else {
 			$response["error"] = true;
@@ -205,7 +222,7 @@ $app->post('/fixedAds', 'authenticate', function() use ($app) {
 		} else {
 			$response["error"] = true;
 			$response["message"] = "Failed to create Fixed Advertisment. Please try again";
-			echoRespnse(200, $response);
+			echoRespnse(400, $response);
 		}            
 });
 
@@ -226,12 +243,13 @@ $app->put('/fixedAds/:id', 'authenticate', function($fixedads_id) {
 			// Fixed advertisment  updated successfully
 			$response["error"] = false;
 			$response["message"] = "Fixed Advertisment updated successfully";
+			echoRespnse(200, $response);
 		} else {
 			// Fixed advertisment  failed to update
 			$response["error"] = true;
 			$response["message"] = "Fixed Advertisment failed to update. Please try again!";
+			echoRespnse(400, $response);
 		}
-		echoRespnse(200, $response);               
 });
 
 /**
@@ -248,12 +266,13 @@ $app->delete('/fixedAds/:id', 'authenticate', function($fixedads_id) use($app) {
 			// user deleted successfully                
 			$response["error"] = false;
 			$response["message"] = "Fixed Advertisment deleted succesfully";
+			echoRespnse(200, $response);
 		} else {
 			// task failed to delete
 			$response["error"] = true;
 			$response["message"] = "Fixed Advertisment failed to delete. Please try again!";
+			echoRespnse(404, $response);
 		}
-		echoRespnse(200, $response);
 });
 
 
@@ -266,13 +285,14 @@ $app->get('/category', function() {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->getAllCategories();				
-		if (!$result) {
+		if(!$result){
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
 			echoRespnse(404, $response);
-		} else {
-			$result["error"] = false;
-			echoRespnse(200, $result);
+		}else{
+			$response["error"] = false;
+			$response['categories'] = $result;
+			echoRespnse(200, $response);
 		}
 });
 
@@ -284,12 +304,12 @@ $app->get('/category', function() {
 $app->get('/category/:id', function($category_id){
 		$response = array();
 		$DbHandler = new DbHandler();		
-		$row = $DbHandler->GetCategoryDetail($category_id);
-		if ($row != NULL) {
-			$row["error"] = false;
-			echoRespnse(200, $row);
+		$result = $DbHandler->GetCategoryDetail($category_id);
+		if ($result != NULL) {
+			$response["error"] = false;
+			$response["categories"] = $result;
+			echoRespnse(200, $response);
 		} else {
-	
 			$response["error"] = true;
 			$response["message"] = "The requested resource doesn't exists";
 			echoRespnse(404, $response);
@@ -314,7 +334,7 @@ $app->post('/category', 'authenticate', function() use ($app) {
 		} else {
 			$response["error"] = true;
 			$response["message"] = "User Already exists";
-			echoRespnse(200, $response);
+			echoRespnse(400, $response);
 		}
 });
 
@@ -333,7 +353,7 @@ $app->put('/category/:categoryId', 'authenticate', function ($id) use ($app) {
 		} else {
 			$response["error"] = TRUE;
 			$response["message"] = "Updated failed";
-			echoRespnse(401, $response);
+			echoRespnse(400, $response);
 		}
 });
 
@@ -348,11 +368,12 @@ $app->delete('/category/:categoryId', 'authenticate', function ($id) {
 		if ($DbHandler->deleteCategory($id)) {
 			$response['error'] = FALSE;
 			$response['message'] = 'Successfully Deleted';
+			echoRespnse(200, $response);
 		} else {
 			$response['error'] = TRUE;
 			$response['message'] = 'Not Deleted';
+			echoRespnse(404, $response);
 		}
-		echoRespnse(200, $response);
 });
 
 
@@ -366,12 +387,13 @@ $app->get('/subCategory', function()  {
 		$response = array();
 		$result = $DbHandler->getAllsubCategorys();	
 		if (!$result) {
-			$result["error"] = TRUE;
-			$result["message"] = "The requested resource doesn't exists";
-			echoRespnse(404, $result);
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
 		} else {
-			$result["error"] = false;
-			echoRespnse(200, $result);
+			$response["error"] = false;
+			$response['subcategories']=$result;
+			echoRespnse(200, $response);
 		}
 });
 
@@ -385,8 +407,9 @@ $app->get('/subCategory/:id', function($subCategory_id) {
 		$response = array();
 		$row = $DbHandler->GetsubCategoryDetail($subCategory_id);
 		if ($row != NULL) {
-			$row["error"] = false;
-			echoRespnse(200, $row);
+			$response["error"] = false;
+			$response["subcategory"]=$row;
+			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
 			$response["message"] = "The requested resource doesn't exists";
@@ -402,7 +425,6 @@ $app->get('/subCategory/:id', function($subCategory_id) {
 $app->post('/subCategory', 'authenticate', function() use ($app) {	
 		$DbHandler = new DbHandler();
 		$response = array();
-		$category = array();
 		$request = $app->request();
 		$subCategory = $request->getBody();
 		$user_ID = "1";
@@ -416,7 +438,7 @@ $app->post('/subCategory', 'authenticate', function() use ($app) {
 		} else {
 			$response["error"] = true;
 			$response["message"] = "category not created ";
-			echoRespnse(412, $response);
+			echoRespnse(400, $response);
 		}
 });
 
@@ -437,7 +459,7 @@ $app->put('/subCategory/:subCategoryId', 'authenticate', function ($id) use ( $a
 		}else{
 			$response["error"] = TRUE;
 			$response["message"] = "Updated falid";
-			echoRespnse(401, $response);
+			echoRespnse(400, $response);
 		}
 });
 
@@ -453,11 +475,12 @@ $app->delete('/subCategory/:subCategoryId', 'authenticate', function ($id) {
 		if($DbHandler->deleteSubCategory($id)){
 			$response['error'] = FALSE;
 			$response['message'] = 'Successfully Deleted';
+			echoRespnse(200, $response);
 		}else{
 			$response['error'] = TRUE;
 			$response['message'] = 'Not Deleted';   	
-		}	   
-		echoRespnse(200, $response);
+			echoRespnse(404, $response);
+		}
 });
 
 /**
@@ -470,8 +493,15 @@ $app->get('/locations',  function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
 		$result = $DbHandler->getAllLocations();
-		$result['error'] = false;
-        echoRespnse(200, $result);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response['locations']=$result;
+			echoRespnse(200, $response);
+		}
 });
 
 /**
@@ -484,8 +514,9 @@ $app->GET('/locations/:id',  function($location_id) {
 		$response = array();
 		$row = $DbHandler->getLocationDetail($location_id);
 		if ($row != NULL) {
-			$row["error"] = false;
-			echoRespnse(200, $row);
+			$response["error"] = false;
+			$response["location"] = $row;
+			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
 			$response["message"] = "The requested resource doesn't exists";
@@ -510,10 +541,11 @@ $app->post('/locations', 'authenticate', function() use ($app) {
 		if($DbHandler->createLocation($location)){
 			$response["error"] = false;
 			$response["message"] = "location created successfully";
-			echoRespnse(200, $response);				
+			echoRespnse(201, $response);				
 			}else{
 			$response["error"] = true;
 			$response["message"] = "location creation failed";	
+			echoRespnse(200, $response);
 		}
 });
 		
@@ -531,11 +563,12 @@ $app->put('/locations/:id', 'authenticate', function($location_id) use ($app) {
 		if ($result) {
 			$response["error"] = false;
 			$response["message"] = "Location updated successfully";
+			echoRespnse(200, $response);
 		} else {                
 			$response["error"] = true;
 			$response["message"] = "Location failed to update. Please try again!";
+			echoRespnse(400, $response);
 		}
-		echoRespnse(200, $response);				
 });
  					
 /**
@@ -551,11 +584,12 @@ $app->delete('/locations/:id', 'authenticate', function($location_id) use($app) 
 		if ($result) {			
 			$response["error"] = false;
 			$response["message"] = "Location deleted succesfully";
+			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
 			$response["message"] = "Location failed to delete. Please try again!";
+			echoRespnse(404, $response);
 		}
-		echoRespnse(200, $response);
 });
 
 
@@ -569,11 +603,12 @@ $app->get('/page', function()  {
 		$response = array();
 		$result = $DbHandler->getAllPages();	
 		if (!$result) {
-			$result["error"] = TRUE;
-			$result["message"] = "The requested resource doesn't exists";
-			echoRespnse(404, $result);
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
 		} else {
-			$result["error"] = false;
+			$response["error"] = false;
+			$response["pages"]=$result;
 			echoRespnse(200, $result);
 		}
 });
@@ -587,8 +622,9 @@ $app->get('/page/:id', function($page_id) {
 		$response = array();
 		$row = $DbHandler->GetPageDetail($page_id);
 		if ($row != NULL) {
-			$row["error"] = false;
-			echoRespnse(200, $row);
+			$response["error"] = false;
+			$response["page"]=$row;
+			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
 			$response["message"] = "The requested resource doesn't exists";
@@ -604,7 +640,6 @@ $app->get('/page/:id', function($page_id) {
 $app->post('/page', 'authenticate', function() use ($app) {	
 		$DbHandler = new DbHandler();
 		$response = array();
-		$category = array();
 		$request = $app->request();
 		$page = $request->getBody();
 		$user_ID = "1";
@@ -618,7 +653,7 @@ $app->post('/page', 'authenticate', function() use ($app) {
 		} else {
 			$response["error"] = true;
 			$response["message"] = "category not created ";
-			echoRespnse(412, $response);
+			echoRespnse(400, $response);
 		}
 });
 // * Edit page
@@ -637,7 +672,7 @@ $app->put('/page/:pageid', 'authenticate', function ($id) use ( $app) {
 		}else{
 			$response["error"] = TRUE;
 			$response["message"] = "Updated falid";
-			echoRespnse(401, $response);
+			echoRespnse(400, $response);
 		}
 });
 /**
@@ -654,12 +689,13 @@ $app->delete('/page/:id', 'authenticate', function($page_id) use($app) {
 			// user deleted successfully				
 			$response["error"] = false;
 			$response["message"] = "User deleted succesfully";
+			echoRespnse(200, $response);
 		} else {
 			// task failed to delete
 			$response["error"] = true;
 			$response["message"] = "User failed to delete. Please try again!";
+			echoRespnse(404, $response);
 		}
-		echoRespnse(200, $response);
 });
 
 /**
@@ -686,38 +722,45 @@ $app->post('/login', function() use ($app) {
 				$response["error"] = false;
 				$response['accessToken'] = $logged_User['user_accessToken'];
 				$response['message'] = "Successfully authenticated";
+				echoRespnse(200, $response);
 			} else {
 				// unknown error occurred
 				$response['error'] = true;
 				$response['message'] = "An error occurred. Please try again";
+				echoRespnse(401, $response);
 			}
 		} else {
 			// user credentials are wrong
 			$response['error'] = true;
 			$response['message'] = 'Login failed. Incorrect credentials';
+			echoRespnse(401, $response);
 		}
-	
-		echoRespnse(200, $response);
 			
 });
+//===================================================================================
+// * list all pagesCantent                                                          =
+// * url - /pageContent                                                             =
+// * method - get                                                                   =
+// * params -                                                                       =
+//$app->get('/pageContent', function()  {                                           =
+//		$DbHandler = new DbHandler();                                               =
+//		$response = array();                                                        =
+//		$result = $DbHandler->getAllPagesContent();                                 =
+//		if (!$result) {                                                             =
+//			$response["error"] = TRUE;                                              =
+//			$response["message"] = "The requested resource doesn't exists";         =
+//			echoRespnse(404, $response);                                            =
+//		} else {                                                                    =
+//			$response["error"] = false;                                             =
+//			$response["pagecontents"]=$result;                                      =
+//			echoRespnse(200, $response);                                            =
+//		}                                                                           =
+//});                                                                               =
+//                                                                                  =
+//                                                                                  =
+//===================================================================================
 
-// * list all pagesCantent
-// * url - /pageContent
-// * method - get
-// * params - 
-$app->get('/pageContent', function()  {
-		$DbHandler = new DbHandler();
-		$response = array();
-		$result = $DbHandler->getAllPagesContent();	
-		if (!$result) {
-			$result["error"] = TRUE;
-			$result["message"] = "The requested resource doesn't exists";
-			echoRespnse(404, $result);
-		} else {
-			$result["error"] = false;
-			echoRespnse(200, $result);
-		}
-});
+
 
 // * list single pageContent
 // * url - /page
@@ -728,8 +771,9 @@ $app->get('/pageContent/:id', function($pageContent_id) {
 		$response = array();
 		$row = $DbHandler->GetPageContentDetail($pageContent_id);
 		if ($row != NULL) {
-			$row["error"] = false;
-			echoRespnse(200, $row);
+			$response["error"] = false;
+			$response["pageContent"]=$row;
+			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
 			$response["message"] = "The requested resource doesn't exists";
@@ -759,7 +803,7 @@ $app->post('/pageContent', 'authenticate', function() use ($app) {
 		} else {
 			$response["error"] = true;
 			$response["message"] = "category not created ";
-			echoRespnse(412, $response);
+			echoRespnse(400, $response);
 		}
 });
 // * Edit pageContent
@@ -778,7 +822,7 @@ $app->put('/pageContent/:pageContentId', 'authenticate', function ($pageContentI
 		}else{
 			$response["error"] = TRUE;
 			$response["message"] = "Updated falid";
-			echoRespnse(401, $response);
+			echoRespnse(400, $response);
 		}
 });
 /**
@@ -795,12 +839,13 @@ $app->delete('/pageContent/:pageContentId', 'authenticate', function($pageConten
 			// user deleted successfully				
 			$response["error"] = false;
 			$response["message"] = "User deleted succesfully";
+			echoRespnse(200, $response);
 		} else {
 			// task failed to delete
 			$response["error"] = true;
 			$response["message"] = "User failed to delete. Please try again!";
+			echoRespnse(404, $response);
 		}
-		echoRespnse(200, $response);
 });
 
 
@@ -814,8 +859,15 @@ $app->get('/suburbs',  function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
 		$result = $DbHandler->getAllSuburbs();
-		$result['error'] = false;
-        echoRespnse(200, $result);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["suburbs"]=$result;
+			echoRespnse(200, $response);
+		}
 });
 
 /**
@@ -829,14 +881,14 @@ $app->get('/suburbs/:id',  function($suburb_id) {
 		$result = $DbHandler->GetSuburbDetail($suburb_id);
         if ($result != NULL) {
         	$response["error"] = false;
-				$response['user'] = $result;
-                echoRespnse(200	, $response);
-            } else {
-                $response["error"] = true;
-                $response["message"] = "The requested resource doesn't exists";
-                echoRespnse(404, $response);
-            }
-        });	 
+			$response['suburb'] = $result;
+			echoRespnse(200	, $response);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}
+	});	 
 
 /**
  * Create suburbs 
@@ -855,10 +907,11 @@ $app->post('/suburbs', 'authenticate', function() use ($app) {
 		if($DbHandler->createSuburb($suburb)){
 			$response["error"] = false;
 			$response["message"] = "Suburb created successfully";
-			echoRespnse(200, $response);				
+			echoRespnse(201, $response);				
 			}else{
 			$response["error"] = true;
-			$response["message"] = "Suburb creation failed";	
+			$response["message"] = "Suburb creation failed";
+			echoRespnse(400, $response);	
 		}
 });
 		
@@ -876,11 +929,12 @@ $app->put('/suburbs/:id', 'authenticate', function($suburb_id) use ($app) {
 		if ($result) {
 			$response["error"] = false;
 			$response["message"] = "Suburb updated successfully";
+			echoRespnse(200, $response);
 		} else {                
 			$response["error"] = true;
 			$response["message"] = "Suburb failed to update. Please try again!";
+			echoRespnse(400, $response);
 		}
-		echoRespnse(200, $response);				
 });
  					
 /**
@@ -896,11 +950,12 @@ $app->delete('/suburbs/:id', 'authenticate', function($suburb_id) use($app) {
 		if ($result) {			
 			$response["error"] = false;
 			$response["message"] = "Suburb deleted succesfully";
+			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
 			$response["message"] = "Suburb failed to delete. Please try again!";
+			echoRespnse(404, $response);
 		}
-		echoRespnse(200, $response);
 });
 
 
@@ -914,12 +969,13 @@ $app->get('/event', function()  {
 		$response = array();
 		$result = $DbHandler->getAllEvents();	
 		if (!$result) {
-			$result["error"] = TRUE;
-			$result["message"] = "The requested resource doesn't exists";
-			echoRespnse(404, $result);
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
 		} else {
-			$result["error"] = false;
-			echoRespnse(200, $result);
+			$response["error"] = false;
+			$response["events"]=$result;
+			echoRespnse(200, $response);
 		}
 });
 
@@ -933,8 +989,9 @@ $app->get('/event/:id', function($event_id) {
 		$response = array();
 		$row = $DbHandler->GetEventDetail($event_id);
 		if ($row != NULL) {
-			$row["error"] = false;
-			echoRespnse(200, $row);
+			$response["error"] = false;
+			$response["event"] = $row;
+			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
 			$response["message"] = "The requested resource doesn't exists";
@@ -961,7 +1018,7 @@ $app->post('/event', 'authenticate', function() use ($app) {
 		} else {
 			$response["error"] = true;
 			$response["message"] = "event not created ";
-			echoRespnse(412, $response);
+			echoRespnse(400, $response);
 		}
 });
 
@@ -982,7 +1039,7 @@ $app->put('/event/:id', 'authenticate', function ($id) use ( $app) {
 		}else{
 			$response["error"] = TRUE;
 			$response["message"] = "Updated falid";
-			echoRespnse(401, $response);
+			echoRespnse(400, $response);
 		}
 });
 
@@ -998,11 +1055,12 @@ $app->delete('/event/:id', 'authenticate', function ($id) {
 		if($DbHandler->deleteEvent($id)){
 			$response['error'] = FALSE;
 			$response['message'] = 'Successfully Deleted';
+			echoRespnse(200, $response);
 		}else{
 			$response['error'] = TRUE;
-			$response['message'] = 'Not Deleted';   	
-		}	   
-		echoRespnse(200, $response);
+			$response['message'] = 'Not Deleted'; 
+			echoRespnse(404, $response);  	
+		}
 });
 
 
@@ -1016,8 +1074,15 @@ $app->get('/slider',  function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
 		$result = $DbHandler->getAllSliders();
-		$result['error'] = false;
-        echoRespnse(200, $result);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["sliders"]=$result;
+			echoRespnse(200, $response);
+		}
 });
 
 /**
@@ -1057,10 +1122,11 @@ $app->post('/slider', 'authenticate', function() use ($app) {
 		if($DbHandler->createSlider($slider)){
 			$response["error"] = false;
 			$response["message"] = "slider created successfully";
-			echoRespnse(200, $response);				
+			echoRespnse(201, $response);				
 			}else{
 			$response["error"] = true;
-			$response["message"] = "slider creation failed";	
+			$response["message"] = "slider creation failed";
+			echoRespnse(400, $response);	
 		}
 });
 		
@@ -1078,11 +1144,12 @@ $app->put('/slider/:id', 'authenticate',  function($slider_id) use ($app) {
 		if ($result) {
 			$response["error"] = false;
 			$response["message"] = "slider updated successfully";
+			echoRespnse(200, $response);
 		} else {                
 			$response["error"] = true;
 			$response["message"] = "slider failed to update. Please try again!";
+			echoRespnse(400, $response);
 		}
-		echoRespnse(200, $response);				
 });
  					
 /**
@@ -1098,11 +1165,12 @@ $app->delete('/slider/:id', 'authenticate', function($slider_id) use($app) {
 		if ($result) {			
 			$response["error"] = false;
 			$response["message"] = "slider deleted succesfully";
+			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
 			$response["message"] = "slider failed to delete. Please try again!";
+			echoRespnse(404, $response);
 		}
-		echoRespnse(200, $response);
 });
 
 
@@ -1116,8 +1184,16 @@ $app->get('/news',  function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
 		$result = $DbHandler->getAllNews();
-		$result['error'] = false;
-        echoRespnse(200, $result);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["news"]=$result;
+			echoRespnse(200, $response);
+		}
+		
 });
 
 /**
@@ -1131,14 +1207,14 @@ $app->get('/news/:id',  function($news_id) {
 		$result = $DbHandler->GetNewsDetail($news_id);
         if ($result != NULL) {
         	$response["error"] = false;
-				$response['news'] = $result;
-                echoRespnse(200	, $response);
-            } else {
-                $response["error"] = true;
-                $response["message"] = "The requested resource doesn't exists";
-                echoRespnse(404, $response);
-            }
-        });	 
+			$response['news'] = $result;
+			echoRespnse(200	, $response);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}
+	});	 
 
 /**
  * Create news 
@@ -1157,10 +1233,11 @@ $app->post('/news', 'authenticate', function() use ($app) {
 		if($DbHandler->createNews($news)){
 			$response["error"] = false;
 			$response["message"] = "news created successfully";
-			echoRespnse(200, $response);				
+			echoRespnse(201, $response);				
 			}else{
 			$response["error"] = true;
-			$response["message"] = "news creation failed";	
+			$response["message"] = "news creation failed";
+			echoRespnse(400, $response);
 		}
 });
 		
@@ -1178,11 +1255,12 @@ $app->put('/news/:id', 'authenticate', function($news_id) use ($app) {
 		if ($result) {
 			$response["error"] = false;
 			$response["message"] = "news updated successfully";
+			echoRespnse(200, $response);
 		} else {                
 			$response["error"] = true;
 			$response["message"] = "news failed to update. Please try again!";
-		}
-		echoRespnse(200, $response);				
+			echoRespnse(400, $response);
+		}				
 });
  					
 /**
@@ -1198,11 +1276,12 @@ $app->delete('/news/:id', 'authenticate', function($news_id) use($app) {
 		if ($result) {			
 			$response["error"] = false;
 			$response["message"] = "news deleted succesfully";
+			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
 			$response["message"] = "news failed to delete. Please try again!";
+			echoRespnse(404, $response);
 		}
-		echoRespnse(200, $response);
 });
 
 
@@ -1216,8 +1295,15 @@ $app->get('/packageType', function() {
 		$response = array();
 		$DbHandler = new DbHandler();		
 		$result = $DbHandler->getAllPackageTypes();
-		$result['error'] = false;
-        echoRespnse(200, $result);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["packageTypes"]=$result;
+			echoRespnse(200, $response);
+		}
 });
 
 /**
@@ -1257,10 +1343,11 @@ $app->post('/packageType', 'authenticate', function() use ($app) {
 		if($DbHandler->createPackageType($packageType)){
 			$response["error"] = false;
 			$response["message"] = "package type created successfully";
-			echoRespnse(200, $response);				
+			echoRespnse(201, $response);				
 			}else{
 			$response["error"] = true;
-			$response["message"] = "package type creation failed";	
+			$response["message"] = "package type creation failed";
+			echoRespnse(400, $response);
 		}
 });
 		
@@ -1278,11 +1365,12 @@ $app->put('/packageType/:id', 'authenticate', function($packageType_id) use ($ap
 		if ($result) {
 			$response["error"] = false;
 			$response["message"] = "package type updated successfully";
+			echoRespnse(200, $response);
 		} else {                
 			$response["error"] = true;
 			$response["message"] = "package type failed to update. Please try again!";
-		}
-		echoRespnse(200, $response);				
+			echoRespnse(404, $response);
+		}				
 });
  					
 /**
@@ -1298,11 +1386,12 @@ $app->delete('/packageType/:id', 'authenticate', function($packageType_id) use($
 		if ($result) {			
 			$response["error"] = false;
 			$response["message"] = "package type deleted succesfully";
+			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
 			$response["message"] = "package type failed to delete. Please try again!";
+			echoRespnse(404, $response);
 		}
-		echoRespnse(200, $response);
 });
 
 
