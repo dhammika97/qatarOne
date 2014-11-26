@@ -60,12 +60,12 @@ class DbHandler {
 		$values = "'".$users['user_username']."', 
 					  '".md5 ($users['user_password'])."', 
 					  '".$users['user_email']."', 
-					  '".isset($users['user_firstname'])."', 
-					  '".isset($users['user_lastname'])."', 
-					  '".isset($users['user_address1'])."', 
-					  '".isset($users['user_address2'])."', 
-					  '".isset($users['user_city'])."',
-					  '".isset($users['user_contactNo'])."', 
+					  '".$users['user_firstname']."', 
+					  '".$users['user_lastname']."', 
+					  '".$users['user_address1']."', 
+					  '".$users['user_address2']."', 
+					  '".$users['user_city']."',
+					  '".$users['user_contactNo']."', 
 					  '".$date."', 
 					  '".$users['user_type']."',
 					  '1',
@@ -658,14 +658,15 @@ public function checkLogin($user_email, $user_password) {
 	}
 	
 	public function createNews($news){
+		$date= date('y-m-d');
 		$db = new database();
 		$table  = "news";
 		$values = "'".$news['news_title']."', 
 				'".$news['news_shortDescription']."',
 				'".$news['news_Description']."',
-				'".$news['news_image']."',
-				'".$news['news_date']."',
-				'".$news['news_status']."'";					  
+				'".isset($news['news_image'])."',
+				'".$date."',
+				'1'";					  
 		$rows   = "news_title, 
 				   news_shortDescription,
 				   news_Description,
