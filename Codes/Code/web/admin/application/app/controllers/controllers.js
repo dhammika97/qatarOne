@@ -6,19 +6,34 @@ controllers.masterController = function($scope, $routeParams){
 	
 }
 
-controllers.userController = function($scope, $routeParams, $resource){
-	var userList = $resource('../../../api/user/:id', {}, {
-        query: { method: 'GET', params: {}, isArray: false , headers: { 'Authorization': 'kjsjjdfshdfhsdbfjhsbdfsdfsf' }},
-        get: { method: 'GET', params: { id: '@id' } },
-        update: { method: 'PUT', params: { id: '@id' } },
-		save:{method: 'POST', headers: { 'Authorization': 'kjsjjdfshdfhsdbfjhsbdfsdfsf' }}
-    });
-	$scope.users = userList.query()
+controllers.userController = function($scope, $routeParams, usersFactory){
+	$scope.users = usersFactory.getUsers()
 	
-	$scope.addUser = function(user){
-		userList.save(user)
+	$scope.addUser = function(){
+		usersFactory.saveUser($scope.user)//userList.save(user)
 	}
 	
+	$scope.deleteUser = function(id){
+		if(id!=''){
+			var r = confirm("Do you want to delete this user!");
+			if (r == true) {
+				//$scope.users = usersFactory.deleteUser(id)
+				usersFactory.deleteUser($scope,id)
+			}
+		}
+	}
+	
+}
+
+controllers.userDetailsController = function($scope, $routeParams, usersFactory){
+	$scope.user = userFactory.getUser($routeParams.userId)
+}
+
+controllers.newsController = function($scope, $routeParams, $resource){
+	
+	$scope.addNews = function(news){
+		News.save(news)
+	}
 }
 
 App.controller(controllers)
