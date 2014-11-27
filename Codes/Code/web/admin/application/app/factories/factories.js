@@ -40,8 +40,13 @@ App.factory('usersFactory',function($resource){
 		)
 	}
 	
-	factory.getUser = function($scope,id){
+	factory.getUser = function(id){
 		return userList.get({id:id})
+	}
+	
+	factory.updateUser = function($scope,id){
+		return userList.update({id:id}, $scope.userDetails.user)
+		//console.log(user)
 	}
 	
 	return factory

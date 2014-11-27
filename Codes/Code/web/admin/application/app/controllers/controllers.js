@@ -1,12 +1,12 @@
 // JavaScript Document
 var controllers = {};
 ///ng-controller="masterController"
-controllers.masterController = function($scope, $routeParams){
+controllers.masterController = function($scope){
 	$scope.loggedInUser = "Dhammika97"
 	
 }
 
-controllers.userController = function($scope, $routeParams, usersFactory){
+controllers.userController = function($scope, usersFactory){
 	$scope.users = usersFactory.getUsers()
 	
 	$scope.addUser = function(){
@@ -26,7 +26,11 @@ controllers.userController = function($scope, $routeParams, usersFactory){
 }
 
 controllers.userDetailsController = function($scope, $routeParams, usersFactory){
-	$scope.user = userFactory.getUser($routeParams.userId)
+	$scope.userDetails = usersFactory.getUser($routeParams.id)
+	
+	$scope.updateUser = function(id){
+		usersFactory.updateUser($scope,id)
+	}
 }
 
 controllers.newsController = function($scope, $routeParams, $resource){
