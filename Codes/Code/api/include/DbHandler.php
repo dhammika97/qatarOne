@@ -58,54 +58,12 @@ class DbHandler {
 		$db = new database();
 		$table  = "user";
 		
-		if( isset($users['user_firstname']) ){
-			$user_firstname = $users['user_firstname'] ;
-			$user_firstname_srting = "";
-			
-		}else{
-			$user_firstname = "";
-			$user_firstname_srting = "";
-		}
-		
-		if( isset($users['user_lastname']) ){
-			$user_lastname = $users['user_lastname'] ;
-			$user_lastname_string = "";			
-		}else{
-			$user_lastname = "";
-			
-		}
-		
-		if( isset($users['user_address1']) ){
-			$user_address1 = $users['user_address1'] ;
-			
-		}else{
-			$user_address1 = "";
-			
-		}
-		
-		if( isset($users['user_address2']) ){
-			$user_address2 = $users['user_address2'] ;
-			
-		}else{
-			$user_address2 = "";
-			
-		}
-		
-		if( isset($users['user_city']) ){
-			$user_city = $users['user_city'] ;
-			
-		}else{
-			$user_city = "";
-			
-		}
-		
-		if( isset($users['user_contactNo']) ){
-			$user_contactNo = $users['user_contactNo'] ;
-			
-		}else{
-			$user_contactNo = "";
-			
-		}
+		(isset($users['user_firstname']) ? $user_firstname = $users['user_firstname'] : $user_firstname = "" );
+		(isset($users['user_lastname']) ? $user_lastname = $users['user_lastname'] : $user_lastname = "" );
+		(isset($users['user_address1']) ? $user_address1 = $users['user_address1'] : $user_address1 = "" );
+		(isset($users['user_address2']) ? $user_address2 = $users['user_address2'] : $user_address2 = "" );
+		(isset($users['user_city']) ? $user_city = $users['user_city'] : $user_city = "" );
+		(isset($users['user_contactNo']) ? $user_contactNo = $users['user_contactNo'] : $user_contactNo = "" );
 		
 		$values = "'".$users['user_username']."', 
 					  '".md5 ($users['user_password'])."', 
