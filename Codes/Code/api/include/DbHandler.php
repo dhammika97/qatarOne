@@ -143,11 +143,18 @@ class DbHandler {
 	public function createFixedAdvertisment( $fixed_advertisment) {
 		$db = new database();
 		$table  = "fixedads";
-		$values = "'".$fixed_advertisment['fixedads_type']."',
-				  '".$fixed_advertisment['fixedads_image']."', 
-				  '".$fixed_advertisment['fixedads_enetredDate']."', 
-				  '".$fixed_advertisment['fixedads_url']."',              
-				  '".$fixed_advertisment['fixedads_status']."'";
+		
+		(isset($fixed_advertisment['fixedads_type']) ? $fixedads_type = $fixed_advertisment['fixedads_type'] : $fixedads_type = "" );
+		(isset($fixed_advertisment['fixedads_image']) ? $fixedads_image = $fixed_advertisment['fixedads_image'] : $fixedads_image = "" );
+		(isset($fixed_advertisment['fixedads_enetredDate']) ? $fixedads_enetredDate = $fixed_advertisment['fixedads_enetredDate'] : $fixedads_enetredDate = "" );
+		(isset($fixed_advertisment['fixedads_url']) ? $fixedads_url = $fixed_advertisment['fixedads_url'] : $fixedads_url = "" );
+		(isset($fixed_advertisment['fixedads_status']) ? $fixedads_status = $fixed_advertisment['fixedads_status'] : $fixedads_status = "" );
+		
+		$values = "'".$fixedads_type."',
+				  '".$fixedads_image."', 
+				  '".$fixedads_enetredDate."', 
+				  '".$fixedads_url."',              
+				  '".$fixedads_status."'";
 		$rows="fixedads_type, 
 			   fixedads_image,
 			   fixedads_enetredDate,
