@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2014 at 01:02 PM
+-- Generation Time: Nov 27, 2014 at 06:13 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -173,7 +173,15 @@ CREATE TABLE IF NOT EXISTS `locations` (
   `location_name` varchar(100) NOT NULL,
   `location_cordinates` varchar(20) NOT NULL,
   PRIMARY KEY (`location_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `locations`
+--
+
+INSERT INTO `locations` (`location_id`, `location_name`, `location_cordinates`) VALUES
+(1, 'Anuradhapura', '48.124587,59.215478'),
+(2, 'Wadduwa', '48.124587,59.215478');
 
 -- --------------------------------------------------------
 
@@ -190,7 +198,14 @@ CREATE TABLE IF NOT EXISTS `news` (
   `news_date` datetime NOT NULL,
   `news_status` int(1) NOT NULL,
   PRIMARY KEY (`news_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`news_id`, `news_title`, `news_shortDescription`, `news_Description`, `news_image`, `news_date`, `news_status`) VALUES
+(1, 'test news', 'test news short description', 'test description', '', '2014-11-26 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -207,7 +222,15 @@ CREATE TABLE IF NOT EXISTS `packagetypes` (
   `package_addedBy` int(3) NOT NULL,
   `package_status` int(1) NOT NULL,
   PRIMARY KEY (`package_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `packagetypes`
+--
+
+INSERT INTO `packagetypes` (`package_id`, `package_name`, `package_Description`, `package_price`, `package_adLimit`, `package_addedBy`, `package_status`) VALUES
+(1, 'test package', 'test description', '2500', 3, 1, 0),
+(3, 'test package 3', 'test description 2', '2500', 3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -251,7 +274,15 @@ CREATE TABLE IF NOT EXISTS `sliders` (
   `slider_url` int(255) NOT NULL,
   `slider_status` int(1) NOT NULL,
   PRIMARY KEY (`slider_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `sliders`
+--
+
+INSERT INTO `sliders` (`slider_id`, `slider_title`, `slider_image`, `slider_url`, `slider_status`) VALUES
+(1, 'test title', '12254454', 854545, 1),
+(3, 'test title 3', '12254454', 854545, 1);
 
 -- --------------------------------------------------------
 
@@ -265,7 +296,15 @@ CREATE TABLE IF NOT EXISTS `suburbs` (
   `suburb_name` varchar(100) NOT NULL,
   `suburb_cordinates` varchar(20) NOT NULL,
   PRIMARY KEY (`suburb_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `suburbs`
+--
+
+INSERT INTO `suburbs` (`suburb_id`, `suburb_location_id`, `suburb_name`, `suburb_cordinates`) VALUES
+(1, 1, 'test', '89.124575,102.457832'),
+(3, 1, 'kolkata', '45.78451,68.124578');
 
 -- --------------------------------------------------------
 
@@ -289,14 +328,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_status` int(1) NOT NULL,
   `user_accessToken` text NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `user_firstname`, `user_lastname`, `user_address1`, `user_address2`, `user_city`, `user_contactNo`, `user_registeredDate`, `user_type`, `user_status`, `user_accessToken`) VALUES
-(1, 'dhammika', 'test', 'dhammika97@gmail.com', 'dhammika', 'gunaratne', '176/4, walatenna', 'gallellagama', 'kandy', '777339803', '2014-11-20 00:00:00', 1, 0, 'teskjsjjdfshdfhsdbfjhsbdfsdfsf');
+(1, 'dhammika97', '$2a$10$473928c6b93fb4742c3abuBJjEH.TVTADD75q0j9UnkIiOox9JeKu', 'dhammika97@gmail.com', 'dhammika', 'gunaratne', '176/4, walatenna', 'gallellagama', 'kandy', '777339803', '2014-11-20 00:00:00', 0, 1, 'kjsjjdfshdfhsdbfjhsbdfsdfsf'),
+(26, 'sdfsdf', '27d779cba60f2b5d48debdd970c8e732', 'sdsd@sdfsd', 'sdfsd', 'sdfsdf', 'sdfsdf', 'sdfsdf', 'sddf', 'sdfsdf', '2014-11-27 00:00:00', 0, 1, '40D08248FD796D6C8FC34141D46A35AB'),
+(28, 'asdasd', '0aa1ea9a5a04b78d4581dd6d17742627', 'ssdsf@dfsdf', 'dfsdf', 'sdfsdf', 'dsfsdf', 'dfsdf', 'sdfsdf', 'dsfsf', '2014-11-27 00:00:00', 0, 1, '61D78F2173F82567EE27BCB121267011'),
+(29, 'test', '098f6bcd4621d373cade4e832627b4f6', 'test@test', 'test', 'test', 'test', 'test', 'test', 'test', '2014-11-27 00:00:00', 0, 1, 'ADBC4ABAD086391B217F1C8DDECBBAC5'),
+(30, 'test test', '202cb962ac59075b964b07152d234b70', 'test@test', 'sdf', 'sdf', 'sdf', '', '', '', '2014-11-27 00:00:00', 0, 1, '6893F05404F0DEBCF41325624039B85B');
 
 -- --------------------------------------------------------
 
