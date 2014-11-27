@@ -57,19 +57,70 @@ class DbHandler {
 		$date= date('y-m-d');
 		$db = new database();
 		$table  = "user";
+		
+		if( isset($users['user_firstname']) ){
+			$user_firstname = $users['user_firstname'] ;
+			$user_firstname_srting = "";
+			
+		}else{
+			$user_firstname = "";
+			$user_firstname_srting = "";
+		}
+		
+		if( isset($users['user_lastname']) ){
+			$user_lastname = $users['user_lastname'] ;
+			$user_lastname_string = "";			
+		}else{
+			$user_lastname = "";
+			
+		}
+		
+		if( isset($users['user_address1']) ){
+			$user_address1 = $users['user_address1'] ;
+			
+		}else{
+			$user_address1 = "";
+			
+		}
+		
+		if( isset($users['user_address2']) ){
+			$user_address2 = $users['user_address2'] ;
+			
+		}else{
+			$user_address2 = "";
+			
+		}
+		
+		if( isset($users['user_city']) ){
+			$user_city = $users['user_city'] ;
+			
+		}else{
+			$user_city = "";
+			
+		}
+		
+		if( isset($users['user_contactNo']) ){
+			$user_contactNo = $users['user_contactNo'] ;
+			
+		}else{
+			$user_contactNo = "";
+			
+		}
+		
 		$values = "'".$users['user_username']."', 
 					  '".md5 ($users['user_password'])."', 
 					  '".$users['user_email']."', 
-					  '".$users['user_firstname']."', 
-					  '".$users['user_lastname']."', 
-					  '".$users['user_address1']."', 
-					  '".$users['user_address2']."', 
-					  '".$users['user_city']."',
-					  '".$users['user_contactNo']."', 
+					  '".$user_firstname."', 
+					  '".$user_lastname."', 
+					  '".$user_address1."', 
+					  '".$user_address2."', 
+					  '".$user_city."',
+					  '".$user_contactNo."', 
 					  '".$date."', 
 					  '".$users['user_type']."',
 					  '1',
-					  '".strtoupper(md5(uniqid(rand(), true)))."'";					  
+					  '".strtoupper(md5(uniqid(rand(), true)))."'";		
+					  
 		$rows   = "user_username, 
 				   user_password,
 				   user_email,
