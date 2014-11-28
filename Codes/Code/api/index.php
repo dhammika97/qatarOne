@@ -65,7 +65,7 @@ $app->get('/user', 'authenticate', function() {
 			echoRespnse(404, $response);
 		}else{
 			$response["error"] = false;
-			$response['users'] = $result;
+			$response['users'] = json_decode($result);
 			echoRespnse(200, $response);
 		}
 });
@@ -81,7 +81,7 @@ $app->get('/user/:id', 'authenticate', function($user_id) {
 		$result = $DbHandler->GetUserDetail($user_id);
         if ($result != NULL) {
         	$response["error"] = false;
-			$response['user'] = $result;
+			$response['user'] = json_decode($result);
 			echoRespnse(200	, $response);
 		} else {
 			$response["error"] = true;
@@ -176,7 +176,7 @@ $app->get('/fixedAds',  function() {
 			echoRespnse(404, $response);
 		}else{
 			$response["error"] = false;
-			$response['fixedAds'] = $result;
+			$response['fixedAds'] = json_decode($result);
 			echoRespnse(200, $response);
 		}
 	});
@@ -192,7 +192,7 @@ $app->get('/fixedAds',  function() {
 		$result = $DbHandler->GetFixedAdvertismentDetail($fixedads_id);
 		if ($result != NULL) {            
 			$response["error"] = false;
-			$response['fixedAd'] = $result;
+			$response['fixedAd'] = json_decode($result);
 			echoRespnse(200 , $response);
 		} else {
 			$response["error"] = true;
@@ -291,7 +291,7 @@ $app->get('/category', function() {
 			echoRespnse(404, $response);
 		}else{
 			$response["error"] = false;
-			$response['categories'] = $result;
+			$response['categories'] = json_decode($result);
 			echoRespnse(200, $response);
 		}
 });
@@ -307,7 +307,7 @@ $app->get('/category/:id', function($category_id){
 		$result = $DbHandler->GetCategoryDetail($category_id);
 		if ($result != NULL) {
 			$response["error"] = false;
-			$response["categories"] = $result;
+			$response["categories"] = json_decode($result);
 			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
@@ -392,7 +392,7 @@ $app->get('/subCategory', function()  {
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
-			$response['subcategories']=$result;
+			$response['subcategories']=json_decode($result);
 			echoRespnse(200, $response);
 		}
 });
@@ -408,7 +408,7 @@ $app->get('/subCategory/:id', function($subCategory_id) {
 		$row = $DbHandler->GetsubCategoryDetail($subCategory_id);
 		if ($row != NULL) {
 			$response["error"] = false;
-			$response["subcategory"]=$row;
+			$response["subcategory"]=json_decode($row);
 			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
@@ -499,7 +499,7 @@ $app->get('/locations',  function() {
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
-			$response['locations']=$result;
+			$response['locations']=json_decode($result);
 			echoRespnse(200, $response);
 		}
 });
@@ -515,7 +515,7 @@ $app->GET('/locations/:id',  function($location_id) {
 		$row = $DbHandler->getLocationDetail($location_id);
 		if ($row != NULL) {
 			$response["error"] = false;
-			$response["location"] = $row;
+			$response["location"] = json_decode($row);
 			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
@@ -608,8 +608,8 @@ $app->get('/page', function()  {
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
-			$response["pages"]=$result;
-			echoRespnse(200, $result);
+			$response["pages"] = json_decode($result);
+			echoRespnse(200, $response);
 		}
 });
 
@@ -623,7 +623,7 @@ $app->get('/page/:id', function($page_id) {
 		$row = $DbHandler->GetPageDetail($page_id);
 		if ($row != NULL) {
 			$response["error"] = false;
-			$response["page"]=$row;
+			$response["page"]=json_decode($row);
 			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
@@ -772,7 +772,7 @@ $app->get('/pageContent/:id', function($pageContent_id) {
 		$row = $DbHandler->GetPageContentDetail($pageContent_id);
 		if ($row != NULL) {
 			$response["error"] = false;
-			$response["pageContent"]=$row;
+			$response["pageContent"]=json_decode($row);
 			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
@@ -838,12 +838,12 @@ $app->delete('/pageContent/:pageContentId', 'authenticate', function($pageConten
 		if ($result) {
 			// user deleted successfully				
 			$response["error"] = false;
-			$response["message"] = "User deleted succesfully";
+			$response["message"] = "page content deleted succesfully";
 			echoRespnse(200, $response);
 		} else {
 			// task failed to delete
 			$response["error"] = true;
-			$response["message"] = "User failed to delete. Please try again!";
+			$response["message"] = "page content failed to delete. Please try again!";
 			echoRespnse(404, $response);
 		}
 });
@@ -865,7 +865,7 @@ $app->get('/suburbs',  function() {
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
-			$response["suburbs"]=$result;
+			$response["suburbs"]=json_decode($result);
 			echoRespnse(200, $response);
 		}
 });
@@ -881,7 +881,7 @@ $app->get('/suburbs/:id',  function($suburb_id) {
 		$result = $DbHandler->GetSuburbDetail($suburb_id);
         if ($result != NULL) {
         	$response["error"] = false;
-			$response['suburb'] = $result;
+			$response['suburb'] = json_decode($result);
 			echoRespnse(200	, $response);
 		} else {
 			$response["error"] = true;
@@ -974,7 +974,7 @@ $app->get('/event', function()  {
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
-			$response["events"]=$result;
+			$response["events"]=json_decode($result);
 			echoRespnse(200, $response);
 		}
 });
@@ -990,7 +990,7 @@ $app->get('/event/:id', function($event_id) {
 		$row = $DbHandler->GetEventDetail($event_id);
 		if ($row != NULL) {
 			$response["error"] = false;
-			$response["event"] = $row;
+			$response["event"] = json_decode($row);
 			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
@@ -1080,7 +1080,7 @@ $app->get('/slider',  function() {
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
-			$response["sliders"]=$result;
+			$response["sliders"]=json_decode($result);
 			echoRespnse(200, $response);
 		}
 });
@@ -1096,7 +1096,7 @@ $app->get('/slider/:id',  function($slider_id) {
 		$result = $DbHandler->GetSliderDetail($slider_id);
         if ($result != NULL) {
         	$response["error"] = false;
-				$response['slider'] = $result;
+				$response['slider'] = json_decode($result);
                 echoRespnse(200	, $response);
             } else {
                 $response["error"] = true;
@@ -1190,7 +1190,7 @@ $app->get('/news',  function() {
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
-			$response["news"]=$result;
+			$response["news"]=json_decode($result);
 			echoRespnse(200, $response);
 		}
 		
@@ -1207,7 +1207,7 @@ $app->get('/news/:id',  function($news_id) {
 		$result = $DbHandler->GetNewsDetail($news_id);
         if ($result != NULL) {
         	$response["error"] = false;
-			$response['news'] = $result;
+			$response['news'] = json_decode($result);
 			echoRespnse(200	, $response);
 		} else {
 			$response["error"] = true;
@@ -1301,7 +1301,7 @@ $app->get('/packageType', function() {
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
-			$response["packageTypes"]=$result;
+			$response["packageTypes"]=json_decode($result);
 			echoRespnse(200, $response);
 		}
 });
@@ -1317,7 +1317,7 @@ $app->get('/packageType/:id', function($packageType_id) {
 		$result = $DbHandler->GetPackageTypeDetail($packageType_id);
         if ($result != NULL) {
         	$response["error"] = false;
-				$response['packageType'] = $result;
+				$response['packageType'] = json_decode($result);
                 echoRespnse(200	, $response);
             } else {
                 $response["error"] = true;
