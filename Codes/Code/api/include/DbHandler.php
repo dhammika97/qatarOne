@@ -222,7 +222,12 @@ class DbHandler {
 			return false;
 		}
 		$table  = "category";
-		$values = "'".$category['category_name']."', '".$category['category_enteredBy']."' , '".$category['category_parentId']."'";				
+		(isset($category['category_name']) ? $category_name = $category['category_name'] : $category_name = "" );
+		(isset($category['category_enteredBy']) ? $category_enteredBy = $category['category_enteredBy'] : $category_enteredBy = "" );
+		(isset($category['category_parentId']) ? $category_parentId = $category['category_parentId'] : $category_parentId = "" );
+		$values = "'".$category_name."', 
+				  '".$category_enteredBy."' , 
+				  '".$category_parentId."'";				
 		$rows   = "category_name, category_enteredBy, category_parentId";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
