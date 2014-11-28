@@ -45,8 +45,8 @@ App.factory('usersFactory',function($resource){
 	}
 	
 	factory.updateUser = function($scope,id){
-		return userList.update({id:id}, $scope.userDetails.user)
-		//console.log(user)
+		return userList.update({id:id},$scope.userDetails.user[0])
+		//console.log($scope.userDetails.user)
 	}
 	
 	return factory
