@@ -65,7 +65,7 @@
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button class="btn btn-primary" ng-click="updateUser(userDetails.user[0].user_id)" >Update User</button>
+              <button class="btn btn-primary" ng-click="updateUser(userDetails.user[0].user_id)" ng-disabled="myForm.$invalid">Update User</button>
             </div>
           </div>
         </form>

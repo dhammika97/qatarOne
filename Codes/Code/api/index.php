@@ -41,7 +41,7 @@ function authenticate(\Slim\Route $route) {
     } else {
         // User Access Token is missing in header
         $response["error"] = true;
-        $response["message"] = "User Access Token key is misssing";
+        $response["message"] = "invalid Request. Please login to the system";
         echoRespnse(400, $response);
         $app->stop();
     }
@@ -727,13 +727,13 @@ $app->post('/login', function() use ($app) {
 				// unknown error occurred
 				$response['error'] = true;
 				$response['message'] = "An error occurred. Please try again";
-				echoRespnse(401, $response);
+				echoRespnse(200, $response);
 			}
 		} else {
 			// user credentials are wrong
 			$response['error'] = true;
 			$response['message'] = 'Login failed. Incorrect credentials';
-			echoRespnse(401, $response);
+			echoRespnse(200, $response);
 		}
 			
 });

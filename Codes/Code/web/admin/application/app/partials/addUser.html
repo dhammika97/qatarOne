@@ -5,7 +5,7 @@
 </ol>
 <div class="row">
 	<div class="col-lg-5 col-lg-offset-1">
-    	<form name="myForm" class="form-horizontal" role="form">
+    	<form name="myForm" class="form-horizontal" role="form" novalidate>
           <div class="form-group">
             <label class="col-sm-2 control-label">User Type</label>
             <div class="col-sm-8">
@@ -71,7 +71,7 @@
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button class="btn btn-primary" ng-click="addUser()" >Add User</button>
+              <button type="submit" class="btn btn-primary" ng-click="addUser()" ng-disabled="myForm.$invalid" >Add User</button>
             </div>
           </div>
         </form>

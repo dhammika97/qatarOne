@@ -9,18 +9,20 @@ App.factory('usersFactory',function($resource){
     });
 	var factory = {}
 	factory.getUsers = function(){
-		return userList.query()
+		return tld = userList.query();
+		tld.$promise.catch(function(e){
+			alert(e.data.message)
+			//window.location.replace('#/dashboard')
+		})
 	}
 	
 	factory.saveUser = function(user){
 		return userList.save(user)
-		.$promise.then(
+		.$promise.catch(function(e){
+				alert(e.data.message)
+			}).then(
 			function(value){
-				if(value.error!=true){
-					window.location="#/users"
-				}else{
-					alert(value.message)	
-				}
+				alert(value.message)
 			}
 		)
 	}
@@ -29,23 +31,30 @@ App.factory('usersFactory',function($resource){
 		//userList.delete({id:id})
 		//return userList.query()
 		return userList.delete({id:id})
-		.$promise.then(
-			function(e){
-				if(e.error!=true){
-					$scope.users = userList.query()
-				}else{
-					alert('error')
-				}
-			}
-		)
+		.$promise.then(function(e){
+				alert(e.message)
+				$scope.users = userList.query()
+			}).catch(function(e){
+				alert(e.data.message)
+			})
 	}
 	
 	factory.getUser = function(id){
-		return userList.get({id:id})
+		return tmp = userList.get({id:id})
+		tmp.$promise.catch(function(e){
+			console.log(e.data.message)
+			window.location.replace('#/dashboard')
+		})
 	}
 	
 	factory.updateUser = function($scope,id){
-		return userList.update({id:id},$scope.userDetails.user[0])
+		//debugger
+		tld = userList.update({id:id},$scope.userDetails.user[0])
+		tld.$promise.then(function(e){
+			alert(e.message)	
+		}).catch(function(e){
+			alert(e.message)	
+		})
 		//console.log($scope.userDetails.user)
 	}
 	

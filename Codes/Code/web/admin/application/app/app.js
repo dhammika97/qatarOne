@@ -20,7 +20,7 @@ App.config(function($routeProvider, $httpProvider){
 	)
 	.when('/addUser',
 		{
-			controller:'controllers.userController',
+			controller:'controllers.userAddController',
 			templateUrl:'app/partials/addUser.html'	
 		}
 	)
