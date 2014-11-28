@@ -30,15 +30,15 @@ class DbHandler {
 	}
 
 	private function generateApiKey() {
-		return md5(uniqid(rand(), true));
+		return strtoupper(md5(uniqid(rand(), true)));
 	}
 
 	public function getAllUsers() {   
 		$db = new database();
 		$table = 'user';
 		$rows ='*';	
-		$db->select($table,$rows,'','','');
-		$user_list = $db->getResults();
+		$db->selectJson($table,$rows,'','','');
+		$user_list = $db->getJson();
 		return $user_list;
 	}
 
@@ -47,8 +47,8 @@ class DbHandler {
 		$table = 'user';
 		$rows ='*';
 		$where = 'user_id = "'.$user_id.'"';	
-		$db->select($table,$rows,$where,'','');
-		$user = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$user = $db->getJson();
 		return $user;
 	}
 	
@@ -125,8 +125,8 @@ class DbHandler {
 		$db = new database();    
 		$table = 'fixedads';
 		$rows ='*';
-		$db->select($table,$rows,'','','');
-		$fixedad_list = $db->getResults();
+		$db->selectJson($table,$rows,'','','');
+		$fixedad_list = $db->getJson();
 		return $fixedad_list;
 	}
 
@@ -135,8 +135,8 @@ class DbHandler {
 		  $table = 'fixedads';
 		  $rows ='*';
 		  $where = 'fixedads_id = "'.$fixedads_id.'"';
-		  $db->select($table,$rows,$where,'','');
-		  $user = $db->getResults();
+		  $db->selectJson($table,$rows,$where,'','');
+		  $user = $db->getJson();
 		  return $user; 
 	}
 
@@ -196,8 +196,8 @@ class DbHandler {
 		$table = 'category';
 		$rows ='*';
 		$where = 'category_status = "1" ';
-		$db->select($table,$rows,$where,'','');
-		$category_list = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$category_list = $db->getJson();
 		return $category_list;
 	}	
 
@@ -206,8 +206,8 @@ class DbHandler {
 		$table = 'category';
 		$rows ='*';
 		$where = 'category_id = "'.$category_id.'" AND category_status = "1" ';
-		$db->select($table,$rows,$where,'','');
-		$user = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$user = $db->getJson();
 		return $user;			
 	}
 
@@ -260,8 +260,8 @@ class DbHandler {
 		$table = 'category_sub';
 		$rows ='*';
 		$Where= 'category_sub_status = "1"';	
-		$db->select($table,$rows,$Where,'','');
-		$subcategories = $db->getResults();
+		$db->selectJson($table,$rows,$Where,'','');
+		$subcategories = $db->getJson();
 		return $subcategories;
 	}
 
@@ -270,8 +270,8 @@ class DbHandler {
 		$table = 'category_sub';
 		$rows ='*';
 		$where = 'category_sub_id = "'.$id.'" AND category_sub_status = "1" ';
-		$db->select($table,$rows,$where,'','');
-		$subcategory = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$subcategory = $db->getJson();
 		return $subcategory;	
 	}
 
@@ -327,8 +327,8 @@ class DbHandler {
 		$db = new database();
 		$table = 'locations';
 		$rows ='*';	
-		$db->select($table,$rows,'','','');
-		$location_list = $db->getResults();
+		$db->selectJson($table,$rows,'','','');
+		$location_list = $db->getJson();
 		return $location_list;
 	}
 	
@@ -358,8 +358,8 @@ class DbHandler {
 		$table = 'locations';
 		$rows ='*';
 		$where = 'location_id = "'.$location_id.'"';
-		$db->select($table,$rows,$where,'','');
-		$page = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$page = $db->getJson();
 		return $page;
 	}
 	
@@ -405,8 +405,8 @@ class DbHandler {
 		$table = 'pages';
 		$rows ='*';
 		$where = 'page_status = "1" ';
-		$db->select($table,$rows,$where,'','');
-		$pages_list = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$pages_list = $db->getJson();
 		return $pages_list;
 	}
 	public function GetPageDetail($page_id){
@@ -414,8 +414,8 @@ class DbHandler {
 		$table = 'pages';
 		$rows ='*';
 		$where = 'page_id = "'.$page_id.'" AND page_status = "1" ';
-		$db->select($table,$rows,$where,'','');
-		$page = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$page = $db->getJson();
 		return $page;			
 	}	
 
@@ -494,8 +494,8 @@ public function checkLogin($user_email, $user_password) {
 		$table = 'pagecontent';
 		$rows ='*';
 		
-		$db->select($table,$rows,'','','');
-		$pages_list = $db->getResults();
+		$db->selectJson($table,$rows,'','','');
+		$pages_list = $db->getJson();
 		return $pages_list;
 	}
 	public function GetPageContentDetail($pageContent_id){
@@ -503,8 +503,8 @@ public function checkLogin($user_email, $user_password) {
 		$table = 'pagecontent';
 		$rows ='*';
 		$where = 'pageContent_id = "'.$pageContent_id.'"';
-		$db->select($table,$rows,$where,'','');
-		$page = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$page = $db->getJson();
 		return $page;			
 	}
 	
@@ -529,8 +529,8 @@ public function checkLogin($user_email, $user_password) {
 		$db = new database();
 		$table = 'suburbs';
 		$rows ='*';	
-		$db->select($table,$rows,'','','');
-		$location_list = $db->getResults();
+		$db->selectJson($table,$rows,'','','');
+		$location_list = $db->getJson();
 		return $location_list;
 	}
 	
@@ -539,8 +539,8 @@ public function checkLogin($user_email, $user_password) {
 		$table = 'suburbs';
 		$rows ='*';
 		$where = 'suburb_id = "'.$suburb_id.'"';
-		$db->select($table,$rows,$where,'','');
-		$page = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$page = $db->getJson();
 		return $page;
 	}
 	
@@ -609,8 +609,8 @@ public function checkLogin($user_email, $user_password) {
 		$table = 'events';
 		$rows ='*';
 		$where = 'event_status = "1" ';
-		$db->select($table,$rows,$where,'','');
-		$pages_list = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$pages_list = $db->getJson();
 		return $pages_list;
 	}
 	public function GetEventDetail($evenet_id){
@@ -618,8 +618,8 @@ public function checkLogin($user_email, $user_password) {
 		$table = 'events';
 		$rows ='*';
 		$where = 'evenet_id = "'.$evenet_id.'" AND event_status = "1" ';
-		$db->select($table,$rows,$where,'','');
-		$page = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$page = $db->getJson();
 		return $page;			
 	}
 	
@@ -645,8 +645,8 @@ public function checkLogin($user_email, $user_password) {
 		$db = new database();
 		$table = 'sliders';
 		$rows ='*';	
-		$db->select($table,$rows,'','','');
-		$location_list = $db->getResults();
+		$db->selectJson($table,$rows,'','','');
+		$location_list = $db->getJson();
 		return $location_list;
 	}
 	
@@ -655,8 +655,8 @@ public function checkLogin($user_email, $user_password) {
 		$table = 'sliders';
 		$rows ='*';
 		$where = 'slider_id = "'.$slider_id.'"';
-		$db->select($table,$rows,$where,'','');
-		$page = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$page = $db->getJson();
 		return $page;
 	}
 	
@@ -708,8 +708,8 @@ public function checkLogin($user_email, $user_password) {
 		$db = new database();
 		$table = 'news';
 		$rows ='*';	
-		$db->select($table,$rows,'','','');
-		$location_list = $db->getResults();
+		$db->selectJson($table,$rows,'','','');
+		$location_list = $db->getJson();
 		return $location_list;
 	}
 	
@@ -718,8 +718,8 @@ public function checkLogin($user_email, $user_password) {
 		$table = 'news';
 		$rows ='*';
 		$where = 'news_id = "'.$news_id.'"';
-		$db->select($table,$rows,$where,'','');
-		$page = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$page = $db->getJson();
 		return $page;
 	}
 	
@@ -770,8 +770,8 @@ public function checkLogin($user_email, $user_password) {
 		$db = new database();
 		$table = 'packagetypes';
 		$rows ='*';	
-		$db->select($table,$rows,'','','');
-		$location_list = $db->getResults();
+		$db->selectJson($table,$rows,'','','');
+		$location_list = $db->getJson();
 		return $location_list;
 	}
 	
@@ -780,8 +780,8 @@ public function checkLogin($user_email, $user_password) {
 		$table = 'packagetypes';
 		$rows ='*';
 		$where = 'package_id = "'.$packageType_id.'"';
-		$db->select($table,$rows,$where,'','');
-		$page = $db->getResults();
+		$db->selectJson($table,$rows,$where,'','');
+		$page = $db->getJson();
 		return $page;
 	}
 	

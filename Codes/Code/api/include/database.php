@@ -172,6 +172,7 @@ private $numrows;
 			}
 		}
 		$update .= ' where '.$where;
+		//echo $update;
 		if($up = mysqli_query($this->con,$update)){
 			return true;	
 		}else{
