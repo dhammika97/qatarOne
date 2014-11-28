@@ -278,7 +278,10 @@ class DbHandler {
 	public function addsubCategory($category){	
 		$db = new database();
 		$table  = "category_sub";
-		$values = "'".$category['category_sub_name']."', '".$category['category_sub_enteredBy']."' , '".$category['category_sub_parentId']."'";				
+		(isset($category['category_sub_name']) ? $category_sub_name = $category['category_sub_name'] : $category_sub_name = "" );
+		(isset($category['category_sub_enteredBy']) ? $category_sub_enteredBy = $category['category_sub_enteredBy'] : $category_sub_enteredBy = "" );
+		(isset($category['category_sub_parentId']) ? $category_sub_parentId = $category['category_sub_parentId'] : $category_sub_parentId = "" );
+		$values = "'".$category_sub_name."', '".$category_sub_parentId."' , '".$category_sub_enteredBy."'";								
 		$rows   = "category_sub_name, category_sub_enteredBy, category_sub_parentId";
 		if($db->insert($table,$values,$rows) ){
 			return true;
