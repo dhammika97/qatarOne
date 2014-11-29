@@ -36,6 +36,12 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/addNews.html'	
 		}
 	)
+	.when('/categories',
+		{
+			controller:'controllers.categoryController',
+			templateUrl:'app/partials/category/categoryList.html'	
+		}
+	)
 	
 	.otherwise({
 		redirectTo:'/'

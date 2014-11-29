@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="angular.min.js" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" Dst="0" />
-<file name="angular-route.min.js" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" Dst="0" />
-<file name="angular-cookies.min.js" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" Dst="0" />
-<file name="angular-cookies.min.js.map" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" Dst="0" />
-<file name="angular-local-storage.js" server="D:/xampp/htdocs/qatarone/" local="130541225940000000" remote="130541225940000000" Dst="0" />
-<file name="angular-resource.min.js" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" Dst="0" />
-<file name="angular-resource.min.js.map" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" Dst="0" />
-<file name="angular-route.min.js.map" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" Dst="0" />
-<file name="angular-touch.min.js" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" Dst="0" />
-<file name="angular-touch.min.js.map" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" Dst="0" />
-<file name="angular.min.js.map" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" Dst="0" />
+<file name="angular.min.js" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" />
+<file name="angular-route.min.js" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" />
+<file name="angular-cookies.min.js" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" />
+<file name="angular-cookies.min.js.map" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" />
+<file name="angular-local-storage.js" server="D:/xampp/htdocs/qatarone/" local="130541225940000000" remote="130541225940000000" />
+<file name="angular-resource.min.js" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" />
+<file name="angular-resource.min.js.map" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" />
+<file name="angular-route.min.js.map" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" />
+<file name="angular-touch.min.js" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" />
+<file name="angular-touch.min.js.map" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" />
+<file name="angular.min.js.map" server="D:/xampp/htdocs/qatarone/" local="130609487080000000" remote="130609487080000000" />
+<file name="angular-cookies.min.js" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832043221" remote="130617103830000000" />
+<file name="angular-cookies.min.js.map" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832199221" remote="130617103830000000" />
+<file name="angular-local-storage.js" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832199221" remote="130617103830000000" />
+<file name="angular-resource.min.js" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832199221" remote="130617103830000000" />
+<file name="angular-resource.min.js.map" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832199221" remote="130617103830000000" />
+<file name="angular-route.min.js" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832199221" remote="130617103830000000" />
+<file name="angular-route.min.js.map" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832355222" remote="130617103830000000" />
+<file name="angular-touch.min.js" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832355222" remote="130617103830000000" />
+<file name="angular-touch.min.js.map" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832355222" remote="130617103830000000" />
+<file name="angular.min.js" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832355222" remote="130617103830000000" />
+<file name="angular.min.js.map" server="D:/Projects/Qatar/QatarOne/git/trunk/Codes/Code/" local="130617103832511222" remote="130617103830000000" />
+<file name="angular-cookies.min.js" server="D:/XAMPP/htdocs/qatarone/" local="130617103832043221" remote="130617103830000000" />
+<file name="angular-cookies.min.js.map" server="D:/XAMPP/htdocs/qatarone/" local="130617103832199221" remote="130617103830000000" />
+<file name="angular-local-storage.js" server="D:/XAMPP/htdocs/qatarone/" local="130617103832199221" remote="130617103830000000" />
+<file name="angular-resource.min.js" server="D:/XAMPP/htdocs/qatarone/" local="130617103832199221" remote="130617103830000000" />
+<file name="angular-resource.min.js.map" server="D:/XAMPP/htdocs/qatarone/" local="130617103832199221" remote="130617103830000000" />
+<file name="angular-route.min.js" server="D:/XAMPP/htdocs/qatarone/" local="130617103832199221" remote="130617103830000000" />
+<file name="angular-route.min.js.map" server="D:/XAMPP/htdocs/qatarone/" local="130617103832355222" remote="130617103830000000" />
+<file name="angular-touch.min.js" server="D:/XAMPP/htdocs/qatarone/" local="130617103832355222" remote="130617103830000000" />
+<file name="angular-touch.min.js.map" server="D:/XAMPP/htdocs/qatarone/" local="130617103832355222" remote="130617103830000000" />
+<file name="angular.min.js" server="D:/XAMPP/htdocs/qatarone/" local="130617103832355222" remote="130617103830000000" />
+<file name="angular.min.js.map" server="D:/XAMPP/htdocs/qatarone/" local="130617103832511222" remote="130617103830000000" />
 </dwsync>
