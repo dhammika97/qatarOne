@@ -102,7 +102,7 @@ App.config(function($routeProvider, $httpProvider){
 	
 	.when('/addPage',
 		{
-			//controller:'controllers.pageController',
+			controller:'controllers.pageAddController',
 			templateUrl:'app/partials/page/addPage.html'	
 		}
 	)

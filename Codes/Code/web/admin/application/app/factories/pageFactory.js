@@ -23,7 +23,7 @@ App.factory('pageFactory',function($resource){
 			}).then(
 			function(value){
 				alert(value.message)
-				$scope.location=''
+				$scope.page=''
 			}
 		)
 	}
