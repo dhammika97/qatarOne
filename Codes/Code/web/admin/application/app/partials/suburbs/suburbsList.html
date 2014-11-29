@@ -14,7 +14,7 @@
       <tr ng-repeat="suburbs in suburbs.suburbs">
         <td>{{suburbs.suburb_name}}</td>
         <td>{{suburbs.suburb_cordinates}}</td>
-        <td><a href="#/editUser/{{user.user_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteSuburbs(suburbs.suburb_id)">Delete</button></td>
+        <td><a href="#/editSuburbs/{{suburbs.suburbs_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteSuburbs(suburbs.suburb_id)">Delete</button></td>
       </tr>
     </tbody>
 </table>
