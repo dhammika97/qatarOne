@@ -114,6 +114,13 @@ App.config(function($routeProvider, $httpProvider){
 		}
 	)
 	
+	.when('/addPageContent',
+		{
+			controller:'controllers.pageContentAddController',
+			templateUrl:'app/partials/page/addPageContent.html'
+		}
+	)
+	
 	.when('/news',
 		{
 			controller:'controllers.newsController',
