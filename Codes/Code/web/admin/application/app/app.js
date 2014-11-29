@@ -15,19 +15,19 @@ App.config(function($routeProvider, $httpProvider){
 	.when('/users',
 		{
 			controller:'controllers.userController',
-			templateUrl:'app/partials/usersList.html'	
+			templateUrl:'app/partials/user/usersList.html'	
 		}
 	)
 	.when('/addUser',
 		{
 			controller:'controllers.userAddController',
-			templateUrl:'app/partials/addUser.html'	
+			templateUrl:'app/partials/user/addUser.html'	
 		}
 	)
 	.when('/editUser/:id',
 		{
 			controller:'controllers.userDetailsController',
-			templateUrl:'app/partials/editUser.html'	
+			templateUrl:'app/partials/user/editUser.html'	
 		}
 	)
 	.when('/addNews',
