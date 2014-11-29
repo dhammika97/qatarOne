@@ -106,8 +106,12 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/page/addPage.html'	
 		}
 	)
-	
-
+	.when('/news',
+		{
+			//controller:'controllers.newsController',
+			templateUrl:'app/partials/news/newsList.html'	
+		}
+	)
 	
 	.otherwise({
 		redirectTo:'/'
