@@ -74,6 +74,13 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/suberbs/suberbsList.html'	
 		}
 	)
+	.when('/addEvents',
+		{
+			//controller:'controllers.eventController',
+			templateUrl:'app/partials/events/eventAdd.html'	
+		}
+	)
+	
 
 	
 	.otherwise({
