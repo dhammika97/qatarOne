@@ -1,6 +1,15 @@
 // JavaScript Document
 controllers.pageController = function($scope, pageFactory){
 	$scope.pages = pageFactory.getPages()
+	
+	$scope.deletePage = function(id){
+		if(id!=''){
+			var r = confirm("Do you want to delete this page!");
+			if (r == true) {
+				pageFactory.deletePage($scope,id)
+			}
+		}	
+	}
 }
 
 controllers.pageAddController = function($scope, pageFactory){

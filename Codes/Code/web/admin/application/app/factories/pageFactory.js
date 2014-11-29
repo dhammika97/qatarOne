@@ -27,16 +27,17 @@ App.factory('pageFactory',function($resource){
 			}
 		)
 	}
-	/*factory.deleteLocation = function($scope,id){
-		return locationList.delete({id:id})
+	
+	factory.deletePage = function($scope,id){
+		return Pages.delete({id:id})
 		.$promise.then(function(e){
 				alert(e.message)
-				$scope.locations = locationList.query()
+				$scope.pages = Pages.query()
 			}).catch(function(e){
 				alert(e.data.message)
 			})
 	}
-	
+	/*
 	
 	
 	factory.getLocation = function(id){

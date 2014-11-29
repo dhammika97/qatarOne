@@ -14,7 +14,7 @@
       <tr ng-repeat="pages in pages.pages">
         <td>{{pages.page_title}}</td>
         <td>{{pages.page_status}}</td>
-        <td><a href="#/editPageContent/{{page.page_id}}" class="btn btn-primary">Edit Page Content</a> <a href="#/editPage/{{pages.page_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deletePage(page.page_id)">Delete</button></td>
+        <td><a href="#/editPageContent/{{pages.page_id}}" class="btn btn-primary">Edit Page Content</a> <a href="#/editPage/{{pages.page_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deletePage(pages.page_id)">Delete</button></td>
       </tr>
     </tbody>
 </table>
