@@ -1,4 +1,4 @@
-<h1>Category<a href="#/addCategory" class="btn btn-primary pull-right">Add New</a></h1>
+<h1>Category<a href="#/addEvents" class="btn btn-primary pull-right">Add New</a></h1>
 <ol class="breadcrumb">
   <li class="active"> Events </li>
 </ol>
@@ -12,11 +12,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="category in categories.categories">
-      
-   		<td>{{category.category_name}}</td>
-        <td>{{category.category_enteredDate}}</td>
-        <th>Event Description</th>
+      <tr ng-repeat="event in events.events">
+   		<td>{{event.event_title}}</td>
+        <td>{{event.event_date}}</td>
+        <th>{{event.event_shortDescription}}</th>
         <td><a href="#/editUser/{{user.user_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteCategory(category.category_id)">Delete</button></td>
       </tr>
     </tbody>
