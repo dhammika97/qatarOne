@@ -58,7 +58,7 @@ App.config(function($routeProvider, $httpProvider){
 	)
 	.when('/events',
 		{
-			//controller:'controllers.locationsController',
+			controller:'controllers.eventController',
 			templateUrl:'app/partials/events/eventList.html'	
 		}
 	)
