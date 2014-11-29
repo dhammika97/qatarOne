@@ -56,6 +56,13 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/locations/locationList.html'	
 		}
 	)
+	
+	.when('/addLocation',
+		{
+			controller:'controllers.locationAddController',
+			templateUrl:'app/partials/locations/addLocation.html'
+		}
+	)
 	.when('/events',
 		{
 			controller:'controllers.eventController',
