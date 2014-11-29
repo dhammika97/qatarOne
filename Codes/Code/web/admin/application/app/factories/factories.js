@@ -16,8 +16,8 @@ App.factory('usersFactory',function($resource){
 		})
 	}
 	
-	factory.saveUser = function($scope,user){
-		return userList.save(user)
+	factory.saveUser = function($scope){
+		return userList.save($scope.user)
 		.$promise.catch(function(e){
 				alert(e.data.message)
 			}).then(
@@ -74,3 +74,4 @@ App.factory('User',function($rootScope){
 	
 	$rootScope.accessToken = getUser()
 })
+
