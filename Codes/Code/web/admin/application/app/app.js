@@ -74,16 +74,17 @@ App.config(function($routeProvider, $httpProvider){
 			controller:'controllers.eventController',
 			templateUrl:'app/partials/events/eventList.html'	
 		}
-	).when('/suberbs',
-		{
-			controller:'controllers.suberbsController',
-			templateUrl:'app/partials/suberbs/suberbsList.html'	
-		}
 	)
 	.when('/addEvents',
 		{
-			//controller:'controllers.eventController',
-			templateUrl:'app/partials/events/eventAdd.html'	
+			controller:'controllers.eventAddController',
+			templateUrl:'app/partials/events/eventAdd.html'		
+		}
+	)
+	.when('/suberbs',
+		{
+			controller:'controllers.suberbsController',
+			templateUrl:'app/partials/suberbs/suberbsList.html'	
 		}
 	)
 	.when('/pages',
@@ -92,6 +93,7 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/page/pageList.html'	
 		}
 	)
+	
 
 	
 	.otherwise({
