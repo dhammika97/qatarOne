@@ -45,19 +45,15 @@ App.factory('pageFactory',function($resource){
 			window.location.replace('#/dashboard')
 		})
 	}
-	/*
-	
-	
-	
-	
-	factory.updateLocation = function($scope,id){
-		tld = locationList.update({id:id},$scope.locationDetails.location[0])
+		
+	factory.updatePage = function($scope,id){
+		tld = Pages.update({id:id},$scope.pageDetails.page[0])
 		tld.$promise.then(function(e){
 			alert(e.message)	
 		}).catch(function(e){
 			alert(e.message)	
 		})
-	}*/
+	}
 	
 	return factory
 })

@@ -21,7 +21,7 @@ controllers.pageAddController = function($scope, pageFactory){
 controllers.pageDetailController = function($scope, $routeParams,pageFactory){
 	$scope.pageDetails = pageFactory.getPage($routeParams.id)
 	
-	$scope.updateLocation = function(id){
-		locationFactory.updateLocation($scope,id)	
+	$scope.updatePage = function(id){
+		pageFactory.updatePage($scope,id)	
 	}
 }
