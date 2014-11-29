@@ -36,28 +36,23 @@ App.factory('locationFactory',function($resource){
 			}
 		)
 	}
-	/*
 	
-	
-	
-	factory.getUser = function(id){
-		return tmp = userList.get({id:id})
+	factory.getLocation = function(id){
+		return tmp = locationList.get({id:id})
 		tmp.$promise.catch(function(e){
 			console.log(e.data.message)
 			window.location.replace('#/dashboard')
 		})
 	}
 	
-	factory.updateUser = function($scope,id){
-		//debugger
-		tld = userList.update({id:id},$scope.userDetails.user[0])
+	factory.updateLocation = function($scope,id){
+		tld = locationList.update({id:id},$scope.locationDetails.location[0])
 		tld.$promise.then(function(e){
 			alert(e.message)	
 		}).catch(function(e){
 			alert(e.message)	
 		})
-		//console.log($scope.userDetails.user)
-	}*/
+	}
 	
 	return factory
 })

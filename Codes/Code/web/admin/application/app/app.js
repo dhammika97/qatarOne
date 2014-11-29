@@ -65,7 +65,7 @@ App.config(function($routeProvider, $httpProvider){
 	)
 	.when('/editLocation/:id',
 		{
-			controller:'controllers.locationDetails',
+			controller:'controllers.locationDetailController',
 			templateUrl:'app/partials/locations/editLocation.html'
 		}
 	)

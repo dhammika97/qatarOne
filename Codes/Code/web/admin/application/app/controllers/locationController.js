@@ -19,4 +19,12 @@ controllers.locationAddController = function($scope, locationFactory){
 	}
 }
 
+controllers.locationDetailController = function($scope, $routeParams,locationFactory){
+	$scope.locationDetails = locationFactory.getLocation($routeParams.id)
+	
+	$scope.updateLocation = function(id){
+		locationFactory.updateLocation($scope,id)	
+	}
+}
+
 //App.controller(controllers)
