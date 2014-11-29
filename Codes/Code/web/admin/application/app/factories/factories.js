@@ -16,13 +16,14 @@ App.factory('usersFactory',function($resource){
 		})
 	}
 	
-	factory.saveUser = function(user){
+	factory.saveUser = function($scope,user){
 		return userList.save(user)
 		.$promise.catch(function(e){
 				alert(e.data.message)
 			}).then(
 			function(value){
 				alert(value.message)
+				$scope.user=''
 			}
 		)
 	}
