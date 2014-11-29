@@ -178,7 +178,18 @@ App.config(function($routeProvider, $httpProvider){
 				templateUrl:'app/partials/slider/sliderEdit.html'
 			}
 	)	
-	
+	.when('/packageType',
+		{
+			controller:'controllers.packageTypeController',
+			templateUrl:'app/partials/packageType/packageTypeList.html'
+		}
+	)
+	.when('/editPackageType/:id',
+		{
+			controller:'controllers.pacakgeTypeDetailsController',
+			templateUrl:'app/partials/packageType/editPackageType.html'
+		}
+	)
 	.otherwise({
 		redirectTo:'/'
 	});
