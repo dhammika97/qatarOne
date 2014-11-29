@@ -83,7 +83,7 @@ App.config(function($routeProvider, $httpProvider){
 	)
 	.when('/editEvent',
 		{
-			controller:'controllers.eventEditController',
+			//controller:'controllers.eventEditController',
 			templateUrl:'app/partials/events/eventEdit.html'		
 		}
 	)
