@@ -161,11 +161,17 @@ App.config(function($routeProvider, $httpProvider){
 		)	
 	.when('/slider',
 			{
-				//controller:'controllers.sliderController',
+				controller:'controllers.sliderController',
 				templateUrl:'app/partials/slider/sliderList.html'
 			}
 
-		)		
+		)
+	.when('/addSlider',
+			{
+				//controller:'controllers.fixedAdvertismentAddController',
+				templateUrl:'app/partials/slider/sliderAdd.html'
+			}
+	)			
 	
 	
 	.otherwise({
