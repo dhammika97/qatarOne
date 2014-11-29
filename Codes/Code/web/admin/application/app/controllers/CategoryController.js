@@ -1,6 +1,5 @@
 
 controllers.categoryController = function($scope, categoryFactry){
-	$scope.test="safds";
 	$scope.categories = categoryFactry.getCategory();	
 	$scope.deleteCategory = function(id){	
 		if(id!=''){
@@ -12,4 +11,9 @@ controllers.categoryController = function($scope, categoryFactry){
 		}
 	}
 	
+}
+controllers.addCategoryController = function($scope, categoryFactory){
+	$scope.addUser = function(){
+		categoryFactory.saveUser($scope,$scope.user)//userList.save(user)
+	}
 }

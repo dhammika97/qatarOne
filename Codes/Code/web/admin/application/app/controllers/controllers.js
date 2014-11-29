@@ -23,7 +23,7 @@ controllers.userController = function($scope, usersFactory){
 
 controllers.userAddController = function($scope, usersFactory){
 	$scope.addUser = function(){
-		usersFactory.saveUser($scope,$scope.user)//userList.save(user)
+		usersFactory.saveUser($scope)//userList.save(user)
 	}
 }
 

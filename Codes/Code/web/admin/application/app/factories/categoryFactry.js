@@ -27,6 +27,18 @@ App.factory('categoryFactry',function($resource){
 				alert(e.data.message)
 			})
 	}
+	factory.saveCategory = function($scope,category){
+		return categoryList.save(category)
+		.$promise.catch(function(e){
+				alert(e.data.message)
+			}).then(
+			function(value){
+				alert(value.message)
+				$scope.user=''
+			}
+		)
+	}
+
 	
 	
 	return factory

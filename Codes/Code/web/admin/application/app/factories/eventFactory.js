@@ -18,23 +18,23 @@ App.factory('eventFactory',function($resource){
 			//window.location.replace('#/dashboard')
 		})
 	}
-	factory.deleteCategory = function($scope,id){
-		return categoryList.delete({id:id})
+	factory.deleteEvent = function($scope,id){
+		return eventsList.delete({id:id})
 		.$promise.then(function(e){
 				alert(e.message)
-				$scope.categories = categoryList.query()
+				$scope.events = eventsList.query()
 			}).catch(function(e){
 				alert(e.data.message)
 			})
 	}
-	factory.saveCategory = function($scope,category){
-		return categoryList.save(category)
+	factory.saveEvent = function($scope){
+		return eventsList.save($scope.eventa)
 		.$promise.catch(function(e){
 				alert(e.data.message)
 			}).then(
 			function(value){
 				alert(value.message)
-				$scope.user=''
+				$scope.eventa=''
 			}
 		)
 	}
