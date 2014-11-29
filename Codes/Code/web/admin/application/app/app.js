@@ -42,6 +42,12 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/category/categoryList.html'	
 		}
 	)
+	.when('/location',
+		{
+			controller:'controllers.locationsController',
+			templateUrl:'app/partials/locations/locationList.html'	
+		}
+	)
 	
 	.otherwise({
 		redirectTo:'/'

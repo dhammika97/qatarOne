@@ -1,0 +1,20 @@
+<h1>Locations<a href="#/addUser" class="btn btn-primary pull-right">Add New</a></h1>
+<ol class="breadcrumb">
+  <li class="active"> Locations	</li>
+</ol>
+<table class="table table-hover tablesorter">
+    <thead>
+      <tr>
+        <th>Location Name</th>
+        <th>Google Cordinates</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="location in locations.locations">
+        <td>{{location.location_name}}</td>
+        <td>{{location.location_cordinates}}</td>
+        <td><a href="#/editLocation/{{location.location_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteLocation(location.location_id)">Delete</button></td>
+      </tr>
+    </tbody>
+</table>
