@@ -15,7 +15,15 @@ App.factory('locationFactory',function($resource){
 			//window.location.replace('#/dashboard')
 		})
 	}
-	
+	factory.deleteLocation = function($scope,id){
+		return locationList.delete({id:id})
+		.$promise.then(function(e){
+				alert(e.message)
+				$scope.locations = locationList.query()
+			}).catch(function(e){
+				alert(e.data.message)
+			})
+	}
 	/*factory.saveUser = function($scope,user){
 		return userList.save(user)
 		.$promise.catch(function(e){
@@ -28,17 +36,7 @@ App.factory('locationFactory',function($resource){
 		)
 	}
 	
-	factory.deleteUser = function($scope,id){
-		//userList.delete({id:id})
-		//return userList.query()
-		return userList.delete({id:id})
-		.$promise.then(function(e){
-				alert(e.message)
-				$scope.users = userList.query()
-			}).catch(function(e){
-				alert(e.data.message)
-			})
-	}
+	
 	
 	factory.getUser = function(id){
 		return tmp = userList.get({id:id})
