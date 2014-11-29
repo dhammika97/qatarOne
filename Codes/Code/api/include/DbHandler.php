@@ -633,14 +633,16 @@ public function checkLogin($user_email, $user_password) {
 	public function createSlider($slider){
 		$db = new database();
 		$table  = "sliders";
-		$values = "'".$slider['slider_title']."', 
-				'".$slider['slider_image']."',
-				'".$slider['slider_url']."',
-				'".$slider['slider_status']."'";					  
+		(isset($slider['slider_title']) ? $slider_title = $slider['slider_title'] : $slider_title = "" );
+		(isset($slider['slider_image']) ? $slider_image = $slider['slider_image'] : $slider_image = "" );
+		(isset($slider['slider_url']) ? $slider_url = $slider['slider_url'] : $slider_url = "" );
+		
+		$values = "'".$slider_title."', 
+				'".$slider_image."',
+				'".$slider_url."'";					  
 		$rows   = "slider_title, 
 				   slider_image,
-				   slider_url,
-				   slider_status";		
+				   slider_url";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}else{
