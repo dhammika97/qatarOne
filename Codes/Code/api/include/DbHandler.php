@@ -456,17 +456,17 @@ public function checkLogin($user_email, $user_password) {
    	
 	public function addPageContent($pageContent){
 		$db = new database();
-		$table1 = 'pagecontent';
+		/*$table1 = 'pagecontent';
 		$rows1 ='pageContent_pageTitle';
 		$where1 = 'pageContent_pageTitle = "'.$pageContent['pageContent_pageTitle'].'"';
 		$db->select($table1,$rows1,$where1,'','');
 		$pageNumRows = $db->getNumRows();	
 		if( $pageNumRows > 1 ){
 			return false;
-		}
+		}*/
 		$table  = "pagecontent";
-		$values = "'".$pageContent['pageContent_pageTitle']."', '".$pageContent['pageContent_Description']."'";				
-		$rows   = "pageContent_pageTitle, pageContent_Description";		
+		$values = "'".$pageContent['pageContent_pageId']['page_id']."', '".$pageContent['pageContent_Description']."'";				
+		$rows   = "pageContent_pageId, pageContent_Description";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}
