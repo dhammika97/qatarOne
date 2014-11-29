@@ -68,11 +68,6 @@ App.config(function($routeProvider, $httpProvider){
 			controller:'controllers.eventController',
 			templateUrl:'app/partials/events/eventList.html'	
 		}
-	).when('/suberbs',
-		{
-			controller:'controllers.suberbsController',
-			templateUrl:'app/partials/suberbs/suberbsList.html'	
-		}
 	)
 
 	

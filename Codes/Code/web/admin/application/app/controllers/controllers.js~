@@ -42,12 +42,5 @@ controllers.newsController = function($scope, $routeParams, $resource){
 		News.save(news)
 	}
 }
-//suberbsController
-controllers.suberbsController = function($scope, $routeParams, suberbsFactry){
-	$scope.suberbs =suberbsFactry.getSuberbs($routeParams.id)
-	//$scope.suberbs = function(id){
-	//	suberbsFactry.getSuberbs(id)
-	//}
-}
 
 App.controller(controllers)

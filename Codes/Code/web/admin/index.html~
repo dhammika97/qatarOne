@@ -1,0 +1,79 @@
+<!doctype html>
+<html ng-app="Login">
+<head>
+<meta charset="utf-8">
+<title>Admin Console</title>
+    <link href="application/css/bootstrap.css" rel="stylesheet">
+    <!-- Add custom CSS here test2-->
+    <link href="application/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="application/css/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Admin Login</h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus id="email">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Password" name="password" type="password" id="password" >
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                            </label>
+                        </div>
+                        <!-- Change this to a button or input when using this as a form -->
+                        <button id="loginBtn" class="btn btn-lg btn-primary btn-block">Login</button>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="application/libs/jquery-1.10.2.js"></script>
+<script src="application/libs/bootstrap.js"></script>
+<script>
+	$(function(){
+		var auth = function(){
+			var ArrayCookies = document.cookie.split(';')
+			for(i=0; i<ArrayCookies.length; i++){
+				if(ArrayCookies[i].indexOf('accessKey')!=-1){
+					return ArrayCookies[i].substr(ArrayCookies[i].indexOf('=')+1)
+				}
+			}
+		}
+		
+		$('#loginBtn').click(function(){
+			if($('#email').val()!='' && $('#password').val()!=''){
+				$.post( '../../api/login', {
+						'email': ''+$('#email').val()+'',
+						'password' : ''+$('#password').val()+''
+					},function(data){
+						if(data.error==false){
+							//alert('login true')
+							document.cookie="accessKey="+data.accessToken
+							//localStorage.setItem('key', data.accessToken);
+							window.location.replace("application")
+						}else if(data.error==true){
+							alert(data.message)
+						}
+				},'json')
+			}else{
+				alert("Please enter valid email or password!")	
+			}
+		})
+		
+		if(auth()){
+			window.location.replace('application')
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<h1>Suberbs<a href="#/addSuberbs" class="btn btn-primary pull-right">Add New</a></h1>
+<ol class="breadcrumb">
+  <li class="active"> Suberbs{{suberbs}}	</li>
+</ol>
+<table class="table table-hover tablesorter">
+    <thead>
+      <tr>
+        <th>Suberb Name</th>
+        <th>Suberb Cordinates </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="suberbs in suberbs.suburbs">
+        <td>{{suberbs.suburb_name}}</td>
+        <td>{{suberbs.suburb_cordinates}}</td>
+        <td><a href="#/editUser/{{user.user_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteUser(user.user_id)">Delete</button></td>
+      </tr>
+    </tbody>
+</table>
