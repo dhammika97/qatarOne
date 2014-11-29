@@ -15,4 +15,3 @@ controllers.categoryController = function($scope, usersFactory){
 	}
 	
 }
-App.controller(controllers)
