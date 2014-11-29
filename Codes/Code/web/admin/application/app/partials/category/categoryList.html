@@ -1,6 +1,6 @@
-<h1>Category<a href="#/addUser" class="btn btn-primary pull-right">Add New</a></h1>
+<h1>Category<a href="#/addCategory" class="btn btn-primary pull-right">Add New</a></h1>
 <ol class="breadcrumb">
-  <li class="active"> Category	{{ test }}</li>
+  <li class="active"> Category</li>
 </ol>
 <table class="table table-hover tablesorter">
     <thead>
@@ -11,12 +11,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="user in users.users">
-      <td></td>
-    <!--    <td>{{user.user_username}}</td>
-        <td>{{user.user_email}}</td>
+      <tr ng-repeat="category in categories.categories">
+      
+   		<td>{{category.category_name}}</td>
+        <td>{{category.category_enteredDate}}</td>
         
-        <td><button class="btn btn-primary">Revoke Access Token</button> <a href="#/editUser/{{user.user_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteUser(user.user_id)">Delete</button></td>-->
+        <td><a href="#/editUser/{{user.user_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteCategory(category.category_id)">Delete</button></td>
       </tr>
     </tbody>
 </table>
