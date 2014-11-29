@@ -115,13 +115,90 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/page/addPage.html'	
 		}
 	)
+	
+	.when('/editPage/:id',
+		{
+			controller:'controllers.pageDetailController',
+			templateUrl:'app/partials/page/editPage.html'	
+		}
+	)
+	
+	.when('/addPageContent',
+		{
+			controller:'controllers.pageContentAddController',
+			templateUrl:'app/partials/page/addPageContent.html'
+		}
+	)
+	
 	.when('/news',
 		{
 			controller:'controllers.newsController',
 			templateUrl:'app/partials/news/newsList.html'	
 		}
 	)
+	.when('/editNews/:id',
+		{
+			controller:'controllers.newsDetailsController',
+			templateUrl:'app/partials/news/newsEdit.html'	
+		}
+	)
+	.when('/addNews',
+		{
+			controller:'controllers.newsAddController',
+			templateUrl:'app/partials/news/newsAdd.html'	
+		}
+	)
 	
+	.when('/fixedAdvertisment',
+		{
+			controller:'controllers.fixedAdvertismentController',
+			templateUrl:'app/partials/fixedAdvertisment/fixedAdvertismentList.html'
+		}
+	)
+	.when('/addFixedAdvertisment',
+			{
+				controller:'controllers.fixedAdvertismentAddController',
+				templateUrl:'app/partials/fixedAdvertisment/addFixedAdvertisment.html'
+			}
+	)
+	.when('/editFixedAdvertisment/:id',
+			{
+				controller:'controllers.fixedAdvertismentDetailsController',
+				templateUrl:'app/partials/fixedAdvertisment/editFixedAdvertisment.html'
+			}
+
+		)	
+	.when('/slider',
+			{
+				controller:'controllers.sliderController',
+				templateUrl:'app/partials/slider/sliderList.html'
+			}
+
+		)
+	.when('/addSlider',
+			{
+				controller:'controllers.sliderAddController',
+				templateUrl:'app/partials/slider/sliderAdd.html'
+			}
+	)			
+	.when('/editSlider/:id',
+			{
+				controller:'controllers.sliderDetailsController',
+				templateUrl:'app/partials/slider/sliderEdit.html'
+			}
+	)	
+	.when('/packageType',
+		{
+			controller:'controllers.packageTypeController',
+			templateUrl:'app/partials/packageType/packageTypeList.html'
+		}
+	)
+	.when('/editPackageType/:id',
+		{
+			controller:'controllers.pacakgeTypeDetailsController',
+			templateUrl:'app/partials/packageType/editPackageType.html'
+		}
+	)
 	.otherwise({
 		redirectTo:'/'
 	});

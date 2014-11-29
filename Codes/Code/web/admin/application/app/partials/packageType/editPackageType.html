@@ -1,0 +1,57 @@
+<h1>Edit Package Types</h1>
+<ol class="breadcrumb">
+  <li class="active"> <a href="#/fixedAdvertisment">Package Type List</a>	</li>
+  <li class="active"> Edit Package Type </li>
+</ol>
+<div class="row">
+	<div class="col-lg-5 col-lg-offset-1">
+    <!-- {{fixedAdsDetail.fixedAd[0]}} -->
+    	<form name="myForm" class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Package Name</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="packageTypesDetail.packageType[0].package_name" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Package Description</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="packageTypesDetail.packageType[0].package_Description" >
+            </div>
+          </div>
+             <div class="form-group">
+            <label class="col-sm-2 control-label">Package Price</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="packageTypesDetail.packageType[0].package_price" >
+            </div>
+          </div>
+             <div class="form-group">
+            <label class="col-sm-2 control-label">Package Advertisment Limit</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="packageTypesDetail.packageType[0].package_adLimit" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Package Added By</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="packageTypesDetail.packageType[0].package_addedBy" >
+            </div>
+          </div>        
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Package Status</label>
+            <div class="col-sm-8">
+        <select class="form-control" ng-model="packageTypesDetail.packageType[0].package_status" name="Fixed Advertisment Type" required>
+                  <option value="0">Active</option>
+                  <option value="1">Inactive</option>                  
+                </select>
+            </div>
+          </div>
+         
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-primary" ng-click="updateFixedAdvertisment(packageTypesDetail.packageType[0].package_id)" >Update Package Types</button>
+            </div>
+          </div>
+        </form>
+    </div>
+</div>

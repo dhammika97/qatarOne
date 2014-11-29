@@ -1,0 +1,36 @@
+<h1>Edit Slider</h1>
+<ol class="breadcrumb">
+  <li class="active"> <a href="#/slider">Slider</a>	</li>
+  <li class="active"> Edit Slider</li>
+</ol>
+<div class="row">
+	<div class="col-lg-5 col-lg-offset-1">
+    	<form name="myForm" class="form-horizontal" role="form">
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Slider Title</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="sliderDetails.slider[0].slider_title" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Slider Images</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="sliderDetails.slider[0].slider_image" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Slider Url</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="sliderDetails.slider[0].slider_url">
+            </div>
+          </div>
+         
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-primary" ng-click="updateSlider(sliderDetails.slider[0].slider_id)" ng-disabled="myForm.$invalid">Update Slider</button>
+            </div>
+          </div>
+        </form>
+    </div>
+</div>

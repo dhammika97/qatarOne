@@ -37,25 +37,43 @@ App.factory('pageFactory',function($resource){
 				alert(e.data.message)
 			})
 	}
-	/*
 	
-	
-	factory.getLocation = function(id){
-		return tmp = locationList.get({id:id})
+	factory.getPage = function(id){
+		return tmp = Pages.get({id:id})
 		tmp.$promise.catch(function(e){
 			console.log(e.data.message)
 			window.location.replace('#/dashboard')
 		})
 	}
-	
-	factory.updateLocation = function($scope,id){
-		tld = locationList.update({id:id},$scope.locationDetails.location[0])
+		
+	factory.updatePage = function($scope,id){
+		tld = Pages.update({id:id},$scope.pageDetails.page[0])
 		tld.$promise.then(function(e){
 			alert(e.message)	
 		}).catch(function(e){
 			alert(e.message)	
 		})
-	}*/
+	}
+	
+	var PageContent = $resource('../../../api/pageContent/:id', {}, {
+        //query: { method: 'GET', params: {}, isArray: false },
+        get: { method: 'GET', params: { id: '@id' } },
+        update: { method: 'PUT', params: { id: '@id' } },
+		save:{method: 'POST'},
+		delete:{method:'DELETE',params:{ id:'@id' }}
+    });
+	
+	factory.savePageContent = function($scope){
+		return PageContent.save($scope.pageContent)
+		.$promise.catch(function(e){
+				alert(e.data.message)
+			}).then(
+			function(value){
+				alert(value.message)
+				$scope.pageContent=''
+			}
+		)
+	}
 	
 	return factory
 })

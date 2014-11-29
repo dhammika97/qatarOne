@@ -1,0 +1,30 @@
+<h1>Add New Page Content</h1>
+<ol class="breadcrumb">
+  <li class="active"> <a href="#/pages">Pages</a>	</li>
+  <li class="active"> Page Content</li>
+  <li class="active"> Add new page content</li>
+</ol>
+<div class="row">
+{{pageContent}}
+	<div class="col-lg-8 col-lg-offset-1">
+    	<form name="myForm" class="form-horizontal" role="form" >
+          <div class="form-group">
+            <label class="col-sm-1 control-label">Page Title</label>
+            <div class="col-sm-8">
+            	<select class="form-control" ng-model="pageContent.pageContent_pageId" ng-options="a.page_title for a in pageTitle.pages" required></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-1 control-label">Page Description</label>
+            <div class="col-sm-8">
+              <textarea class="form-control" rows="20" ng-model="pageContent.pageContent_Description" required></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-10">
+              <button type="submit" class="btn btn-primary" ng-click="addPageContent()" ng-disabled="myForm.$invalid" >Add Page</button>
+            </div>
+          </div>
+        </form>
+    </div>
+</div>

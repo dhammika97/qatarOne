@@ -18,10 +18,24 @@ controllers.pageAddController = function($scope, pageFactory){
 	}
 }
 
-controllers.locationDetailController = function($scope, $routeParams,locationFactory){
-	$scope.locationDetails = locationFactory.getLocation($routeParams.id)
+controllers.pageContentAddController = function($scope, pageFactory){
+	$scope.addPageContent = function(){
+		pageFactory.savePageContent($scope)
+	}
+}
+
+controllers.pageDetailController = function($scope, $routeParams,pageFactory){
+	$scope.pageDetails = pageFactory.getPage($routeParams.id)
 	
-	$scope.updateLocation = function(id){
-		locationFactory.updateLocation($scope,id)	
+	$scope.updatePage = function(id){
+		pageFactory.updatePage($scope,id)	
+	}
+}
+
+controllers.pageContentAddController = function($scope, pageFactory){
+	$scope.pageTitle = 	pageFactory.getPages()
+	
+	$scope.addPageContent = function(){
+		pageFactory.savePageContent($scope)	
 	}
 }

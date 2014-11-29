@@ -648,11 +648,11 @@ $app->post('/page', 'authenticate', function() use ($app) {
 		//print_r($subCategory);
 		if ($DbHandler->addPage($page)) {
 			$response["error"] = false;
-			$response["message"] = "Successfully created the category";
+			$response["message"] = "Successfully created the page";
 			echoRespnse(201, $response);
 		} else {
 			$response["error"] = true;
-			$response["message"] = "category not created ";
+			$response["message"] = "page not created ";
 			echoRespnse(400, $response);
 		}
 });
@@ -688,12 +688,12 @@ $app->delete('/page/:id', 'authenticate', function($page_id) use($app) {
 		if ($result) {
 			// user deleted successfully				
 			$response["error"] = false;
-			$response["message"] = "User deleted succesfully";
+			$response["message"] = "Page deleted succesfully";
 			echoRespnse(200, $response);
 		} else {
 			// task failed to delete
 			$response["error"] = true;
-			$response["message"] = "User failed to delete. Please try again!";
+			$response["message"] = "Page failed to delete. Please try again!";
 			echoRespnse(404, $response);
 		}
 });

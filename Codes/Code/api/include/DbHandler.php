@@ -142,20 +142,22 @@ class DbHandler {
 
 	public function createFixedAdvertisment( $fixed_advertisment) {
 		$db = new database();
+		$date= date('y-m-d');
 		$table  = "fixedads";
 		
 		(isset($fixed_advertisment['fixedads_type']) ? $fixedads_type = $fixed_advertisment['fixedads_type'] : $fixedads_type = "" );
-		(isset($fixed_advertisment['fixedads_image']) ? $fixedads_image = $fixed_advertisment['fixedads_image'] : $fixedads_image = "" );
-		(isset($fixed_advertisment['fixedads_enetredDate']) ? $fixedads_enetredDate = $fixed_advertisment['fixedads_enetredDate'] : $fixedads_enetredDate = "" );
+		(isset($fixed_advertisment['fixedads_image']) ? $fixedads_image = $fixed_advertisment['fixedads_image'] : $fixedads_image = "" );		
 		(isset($fixed_advertisment['fixedads_url']) ? $fixedads_url = $fixed_advertisment['fixedads_url'] : $fixedads_url = "" );
 		(isset($fixed_advertisment['fixedads_status']) ? $fixedads_status = $fixed_advertisment['fixedads_status'] : $fixedads_status = "" );
 		
-		$values = "'".$fixedads_type."',
+		$values = "'".$fixedads_title."',
+				  '".$fixedads_type."',
 				  '".$fixedads_image."', 
-				  '".$fixedads_enetredDate."', 
+				  '".$date."', 
 				  '".$fixedads_url."',              
 				  '".$fixedads_status."'";
-		$rows="fixedads_type, 
+		$rows="fixedads_title,
+			   fixedads_type, 
 			   fixedads_image,
 			   fixedads_enetredDate,
 			   fixedads_url,
@@ -404,7 +406,7 @@ class DbHandler {
 		$db = new database();  
 		$table = 'pages';
 		$rows ='*';
-		$where = 'page_status = "1" ';
+		$where = '';
 		$db->selectJson($table,$rows,$where,'','');
 		$pages_list = $db->getJson();
 		return $pages_list;
@@ -413,7 +415,7 @@ class DbHandler {
 		$db = new database();
 		$table = 'pages';
 		$rows ='*';
-		$where = 'page_id = "'.$page_id.'" AND page_status = "1" ';
+		$where = 'page_id = "'.$page_id.'"';
 		$db->selectJson($table,$rows,$where,'','');
 		$page = $db->getJson();
 		return $page;			
@@ -454,17 +456,17 @@ public function checkLogin($user_email, $user_password) {
    	
 	public function addPageContent($pageContent){
 		$db = new database();
-		$table1 = 'pagecontent';
+		/*$table1 = 'pagecontent';
 		$rows1 ='pageContent_pageTitle';
 		$where1 = 'pageContent_pageTitle = "'.$pageContent['pageContent_pageTitle'].'"';
 		$db->select($table1,$rows1,$where1,'','');
 		$pageNumRows = $db->getNumRows();	
 		if( $pageNumRows > 1 ){
 			return false;
-		}
+		}*/
 		$table  = "pagecontent";
-		$values = "'".$pageContent['pageContent_pageTitle']."', '".$pageContent['pageContent_Description']."'";				
-		$rows   = "pageContent_pageTitle, pageContent_Description";		
+		$values = "'".$pageContent['pageContent_pageId']['page_id']."', '".$pageContent['pageContent_Description']."'";				
+		$rows   = "pageContent_pageId, pageContent_Description";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}
@@ -577,8 +579,13 @@ public function checkLogin($user_email, $user_password) {
 		}
 		
 		$table  = "events";
-		$values = "'".$event['event_title']."', '".$event['event_date']."', 
-				  '".$event['event_shortDescription']."', '".$event['event_description']."', '".$event['event_image']."'";				
+		(isset($event['event_title']) ? $event_title = $event['event_title'] : $event_title = "" );
+		(isset($event['event_description']) ? $event_description = $event['event_description'] : $event_description = "" );
+		(isset($event['event_date']) ? $event_date = $event['event_date'] : $event_date = "" );
+		(isset($event['event_shortDescription']) ? $event_shortDescription = $event['event_shortDescription'] : $event_shortDescription = "" );
+		(isset($event['event_image']) ? $event_image = $event['event_image'] : $event_image = "" );
+		$values = "'".$event_title."', '".$event_date."', 
+				  '".$event_shortDescription."', '".$event_description."', '".$event_image."'";				
 		$rows   = "event_title, event_date, event_shortDescription, event_description,event_image";		 
 		if($db->insert($table,$values,$rows) ){
 			return true;
@@ -608,8 +615,8 @@ public function checkLogin($user_email, $user_password) {
 		$db = new database();  
 		$table = 'events';
 		$rows ='*';
-		$where = 'event_status = "1" ';
-		$db->selectJson($table,$rows,$where,'','');
+		
+		$db->selectJson($table,$rows,'','','');
 		$pages_list = $db->getJson();
 		return $pages_list;
 	}
@@ -626,14 +633,16 @@ public function checkLogin($user_email, $user_password) {
 	public function createSlider($slider){
 		$db = new database();
 		$table  = "sliders";
-		$values = "'".$slider['slider_title']."', 
-				'".$slider['slider_image']."',
-				'".$slider['slider_url']."',
-				'".$slider['slider_status']."'";					  
+		(isset($slider['slider_title']) ? $slider_title = $slider['slider_title'] : $slider_title = "" );
+		(isset($slider['slider_image']) ? $slider_image = $slider['slider_image'] : $slider_image = "" );
+		(isset($slider['slider_url']) ? $slider_url = $slider['slider_url'] : $slider_url = "" );
+		
+		$values = "'".$slider_title."', 
+				'".$slider_image."',
+				'".$slider_url."'";					  
 		$rows   = "slider_title, 
 				   slider_image,
-				   slider_url,
-				   slider_status";		
+				   slider_url";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}else{

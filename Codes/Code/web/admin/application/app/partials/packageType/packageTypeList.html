@@ -1,0 +1,28 @@
+<h1>Package Types<a href="#/addFixedAdvertisment" class="btn btn-primary pull-right">Add  Package Types</a></h1>
+<ol class="breadcrumb">
+  <li class="active"> Package Types </li>
+</ol>
+{{packageTypes.package_name}} 
+<table class="table table-hover tablesorter">
+    <thead>
+      <tr>
+        <th>Name<th/>
+        <th>Description </th>
+        <th>Price </th>
+        <th>Addvertisement Limit</th>
+        <th>Added By</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="packageType in packageTypes.packageTypes">
+        <td>{{packageType.package_name}}</td>
+        <td>{{packageType.package_Description}}</td>
+        <td>{{packageType.package_price}}</td>
+        <td>{{packageType.package_adLimit}}</td>
+        <td>{{packageType.package_addedBy}}</td>
+         <td>{{packageType.package_status}}</td>
+        <td><button class="btn btn-primary">Revoke Access Token</button> <a href="#/editPackageType/{{packageType.package_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deletePackageTypes(packageType.package_id)">Delete</button></td>
+      </tr>
+    </tbody>
+</table>
