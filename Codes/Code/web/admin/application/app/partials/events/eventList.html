@@ -8,7 +8,7 @@
         <th>Event Title</th>
         <th>Event Date</th>
         <th>Event Description</th>
-        <th></th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -16,6 +16,7 @@
    		<td>{{event.event_title}}</td>
         <td>{{event.event_date}}</td>
         <th>{{event.event_shortDescription}}</th>
+        <th>{{event.event_status}}</th>
         <td><a href="#/editEvent/{{event.evenet_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteEvent(event.evenet_id)">Delete</button></td>
       </tr>
     </tbody>

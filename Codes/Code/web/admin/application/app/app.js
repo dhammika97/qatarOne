@@ -120,6 +120,18 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/news/newsList.html'	
 		}
 	)
+	.when('/editNews/:id',
+		{
+			controller:'controllers.newsDetailsController',
+			templateUrl:'app/partials/news/newsEdit.html'	
+		}
+	)
+	.when('/addNews',
+		{
+			controller:'controllers.newsAddController',
+			templateUrl:'app/partials/news/newsAdd.html'	
+		}
+	)
 	
 	.when('/fixedAdvertisment',
 		{
