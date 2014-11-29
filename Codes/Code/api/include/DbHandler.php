@@ -579,8 +579,13 @@ public function checkLogin($user_email, $user_password) {
 		}
 		
 		$table  = "events";
-		$values = "'".$event['event_title']."', '".$event['event_date']."', 
-				  '".$event['event_shortDescription']."', '".$event['event_description']."', '".$event['event_image']."'";				
+		(isset($event['event_title']) ? $event_title = $event['event_title'] : $event_title = "" );
+		(isset($event['event_description']) ? $event_description = $event['event_description'] : $event_description = "" );
+		(isset($event['event_date']) ? $event_date = $event['event_date'] : $event_date = "" );
+		(isset($event['event_shortDescription']) ? $event_shortDescription = $event['event_shortDescription'] : $event_shortDescription = "" );
+		(isset($event['event_image']) ? $event_image = $event['event_image'] : $event_image = "" );
+		$values = "'".$event_title."', '".$event_date."', 
+				  '".$event_shortDescription."', '".$event_description."', '".$event_image."'";				
 		$rows   = "event_title, event_date, event_shortDescription, event_description,event_image";		 
 		if($db->insert($table,$values,$rows) ){
 			return true;
@@ -610,8 +615,8 @@ public function checkLogin($user_email, $user_password) {
 		$db = new database();  
 		$table = 'events';
 		$rows ='*';
-		$where = 'event_status = "1" ';
-		$db->selectJson($table,$rows,$where,'','');
+		
+		$db->selectJson($table,$rows,'','','');
 		$pages_list = $db->getJson();
 		return $pages_list;
 	}
