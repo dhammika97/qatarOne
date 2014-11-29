@@ -24,17 +24,19 @@ App.factory('locationFactory',function($resource){
 				alert(e.data.message)
 			})
 	}
-	/*factory.saveUser = function($scope,user){
-		return userList.save(user)
+	
+	factory.saveLocation = function($scope){
+		return locationList.save($scope.location)
 		.$promise.catch(function(e){
 				alert(e.data.message)
 			}).then(
 			function(value){
 				alert(value.message)
-				$scope.user=''
+				$scope.location=''
 			}
 		)
 	}
+	/*
 	
 	
 	
