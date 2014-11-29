@@ -70,7 +70,6 @@ $rootScope.accessToken = getUser()
 })
 
 //suburbsFactry
-
 App.factory('suburbsFactory',function($resource){
 	var suburbList = $resource('../../../api/suburbs/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
@@ -87,6 +86,7 @@ App.factory('suburbsFactory',function($resource){
 			//window.location.replace('#/dashboard')
 		})
 	}
+	
 	factory.deleteSuburbs = function($scope,id){
 		return suburbList.delete({id:id})
 		.$promise.then(function(e){
@@ -96,21 +96,23 @@ App.factory('suburbsFactory',function($resource){
 			alert(e.data.message)
 		})
 	}
+	
 	factory.saveSuburb = function($scope){
-		return suburbList.save($scope.suburb)
+		//alert(scope.suburbs)
+		return suburbList.save($scope.suburbs)
 		.$promise.catch(function(e){
 			alert(e.data.message)
 		}).then(
 				function(value){
 					alert(value.message)
-					$scope.suburb=''
+					$scope.suburbs=''
 				}
 		)
 	}
 	
 	factory.updateSuburb = function($scope,id){
 		//debugger
-		tld = suburbList.update({id:id},$scope.SuburbDetails.user[0])
+		tld = suburbList.update({id:id},$scope.suburbDetails.suburb[0])
 		tld.$promise.then(function(e){
 		alert(e.message)
 		}).catch(function(e){
@@ -119,6 +121,13 @@ App.factory('suburbsFactory',function($resource){
 		//console.log($scope.userDetails.user)
 		}
 	
+	factory.getSuburb = function(id){
+		return tmp = suburbList.get({id:id})
+		tmp.$promise.catch(function(e){
+			console.log(e.data.message)
+			window.location.replace('#/dashboard')
+		})
+	}
 	
 	return factory
 })

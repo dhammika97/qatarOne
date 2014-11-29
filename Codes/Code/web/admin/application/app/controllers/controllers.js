@@ -61,12 +61,11 @@ controllers.suburbAddController = function($scope, suburbsFactory){
 	}
 }
 controllers.suburbDetailsController = function($scope, $routeParams, suburbsFactory){
-	$scope.suburbDetails = suburbsFactory.getSuburbs($routeParams.id)
+	$scope.suburbDetails = suburbsFactory.getSuburb($routeParams.id)
 	
 	$scope.updateSuburb = function(id){
 		suburbsFactory.updateSuburb($scope,id)
 	}
 }
-
 
 App.controller(controllers)

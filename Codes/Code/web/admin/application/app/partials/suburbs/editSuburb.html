@@ -1,7 +1,7 @@
 <h1>Edit Suburb</h1>
 <ol class="breadcrumb">
   <li class="active"> <a href="#/suburbs">Suburbs</a>	</li>
-  <li class="active"> Add new suburb</li>
+  <li class="active"> Edit suburb</li>
 </ol>
 <div class="row">
 	<div class="col-lg-5 col-lg-offset-1">
@@ -9,24 +9,24 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Suburb Location</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" ng-model="suberbs.suburb_location_id" required>
+              <input type="text" class="form-control" ng-model="suburbDetails.suburb[0].suburb_location_id" required>
             </div>
           </div>
-          <div class="form-group">
+             <div class="form-group">
             <label class="col-sm-2 control-label">Suburb Name</label>
             <div class="col-sm-8">
-              <input type="password" class="form-control" ng-model="suberbs.suburb_name" required>
+              <input type="text" class="form-control" ng-model="suburbDetails.suburb[0].suburb_name" required>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">Suburb Cordinates</label>
+            <label class="col-sm-2 control-label">Suburb Coordinates</label>
             <div class="col-sm-8">
-              <input type="email" class="form-control" ng-model="suberbs.suburb_cordinates" required>
+              <input type="text" class="form-control" ng-model="suburbDetails.suburb[0].suburb_cordinates" required>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary" ng-click="addSuburb()" ng-disabled="myForm.$invalid" >Add Suburb</button>
+              <button class="btn btn-primary" ng-click="updateSuburb(suburbDetails.suburb[0].suburb_id)" ng-disabled="myForm.$invalid" >Update Suburb</button>
             </div>
           </div>
         </form>
