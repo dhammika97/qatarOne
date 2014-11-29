@@ -168,11 +168,16 @@ App.config(function($routeProvider, $httpProvider){
 		)
 	.when('/addSlider',
 			{
-				//controller:'controllers.fixedAdvertismentAddController',
+				controller:'controllers.sliderAddController',
 				templateUrl:'app/partials/slider/sliderAdd.html'
 			}
 	)			
-	
+	.when('/editSlider/:id',
+			{
+				controller:'controllers.sliderDetailsController',
+				templateUrl:'app/partials/slider/sliderEdit.html'
+			}
+	)	
 	
 	.otherwise({
 		redirectTo:'/'

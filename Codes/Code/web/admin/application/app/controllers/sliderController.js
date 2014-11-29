@@ -12,16 +12,18 @@ controllers.sliderController = function($scope, sliderFactory){
 }
 
 controllers.sliderAddController = function($scope, sliderFactory){
-	$scope.addslider = function(){
+
+	$scope.addSlider = function(){
+			
 		sliderFactory.saveSlider($scope)		
 
 	}
 }
 controllers.sliderDetailsController = function($scope, $routeParams, sliderFactory){
-	
-	$scope.sliderDetails = sliderFactory.getSlider($routeParams.id);	
+	$scope.sliderDetails = sliderFactory.getSlider_edit($routeParams.id);	
 	
 	$scope.updateSlider= function(id){
+		
 		sliderFactory.updateSlider($scope,id);
 	}
 }

@@ -22,13 +22,12 @@ App.factory('sliderFactory',function($resource){
 		return sliderList.delete({id:id})
 		.$promise.then(function(e){
 				alert(e.message)
-				$scope.slide = sliderList.query()
+				$scope.slider = sliderList.query()
 			}).catch(function(e){
 				alert(e.data.message)
 			})
 	}
-	factory.getSlider = function(id){
-		//alert(id);
+	factory.getSlider_edit = function(id){
 		return tmp = sliderList.get({id:id})
 		tmp.$promise.catch(function(e){
 			console.log(e.data.message)
@@ -42,13 +41,13 @@ App.factory('sliderFactory',function($resource){
 			}).then(
 			function(value){
 				alert(value.message)
-				$scope.eventa=''
+				$scope.slider=''
 			}
 		)
 	}
-	factory.updateEvent = function($scope,id){
-		
-		tld = eventsList.update({id:id},$scope.eventDetails.event[0])
+	factory.updateSlider = function($scope,id){
+	
+		tld = sliderList.update({id:id},$scope.sliderDetails.slider[0])
 		tld.$promise.then(function(e){
 			alert(e.message)	
 		}).catch(function(e){
