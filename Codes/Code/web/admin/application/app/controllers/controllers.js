@@ -42,12 +42,31 @@ controllers.newsController = function($scope, $routeParams, $resource){
 		News.save(news)
 	}
 }
-//suberbsController
-controllers.suberbsController = function($scope, $routeParams, suberbsFactry){
-	$scope.suberbs =suberbsFactry.getSuberbs($routeParams.id)
-	//$scope.suberbs = function(id){
-	//	suberbsFactry.getSuberbs(id)
-	//}
+//suburbsController
+controllers.suburbsController = function($scope, $routeParams, suburbsFactory){
+	$scope.suburbs =suburbsFactory.getSuburbs($routeParams.id)
+	
+	$scope.deleteSuburbs = function(id){
+		if(id!=''){
+			var r = confirm("Do you want to delete this suburb!");
+			if (r == true) {
+				suburbsFactory.deleteSuburbs($scope,id)
+			}
+		}
+	}
 }
+controllers.suburbAddController = function($scope, suburbsFactory){
+	$scope.addSuburb = function(){
+		suburbsFactory.saveSuburb($scope)
+	}
+}
+controllers.suburbDetailsController = function($scope, $routeParams, suburbsFactory){
+	$scope.suburbDetails = suburbsFactory.getSuburbs($routeParams.id)
+	
+	$scope.updateSuburb = function(id){
+		suburbsFactory.updateSuburb($scope,id)
+	}
+}
+
 
 App.controller(controllers)

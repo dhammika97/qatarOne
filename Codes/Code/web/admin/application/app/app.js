@@ -87,13 +87,22 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/events/eventEdit.html'		
 		}
 	)
-	.when('/suberbs',
+	.when('/suburbs',
 		{
-			controller:'controllers.suberbsController',
-			templateUrl:'app/partials/suberbs/suberbsList.html'	
+			controller:'controllers.suburbsController',
+			templateUrl:'app/partials/suburbs/suburbsList.html'	
 		}
-	)
-	.when('/pages',
+	).when('/addSuburbs',
+			{
+		controller:'controllers.suburbAddController',
+		templateUrl:'app/partials/suburbs/addSuburb.html'	
+	}
+	).when('/editSuburbs/:id',
+			{
+		controller:'controllers.suburbDetailsController',
+		templateUrl:'app/partials/suburbs/editSuburb.html'	
+	}
+	).when('/pages',
 		{
 			controller:'controllers.pageController',
 			templateUrl:'app/partials/page/pageList.html'	

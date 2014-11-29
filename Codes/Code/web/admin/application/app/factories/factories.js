@@ -56,6 +56,7 @@ alert(e.message)
 }
 return factory
 })
+
 App.factory('User',function($rootScope){
 var getUser = function(){
 var ArrayCookies = document.cookie.split(';')
@@ -67,10 +68,11 @@ return ArrayCookies[i].substr(ArrayCookies[i].indexOf('=')+1)
 }
 $rootScope.accessToken = getUser()
 })
-//suberbsFactry
 
-App.factory('suberbsFactry',function($resource){
-	var suberbList = $resource('../../../api/suburbs/:id', {}, {
+//suburbsFactry
+
+App.factory('suburbsFactory',function($resource){
+	var suburbList = $resource('../../../api/suburbs/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
         get: { method: 'GET', params: { id: '@id' } },
         update: { method: 'PUT', params: { id: '@id' } },
@@ -78,15 +80,46 @@ App.factory('suberbsFactry',function($resource){
 		delete:{method:'DELETE',params:{ id:'@id' }}
     });
 	var factory = {}
-	factory.getSuberbs = function(){
-		return tld = suberbList.query();
+	factory.getSuburbs = function(){
+		return tld = suburbList.query();
 		tld.$promise.catch(function(e){
 			alert(e.data.message)
 			//window.location.replace('#/dashboard')
 		})
 	}
+	factory.deleteSuburbs = function($scope,id){
+		return suburbList.delete({id:id})
+		.$promise.then(function(e){
+			alert(e.message)
+			$scope.users = suburbList.query()
+		}).catch(function(e){
+			alert(e.data.message)
+		})
+	}
+	factory.saveSuburb = function($scope){
+		return suburbList.save($scope.suburb)
+		.$promise.catch(function(e){
+			alert(e.data.message)
+		}).then(
+				function(value){
+					alert(value.message)
+					$scope.suburb=''
+				}
+		)
+	}
 	
-
+	factory.updateSuburb = function($scope,id){
+		//debugger
+		tld = suburbList.update({id:id},$scope.SuburbDetails.user[0])
+		tld.$promise.then(function(e){
+		alert(e.message)
+		}).catch(function(e){
+		alert(e.message)
+		})
+		//console.log($scope.userDetails.user)
+		}
+	
 	
 	return factory
 })
+
