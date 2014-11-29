@@ -12,3 +12,10 @@ controllers.eventController = function($scope, eventFactory){
 //	}
 	
 }
+
+controllers.eventAddController = function($scope, eventFactory){
+	$scope.addEvent = function(){
+		eventFactory.saveUser($scope)//userList.save(user)
+
+	}
+}
