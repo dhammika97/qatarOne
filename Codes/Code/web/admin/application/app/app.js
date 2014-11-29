@@ -108,7 +108,7 @@ App.config(function($routeProvider, $httpProvider){
 	)
 	.when('/news',
 		{
-			//controller:'controllers.newsController',
+			controller:'controllers.newsController',
 			templateUrl:'app/partials/news/newsList.html'	
 		}
 	)
