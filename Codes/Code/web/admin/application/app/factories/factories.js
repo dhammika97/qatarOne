@@ -75,3 +75,26 @@ App.factory('User',function($rootScope){
 	$rootScope.accessToken = getUser()
 })
 
+//suberbsFactry
+
+App.factory('suberbsFactry',function($resource){
+	var suberbList = $resource('../../../api/suburbs/:id', {}, {
+        query: { method: 'GET', params: {}, isArray: false },
+        get: { method: 'GET', params: { id: '@id' } },
+        update: { method: 'PUT', params: { id: '@id' } },
+		save:{method: 'POST'},
+		delete:{method:'DELETE',params:{ id:'@id' }}
+    });
+	var factory = {}
+	factory.getSuberbs = function(){
+		return tld = suberbList.query();
+		tld.$promise.catch(function(e){
+			alert(e.data.message)
+			//window.location.replace('#/dashboard')
+		})
+	}
+	
+
+	
+	return factory
+})
