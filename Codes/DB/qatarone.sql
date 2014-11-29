@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2014 at 06:13 PM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Generation Time: Nov 29, 2014 at 06:27 PM
+-- Server version: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `qatarone`
+-- Database: `qatarone001`
 --
 
 -- --------------------------------------------------------
@@ -27,10 +27,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `advertisement_images` (
-  `advertisement_imageId` int(11) NOT NULL AUTO_INCREMENT,
+`advertisement_imageId` int(11) NOT NULL,
   `advertisement_id` int(11) NOT NULL,
-  `advertisement_image` varchar(255) NOT NULL,
-  PRIMARY KEY (`advertisement_imageId`)
+  `advertisement_image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -40,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `advertisement_images` (
 --
 
 CREATE TABLE IF NOT EXISTS `advertisment` (
-  `advertisment_id` int(11) NOT NULL AUTO_INCREMENT,
+`advertisment_id` int(11) NOT NULL,
   `advertisement_categoryId` int(5) NOT NULL,
   `advertisement_subCategoryId` int(5) NOT NULL,
   `advertisement_attributes` longtext NOT NULL,
@@ -55,8 +54,7 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
   `advertisement_googleCodes` varchar(20) NOT NULL,
   `advertisement_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `advertisement_status` int(1) NOT NULL,
-  `advertisement_expire` datetime NOT NULL,
-  PRIMARY KEY (`advertisment_id`)
+  `advertisement_expire` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -66,13 +64,12 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `category_id` int(5) NOT NULL AUTO_INCREMENT,
+`category_id` int(5) NOT NULL,
   `category_parentId` int(5) NOT NULL,
   `category_name` varchar(250) NOT NULL,
   `category_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_enteredBy` int(11) NOT NULL,
-  `category_status` int(1) NOT NULL,
-  PRIMARY KEY (`category_id`)
+  `category_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
@@ -96,10 +93,9 @@ INSERT INTO `category` (`category_id`, `category_parentId`, `category_name`, `ca
 --
 
 CREATE TABLE IF NOT EXISTS `categoryattributes` (
-  `attribute_id` int(4) NOT NULL AUTO_INCREMENT,
+`attribute_id` int(4) NOT NULL,
   `attribute_categoryId` int(4) NOT NULL,
-  `attributes` longtext NOT NULL,
-  PRIMARY KEY (`attribute_id`)
+  `attributes` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -109,14 +105,12 @@ CREATE TABLE IF NOT EXISTS `categoryattributes` (
 --
 
 CREATE TABLE IF NOT EXISTS `category_sub` (
-  `category_sub_id` int(4) NOT NULL AUTO_INCREMENT,
+`category_sub_id` int(4) NOT NULL,
   `category_sub_name` varchar(250) NOT NULL,
   `category_sub_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_sub_enteredBy` int(5) NOT NULL,
   `category_sub_status` int(1) NOT NULL,
-  `category_sub_parentId` int(4) NOT NULL,
-  PRIMARY KEY (`category_sub_id`),
-  KEY `category_sub_id` (`category_sub_id`)
+  `category_sub_parentId` int(4) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -136,14 +130,13 @@ INSERT INTO `category_sub` (`category_sub_id`, `category_sub_name`, `category_su
 --
 
 CREATE TABLE IF NOT EXISTS `events` (
-  `evenet_id` int(11) NOT NULL AUTO_INCREMENT,
+`evenet_id` int(11) NOT NULL,
   `event_title` varchar(255) NOT NULL,
   `event_date` date NOT NULL,
   `event_shortDescription` varchar(255) NOT NULL,
   `event_description` longtext NOT NULL,
   `event_image` varchar(255) NOT NULL,
-  `event_status` int(1) NOT NULL,
-  PRIMARY KEY (`evenet_id`)
+  `event_status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -153,14 +146,21 @@ CREATE TABLE IF NOT EXISTS `events` (
 --
 
 CREATE TABLE IF NOT EXISTS `fixedads` (
-  `fixedads_id` int(11) NOT NULL AUTO_INCREMENT,
+`fixedads_id` int(11) NOT NULL,
   `fixedads_type` int(2) NOT NULL,
   `fixedads_image` varchar(255) NOT NULL,
-  `fixedads_enetredDate` datetime NOT NULL,
+  `fixedads_enetredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `fixedads_url` varchar(255) NOT NULL,
   `fixedads_status` int(1) NOT NULL,
-  PRIMARY KEY (`fixedads_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `fixedads_title` varchar(100) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `fixedads`
+--
+
+INSERT INTO `fixedads` (`fixedads_id`, `fixedads_type`, `fixedads_image`, `fixedads_enetredDate`, `fixedads_url`, `fixedads_status`, `fixedads_title`) VALUES
+(2, 0, 'ff', '2014-11-28 18:30:00', 'ff', 0, 'ff');
 
 -- --------------------------------------------------------
 
@@ -169,10 +169,9 @@ CREATE TABLE IF NOT EXISTS `fixedads` (
 --
 
 CREATE TABLE IF NOT EXISTS `locations` (
-  `location_id` int(5) NOT NULL AUTO_INCREMENT,
+`location_id` int(5) NOT NULL,
   `location_name` varchar(100) NOT NULL,
-  `location_cordinates` varchar(20) NOT NULL,
-  PRIMARY KEY (`location_id`)
+  `location_cordinates` varchar(20) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -190,14 +189,13 @@ INSERT INTO `locations` (`location_id`, `location_name`, `location_cordinates`) 
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-  `news_id` int(10) NOT NULL AUTO_INCREMENT,
+`news_id` int(10) NOT NULL,
   `news_title` varchar(255) NOT NULL,
   `news_shortDescription` varchar(255) NOT NULL,
   `news_Description` longtext NOT NULL,
   `news_image` varchar(255) NOT NULL,
   `news_date` datetime NOT NULL,
-  `news_status` int(1) NOT NULL,
-  PRIMARY KEY (`news_id`)
+  `news_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -214,14 +212,13 @@ INSERT INTO `news` (`news_id`, `news_title`, `news_shortDescription`, `news_Desc
 --
 
 CREATE TABLE IF NOT EXISTS `packagetypes` (
-  `package_id` int(2) NOT NULL AUTO_INCREMENT,
+`package_id` int(2) NOT NULL,
   `package_name` varchar(100) NOT NULL,
   `package_Description` longtext NOT NULL,
   `package_price` decimal(10,0) NOT NULL,
   `package_adLimit` int(2) NOT NULL,
   `package_addedBy` int(3) NOT NULL,
-  `package_status` int(1) NOT NULL,
-  PRIMARY KEY (`package_id`)
+  `package_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -239,12 +236,11 @@ INSERT INTO `packagetypes` (`package_id`, `package_name`, `package_Description`,
 --
 
 CREATE TABLE IF NOT EXISTS `pagecontent` (
-  `pageContent_id` int(1) NOT NULL AUTO_INCREMENT,
+`pageContent_id` int(1) NOT NULL,
   `pageContent_pageId` int(1) NOT NULL,
   `pageContent_pageTitle` varchar(100) NOT NULL,
   `pageContent_Description` longtext NOT NULL,
-  `pageContent_lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`pageContent_id`)
+  `pageContent_lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -254,11 +250,10 @@ CREATE TABLE IF NOT EXISTS `pagecontent` (
 --
 
 CREATE TABLE IF NOT EXISTS `pages` (
-  `page_id` int(2) NOT NULL AUTO_INCREMENT,
+`page_id` int(2) NOT NULL,
   `page_title` varchar(100) NOT NULL,
   `page_status` int(1) NOT NULL,
-  `page_addedBy` int(2) NOT NULL,
-  PRIMARY KEY (`page_id`)
+  `page_addedBy` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -268,12 +263,11 @@ CREATE TABLE IF NOT EXISTS `pages` (
 --
 
 CREATE TABLE IF NOT EXISTS `sliders` (
-  `slider_id` int(10) NOT NULL AUTO_INCREMENT,
+`slider_id` int(10) NOT NULL,
   `slider_title` varchar(100) NOT NULL,
   `slider_image` varchar(255) NOT NULL,
   `slider_url` int(255) NOT NULL,
-  `slider_status` int(1) NOT NULL,
-  PRIMARY KEY (`slider_id`)
+  `slider_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -291,11 +285,10 @@ INSERT INTO `sliders` (`slider_id`, `slider_title`, `slider_image`, `slider_url`
 --
 
 CREATE TABLE IF NOT EXISTS `suburbs` (
-  `suburb_id` int(5) NOT NULL AUTO_INCREMENT,
+`suburb_id` int(5) NOT NULL,
   `suburb_location_id` int(5) NOT NULL,
   `suburb_name` varchar(100) NOT NULL,
-  `suburb_cordinates` varchar(20) NOT NULL,
-  PRIMARY KEY (`suburb_id`)
+  `suburb_cordinates` varchar(20) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -313,7 +306,7 @@ INSERT INTO `suburbs` (`suburb_id`, `suburb_location_id`, `suburb_name`, `suburb
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
   `user_username` varchar(50) NOT NULL,
   `user_password` text NOT NULL,
   `user_email` varchar(50) NOT NULL,
@@ -326,8 +319,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_registeredDate` datetime NOT NULL,
   `user_type` int(1) NOT NULL,
   `user_status` int(1) NOT NULL,
-  `user_accessToken` text NOT NULL,
-  PRIMARY KEY (`user_id`)
+  `user_accessToken` text NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
@@ -348,15 +340,198 @@ INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `
 --
 
 CREATE TABLE IF NOT EXISTS `userpackge` (
-  `userpkg_id` int(11) NOT NULL AUTO_INCREMENT,
+`userpkg_id` int(11) NOT NULL,
   `userpkg_userId` int(11) NOT NULL,
   `userpkg_pkgId` int(11) NOT NULL,
   `userpkg_remainAds` int(4) NOT NULL,
   `userpkg_expirey` date NOT NULL,
-  `userpkg_status` int(1) NOT NULL,
-  PRIMARY KEY (`userpkg_id`)
+  `userpkg_status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `advertisement_images`
+--
+ALTER TABLE `advertisement_images`
+ ADD PRIMARY KEY (`advertisement_imageId`);
+
+--
+-- Indexes for table `advertisment`
+--
+ALTER TABLE `advertisment`
+ ADD PRIMARY KEY (`advertisment_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+ ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `categoryattributes`
+--
+ALTER TABLE `categoryattributes`
+ ADD PRIMARY KEY (`attribute_id`);
+
+--
+-- Indexes for table `category_sub`
+--
+ALTER TABLE `category_sub`
+ ADD PRIMARY KEY (`category_sub_id`), ADD KEY `category_sub_id` (`category_sub_id`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+ ADD PRIMARY KEY (`evenet_id`);
+
+--
+-- Indexes for table `fixedads`
+--
+ALTER TABLE `fixedads`
+ ADD PRIMARY KEY (`fixedads_id`);
+
+--
+-- Indexes for table `locations`
+--
+ALTER TABLE `locations`
+ ADD PRIMARY KEY (`location_id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+ ADD PRIMARY KEY (`news_id`);
+
+--
+-- Indexes for table `packagetypes`
+--
+ALTER TABLE `packagetypes`
+ ADD PRIMARY KEY (`package_id`);
+
+--
+-- Indexes for table `pagecontent`
+--
+ALTER TABLE `pagecontent`
+ ADD PRIMARY KEY (`pageContent_id`);
+
+--
+-- Indexes for table `pages`
+--
+ALTER TABLE `pages`
+ ADD PRIMARY KEY (`page_id`);
+
+--
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
+ ADD PRIMARY KEY (`slider_id`);
+
+--
+-- Indexes for table `suburbs`
+--
+ALTER TABLE `suburbs`
+ ADD PRIMARY KEY (`suburb_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `userpackge`
+--
+ALTER TABLE `userpackge`
+ ADD PRIMARY KEY (`userpkg_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `advertisement_images`
+--
+ALTER TABLE `advertisement_images`
+MODIFY `advertisement_imageId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `advertisment`
+--
+ALTER TABLE `advertisment`
+MODIFY `advertisment_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+MODIFY `category_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `categoryattributes`
+--
+ALTER TABLE `categoryattributes`
+MODIFY `attribute_id` int(4) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `category_sub`
+--
+ALTER TABLE `category_sub`
+MODIFY `category_sub_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+MODIFY `evenet_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `fixedads`
+--
+ALTER TABLE `fixedads`
+MODIFY `fixedads_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `locations`
+--
+ALTER TABLE `locations`
+MODIFY `location_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+MODIFY `news_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `packagetypes`
+--
+ALTER TABLE `packagetypes`
+MODIFY `package_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `pagecontent`
+--
+ALTER TABLE `pagecontent`
+MODIFY `pageContent_id` int(1) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `pages`
+--
+ALTER TABLE `pages`
+MODIFY `page_id` int(2) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `sliders`
+--
+ALTER TABLE `sliders`
+MODIFY `slider_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `suburbs`
+--
+ALTER TABLE `suburbs`
+MODIFY `suburb_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `userpackge`
+--
+ALTER TABLE `userpackge`
+MODIFY `userpkg_id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
