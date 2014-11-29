@@ -55,5 +55,25 @@ App.factory('pageFactory',function($resource){
 		})
 	}
 	
+	var PageContent = $resource('../../../api/pageContent/:id', {}, {
+        //query: { method: 'GET', params: {}, isArray: false },
+        get: { method: 'GET', params: { id: '@id' } },
+        update: { method: 'PUT', params: { id: '@id' } },
+		save:{method: 'POST'},
+		delete:{method:'DELETE',params:{ id:'@id' }}
+    });
+	
+	factory.savePageContent = function($scope){
+		return PageContent.save($scope.pageContent)
+		.$promise.catch(function(e){
+				alert(e.data.message)
+			}).then(
+			function(value){
+				alert(value.message)
+				$scope.pageContent=''
+			}
+		)
+	}
+	
 	return factory
 })
