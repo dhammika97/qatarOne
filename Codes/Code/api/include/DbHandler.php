@@ -404,7 +404,7 @@ class DbHandler {
 		$db = new database();  
 		$table = 'pages';
 		$rows ='*';
-		$where = 'page_status = "1" ';
+		$where = '';
 		$db->selectJson($table,$rows,$where,'','');
 		$pages_list = $db->getJson();
 		return $pages_list;
@@ -413,7 +413,7 @@ class DbHandler {
 		$db = new database();
 		$table = 'pages';
 		$rows ='*';
-		$where = 'page_id = "'.$page_id.'" AND page_status = "1" ';
+		$where = 'page_id = "'.$page_id.'"';
 		$db->selectJson($table,$rows,$where,'','');
 		$page = $db->getJson();
 		return $page;			

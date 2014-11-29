@@ -18,8 +18,8 @@ controllers.pageAddController = function($scope, pageFactory){
 	}
 }
 
-controllers.locationDetailController = function($scope, $routeParams,locationFactory){
-	$scope.locationDetails = locationFactory.getLocation($routeParams.id)
+controllers.pageDetailController = function($scope, $routeParams,pageFactory){
+	$scope.pageDetails = pageFactory.getPage($routeParams.id)
 	
 	$scope.updateLocation = function(id){
 		locationFactory.updateLocation($scope,id)	

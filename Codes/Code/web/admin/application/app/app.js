@@ -106,6 +106,14 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/page/addPage.html'	
 		}
 	)
+	
+	.when('/editPage/:id',
+		{
+			controller:'controllers.pageDetailController',
+			templateUrl:'app/partials/page/editPage.html'	
+		}
+	)
+	
 	.when('/news',
 		{
 			controller:'controllers.newsController',

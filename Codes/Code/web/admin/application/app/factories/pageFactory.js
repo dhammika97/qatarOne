@@ -37,16 +37,18 @@ App.factory('pageFactory',function($resource){
 				alert(e.data.message)
 			})
 	}
-	/*
 	
-	
-	factory.getLocation = function(id){
-		return tmp = locationList.get({id:id})
+	factory.getPage = function(id){
+		return tmp = Pages.get({id:id})
 		tmp.$promise.catch(function(e){
 			console.log(e.data.message)
 			window.location.replace('#/dashboard')
 		})
 	}
+	/*
+	
+	
+	
 	
 	factory.updateLocation = function($scope,id){
 		tld = locationList.update({id:id},$scope.locationDetails.location[0])
