@@ -81,6 +81,12 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/events/eventAdd.html'		
 		}
 	)
+	.when('/editEvent',
+		{
+			//controller:'controllers.eventEditController',
+			templateUrl:'app/partials/events/eventEdit.html'		
+		}
+	)
 	.when('/suberbs',
 		{
 			controller:'controllers.suberbsController',
@@ -91,6 +97,13 @@ App.config(function($routeProvider, $httpProvider){
 		{
 			controller:'controllers.pageController',
 			templateUrl:'app/partials/page/pageList.html'	
+		}
+	)
+	
+	.when('/addPage',
+		{
+			//controller:'controllers.pageController',
+			templateUrl:'app/partials/page/addPage.html'	
 		}
 	)
 	

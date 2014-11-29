@@ -16,7 +16,7 @@ App.factory('eventFactory',function($resource){
 		tld.$promise.catch(function(e){
 			alert(e.data.message)
 			//window.location.replace('#/dashboard')
-		})
+		})	
 	}
 	factory.deleteEvent = function($scope,id){
 		return eventsList.delete({id:id})
