@@ -74,5 +74,3 @@ App.factory('User',function($rootScope){
 	
 	$rootScope.accessToken = getUser()
 })
-
-)
