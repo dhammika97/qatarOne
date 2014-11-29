@@ -86,7 +86,12 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/events/eventAdd.html'	
 		}
 	)
-	
+	.when('/pages',
+		{
+			//controller:'controllers.pageController',
+			templateUrl:'app/partials/page/pageList.html'	
+		}
+	)
 
 	
 	.otherwise({
