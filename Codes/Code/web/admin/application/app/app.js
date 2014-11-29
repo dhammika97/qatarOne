@@ -159,6 +159,14 @@ App.config(function($routeProvider, $httpProvider){
 			}
 
 		)	
+	.when('/slider',
+			{
+				//controller:'controllers.sliderController',
+				templateUrl:'app/partials/slider/sliderList.html'
+			}
+
+		)		
+	
 	
 	.otherwise({
 		redirectTo:'/'
