@@ -1,4 +1,4 @@
-<h1>Category<a href="#/addEvents" class="btn btn-primary pull-right">Add New</a></h1>
+<h1>Events<a href="#/addEvents" class="btn btn-primary pull-right">Add New</a></h1>
 <ol class="breadcrumb">
   <li class="active"> Events </li>
 </ol>
@@ -16,7 +16,7 @@
    		<td>{{event.event_title}}</td>
         <td>{{event.event_date}}</td>
         <th>{{event.event_shortDescription}}</th>
-        <td><a href="#/editEvent/{{event.event_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteEvent(event.evenet_id)">Delete</button></td>
+        <td><a href="#/editEvent/{{event.evenet_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteEvent(event.evenet_id)">Delete</button></td>
       </tr>
     </tbody>
 </table>

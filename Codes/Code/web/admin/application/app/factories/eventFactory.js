@@ -27,6 +27,14 @@ App.factory('eventFactory',function($resource){
 				alert(e.data.message)
 			})
 	}
+	factory.getEvent = function(id){
+		//alert(id);
+		return tmp = eventsList.get({id:id})
+		tmp.$promise.catch(function(e){
+			console.log(e.data.message)
+			window.location.replace('#/dashboard')
+		})
+	}
 	factory.saveEvent = function($scope){
 		return eventsList.save($scope.eventa)
 		.$promise.catch(function(e){
@@ -37,6 +45,16 @@ App.factory('eventFactory',function($resource){
 				$scope.eventa=''
 			}
 		)
+	}
+	factory.updateEvent = function($scope,id){
+		
+		tld = eventsList.update({id:id},$scope.eventDetails.event[0])
+		tld.$promise.then(function(e){
+			alert(e.message)	
+		}).catch(function(e){
+			alert(e.message)	
+		})
+		//console.log($scope.userDetails.user)
 	}
 
 	

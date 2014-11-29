@@ -1,5 +1,4 @@
 controllers.eventController = function($scope, eventFactory){
-	$scope.test = "test";
 	$scope.events = eventFactory.getEvents();	
 	$scope.deleteEvent = function(id){	
 		if(id!=''){
@@ -17,5 +16,13 @@ controllers.eventAddController = function($scope, eventFactory){
 		eventFactory.saveEvent($scope)//userList.save(user)
 		
 
+	}
+}
+controllers.eventDetailsController = function($scope, $routeParams, eventFactory){
+	
+	$scope.eventDetails = eventFactory.getEvent($routeParams.id);	
+	
+	$scope.updateEvent = function(id){
+		eventFactory.updateEvent($scope,id);
 	}
 }

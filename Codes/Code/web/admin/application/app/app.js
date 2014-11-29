@@ -81,9 +81,9 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/events/eventAdd.html'		
 		}
 	)
-	.when('/editEvent',
+	.when('/editEvent/:id',
 		{
-			//controller:'controllers.eventEditController',
+			controller:'controllers.eventDetailsController',
 			templateUrl:'app/partials/events/eventEdit.html'		
 		}
 	)
