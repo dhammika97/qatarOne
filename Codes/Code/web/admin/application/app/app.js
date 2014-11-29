@@ -121,6 +121,26 @@ App.config(function($routeProvider, $httpProvider){
 		}
 	)
 	
+	.when('/fixedAdvertisment',
+		{
+			controller:'controllers.fixedAdvertismentController',
+			templateUrl:'app/partials/fixedAdvertisment/fixedAdvertismentList.html'
+		}
+	)
+	.when('/addFixedAdvertisment',
+			{
+				controller:'controllers.fixedAdvertismentAddController',
+				templateUrl:'app/partials/fixedAdvertisment/addFixedAdvertisment.html'
+			}
+	)
+	.when('/editFixedAdvertisment/:id',
+			{
+				controller:'controllers.fixedAdvertismentDetailsController',
+				templateUrl:'app/partials/fixedAdvertisment/editFixedAdvertisment.html'
+			}
+
+		)	
+	
 	.otherwise({
 		redirectTo:'/'
 	});
