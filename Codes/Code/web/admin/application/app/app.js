@@ -46,7 +46,7 @@ App.config(function($routeProvider, $httpProvider){
 	.when('/addCategory',
 		{
 			controller:'controllers.addCategoryController',
-			templateUrl:'app/partials/category/categoryList.html'	
+			templateUrl:'app/partials/category/addCategory.html'	
 		}
 	)
 
@@ -54,6 +54,12 @@ App.config(function($routeProvider, $httpProvider){
 		{
 			controller:'controllers.locationsController',
 			templateUrl:'app/partials/locations/locationList.html'	
+		}
+	)
+	.when('/events',
+		{
+			//controller:'controllers.locationsController',
+			templateUrl:'app/partials/events/eventList.html'	
 		}
 	)
 
