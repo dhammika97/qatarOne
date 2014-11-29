@@ -15,6 +15,18 @@ App.factory('pageFactory',function($resource){
 			//window.location.replace('#/dashboard')
 		})
 	}
+	
+	factory.savePage = function($scope){
+		return Pages.save($scope.page)
+		.$promise.catch(function(e){
+				alert(e.data.message)
+			}).then(
+			function(value){
+				alert(value.message)
+				$scope.location=''
+			}
+		)
+	}
 	/*factory.deleteLocation = function($scope,id){
 		return locationList.delete({id:id})
 		.$promise.then(function(e){
@@ -25,17 +37,7 @@ App.factory('pageFactory',function($resource){
 			})
 	}
 	
-	factory.saveLocation = function($scope){
-		return locationList.save($scope.location)
-		.$promise.catch(function(e){
-				alert(e.data.message)
-			}).then(
-			function(value){
-				alert(value.message)
-				$scope.location=''
-			}
-		)
-	}
+	
 	
 	factory.getLocation = function(id){
 		return tmp = locationList.get({id:id})

@@ -100,6 +100,13 @@ App.config(function($routeProvider, $httpProvider){
 		}
 	)
 	
+	.when('/addPage',
+		{
+			//controller:'controllers.pageController',
+			templateUrl:'app/partials/page/addPage.html'	
+		}
+	)
+	
 
 	
 	.otherwise({
