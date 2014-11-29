@@ -1,1 +1,20 @@
-page list 
+<h1>Pages<a href="#/addLocation" class="btn btn-primary pull-right">Add New Page</a></h1>
+<ol class="breadcrumb">
+  <li class="active"> Pages	</li>
+</ol>
+<table class="table table-hover tablesorter">
+    <thead>
+      <tr>
+        <th>Page Title</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="pages in pages.pages">
+        <td>{{pages.page_title}}</td>
+        <td>{{pages.page_status}}</td>
+        <td><a href="#/editPageContent/{{page.page_id}}" class="btn btn-primary">Edit Page Content</a> <a href="#/editPage/{{pages.page_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deletePage(page.page_id)">Delete</button></td>
+      </tr>
+    </tbody>
+</table>

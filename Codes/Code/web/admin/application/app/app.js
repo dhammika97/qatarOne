@@ -89,7 +89,7 @@ App.config(function($routeProvider, $httpProvider){
 	)
 	.when('/pages',
 		{
-			//controller:'controllers.pageController',
+			controller:'controllers.pageController',
 			templateUrl:'app/partials/page/pageList.html'	
 		}
 	)
