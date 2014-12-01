@@ -33,11 +33,20 @@ class DbHandler {
 		return strtoupper(md5(uniqid(rand(), true)));
 	}
 
-	public function getAllUsers() {   
+	public function getAllUsers($params) {
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();
 		$table = 'user';
 		$rows ='*';	
-		$db->selectJson($table,$rows,'','','');
+		$db->selectJson($table,$rows,$where,'','');
 		$user_list = $db->getJson();
 		return $user_list;
 	}
@@ -121,11 +130,20 @@ class DbHandler {
 		}		
 	}
     
-	public function getAllFixedAd() {
+	public function getAllFixedAd($params) {
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();    
 		$table = 'fixedads';
 		$rows ='*';
-		$db->selectJson($table,$rows,'','','');
+		$db->selectJson($table,$rows,$where,'','');
 		$fixedad_list = $db->getJson();
 		return $fixedad_list;
 	}
@@ -275,11 +293,19 @@ class DbHandler {
 		}	
 	}
 
-	public function getAllsubCategorys(){	
+	public function getAllsubCategorys($params){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();
 		$table = 'category_sub';
-		$rows ='*';
-		$Where= 'category_sub_status = "1"';	
+		$rows ='*';	
 		$db->selectJson($table,$rows,$Where,'','');
 		$subcategories = $db->getJson();
 		return $subcategories;
@@ -343,11 +369,20 @@ class DbHandler {
 		}
 	}
 	
-	public function getAllLocations(){
+	public function getAllLocations($params){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();
 		$table = 'locations';
 		$rows ='*';	
-		$db->selectJson($table,$rows,'','','');
+		$db->selectJson($table,$rows,$where,'','');
 		$location_list = $db->getJson();
 		return $location_list;
 	}
@@ -420,11 +455,19 @@ class DbHandler {
 		}
 	}
 	
-	public function getAllPages(){
+	public function getAllPages($params){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();  
 		$table = 'pages';
 		$rows ='*';
-		$where = '';
 		$db->selectJson($table,$rows,$where,'','');
 		$pages_list = $db->getJson();
 		return $pages_list;
@@ -545,11 +588,20 @@ public function checkLogin($user_email, $user_password) {
 		}
 	}
 	
-	public function getAllSuburbs(){
+	public function getAllSuburbs($params){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();
 		$table = 'suburbs';
 		$rows ='*';	
-		$db->selectJson($table,$rows,'','','');
+		$db->selectJson($table,$rows,$where,'','');
 		$location_list = $db->getJson();
 		return $location_list;
 	}
@@ -630,11 +682,20 @@ public function checkLogin($user_email, $user_password) {
 	}
 	
 	public function getAllEvents(){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();  
 		$table = 'events';
 		$rows ='*';
 		
-		$db->selectJson($table,$rows,'','','');
+		$db->selectJson($table,$rows,$where,'','');
 		$pages_list = $db->getJson();
 		return $pages_list;
 	}
@@ -668,11 +729,20 @@ public function checkLogin($user_email, $user_password) {
 		}
 	}
 	
-	public function getAllSliders(){
+	public function getAllSliders($params){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();
 		$table = 'sliders';
 		$rows ='*';	
-		$db->selectJson($table,$rows,'','','');
+		$db->selectJson($table,$rows,$where,'','');
 		$location_list = $db->getJson();
 		return $location_list;
 	}
@@ -731,11 +801,20 @@ public function checkLogin($user_email, $user_password) {
 		}
 	}
 	
-	public function getAllNews(){
+	public function getAllNews($params){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();
 		$table = 'news';
 		$rows ='*';	
-		$db->selectJson($table,$rows,'','','');
+		$db->selectJson($table,$rows,$where,'','');
 		$location_list = $db->getJson();
 		return $location_list;
 	}
@@ -793,11 +872,20 @@ public function checkLogin($user_email, $user_password) {
 		}
 	}
 	
-	public function getAllPackageTypes(){
+	public function getAllPackageTypes($params){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();
 		$table = 'packagetypes';
 		$rows ='*';	
-		$db->selectJson($table,$rows,'','','');
+		$db->selectJson($table,$rows,$where,'','');
 		$location_list = $db->getJson();
 		return $location_list;
 	}
