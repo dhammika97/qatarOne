@@ -335,7 +335,7 @@ $app->get('/category/:id', function($category_id){
 		$result = $DbHandler->GetCategoryDetail($category_id);
 		if ($result != NULL) {
 			$response["error"] = false;
-			$response["categories"] = json_decode($result);
+			$response["category"] = json_decode($result);
 			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
@@ -639,7 +639,7 @@ $app->get('/page', function()  {
 		
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->getAllPages();	
+		$result = $DbHandler->getAllPages($params);	
 		if (!$result) {
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";

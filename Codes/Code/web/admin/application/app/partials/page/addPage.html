@@ -13,6 +13,12 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="col-sm-3 control-label">Page Content</label>
+            <div class="col-sm-8">
+              <textarea type="text" class="form-control" ng-model="page.page_content" rows="15" required></textarea>
+            </div>
+          </div>
+          <div class="form-group">
             <div class="col-sm-offset-3 col-sm-10">
               <button type="submit" class="btn btn-primary" ng-click="addPage()" ng-disabled="myForm.$invalid" >Add Page</button>
             </div>

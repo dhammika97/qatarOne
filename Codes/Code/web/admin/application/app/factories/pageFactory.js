@@ -55,7 +55,7 @@ App.factory('pageFactory',function($resource){
 		})
 	}
 	
-	var PageContent = $resource('../../../api/pageContent/:id', {}, {
+	/*var PageContent = $resource('../../../api/pageContent/:id', {}, {
         //query: { method: 'GET', params: {}, isArray: false },
         get: { method: 'GET', params: { id: '@id' } },
         update: { method: 'PUT', params: { id: '@id' } },
@@ -74,6 +74,10 @@ App.factory('pageFactory',function($resource){
 			}
 		)
 	}
+	
+	factory.getPageContent = function(id){
+		alert('need to get relevant page content')
+	}*/
 	
 	return factory
 })

@@ -10,14 +10,14 @@ App.factory('categoryFactry',function($resource){
     });
 	
 	var factory = {}
-	factory.getCategory = function(){
-		
-		return tld = categoryList.query();
+	factory.getCategory = function(params){
+		return tld = categoryList.query(params);
 		tld.$promise.catch(function(e){
 			alert(e.data.message)
 			//window.location.replace('#/dashboard')
 		})
 	}
+	
 	factory.deleteCategory = function($scope,id){
 		return categoryList.delete({id:id})
 		.$promise.then(function(e){
@@ -27,19 +27,36 @@ App.factory('categoryFactry',function($resource){
 				alert(e.data.message)
 			})
 	}
-	factory.saveCategory = function($scope,category){
-		return categoryList.save(category)
+	factory.saveCategory = function($scope){
+		//console.log($scope.category)
+		return categoryList.save($scope.category)
 		.$promise.catch(function(e){
 				alert(e.data.message)
 			}).then(
 			function(value){
 				alert(value.message)
-				$scope.user=''
+				$scope.category=''
 			}
 		)
 	}
 
+	factory.getCategoryDetails = function(id){
+		return tmp = categoryList.get({id:id})
+			tmp.$promise.catch(function(e){
+			console.log(e.data.message)
+			window.location.replace('#/dashboard')
+		})
+	}
 	
-	
+	factory.updateCategory = function($scope,id){
+		
+		tld = categoryList.update({id:id},$scope.categoryDetails.category[0])
+		tld.$promise.then(function(e){
+			alert(e.message)	
+		}).catch(function(e){
+			alert(e.message)	
+		})
+		//console.log($scope.userDetails.user)
+	}
 	return factory
 })

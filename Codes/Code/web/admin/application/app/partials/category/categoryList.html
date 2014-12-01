@@ -1,4 +1,4 @@
-<h1>Category<a href="#/addCategory" class="btn btn-primary pull-right">Add New</a></h1>
+<h1>Category<a href="#/addCategory" class="btn btn-primary pull-right">Add New Category</a></h1>
 <ol class="breadcrumb">
   <li class="active"> Category</li>
 </ol>
@@ -6,7 +6,7 @@
     <thead>
       <tr>
         <th>Category Name</th>
-        <th>Category Entered Date </th>
+        <th>Parent Category</th>
         <th></th>
       </tr>
     </thead>
@@ -14,9 +14,9 @@
       <tr ng-repeat="category in categories.categories">
       
    		<td>{{category.category_name}}</td>
-        <td>{{category.category_enteredDate}}</td>
+        <td>{{category.category_parentId}}</td>
         
-        <td><a href="#/editUser/{{user.user_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteCategory(category.category_id)">Delete</button></td>
+        <td><a href="#/editCategory/{{category.category_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteCategory(category.category_id)">Delete</button></td>
       </tr>
     </tbody>
 </table>

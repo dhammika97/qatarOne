@@ -38,8 +38,8 @@ controllers.userDetailsController = function($scope, $routeParams, usersFactory)
 
 controllers.newsController = function($scope, $routeParams, $resource){
 	
-	$scope.addNews = function(news){
-		News.save(news)
+	$scope.addNews = function(){
+		News.save()
 	}
 }
 //suburbsController

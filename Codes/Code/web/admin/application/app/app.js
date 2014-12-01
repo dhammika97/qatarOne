@@ -1,5 +1,5 @@
 // JavaScript Document
-var App = angular.module('QatartOne',['ngRoute','ngResource'])
+var App = angular.module('QatartOne',['ngRoute','ngResource', 'angularFileUpload'])
 
 App.config(function($routeProvider, $httpProvider){
 	
@@ -30,12 +30,12 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/user/editUser.html'	
 		}
 	)
-	.when('/addNews',
+	/*.when('/addNews',
 		{
 			controller:'controllers.newsController',
 			templateUrl:'app/partials/addNews.html'	
 		}
-	)
+	)*/
 	.when('/categories',
 		{
 			controller:'controllers.categoryController',
@@ -47,6 +47,13 @@ App.config(function($routeProvider, $httpProvider){
 		{
 			controller:'controllers.addCategoryController',
 			templateUrl:'app/partials/category/addCategory.html'	
+		}
+	)
+	
+	.when('/editCategory/:id',
+		{
+			controller:'controllers.categoryDetailsController',
+			templateUrl:'app/partials/category/editCategory.html'
 		}
 	)
 
@@ -123,13 +130,6 @@ App.config(function($routeProvider, $httpProvider){
 		}
 	)
 	
-	.when('/addPageContent',
-		{
-			controller:'controllers.pageContentAddController',
-			templateUrl:'app/partials/page/addPageContent.html'
-		}
-	)
-	
 	.when('/news',
 		{
 			controller:'controllers.newsController',
@@ -199,12 +199,6 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/packageType/editPackageType.html'
 		}
 	)
-	.when('/addPackageType',
-		{
-			controller:'controllers.pacakgeTypeAddController',
-			templateUrl:'app/partials/packageType/addPackageType.html'
-		}
-	)
 	.otherwise({
 		redirectTo:'/'
 	});
@@ -217,10 +211,6 @@ App.config(function($routeProvider, $httpProvider){
       if ( $rootScope.accessToken == null ) {
           window.location.replace('../')
       }
-	  //console.log(event)
-	  //console.log(next)
-	  //console.log(current)  
-	  //console.log($rootScope.accessToken)
     });
  })
  

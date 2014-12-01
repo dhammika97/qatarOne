@@ -228,16 +228,6 @@ class DbHandler {
 		$category_list = $db->getJson();
 		return $category_list;
 	}
-	
-	public function getParentCategories(){
-		$db = new database();  
-		$table = 'category';
-		$rows ='*';
-		$where = 'category_parentId = "0" ';
-		$db->selectJson($table,$rows,$where,'','');
-		$category_list = $db->getJson();
-		return $category_list;
-	}
 
 	public function GetCategoryDetail($category_id){
 		$db = new database();
@@ -429,8 +419,8 @@ class DbHandler {
 			return false;
 		}
 		$table  = "pages";
-		$values = "'".$page['page_title']."', '".$page['page_addedBy']."'";				
-		$rows   = "page_title, page_addedBy";		
+		$values = "'".$page['page_title']."', '".$page['page_content']."','".$page['page_addedBy']."'";				
+		$rows   = "page_title,page_content, page_addedBy";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}

@@ -32,10 +32,14 @@ controllers.pageDetailController = function($scope, $routeParams,pageFactory){
 	}
 }
 
-controllers.pageContentAddController = function($scope, pageFactory){
+/*controllers.pageContentAddController = function($scope, pageFactory){
 	$scope.pageTitle = 	pageFactory.getPages()
 	
 	$scope.addPageContent = function(){
 		pageFactory.savePageContent($scope)	
 	}
 }
+
+controllers.pageContentDetailController = function($scope, pageFactory, $routeParams){
+	$scope.pageContent = pageFactory.getPageContent($routeParams.id)
+}*/

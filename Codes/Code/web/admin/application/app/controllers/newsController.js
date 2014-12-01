@@ -11,10 +11,16 @@ controllers.newsController = function($scope, newsFactory){
 	
 }
 
-controllers.newsAddController = function($scope, newsFactory){
+controllers.newsAddController = function($scope, newsFactory, FileUploader){
 	$scope.addNews = function(){
 		newsFactory.saveNews($scope)
 	}
+	
+	var uploader = $scope.uploader = new FileUploader()
+	
+	uploader.onAfterAddingFile = function(fileItem) {
+		console.info('File Name', fileItem.file.name);
+	};
 }
 controllers.newsDetailsController = function($scope, $routeParams, newsFactory){
 	

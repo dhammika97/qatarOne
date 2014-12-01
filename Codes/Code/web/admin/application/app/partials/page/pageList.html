@@ -1,4 +1,4 @@
-<h1>Pages<a href="#/addPageContent" class="btn btn-primary pull-right">Add New Page Content</a> &nbsp;<a href="#/addPage" class="btn btn-primary pull-right"  style="margin-right:10px">Add New Page</a> </h1>
+<h1>Pages<a href="#/addPage" class="btn btn-primary pull-right"  >Add New Page</a> </h1>
 <ol class="breadcrumb">
   <li class="active"> Pages	</li>
 </ol>
@@ -14,7 +14,7 @@
       <tr ng-repeat="pages in pages.pages">
         <td>{{pages.page_title}}</td>
         <td>{{pages.page_status}}</td>
-        <td><a href="#/editPageContent/{{pages.page_id}}" class="btn btn-primary">Edit Page Content</a> <a href="#/editPage/{{pages.page_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deletePage(pages.page_id)">Delete</button></td>
+        <td><a href="#/editPage/{{pages.page_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deletePage(pages.page_id)">Delete</button></td>
       </tr>
     </tbody>
 </table>
