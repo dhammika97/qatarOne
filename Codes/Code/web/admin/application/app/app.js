@@ -199,6 +199,12 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/packageType/editPackageType.html'
 		}
 	)
+	.when('/addPackageType',
+		{
+			controller:'controllers.pacakgeTypeAddController',
+			templateUrl:'app/partials/packageType/addPackageType.html'
+		}
+	)
 	.otherwise({
 		redirectTo:'/'
 	});
