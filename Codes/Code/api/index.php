@@ -56,9 +56,11 @@ function authenticate(\Slim\Route $route) {
  * params - api Key*/
 
 $app->get('/user', 'authenticate', function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
 		$response = array();
 		$DbHandler = new DbHandler();		
-		$result = $DbHandler->getAllUsers();
+		$result = $DbHandler->getAllUsers($params);
 		if(!$result){
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -166,10 +168,12 @@ $app->delete('/user/:id', 'authenticate', function($user_id) use($app) {
  * method - GET
  * params - */
 
-$app->get('/fixedAds',  function() {           
+$app->get('/fixedAds',  function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
 		$response = array();
 		$DbHandler = new DbHandler();			
-		$result = $DbHandler->getAllFixedAd();
+		$result = $DbHandler->getAllFixedAd($params);
 		if(!$result){
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -407,9 +411,12 @@ $app->delete('/category/:categoryId', 'authenticate', function ($id) {
 // * params - 
 
 $app->get('/subCategory', function()  {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+    
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->getAllsubCategorys();	
+		$result = $DbHandler->getAllsubCategorys($params);	
 		if (!$result) {
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -427,6 +434,7 @@ $app->get('/subCategory', function()  {
 // * params - subcategoryID
 
 $app->get('/subCategory/:id', function($subCategory_id) {
+		
 		$DbHandler = new DbHandler();
 		$response = array();
 		$row = $DbHandler->GetsubCategoryDetail($subCategory_id);
@@ -514,9 +522,12 @@ $app->delete('/subCategory/:subCategoryId', 'authenticate', function ($id) {
  * params - api Key*/
 
 $app->get('/locations',  function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();    
+    
 		$response = array();
 		$DbHandler = new DbHandler();		
-		$result = $DbHandler->getAllLocations();
+		$result = $DbHandler->getAllLocations($params);
 		if (!$result) {
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -623,6 +634,9 @@ $app->delete('/locations/:id', 'authenticate', function($location_id) use($app) 
 // * method - get
 // * params - 
 $app->get('/page', function()  {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+		
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->getAllPages();	
@@ -880,9 +894,12 @@ $app->delete('/pageContent/:pageContentId', 'authenticate', function($pageConten
  * params - api Key*/
 
 $app->get('/suburbs',  function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+		
 		$response = array();
 		$DbHandler = new DbHandler();		
-		$result = $DbHandler->getAllSuburbs();
+		$result = $DbHandler->getAllSuburbs($params);
 		if (!$result) {
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -989,9 +1006,12 @@ $app->delete('/suburbs/:id', 'authenticate', function($suburb_id) use($app) {
 // * params - 
 
 $app->get('/event', function()  {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+		
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->getAllEvents();	
+		$result = $DbHandler->getAllEvents($params);	
 		if (!$result) {
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -1095,6 +1115,9 @@ $app->delete('/event/:id', 'authenticate', function ($id) {
  * params - api Key*/
 
 $app->get('/slider',  function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+		
 		$response = array();
 		$DbHandler = new DbHandler();		
 		$result = $DbHandler->getAllSliders();
@@ -1205,9 +1228,12 @@ $app->delete('/slider/:id', 'authenticate', function($slider_id) use($app) {
  * params - api Key*/
 
 $app->get('/news',  function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+		
 		$response = array();
 		$DbHandler = new DbHandler();		
-		$result = $DbHandler->getAllNews();
+		$result = $DbHandler->getAllNews($params);
 		if (!$result) {
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -1318,9 +1344,11 @@ $app->delete('/news/:id', 'authenticate', function($news_id) use($app) {
  * params - api Key*/
 
 $app->get('/packageType', function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
 		$response = array();
 		$DbHandler = new DbHandler();		
-		$result = $DbHandler->getAllPackageTypes();
+		$result = $DbHandler->getAllPackageTypes($params);
 		if (!$result) {
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
