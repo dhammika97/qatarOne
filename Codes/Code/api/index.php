@@ -282,9 +282,33 @@ $app->delete('/fixedAds/:id', 'authenticate', function($fixedads_id) use($app) {
 // * params -  
   
 $app->get('/category', function() {	
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->getAllCategories();				
+		$result = $DbHandler->getAllCategories($params);
+
+		if(!$result){
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}else{
+			$response["error"] = false;
+			$response['categories'] = json_decode($result);
+			echoRespnse(200, $response);
+		}
+});
+
+// * list all parent categories 
+// * url - /category
+// * method - get
+// * params -  
+  
+$app->get('/parentCategory', function() {	
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->getParentCategories();				
 		if(!$result){
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -1228,9 +1252,11 @@ $app->post('/news', 'authenticate', function() use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 
-		$news = $request->getBody();		
+		$news = $request->getBody();
+		//echo json_encode($news);	
+		echo $_FILES['test']['0'];
 		//verifyRequiredParams(array("user_email", "user_password"));
-		if($DbHandler->createNews($news)){
+		/*if($DbHandler->createNews($news)){
 			$response["error"] = false;
 			$response["message"] = "news created successfully";
 			echoRespnse(201, $response);				
@@ -1238,7 +1264,7 @@ $app->post('/news', 'authenticate', function() use ($app) {
 			$response["error"] = true;
 			$response["message"] = "news creation failed";
 			echoRespnse(400, $response);
-		}
+		}*/
 });
 		
 /**

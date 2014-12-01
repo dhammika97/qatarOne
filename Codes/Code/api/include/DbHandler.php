@@ -193,15 +193,33 @@ class DbHandler {
 		}
 	}
 	
-	public function getAllCategories(){
+	public function getAllCategories($params){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
 		$db = new database();  
 		$table = 'category';
 		$rows ='*';
-		$where = 'category_status = "1" ';
 		$db->selectJson($table,$rows,$where,'','');
 		$category_list = $db->getJson();
 		return $category_list;
-	}	
+	}
+	
+	public function getParentCategories(){
+		$db = new database();  
+		$table = 'category';
+		$rows ='*';
+		$where = 'category_parentId = "0" ';
+		$db->selectJson($table,$rows,$where,'','');
+		$category_list = $db->getJson();
+		return $category_list;
+	}
 
 	public function GetCategoryDetail($category_id){
 		$db = new database();
