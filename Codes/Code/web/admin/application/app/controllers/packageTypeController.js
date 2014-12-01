@@ -1,31 +1,26 @@
-
-
-controllers.packageTypeController = function($scope, packageTypeFactory){
-	alert('a');
+controllers.packageTypeController = function($scope, packageTypeFactory){	
 	$scope.packageTypes = packageTypeFactory.getPackageTypes()
 
-	// $scope.deleteFixedAdvertisment = function(id){
-	// 	if(id!=''){
-	// 		var r = confirm("Do you want to delete this Fixed Advertisment!");
-	// 		if (r == true) {
-	// 			//$scope.users = usersFactory.deleteUser(id)
-	// 			fixedAdvertismentFactory.deleteFixedAdvertisment($scope,id)
-	// 		}
-	// 	}
-	// }
+	$scope.deletePackageType = function(id){
+		if(id!=''){
+			var r = confirm("Do you want to delete this Package Type!");
+			if (r == true) {
+				packageTypeFactory.deletePackageType($scope,id)
+			}
+		}
+	}
 
 }
 
-// controllers.fixedAdvertismentAddController = function($scope, packageTypeFactory){
-// 	$scope.addfixedAdvertisment = function(){
-// 		fixedAdvertismentFactory.savefixedAdvertisment($scope)//userList.save(user)
-// 	}
-//}
+controllers.pacakgeTypeAddController = function($scope, packageTypeFactory){
+	$scope.addPacakgeType = function(){
+		packageTypeFactory.savePacakgeType($scope)//userList.save(user)
+	}
+}
+
 controllers.pacakgeTypeDetailsController = function($scope, $routeParams, packageTypeFactory){
 	$scope.packageTypesDetail = packageTypeFactory.gePackageType($routeParams.id)
-	console.log($scope.packageTypesDetail);
-	
-	
+		
 	$scope.updatePackageType = function(id){
 		packageTypeFactory.updatePackageType($scope,id)
 	}
