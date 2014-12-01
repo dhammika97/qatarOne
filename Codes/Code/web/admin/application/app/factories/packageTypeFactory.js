@@ -27,17 +27,15 @@ App.factory('packageTypeFactory',function($resource){
 			)
 		}
 
-	// factory.deleteFixedAdvertisment = function($scope,id){
-	// 	//userList.delete({id:id})
-	// 	//return userList.query()
-	// 	return fixedAdvertisment.delete({id:id})
-	// 	.$promise.then(function(e){
-	// 			alert(e.message)
-	// 			$scope.fixedAds = fixedAdvertisment.query()
-	// 		}).catch(function(e){
-	// 			alert(e.data.message)
-	// 		})
-	// }
+	factory.deletePackageType = function($scope,id){
+		return packageType.delete({id:id})
+		.$promise.then(function(e){
+				alert(e.message)
+				$scope.packageType = packageType.query()
+			}).catch(function(e){
+				alert(e.data.message)
+			})
+	}
 
 	factory.gePackageType = function(id){		
 		return packageType.get({id:id})
