@@ -14,16 +14,14 @@ App.factory('fixedAdvertismentFactory',function($resource){
 	}
 
 	factory.savefixedAdvertisment = function($scope){
-		return fixedAdvertisment.save($scope.fixedAdvertisment)
-			.$promise.then(
-				function(value){
-					if(value.error!=true){
-						window.location="#/fixedAdvertisment"
-					}else{
-						alert(value.message)	
-					}
-				}
-			)
+		return fixedAdvertisment.save($scope.fixedAd)
+			.$promise.catch(function(e){
+				alert(e.data.message)
+			}).then(
+			function(value){
+				alert(value.message)
+				$scope.fixedAd=''
+			})
 		}
 
 	factory.deleteFixedAdvertisment = function($scope,id){
@@ -43,7 +41,12 @@ App.factory('fixedAdvertismentFactory',function($resource){
 	}
 
 	factory.updateFixedAdvertisment = function($scope,id){		
-		return fixedAdvertisment.update({id:id},$scope.fixedAdsDetail.fixedAd[0])		
+		tld = fixedAdvertisment.update({id:id},$scope.fixedAdsDetail.fixedAd[0])
+		tld.$promise.then(function(e){
+			alert(e.message)	
+		}).catch(function(e){
+			alert(e.message)	
+		})	
 	}
 
 

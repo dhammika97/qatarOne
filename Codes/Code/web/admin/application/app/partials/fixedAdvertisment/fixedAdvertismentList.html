@@ -1,11 +1,10 @@
 <h1>Fixed Advertisments<a href="#/addFixedAdvertisment" class="btn btn-primary pull-right">Add Fixed Advertisment</a></h1>
 <ol class="breadcrumb">
-  <li class="active"> Fixed Advertisments	</li>
+  <li class="active">Fixed Advertisments</li>
 </ol>
 <table class="table table-hover tablesorter">
     <thead>
       <tr>
-        <th>ID</th>
         <th>Title</>
         <th>Type </th>
         <th>Image </th>
@@ -16,14 +15,13 @@
     </thead>
     <tbody>
       <tr ng-repeat="fiXedAdvertisment in fixedAds.fixedAds">
-        <td>{{fiXedAdvertisment.fixedads_id}}</td>
         <td>{{fiXedAdvertisment.fixedads_title}}</td>
         <td>{{fiXedAdvertisment.fixedads_type}}</td>
         <td>{{fiXedAdvertisment.fixedads_image}}</td>
         <td>{{fiXedAdvertisment.fixedads_enetredDate}}</td>
         <td>{{fiXedAdvertisment.fixedads_url}}</td>
          <td>{{fiXedAdvertisment.fixedads_status}}</td>
-        <td><button class="btn btn-primary">Revoke Access Token</button> <a href="#/editFixedAdvertisment/{{fiXedAdvertisment.fixedads_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteFixedAdvertisment(fiXedAdvertisment.fixedads_id)">Delete</button></td>
+        <td><a href="#/editFixedAdvertisment/{{fiXedAdvertisment.fixedads_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteFixedAdvertisment(fiXedAdvertisment.fixedads_id)">Delete</button></td>
       </tr>
     </tbody>
 </table>

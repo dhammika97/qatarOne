@@ -1,20 +1,20 @@
 <h1>Add New Fixed Advertisment</h1>
 <ol class="breadcrumb">
-  <li class="active"> <a href="#/fixedAdvertisment">Fixed Advertisment List</a>	</li>
-  <li class="active"> Add new Fixed Advertisment </li>
+  <li class="active"> <a href="#/fixedAdvertisment">Fixed Advertisment</a>	</li>
+  <li class="active"> Add new fixed advertisment</li>
 </ol>
 <div class="row">
 	<div class="col-lg-5 col-lg-offset-1">
     	<form name="myForm" class="form-horizontal" role="form">
         <div class="form-group">
-            <label class="col-sm-2 control-label">Advertisment Title</label>
+            <label class="col-sm-3 control-label">Advertisment Title</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" ng-model="fixedAd.fixedads_title" >
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-sm-2 control-label">Advertisment Type</label>
+            <label class="col-sm-3 control-label">Advertisment Type</label>
             <div class="col-sm-8">
             <select class="form-control" ng-model="fixedAd.fixedads_type" name="Fixed Advertisment Type" required>
                   <option value="0">Top Header</option>
@@ -25,30 +25,20 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">Advertisment Image</label>
+            <label class="col-sm-3 control-label">Advertisment Image</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" ng-model="fixedAd.fixedads_image" >
+              <input type="text" class="form-control" ng-model="fixedAd.fixedads_image" required>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">Advertisment URL</label>
+            <label class="col-sm-3 control-label">Advertisment URL</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" ng-model="fixedAd.fixedads_url" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label">User Type</label>
-            <div class="col-sm-8">
-          <select class="form-control" ng-model="fixedAd.fixedads_status" name="Fixed Advertisment Status" required>
-                  <option value="0">Active</option>
-                  <option value="1">Inactive</option>                  
-                </select>
+              <input type="text" class="form-control" ng-model="fixedAd.fixedads_url" >
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button class="btn btn-primary" ng-click="addfixedAdvertisment()" >Add User</button>
+            <div class="col-sm-offset-3 col-sm-10">
+              <button class="btn btn-primary" ng-click="addfixedAdvertisment()" ng-disabled="myForm.$invalid">Add Fixed Advertisement</button>
             </div>
           </div>
         </form>
