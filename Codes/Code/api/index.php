@@ -1395,11 +1395,11 @@ $app->post('/packageType', 'authenticate', function() use ($app) {
 		//verifyRequiredParams(array("user_email", "user_password"));
 		if($DbHandler->createPackageType($packageType)){
 			$response["error"] = false;
-			$response["message"] = "package type created successfully";
+			$response["message"] = "Package Type created successfully";
 			echoRespnse(201, $response);				
 			}else{
 			$response["error"] = true;
-			$response["message"] = "package type creation failed";
+			$response["message"] = "Package Type creation failed";
 			echoRespnse(400, $response);
 		}
 });
@@ -1417,11 +1417,11 @@ $app->put('/packageType/:id', 'authenticate', function($packageType_id) use ($ap
 		$result = $DbHandler->updatePackageType($packageType_id, $packageType);
 		if ($result) {
 			$response["error"] = false;
-			$response["message"] = "package type updated successfully";
+			$response["message"] = "Package Type updated successfully";
 			echoRespnse(200, $response);
 		} else {                
 			$response["error"] = true;
-			$response["message"] = "package type failed to update. Please try again!";
+			$response["message"] = "Package Type failed to update. Please try again!";
 			echoRespnse(404, $response);
 		}				
 });
@@ -1438,11 +1438,11 @@ $app->delete('/packageType/:id', 'authenticate', function($packageType_id) use($
 		
 		if ($result) {			
 			$response["error"] = false;
-			$response["message"] = "package type deleted succesfully";
+			$response["message"] = "Package Type deleted succesfully";
 			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
-			$response["message"] = "package type failed to delete. Please try again!";
+			$response["message"] = "Package Type failed to delete. Please try again!";
 			echoRespnse(404, $response);
 		}
 });
