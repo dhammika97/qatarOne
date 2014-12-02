@@ -1,0 +1,22 @@
+<h1>Sub Category<a href="#/addSubCategory" class="btn btn-primary pull-right">Add New Sub Category</a></h1>
+<ol class="breadcrumb">
+  <li class="active">Sub Category</li>
+</ol>
+<table class="table table-hover tablesorter">
+    <thead>
+      <tr>
+        <th>Parent Category Name</th>
+        <th>Category Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="subcategory in subCategories.subcategories">
+      
+   		<td>{{subcategory.category_sub_parentId}}</td>
+        <td>{{subcategory.category_sub_name}}</td>
+        
+        <td><a href="#/editSubCategory/{{subcategory.category_sub_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteSubCategory(subcategory.category_sub_id)">Delete</button></td>
+      </tr>
+    </tbody>
+</table>
