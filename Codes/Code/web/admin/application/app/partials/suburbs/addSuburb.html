@@ -7,25 +7,25 @@
 	<div class="col-lg-5 col-lg-offset-1">
     	<form name="myForm" class="form-horizontal" role="form" novalidate>
           <div class="form-group">
-            <label class="col-sm-2 control-label">Suburb Location</label>
+            <label class="col-sm-3 control-label">Suburb Location</label>
             <div class="col-sm-8">
-              <input type="number" class="form-control" ng-model="suberbs.suburb_location_id" required>
+            	<select class="form-control" ng-model="suburbs.suburb_location_id" required ng-options="obj.location_id as obj.location_name for obj in locations.locations"></select>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">Suburb Name</label>
+            <label class="col-sm-3 control-label">Suburb Name</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" ng-model="suberbs.suburb_name" required>
+              <input type="text" class="form-control" ng-model="suburbs.suburb_name" required>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">Suburb Cordinates</label>
+            <label class="col-sm-3 control-label">Suburb Cordinates</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" ng-model="suberbs.suburb_cordinates" required>
+              <input type="text" class="form-control" ng-model="suburbs.suburb_cordinates" required>
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-3 col-sm-10">
               <button type="submit" class="btn btn-primary" ng-click="addSuburb()" ng-disabled="myForm.$invalid" >Add Suburb</button>
             </div>
           </div>
