@@ -214,6 +214,12 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/packageType/packageTypeList.html'
 		}
 	)
+	.when('/addPackageType',
+		{
+			controller:'controllers.pacakgeTypeAddController',
+			templateUrl:'app/partials/packageType/addPackageType.html'
+		}
+	)
 	.when('/editPackageType/:id',
 		{
 			controller:'controllers.pacakgeTypeDetailsController',
