@@ -10,9 +10,9 @@ App.factory('sliderFactory',function($resource){
     });
 	
 	var factory = {}
-	factory.getSlider = function(){
+	factory.getSlider = function(params){
 		
-		return tld = sliderList.query();
+		return tld = sliderList.query(params);
 		tld.$promise.catch(function(e){
 			alert(e.data.message)
 			//window.location.replace('#/dashboard')

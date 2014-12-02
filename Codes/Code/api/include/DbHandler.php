@@ -671,7 +671,7 @@ public function checkLogin($user_email, $user_password) {
 		}
 	}
 	
-	public function getAllEvents(){
+	public function getAllEvents($params){
 		$where = '';
 		$i = 1;
 		foreach($params as $key => $value){
@@ -693,7 +693,7 @@ public function checkLogin($user_email, $user_password) {
 		$db = new database();
 		$table = 'events';
 		$rows ='*';
-		$where = 'evenet_id = "'.$evenet_id.'" AND event_status = "1" ';
+		$where = 'evenet_id = "'.$evenet_id.'"';
 		$db->selectJson($table,$rows,$where,'','');
 		$page = $db->getJson();
 		return $page;			

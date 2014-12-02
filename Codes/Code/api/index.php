@@ -1120,7 +1120,7 @@ $app->get('/slider',  function() {
 		
 		$response = array();
 		$DbHandler = new DbHandler();		
-		$result = $DbHandler->getAllSliders();
+		$result = $DbHandler->getAllSliders($params);
 		if (!$result) {
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -1280,9 +1280,8 @@ $app->post('/news', 'authenticate', function() use ($app) {
 
 		$news = $request->getBody();
 		//echo json_encode($news);	
-		echo $_FILES['test']['0'];
 		//verifyRequiredParams(array("user_email", "user_password"));
-		/*if($DbHandler->createNews($news)){
+		if($DbHandler->createNews($news)){
 			$response["error"] = false;
 			$response["message"] = "news created successfully";
 			echoRespnse(201, $response);				
@@ -1290,7 +1289,7 @@ $app->post('/news', 'authenticate', function() use ($app) {
 			$response["error"] = true;
 			$response["message"] = "news creation failed";
 			echoRespnse(400, $response);
-		}*/
+		}
 });
 		
 /**
