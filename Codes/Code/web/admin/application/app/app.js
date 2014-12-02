@@ -56,6 +56,27 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/category/editCategory.html'
 		}
 	)
+	
+	.when('/subCategories',
+		{
+			controller:'controllers.subCategoryController',
+			templateUrl:'app/partials/subCategory/subCategoryList.html'	
+		}
+	)
+	
+	.when('/addSubCategory',
+		{
+			controller:'controllers.addSubCategoryController',
+			templateUrl:'app/partials/subCategory/addSubCategory.html'
+		}
+	)
+	
+	.when('/editSubCategory/:id',
+		{
+			controller:'controllers.detailsSubCategoryController',
+			templateUrl:'app/partials/subCategory/editSubCategory.html'
+		}
+	)
 
 	.when('/location',
 		{

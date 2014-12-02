@@ -91,7 +91,7 @@ App.factory('suburbsFactory',function($resource){
 		return suburbList.delete({id:id})
 		.$promise.then(function(e){
 			alert(e.message)
-			$scope.users = suburbList.query()
+			$scope.suburbs = suburbList.query()
 		}).catch(function(e){
 			alert(e.data.message)
 		})

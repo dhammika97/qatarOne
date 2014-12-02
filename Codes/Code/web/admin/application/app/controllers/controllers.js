@@ -36,12 +36,12 @@ controllers.userDetailsController = function($scope, $routeParams, usersFactory)
 }
 
 
-controllers.newsController = function($scope, $routeParams, $resource){
+/*controllers.newsController = function($scope, $routeParams, $resource){
 	
 	$scope.addNews = function(){
 		News.save()
 	}
-}
+}*/
 //suburbsController
 controllers.suburbsController = function($scope, $routeParams, suburbsFactory){
 	$scope.suburbs =suburbsFactory.getSuburbs($routeParams.id)
@@ -55,12 +55,14 @@ controllers.suburbsController = function($scope, $routeParams, suburbsFactory){
 		}
 	}
 }
-controllers.suburbAddController = function($scope, suburbsFactory){
+controllers.suburbAddController = function($scope, suburbsFactory, locationFactory){
+	$scope.locations = locationFactory.getLocations()
 	$scope.addSuburb = function(){
 		suburbsFactory.saveSuburb($scope)
 	}
 }
-controllers.suburbDetailsController = function($scope, $routeParams, suburbsFactory){
+controllers.suburbDetailsController = function($scope, $routeParams, suburbsFactory, locationFactory){
+	$scope.locations = locationFactory.getLocations()
 	$scope.suburbDetails = suburbsFactory.getSuburb($routeParams.id)
 	
 	$scope.updateSuburb = function(id){

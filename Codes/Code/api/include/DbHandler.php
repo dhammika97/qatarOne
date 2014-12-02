@@ -296,7 +296,7 @@ class DbHandler {
 		$db = new database();
 		$table = 'category_sub';
 		$rows ='*';	
-		$db->selectJson($table,$rows,$Where,'','');
+		$db->selectJson($table,$rows,$where,'','');
 		$subcategories = $db->getJson();
 		return $subcategories;
 	}
@@ -305,7 +305,7 @@ class DbHandler {
 		$db = new database();
 		$table = 'category_sub';
 		$rows ='*';
-		$where = 'category_sub_id = "'.$id.'" AND category_sub_status = "1" ';
+		$where = 'category_sub_id = "'.$id.'"';
 		$db->selectJson($table,$rows,$where,'','');
 		$subcategory = $db->getJson();
 		return $subcategory;	
