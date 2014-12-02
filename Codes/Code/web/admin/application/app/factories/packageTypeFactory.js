@@ -16,25 +16,22 @@ App.factory('packageTypeFactory',function($resource){
 
 	factory.savePacakgeType = function($scope){
 		return packageType.save($scope.packageType)
-			.$promise.then(
-				function(value){
-					if(value.error!=true){
-						window.location="#/packageType"
-					}else{
-						alert(value.message)	
-					}
-				}
-			)
+			.$promise.catch(function(e){
+				alert(e.data.message)
+			}).then(function(value){
+				alert(value.message)
+				$scope.packageType=''
+			})
 		}
 
 	factory.deletePackageType = function($scope,id){
 		return packageType.delete({id:id})
 		.$promise.then(function(e){
-				alert(e.message)
-				$scope.packageType = packageType.query()
-			}).catch(function(e){
-				alert(e.data.message)
-			})
+			alert(e.message)
+			$scope.packageTypes = packageType.query()
+		}).catch(function(e){
+			alert(e.data.message)
+		})
 	}
 
 	factory.gePackageType = function(id){		
@@ -42,7 +39,12 @@ App.factory('packageTypeFactory',function($resource){
 	}
 
 	factory.updatePackageType = function($scope,id){		
-		return packageType.update({id:id},$scope.packageTypesDetail.packageType[0])		
+		tld =  packageType.update({id:id},$scope.packageTypesDetail.packageType[0])
+		tld.$promise.then(function(e){
+			alert(e.message)
+		}).catch(function(e){
+			alert(e.message)
+		})	
 	}
 
 

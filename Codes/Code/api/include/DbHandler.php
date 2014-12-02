@@ -841,14 +841,19 @@ public function checkLogin($user_email, $user_password) {
 	}
 	
 	public function createPackageType($packageType){
+		(isset($packageType['package_name']) ? $package_name = $packageType['package_name'] : $package_name = "" );
+		(isset($packageType['package_Description']) ? $package_description = $packageType['package_Description'] : $package_description = "" );
+		(isset($packageType['package_price']) ? $package_price = $packageType['package_price'] : $package_price = "" );
+		(isset($packageType['package_adLimit']) ? $package_adLimit = $packageType['package_adLimit'] : $package_adLimit = "" );
+		
 		$db = new database();
 		$table  = "packagetypes";
-		$values = "'".$packageType['package_name']."', 
-				'".$packageType['package_Description']."',
-				'".$packageType['package_price']."',
-				'".$packageType['package_adLimit']."',
-				'".$packageType['package_addedBy']."',
-				'".$packageType['package_status']."'";					  
+		$values = "'".$package_name."', 
+				'".$package_description."',
+				'".$package_price."',
+				'".$package_adLimit."',
+				'1',
+				'1'";					  
 		$rows   = "package_name, 
 				   package_Description,
 				   package_price,
