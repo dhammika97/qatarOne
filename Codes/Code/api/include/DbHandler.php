@@ -396,6 +396,14 @@ class DbHandler {
 	
 	public function deleteLocation($location_id){
 		$db = new database();
+		$table1 = 'suburbs';
+		$rows1 ='suburb_id';
+		$where1 = 'suburb_location_id = "'.$location_id.'"';
+		$db->select($table1,$rows1,$where1,'','');
+		$NumRows = $db->getNumRows();	
+		if( $NumRows > 1 ){
+			return false;
+		}
 		$table = 'locations';
 		$where = 'location_id = "'.$location_id.'" ';
 		if ($db->delete($table,$where) ){
