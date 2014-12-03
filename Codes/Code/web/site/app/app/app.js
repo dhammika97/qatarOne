@@ -4,15 +4,25 @@ var App = angular.module('QatartOneApp',['ngRoute','ngResource'])
 App.config(function($routeProvider, $httpProvider){
 	//$httpProvider.defaults.headers.common.Authorization = getUser();
 	$routeProvider
-	.when('/',
+	.when('/portal/:id',
 		{
 			//controller:'controllers.dashController',
 			templateUrl:'app/partials/home/home.html'
 		}
 	)
+	.when('/show-list/:parent_id',
+		{
+			templateUrl:'app/partials/resultListing/resultListing.html'
+		}
+	)
+	.when('/details-view/:id',
+		{
+			templateUrl:'app/partials/detailsView/detailsView.html'
+		}
+	)
 	
 	.otherwise({
-		redirectTo:'/'
+		redirectTo:'/portal/classifieds'
 	});
 	
 })

@@ -95,6 +95,51 @@ header .top-nav ul li.active a { color: white; }
 .main-page .item.grid-group-item .price span.price-tag { font-size: 22px; line-height: 34px; font-size: 2.2rem; line-height: 3.4rem; text-align: center; color: #661041; padding-right: 10px; padding-top: 5px; }
 .main-page .item .list-group-item-text { margin: 0px; font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; color: #333333; padding: 10px; }
 .main-page .item .list-group-item-text span { font-size: 11px; line-height: 12px; font-size: 1.1rem; line-height: 1.2rem; padding-bottom: 1rem; color: #a3a0a0; display: block; }
+.main-page .breadcrumb-bar { padding: 10px; background: #cccccc; font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; }
+.main-page .breadcrumb-bar ul { padding-left: 20px; }
+.main-page .breadcrumb-bar ul li { display: inline; }
+.main-page .breadcrumb-bar ul li:before { font-family: FontAwesome; font-weight: normal; font-style: normal; display: inline-block; text-decoration: inherit; content: "\f0da"; padding: 0 10px; color: #a3a0a0; }
+.main-page .breadcrumb-bar ul li:first-child:before { content: ""; padding: 0px; }
+.main-page .breadcrumb-bar .back-link { padding-right: 20px; font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; color: #333333; text-decoration: none; }
+.main-page .ad-title { padding: 20px 0; }
+.main-page .ad-title h2 { font-family: "Roboto Slab", serif; font-weight: 300; font-size: 18px; line-height: 20px; font-size: 1.8rem; line-height: 2rem; }
+.main-page .ad-title span { font-weight: 300; font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; color: #a3a0a0; display: block; }
+.main-page .ad-detail .carousel { display: inline-block; }
+.main-page .ad-detail .carousel .carousel-control { margin-bottom: 80px; }
+.main-page .ad-detail .carousel .carousel-indicators { bottom: 80px; }
+.main-page .ad-detail ul.thumbnails-carousel { padding: 5px 0 0 0; margin: 0; list-style-type: none; text-align: center; }
+.main-page .ad-detail ul.thumbnails-carousel .center { display: inline-block; }
+.main-page .ad-detail ul.thumbnails-carousel li { margin-right: 5px; float: left; cursor: pointer; }
+.main-page .ad-detail .controls-background-reset { background: none !important; }
+.main-page .ad-detail .active-thumbnail { opacity: 0.4; }
+.main-page .ad-detail .indicators-fix { bottom: 70px; }
+.main-page .ad-detail .Flexible-container { position: relative; padding-bottom: 26.25%; padding-top: 30px; height: 0; overflow: hidden; margin-bottom: 20px; margin-top: 5px; }
+.main-page .ad-detail .Flexible-container iframe, .main-page .ad-detail .Flexible-container object, .main-page .ad-detail .Flexible-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.main-page .ad-detail .ad-description .ad-price { font-size: 34px; line-height: 18px; font-size: 3.4rem; line-height: 1.8rem; font-weight: 300; }
+.main-page .ad-detail .ad-description .ad-location { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; }
+.main-page .ad-detail .ad-description .ad-location span { display: block; }
+.main-page .ad-detail .ad-description p { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; color: #333333; padding: 5px; }
+.main-page .ad-detail .ad-description ul { padding: 20px 20px 0 20px; }
+.main-page .ad-detail .ad-description ul li { font-size: 11px; line-height: 18px; font-size: 1.1rem; line-height: 1.8rem; color: #333333; }
+.main-page .ad-detail .ad-description .contact-no, .main-page .ad-detail .ad-description .comments-btn { padding-top: 20px; }
+.main-page .ad-detail .ad-description .contact-no i, .main-page .ad-detail .ad-description .comments-btn i { padding-right: 10px; font-size: 20px; line-height: 18px; font-size: 2rem; line-height: 1.8rem; }
+.main-page .ad-comments-viewer { background: #747474; padding-bottom: 50px; }
+.main-page .ad-comments-viewer .container { position: relative; }
+.main-page .ad-comments-viewer .comments-box { padding: 20px 15px; }
+.main-page .ad-comments-viewer h2 { color: white; font-size: 20px; line-height: 18px; font-size: 2rem; line-height: 1.8rem; font-family: "Roboto Slab", serif; margin-bottom: 20px; text-transform: uppercase; }
+.main-page .ad-comments-viewer p { font-size: 12px; line-height: 16px; font-size: 1.2rem; line-height: 1.6rem; color: white; }
+.main-page .ad-comments-viewer span { font-size: 12px; line-height: 16px; font-size: 1.2rem; line-height: 1.6rem; color: white; display: block; }
+.main-page .ad-comments-viewer span.rating { padding-top: 20px; }
+.main-page .ad-comments-viewer .viewer-btn { position: absolute; bottom: -50px; right: 0; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dbd9d9), color-stop(100%, #fefefe)); background: -webkit-linear-gradient(#dbd9d9, #fefefe); background: -moz-linear-gradient(#dbd9d9, #fefefe); background: -o-linear-gradient(#dbd9d9, #fefefe); background: linear-gradient(#dbd9d9, #fefefe); padding: 10px 20px; }
+.main-page .ad-comments-viewer .viewer-btn i { color: #a3a0a0; }
+.main-page .related-content { /* Reposition the controls slightly */ /* Changes the position of the indicators */ /* Changes the colour of the indicators */ }
+.main-page .related-content h2 { color: #333333; font-size: 20px; line-height: 18px; font-size: 2rem; line-height: 1.8rem; font-family: "Roboto Slab", serif; padding: 20px 0; text-transform: uppercase; }
+.main-page .related-content .carousel { margin-bottom: 0; padding: 30px 40px 30px 40px; }
+.main-page .related-content .carousel-control { left: -12px; }
+.main-page .related-content .carousel-control.right { right: -12px; }
+.main-page .related-content .carousel-indicators { right: 50%; top: auto; bottom: 0px; margin-right: -19px; }
+.main-page .related-content .carousel-indicators li { background: #c0c0c0; }
+.main-page .related-content .carousel-indicators .active { background: #333333; }
 
 .post-ads { background: #661041; padding: 5rem; text-align: center; }
 .post-ads .main-text { text-align: center; color: white; font-family: "Roboto Slab", serif; font-weight: 300; font-size: 18px; line-height: 20px; font-size: 1.8rem; line-height: 2rem; }
@@ -136,4 +181,9 @@ footer .footer-text { padding: 5px 10px 50px; color: #a3a0a0; font-size: 12px; l
 footer .footer-text a { color: #a3a0a0; }
 footer .footer-text a:hover { color: #333333; text-decoration: none; }
 
-/*@import "responsive";*/
+@media only screen and (max-width: 1199px) { .contact-no, .comments-btn { font-size: 12px; line-height: 20px; font-size: 1.2rem; line-height: 2rem; padding: 10px; } }
+@media only screen and (max-width: 991px) { html { font-size: 87.5%; }
+  .search-bar .keyword, .search-bar .category, .search-bar .location { padding: 10px 15px; }
+  .search-bar .location { padding-bottom: 20px; }
+  .ad-description { padding-top: 20px; }
+  .ad-description .contact-no, .ad-description .comments-btn { font-size: 10px; line-height: 20px; font-size: 1rem; line-height: 2rem; padding: 10px; } }
