@@ -1448,6 +1448,49 @@ $app->delete('/packageType/:id', 'authenticate', function($packageType_id) use($
 });
 
 
+/**
+ * User Registration
+ * url - /register
+ * method - POST
+ * params - $users object
+ */
+$app->post('/register', function() use ($app) {
+            
+        $users  = array();
+		$response = array();
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+
+		$users = $request->getBody();	
+		
+		$new_user_id=$DbHandler->createUser($users);
+		if($new_user_id != NULL){			
+
+			//Get all the packages with the type  0 - Default Package
+			$default_package_list = $DbHandler->getAllDefaultPackages();
+			var_dump($default_package_list);
+			while($row = mysql_fetch_assoc($default_package_list))
+					{
+					   echo $row['package_name']." ";
+					   echo $row['package_Description']." ";
+
+					//  //CreateUserPackages			
+				  	// 	if ( $DbHandler->CreateUserPackages($userpkg_userId,$userpkg_pkgId,$userpkg_expirey,$userpkg_status)){
+				  	// 	 }else{
+						// $response["error"] = false;
+						// $response["message"] = "User Default packages creation unsuccessfull.";
+						// echoRespnse(200, $response);
+						// }		
+					}				
+
+		}else{
+			$response["error"] = true;
+			$response["message"] = "User Creation for Registration unsuccessfull";
+		}		
+		
+});
+
+
 $app->run();
 		
 		
