@@ -928,6 +928,85 @@ public function checkLogin($user_email, $user_password) {
 			return true;
 		}
 	}
+
+
+
+	public function createRegisteredUser( $users) {
+		$date= date('y-m-d');
+		$db = new database();
+		$table  = "user";
+		
+		(isset($users['user_firstname']) ? $user_firstname = $users['user_firstname'] : $user_firstname = "" );
+		(isset($users['user_lastname']) ? $user_lastname = $users['user_lastname'] : $user_lastname = "" );
+		(isset($users['user_address1']) ? $user_address1 = $users['user_address1'] : $user_address1 = "" );
+		(isset($users['user_address2']) ? $user_address2 = $users['user_address2'] : $user_address2 = "" );
+		(isset($users['user_city']) ? $user_city = $users['user_city'] : $user_city = "" );
+		(isset($users['user_contactNo']) ? $user_contactNo = $users['user_contactNo'] : $user_contactNo = "" );
+		
+		$values = "'".$users['user_username']."', 
+					  '".md5 ($users['user_password'])."', 
+					  '".$users['user_email']."', 
+					  '".$user_firstname."', 
+					  '".$user_lastname."', 
+					  '".$user_address1."', 
+					  '".$user_address2."', 
+					  '".$user_city."',
+					  '".$user_contactNo."', 
+					  '".$date."', 
+					  '".$users['user_type']."',
+					  '1',
+					  '".strtoupper(md5(uniqid(rand(), true)))."'";		
+					  
+		$rows   = "user_username, 
+				   user_password,
+				   user_email,
+				   user_firstname,
+				   user_lastname,
+				   user_address1,
+				   user_address2,
+				   user_city,
+				   user_contactNo,
+				   user_registeredDate,
+				   user_type,
+				   user_status,
+				   user_accessToken";		
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}				
+	}
+
+	public function getAllDefaultPackages(){
+
+		$db = new database();  
+		$table = ' packagetypes';
+		$rows ='*';
+		$where = 'package_type = 0';		
+		$db->selectJson($table,$rows,$where,'','');
+		$default_package_list = $db->getJson();
+		return $default_package_list;
+	}
+
+	public function CreateUserPackages($userpkg_userId,$userpkg_pkgId,$userpkg_expirey,$userpkg_status){
+		$db = new database();
+		
+		$table  = "userpackge";
+		$values = "'".$userpkg_userId."', 					 
+					  '".$userpkg_pkgId."',
+					  '".$userpkg_expirey."', 
+					  '".$userpkg_status."'";	
+					 				  
+		$rows   = "userpkg_userId, 
+				   userpkg_pkgId,
+				   userpkg_expirey,
+				   userpkg_status";		
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}	
+	}  		
 }
 
 ?>
