@@ -622,8 +622,8 @@ $app->delete('/locations/:id', 'authenticate', function($location_id) use($app) 
 			echoRespnse(200, $response);
 		} else {
 			$response["error"] = true;
-			$response["message"] = "Location failed to delete. Please try again!";
-			echoRespnse(404, $response);
+			$response["message"] = "Location failed to delete. Please delete the coraspond subers!";
+			echoRespnse(400, $response);
 		}
 });
 
