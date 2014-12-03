@@ -21,6 +21,12 @@ App.config(function($routeProvider, $httpProvider){
 		}
 	)
 	
+	.when('/login',
+		{
+			templateUrl:'app/partials/login/loginMain.html'
+		}
+	)
+	
 	.otherwise({
 		redirectTo:'/portal/classifieds'
 	});
