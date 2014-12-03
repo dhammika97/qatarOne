@@ -273,6 +273,14 @@ class DbHandler {
 
 	public function deleteCategory($category_id){
 		$db = new database();
+		$table1 = 'category_sub';
+		$rows1 ='*';
+		$where1 = '	category_sub_parentId = "'.$category_id.'"';
+		$db->select($table1,$rows1,$where1,'','');
+		$NumRows = $db->getNumRows();	
+		if( $NumRows > 1 ){
+			return false;
+		}
 		$table = 'category';
 		$where = 'category_id = "'.$category_id.'" ';
 		if ($db->delete($table,$where) ){
