@@ -399,7 +399,7 @@ $app->delete('/category/:categoryId', 'authenticate', function ($id) {
 			echoRespnse(200, $response);
 		} else {
 			$response['error'] = TRUE;
-			$response['message'] = 'Not Deleted';
+			$response['message'] = 'Not Deleted, This category contains sub categories';
 			echoRespnse(404, $response);
 		}
 });
