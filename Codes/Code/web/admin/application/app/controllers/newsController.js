@@ -48,11 +48,6 @@ controllers.newsDetailsController = function($scope, $routeParams, newsFactory, 
 	})
 	
 	$scope.updateNews = function(id){
-		/*uploader.uploadAll()
-		uploader.onCompleteItem = function(fileItem, response, status, headers) {
-			$scope.newsDetails.news[0].news_image = response.image
-			newsFactory.updateNews($scope,id);
-		};*/
 		if(uploader.queue.length !=0){
 			uploader.uploadAll()
 			uploader.onCompleteItem = function(fileItem, response, status, headers) {

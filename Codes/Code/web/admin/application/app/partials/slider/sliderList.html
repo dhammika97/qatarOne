@@ -15,7 +15,7 @@
     <tbody>
       <tr ng-repeat="slide in slider.sliders">
    		<td>{{slide.slider_title}}</td>
-        <td>{{slide.slider_image}}</td>
+        <td><img ng-src="../../../api/uploads/slider/{{slide.slider_image}}" width="100" class="img-thumbnail" /></td>
         <th>{{slide.slider_url}}</th>
         <th>{{slide.slider_status}}</th>
         <td><a href="#/editSlider/{{slide.slider_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteSlider(slide.slider_id)">Delete</button></td>
