@@ -6,7 +6,7 @@ App.config(function($routeProvider, $httpProvider){
 	$routeProvider
 	.when('/portal/:id',
 		{
-			//controller:'controllers.dashController',
+			controller:'controllers.dashController',
 			templateUrl:'app/partials/home/home.html'
 		}
 	)
