@@ -27,6 +27,12 @@ App.config(function($routeProvider, $httpProvider){
 		}
 	)
 	
+	.when('/post-ad',
+		{
+			templateUrl:'app/partials/postAd/postAdMain.html'
+		}
+	)
+	
 	.otherwise({
 		redirectTo:'/portal/classifieds'
 	});
