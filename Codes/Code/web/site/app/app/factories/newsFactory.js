@@ -1,7 +1,7 @@
 //newsFactry
 
 App.factory('newsFactory',function($resource){
-	var newsList = $resource('../../../api/category/:id', {}, {
+	var newsList = $resource('../../../api/news/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
         get: { method: 'GET', params: { id: '@id' } },
         update: { method: 'PUT', params: { id: '@id' } },
