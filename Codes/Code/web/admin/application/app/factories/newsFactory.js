@@ -41,7 +41,7 @@ App.factory('newsFactory',function($resource){
 			}).then(
 			function(value){
 				alert(value.message)
-				$scope.eventa=''
+				$scope.news=''
 			}
 		)
 	}

@@ -11,12 +11,18 @@ controllers.sliderController = function($scope, sliderFactory){
 	
 }
 
-controllers.sliderAddController = function($scope, sliderFactory){
+controllers.sliderAddController = function($scope, sliderFactory, FileUploader){
 
+	var uploader = $scope.uploader = new FileUploader({
+		url: '../../../api/include/upload.php'
+	})
 	$scope.addSlider = function(){
+		uploader.uploadAll()
+		uploader.onCompleteItem = function(fileItem, response, status, headers) {
 			
-		sliderFactory.saveSlider($scope)		
-
+            $scope.slider.slider_image = response.image
+			sliderFactory.saveSlider($scope)
+        };
 	}
 }
 controllers.sliderDetailsController = function($scope, $routeParams, sliderFactory){

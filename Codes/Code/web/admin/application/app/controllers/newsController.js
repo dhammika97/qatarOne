@@ -12,21 +12,60 @@ controllers.newsController = function($scope, newsFactory){
 }
 
 controllers.newsAddController = function($scope, newsFactory, FileUploader){
+	var uploader = $scope.uploader = new FileUploader({
+		url: '../../../api/include/upload.php'
+	})
+	
+	//var imageArray = new Array
 	$scope.addNews = function(){
-		newsFactory.saveNews($scope)
+		if(uploader.queue.length !=0){
+			uploader.uploadAll()
+			uploader.onCompleteItem = function(fileItem, response, status, headers) {
+				if(response.error==false){
+					$scope.news.news_image = response.image
+					//imageArray.push(response.image)
+					//console.log(imageArray)
+					newsFactory.saveNews($scope)
+				}else{
+					alert('fail to upload the image!')
+				}
+			};
+		}else{
+			newsFactory.saveNews($scope)
+		}
+		
+		
 	}
 	
-	var uploader = $scope.uploader = new FileUploader()
 	
-	uploader.onAfterAddingFile = function(fileItem) {
-		console.info('File Name', fileItem.file.name);
-	};
 }
-controllers.newsDetailsController = function($scope, $routeParams, newsFactory){
+controllers.newsDetailsController = function($scope, $routeParams, newsFactory, FileUploader){
 	
-	$scope.newsDetails = newsFactory.getNews($routeParams.id);	
+	$scope.newsDetails = newsFactory.getNews($routeParams.id);
+	
+	var uploader = $scope.uploader = new FileUploader({
+		url: '../../../api/include/upload.php'
+	})
 	
 	$scope.updateNews = function(id){
-		newsFactory.updateNews($scope,id);
+		/*uploader.uploadAll()
+		uploader.onCompleteItem = function(fileItem, response, status, headers) {
+			$scope.newsDetails.news[0].news_image = response.image
+			newsFactory.updateNews($scope,id);
+		};*/
+		if(uploader.queue.length !=0){
+			uploader.uploadAll()
+			uploader.onCompleteItem = function(fileItem, response, status, headers) {
+				if(response.error==false){
+					$scope.newsDetails.news[0].news_image = response.image
+					newsFactory.updateNews($scope,id);
+				}else{
+					alert('fail to upload the image!')
+				}
+			};
+		}else{
+			newsFactory.updateNews($scope,id);
+		}
+		
 	}
 }

@@ -783,12 +783,13 @@ public function checkLogin($user_email, $user_password) {
 	
 	public function createNews($news){
 		$date= date('y-m-d');
+		(isset($news['news_image']) ? $news_image = $news['news_image'] : $news_image = "" );
 		$db = new database();
 		$table  = "news";
 		$values = "'".$news['news_title']."', 
 				'".$news['news_shortDescription']."',
 				'".$news['news_Description']."',
-				'".isset($news['news_image'])."',
+				'".$news_image."',
 				'".$date."',
 				'1'";					  
 		$rows   = "news_title, 

@@ -9,6 +9,7 @@
         <th>News Short Description</th>
         <th>News Date</th>
         <th>Status</th>
+        <th>Image</th>
         <th></th>
       </tr>
     </thead>
@@ -18,6 +19,7 @@
         <td>{{news.news_shortDescription}}</td>
         <th>{{news.news_date}}</th>
         <th>{{news.news_status}}</th>
+        <th><img ng-src="../../../api/uploads/news/{{news.news_image}}" width="100" class="img-thumbnail"/></th>
         <td><a href="#/editNews/{{news.news_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteNews(news.news_id)">Delete</button></td>
       </tr>
     </tbody>
