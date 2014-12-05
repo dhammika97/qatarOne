@@ -1,7 +1,5 @@
-//newsFactry
-
 App.factory('subscriberFactory',function($resource){
-	var subscriber = $resource('../../../api/subscriber/:id', {}, {
+	var subscriber = $resource('../../../api/subscription/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
         get: { method: 'GET', params: { id: '@id' } },
         update: { method: 'PUT', params: { id: '@id' } },
@@ -17,6 +15,7 @@ App.factory('subscriberFactory',function($resource){
 
 
 	factory.saveSubscriber = function($scope){
+		alert('factory');
 		return subscriber.save($scope.subscriber)
 			.$promise.catch(function(e){
 				alert(e.data.message)
