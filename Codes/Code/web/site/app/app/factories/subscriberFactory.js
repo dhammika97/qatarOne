@@ -13,9 +13,7 @@ App.factory('subscriberFactory',function($resource){
 		return subscriber.query()
 	}
 
-
 	factory.saveSubscriber = function($scope){
-		alert('factory');
 		return subscriber.save($scope.subscriber)
 			.$promise.catch(function(e){
 				alert(e.data.message)
