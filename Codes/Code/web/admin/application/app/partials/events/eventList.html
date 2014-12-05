@@ -7,6 +7,7 @@
       <tr>
         <th>Event Title</th>
         <th>Event Date</th>
+        <th>Event Image</th>
         <th>Event Description</th>
         <th>Status</th>
       </tr>
@@ -15,6 +16,7 @@
       <tr ng-repeat="event in events.events">
    		<td>{{event.event_title}}</td>
         <td>{{event.event_date}}</td>
+        <td><img ng-src="../../../api/uploads/events/{{event.event_image}}" width="100" class="img-thumbnail"/></td>
         <th>{{event.event_shortDescription}}</th>
         <th>{{event.event_status}}</th>
         <td><a href="#/editEvent/{{event.evenet_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteEvent(event.evenet_id)">Delete</button></td>

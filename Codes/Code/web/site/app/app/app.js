@@ -4,7 +4,7 @@ var App = angular.module('QatartOneApp',['ngRoute','ngResource'])
 App.config(function($routeProvider, $httpProvider){
 	//$httpProvider.defaults.headers.common.Authorization = getUser();
 	$routeProvider
-	.when('/portal/:id',
+	.when('/portal/:name',
 		{
 			controller:'controllers.dashController',
 			templateUrl:'app/partials/home/home.html'
