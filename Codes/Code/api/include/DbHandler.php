@@ -1007,7 +1007,22 @@ public function checkLogin($user_email, $user_password) {
 		}else{
 			return false;
 		}	
-	}  		
+	}
+
+
+	public function addUserSubscription($userSubscription){	
+			$db = new database();
+			$table  = "usersubscription";
+			(isset($userSubscription['subscription_email']) ? $subscription_email = $userSubscription['subscription_email'] : $subscription_email = "" );
+			
+			$values = "'".$subscription_email."',
+			 			'1'";	
+						
+			$rows   = "subscription_email,subscription_status";
+			if($db->insert($table,$values,$rows) ){
+				return true;
+			}	
+		}  		
 }
 
 ?>
