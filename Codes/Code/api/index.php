@@ -1490,6 +1490,29 @@ $app->post('/register', function() use ($app) {
 		
 });
 
+/**
+ * Create Subscription 
+ * url - /subscription
+ * method - POST
+ * params -subscription object*/
+
+$app->post('/subscription',  function() use ($app) {
+		$news  = array();
+		$response = array();
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+
+		$userSubscription = $request->getBody();
+		if($DbHandler->addUserSubscription($userSubscription)){
+			$response["error"] = false;
+			$response["message"] = "User subscription created successfully";
+			echoRespnse(201, $response);				
+			}else{
+			$response["error"] = true;
+			$response["message"] = "User subscription creation failed";
+			echoRespnse(400, $response);
+		}
+});
 
 $app->run();
 		
