@@ -11,8 +11,7 @@ controllers.masterController = function($scope, $location){
 controllers.dashController = function($scope, dashFactory, newsFactory){
 	
 	$scope.categories = dashFactory.getCategory();	
-	$scope.news = newsFactory.getNews();		
-	//$scope.events = eventFactory.getEvents();	
+	
 }
 
 
