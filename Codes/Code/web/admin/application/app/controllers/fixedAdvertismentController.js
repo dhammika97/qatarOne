@@ -16,14 +16,17 @@ controllers.fixedAdvertismentController = function($scope, fixedAdvertismentFact
 
 }
 
-controllers.fixedAdvertismentAddController = function($scope, fixedAdvertismentFactory){
+controllers.fixedAdvertismentAddController = function($scope, fixedAdvertismentFactory, FileUploader){
+	var uploader = $scope.uploader = new FileUploader({
+		url: '../../../api/include/upload.php'
+	})
+	
 	$scope.addfixedAdvertisment = function(){
 		fixedAdvertismentFactory.savefixedAdvertisment($scope)//userList.save(user)
 	}
 }
 controllers.fixedAdvertismentDetailsController = function($scope, $routeParams, fixedAdvertismentFactory){
 	$scope.fixedAdsDetail = fixedAdvertismentFactory.geFixedAdvertisment($routeParams.id)
-	console.log($scope.fixedAdsDetail);
 	
 	
 	$scope.updateFixedAdvertisment = function(id){
