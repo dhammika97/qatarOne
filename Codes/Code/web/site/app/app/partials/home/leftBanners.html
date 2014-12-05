@@ -1,4 +1,6 @@
-<div class="sidebar-placeholder">
-	<img class="img-responsive" src="http://placehold.it/160x600">
-    <img class="img-responsive" src="http://placehold.it/160x600">
+<div class="sidebar-placeholder" ng-controller="leftfixedAddsController">
+	<div ng-repeat="add in fixedAdd.fixedAds">
+	<img class="img-responsive" ng-src="../../../api/uploads/bannerAds/{{add.fixedads_image}}">
+    </div>
+   
 </div>
