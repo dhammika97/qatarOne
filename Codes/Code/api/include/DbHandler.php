@@ -238,7 +238,7 @@ class DbHandler {
 		$db = new database();  
 		$table = 'category c, advertisment a';
 		$rows ='c.* , count( a. advertisment_id) as addCount';
-		$where_query = 'a.advertisement_categoryId = c.category_id';
+		$where_query = 'a.advertisement_categoryId = c.category_id'.$where;
 		$group_by = 'c.category_id';
 		$db->selectJson($table,$rows,$where_query,'','',$group_by);
 		$category_list = $db->getJson();
