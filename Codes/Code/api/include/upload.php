@@ -27,7 +27,7 @@ if ( !empty( $_FILES ) ) {
 		$unique = strtoupper(md5(uniqid(rand(), true)));	
 		$image = new SimpleImage();
 		$image->load($_FILES['event_image']['tmp_name']);
-		$image->resizeToWidth(466);
+		$image->resize(360,360);
 		$image->save($dir.$unique.$_FILES['event_image']['name']);
 		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.$_FILES['event_image']['name']);
 		$json = json_encode($response);
