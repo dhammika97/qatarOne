@@ -79,7 +79,7 @@ private $numrows;
 		$this->disconnect();
 	}
 	
-	function selectJson($table,$rows,$where,$order,$limit){
+	function selectJson($table = null,$rows = null,$where = null,$order = null,$limit = null,$group = null){
 		$q = 'select '.$rows.' from '.$table;
 		if($where!=""){
 			$q .= ' where '.$where;
@@ -89,6 +89,9 @@ private $numrows;
 		}
 		if($limit!=""){
 			$q .= ' limit '.$limit;
+		}
+		if($group!=""){
+			$q .= ' group by '.$group;
 		}
 		//echo $q;
 		$query = mysqli_query($this->con,$q);

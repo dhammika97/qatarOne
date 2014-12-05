@@ -1,5 +1,5 @@
 App.factory('categoryFactory',function($resource){
-	var categoryList = $resource('../../../api/category/:id', {}, {
+	var categoryList = $resource('../../../api/categoryWithCount/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
         get: { method: 'GET', params: { id: '@id' } },
         update: { method: 'PUT', params: { id: '@id' } },

@@ -304,6 +304,33 @@ $app->get('/category', function() {
 		}
 });
 
+
+
+
+// * list all categories with count
+// * url - /categoryWithCount
+// * method - get
+// * params -  
+  
+$app->get('/categoryWithCount', function() {	
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->getAllCategoriesWithCount($params);
+
+		if(!$result){
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}else{
+			$response["error"] = false;
+			$response['categories'] = json_decode($result);
+			echoRespnse(200, $response);
+		}
+});
+
 // * list all parent categories 
 // * url - /category
 // * method - get

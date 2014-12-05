@@ -46,7 +46,7 @@ class DbHandler {
 		$db = new database();
 		$table = 'user';
 		$rows ='*';	
-		$db->selectJson($table,$rows,$where,'','');
+		$db->selectJson($table,$rows,$where,'','','');
 		$user_list = $db->getJson();
 		return $user_list;
 	}
@@ -56,7 +56,7 @@ class DbHandler {
 		$table = 'user';
 		$rows ='*';
 		$where = 'user_id = "'.$user_id.'"';	
-		$db->selectJson($table,$rows,$where,'','');
+		$db->selectJson($table,$rows,$where,'','','');
 		$user = $db->getJson();
 		return $user;
 	}
@@ -143,7 +143,7 @@ class DbHandler {
 		$db = new database();    
 		$table = 'fixedads';
 		$rows ='*';
-		$db->selectJson($table,$rows,$where,'','');
+		$db->selectJson($table,$rows,$where,'','','');
 		$fixedad_list = $db->getJson();
 		return $fixedad_list;
 	}
@@ -153,7 +153,7 @@ class DbHandler {
 		  $table = 'fixedads';
 		  $rows ='*';
 		  $where = 'fixedads_id = "'.$fixedads_id.'"';
-		  $db->selectJson($table,$rows,$where,'','');
+		  $db->selectJson($table,$rows,$where,'','','');
 		  $user = $db->getJson();
 		  return $user; 
 	}
@@ -221,17 +221,42 @@ class DbHandler {
 		$db = new database();  
 		$table = 'category';
 		$rows ='*';
-		$db->selectJson($table,$rows,$where,'','');
+		$db->selectJson($table,$rows,$where,'','','');
 		$category_list = $db->getJson();
 		return $category_list;
 	}
+	public function getAllCategoriesWithCount($params){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= ' AND '.$key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
+		$db = new database();  
+		$table = 'category c, advertisment a';
+		$rows ='c.* , count( a. advertisment_id) as addCount';
+		$where_query = 'a.advertisement_categoryId = c.category_id';
+		$group_by = 'c.category_id';
+		$db->selectJson($table,$rows,$where_query,'','',$group_by);
+		$category_list = $db->getJson();
+		return $category_list;
+	}
+	
+	//SELECT c.* , count( a. advertisment_id)
+//FROM category c, advertisment a
+//where a.advertisement_categoryId = c.category_id
+//GROUP BY c.category_id
+
 
 	public function GetCategoryDetail($category_id){
 		$db = new database();
 		$table = 'category';
 		$rows ='*';
 		$where = 'category_id = "'.$category_id.'" AND category_status = "1" ';
-		$db->selectJson($table,$rows,$where,'','');
+		$db->selectJson($table,$rows,$where,'','','');
 		$user = $db->getJson();
 		return $user;			
 	}
@@ -301,7 +326,7 @@ class DbHandler {
 		$db = new database();
 		$table = 'category_sub';
 		$rows ='*';	
-		$db->selectJson($table,$rows,$where,'','');
+		$db->selectJson($table,$rows,$where,'','','');
 		$subcategories = $db->getJson();
 		return $subcategories;
 	}
@@ -311,7 +336,7 @@ class DbHandler {
 		$table = 'category_sub';
 		$rows ='*';
 		$where = 'category_sub_id = "'.$id.'"';
-		$db->selectJson($table,$rows,$where,'','');
+		$db->selectJson($table,$rows,$where,'','','');
 		$subcategory = $db->getJson();
 		return $subcategory;	
 	}
@@ -698,7 +723,7 @@ public function checkLogin($user_email, $user_password) {
 		$table = 'events';
 		$rows ='*';
 		
-		$db->selectJson($table,$rows,$where,'','');
+		$db->selectJson($table,$rows,$where,'','','');
 		$pages_list = $db->getJson();
 		return $pages_list;
 	}
