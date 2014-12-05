@@ -27,13 +27,29 @@ controllers.eventAddController = function($scope, eventFactory, FileUploader){
 				}
 			};
 		}else{
-			eventFactory.saveEvent($scope)
+			alert('image should be selected')
 		}
 	}
 }
-controllers.eventDetailsController = function($scope, $routeParams, eventFactory){
-	$scope.eventDetails = eventFactory.getEvent($routeParams.id);	
-	$scope.updateEvent = function(id){
-		eventFactory.updateEvent($scope,id);
+controllers.eventDetailsController = function($scope, $routeParams, eventFactory, FileUploader){
+	var uploader = $scope.uploader = new FileUploader({
+		url: '../../../api/include/upload.php'
+	})
+	$scope.eventDetails = eventFactory.getEvent($routeParams.id);
+	
+	$scope.updateEvent = function(id){		
+		if(uploader.queue.length !=0){
+			uploader.uploadAll()
+			uploader.onCompleteItem = function(fileItem, response, status, headers) {	
+				if(response.error==false){
+					$scope.eventDetails.event[0].event_image = response.image
+					eventFactory.updateEvent($scope,id);
+				}else{
+					alert('image upload failed!')
+				}
+			};
+		}else{
+			eventFactory.updateEvent($scope,id);
+		}
 	}
 }

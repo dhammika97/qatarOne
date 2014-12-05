@@ -29,7 +29,7 @@ controllers.sliderAddController = function($scope, sliderFactory, FileUploader){
 				}
 			};
 		}else{
-			alert('image should selected')
+			alert('image should be selected')
 		}
 	}
 }
