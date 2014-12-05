@@ -184,6 +184,23 @@ $app->get('/fixedAds',  function() {
 			echoRespnse(200, $response);
 		}
 	});
+	
+$app->get('/fixedAdds',  function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+		$response = array();
+		$DbHandler = new DbHandler();			
+		$result = $DbHandler->getAllFixedAdds($params);
+		if(!$result){
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}else{
+			$response["error"] = false;
+			$response['fixedAds'] = json_decode($result);
+			echoRespnse(200, $response);
+		}
+	});
 
 /**
  * Get Fixed advertisment by advertisment id

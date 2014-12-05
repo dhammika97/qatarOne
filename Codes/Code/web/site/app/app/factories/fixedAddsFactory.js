@@ -1,7 +1,7 @@
 //fixedAddsFactory
 
 App.factory('fixedAddsFactory',function($resource){
-	var fixedAdds = $resource('../../../api/fixedAds/:id', {}, {
+	var fixedAdds = $resource('../../../api/fixedAdds/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
         get: { method: 'GET', params: { id: '@id' } },
         update: { method: 'PUT', params: { id: '@id' } },

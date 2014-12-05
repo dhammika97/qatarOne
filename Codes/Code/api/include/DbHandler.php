@@ -129,8 +129,7 @@ class DbHandler {
 			return true;
 		}		
 	}
-    
-	public function getAllFixedAd($params) {
+    public function getAllFixedAd($params) {
 		$where = '';
 		$i = 1;
 		foreach($params as $key => $value){
@@ -143,7 +142,36 @@ class DbHandler {
 		$db = new database();    
 		$table = 'fixedads';
 		$rows ='*';
-		$db->selectJson($table,$rows,$where,'','','');
+		$db->selectJson($table,$rows,$where,'',$limit,'');
+		$fixedad_list = $db->getJson();
+		return $fixedad_list;
+	}
+	public function getAllFixedAdds($params) {
+		$where = 'fixedads_type = "'.$params['fixedads_type'].'" AND fixedads_status = "'.$params['fixedads_status'].'"';
+		$addtype = $params['fixedads_type'];
+		$limit = '';
+		if(isset($addtype)){
+			
+			switch ($addtype) {
+				case 1:
+					$limit = '1';
+					break;
+				case 4:
+					$limit = '1';
+					break;
+				case 5:
+					$limit = '1';
+					break;
+				
+				default:
+					$limit = '2';
+			}	
+		}
+		
+		$db = new database();    
+		$table = 'fixedads';
+		$rows ='*';
+		$db->selectJson($table,$rows,$where,'RAND()',$limit,'');
 		$fixedad_list = $db->getJson();
 		return $fixedad_list;
 	}
