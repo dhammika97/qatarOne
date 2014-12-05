@@ -142,7 +142,7 @@ class DbHandler {
 		$db = new database();    
 		$table = 'fixedads';
 		$rows ='*';
-		$db->selectJson($table,$rows,$where,'',$limit,'');
+		$db->selectJson($table,$rows,$where,'','','');
 		$fixedad_list = $db->getJson();
 		return $fixedad_list;
 	}
