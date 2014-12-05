@@ -10,9 +10,9 @@ App.factory('fixedAddsFactory',function($resource){
     });
 	
 	var factory = {}
-	factory.getfixedAdd = function(params){
+	factory.getfixedAdd = function(addType){
 		
-		return tld = fixedAdds.query({'fixedads_status':1});
+		return tld = fixedAdds.query({'fixedads_status':1,'fixedads_type':addType});
 		tld.$promise.catch(function(e){
 			alert(e.data.message)
 			
