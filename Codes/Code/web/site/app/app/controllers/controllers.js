@@ -8,9 +8,9 @@ controllers.masterController = function($scope, $location){
 	}
 }
 
-controllers.dashController = function($scope, dashFactory, newsFactory){
+controllers.dashController = function($scope, dashFactory){
 	
-	$scope.categories = dashFactory.getCategory();	
+	//$scope.categories = dashFactory.getCategory();	
 	
 }
 
