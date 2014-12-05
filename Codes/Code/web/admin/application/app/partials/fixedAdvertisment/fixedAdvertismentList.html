@@ -17,7 +17,7 @@
       <tr ng-repeat="fiXedAdvertisment in fixedAds.fixedAds">
         <td>{{fiXedAdvertisment.fixedads_title}}</td>
         <td>{{fiXedAdvertisment.fixedads_type}}</td>
-        <td>{{fiXedAdvertisment.fixedads_image}}</td>
+        <td><img ng-src="../../../api/uploads/bannerAds/{{fiXedAdvertisment.fixedads_image}}" height="80" /></td>
         <td>{{fiXedAdvertisment.fixedads_enetredDate}}</td>
         <td>{{fiXedAdvertisment.fixedads_url}}</td>
          <td>{{fiXedAdvertisment.fixedads_status}}</td>
