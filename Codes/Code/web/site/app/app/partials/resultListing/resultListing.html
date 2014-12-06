@@ -30,7 +30,7 @@
 	<ng-include src="'app/partials/resultListing/slider.html'"></ng-include>
 </section>
 
-<section class="main-page">
+<section class="main-page" 	ng-controller="resultsListingController">
   <div class="shadow"></div>
   <div class="filter-bar">
      <div class="container">
@@ -76,7 +76,7 @@
            <div class="filter-heading">
           <i class="fa fa-th-list"></i> Category </div>
           <ul>
-            <li><a href="#">Madinat Al Shamal<span>20500</span></a></li>
+            <li><a href="#" ng-click="setParams('locationid',locations)">Madinat Al Shamal<span>20500</span></a></li>
             <li><a href="#">Madinat Al Shamal<span>20500</span></a></li>
             <li><a href="#">Madinat Al Shamal<span>20500</span></a></li>
             <li><a href="#">Madinat Al Shamal<span>20500</span></a></li>
@@ -87,17 +87,17 @@
           <div class="filter-content"></div>
           <ng-include src="'app/partials/resultListing/subscribe.html'"></ng-include>
       </div>
-      <div class="col-lg-9">
-        <div id="products" class="row list-group">
-            <div class="item  col-xs-6 col-sm-6 col-md-4 col-lg-4 grid-group-item" ng-click="go('/details-view/1')">
+      <div class="col-lg-9" >
+        <div id="products" class="row list-group" >
+            <div class="item  col-xs-6 col-sm-6 col-md-4 col-lg-4 grid-group-item" ng-click="go('/details-view/1')" ng-repeat="resultList in resultList.advertisments">
                 <div class="thumbnail">
-                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+             <img class="group list-group-image" ng-src="../../../api/uploads/advertisement/{{resultList.advertisement_image}}" alt="" />
                     <div class="caption">
                       <div class="details">
                         <h4 class="group inner list-group-item-heading">
-                            Product title</h4>
+                           {{resultList.advertisement_title}}</h4>
                         <p class="group inner list-group-item-text">
-                          <span class="datestamp">1 Nov 1:08 pm</span>
+                          <span class="datestamp"> {{resultList.date}} {{resultList.time}}</span>
                             Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                             sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
                             </div>
@@ -108,143 +108,14 @@
                               <span class="comments">5 Comments</span>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="price-tag">QR234</span>
+                              <span class="price-tag"> {{resultList.price}}</span>
                             </div>
                         </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="item  col-xs-6 col-sm-6 col-md-4  col-lg-4  grid-group-item">
-                <div class="thumbnail">
-                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                    <div class="caption">
-                      <div class="details">
-                        <h4 class="group inner list-group-item-heading">
-                            Product title</h4>
-                        <p class="group inner list-group-item-text">
-                          <span class="datestamp">1 Nov 1:08 pm</span>
-                            Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                            </div>
-                        <div class="price">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="rating">######</span>
-                              <span class="comments">5 Comments</span>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="price-tag">QR234</span>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item  col-xs-6 col-sm-6 col-md-4  col-lg-4 grid-group-item">
-                <div class="thumbnail">
-                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                    <div class="caption">
-                      <div class="details">
-                        <h4 class="group inner list-group-item-heading">
-                            Product title</h4>
-                        <p class="group inner list-group-item-text">
-                          <span class="datestamp">1 Nov 1:08 pm</span>
-                            Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                            </div>
-                        <div class="price">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="rating">######</span>
-                              <span class="comments">5 Comments</span>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="price-tag">QR234</span>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item  col-xs-6 col-sm-6 col-md-4  col-lg-4 grid-group-item">
-                <div class="thumbnail">
-                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                    <div class="caption">
-                      <div class="details">
-                        <h4 class="group inner list-group-item-heading">
-                            Product title</h4>
-                        <p class="group inner list-group-item-text">
-                          <span class="datestamp">1 Nov 1:08 pm</span>
-                            Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                            </div>
-                        <div class="price">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="rating">######</span>
-                              <span class="comments">5 Comments</span>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="price-tag">QR234</span>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item  col-xs-6 col-sm-6 col-md-4  col-lg-4 grid-group-item">
-                <div class="thumbnail">
-                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                    <div class="caption">
-                      <div class="details">
-                        <h4 class="group inner list-group-item-heading">
-                            Product title</h4>
-                        <p class="group inner list-group-item-text">
-                          <span class="datestamp">1 Nov 1:08 pm</span>
-                            Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                            </div>
-                        <div class="price">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="rating">######</span>
-                              <span class="comments">5 Comments</span>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="price-tag">QR234</span>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item  col-xs-6 col-sm-6 col-md-4  col-lg-4 grid-group-item">
-                <div class="thumbnail">
-                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                    <div class="caption">
-                        <div class="details">
-                        <h4 class="group inner list-group-item-heading">
-                            Product title</h4>
-                        <p class="group inner list-group-item-text">
-                          <span class="datestamp">1 Nov 1:08 pm</span>
-                            Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                          </div>
-                        <div class="price">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="rating">######</span>
-                              <span class="comments">5 Comments</span>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="price-tag">QR234</span>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div> 
+           </div>
         </div>
         <div class="pagination pull-right"> << < 1 | 2 | 3 > >></div>
       </div>
