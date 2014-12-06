@@ -1135,7 +1135,58 @@ public function checkLogin($user_email, $user_password) {
 		$db->selectJson($table,$rows,$where,'','');
 		$add = $db->getJson();
 		return $add;
-	}	
+	}
+	
+	public function createAdvertisment( $advertisment) {
+		$db = new database();
+		$advertisement_expire= $end = date('Y-m-d', strtotime('+1 years'));
+		$table  = "advertisment";
+		
+		isset($advertisment['advertisement_attributes']) ? $advertisement_attributes = $advertisment['advertisement_attributes'] : $advertisement_attributes = "" ;		
+		isset($advertisment['advertisement_title']) ? $advertisement_title = $advertisment['advertisement_title'] : $advertisement_title = "" ;
+		isset($advertisment['advertisement_description']) ? $advertisement_description = $advertisment['advertisement_description'] : $advertisement_description = "" ;
+		
+		$values = "'".$advertisment['advertisement_categoryId']."',
+				  '".$advertisment['advertisement_subCategoryId']."',
+				  '".$advertisement_attributes."',
+				  '".$advertisement_title."', 				 
+				  '".$advertisement_description."',
+				  '".$advertisment['advertisement_price']."',              
+				  '1',
+				  '".$advertisement_expire."'";
+		$rows="advertisement_categoryId,
+			   advertisement_subCategoryId, 
+			   advertisement_attributes,
+			   advertisement_title,
+			   advertisement_description, 
+			   advertisement_price,
+			   advertisement_status,
+			   advertisement_expire";
+		if($db->insert($table,$values,$rows) ){
+			return $db->getInsertId();
+		}else{
+			return false;
+		}				
+	}
+
+	public function CreateAdvertismentImage( $advertisement_id,$advertisement_image) {
+		$db = new database();		
+		$table  = "advertisement_images";
+		
+		isset($advertisment['advertisement_image']) ? $advertisement_image = $advertisment['advertisement_image'] : $advertisement_image = "" ;		
+		
+		$values = "'".$advertisement_id."',			
+				  '".$advertisement_image."'";
+		$rows="advertisement_id,
+			   advertisement_image";
+
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}				
+	}
+	
 	
 	
 }

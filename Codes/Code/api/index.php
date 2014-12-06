@@ -1531,6 +1531,38 @@ $app->get('/advertisments', function() {
             }
         });	 
 
+
+/**
+ * Create  Advertisment 
+ * url 		- /advertisment
+ * method 	- POST
+ * params 	- Advertisment  object*/
+
+$app->post('/advertisment', function() use ($app) {
+		$response = array();           
+		$request = \Slim\Slim::getInstance()->request();
+		$advertisment = $request->getBody();
+		$db = new DbHandler();
+		
+	 if($advertismentID = $db->createAdvertisment($advertisment)){
+	 	if (isset($advertisment['advertisement_image'])){
+				if($db->CreateAdvertismentImage($advertismentID,$advertisment['advertisement_image'])){
+						$response["error"] = false;
+						$response["message"] = "Advertisment created successfully";                
+						echoRespnse(201, $response);
+						}
+					} else{
+							$response["error"] = false;
+							$response["message"] = "Advertisment created successfully";                
+							echoRespnse(201, $response);
+						}
+			}else {
+				$response["error"] = true;
+				$response["message"] = "Failed to create Advertisment. Please try again";
+				echoRespnse(400, $response);
+			 }	           
+});
+
 $app->run();
 		
 		
