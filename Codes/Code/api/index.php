@@ -1558,6 +1558,26 @@ $app->post('/subscription',  function() use ($app) {
 		}
 });
 
+/**
+ * Get advertisment by id
+ * url - /advertisment
+ * method - GET
+ * params -advertisment id*/		
+$app->get('/advertisment/:id', function($id) {
+		$response = array();
+		$DbHandler = new DbHandler();	
+		$result = $DbHandler->advertismentDetail($id);
+        if ($result != NULL) {
+        	$response["error"] = false;
+				$response['advertisment'] = json_decode($result);
+                echoRespnse(200	, $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+        });	 
+
 $app->run();
 		
 		

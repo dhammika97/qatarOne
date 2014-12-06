@@ -982,9 +982,6 @@ public function checkLogin($user_email, $user_password) {
 			return true;
 		}
 	}
-
-
-
 	public function createRegisteredUser( $users) {
 		$date= date('y-m-d');
 		$db = new database();
