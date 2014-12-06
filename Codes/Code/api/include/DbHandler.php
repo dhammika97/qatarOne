@@ -1151,7 +1151,10 @@ public function checkLogin($user_email, $user_password) {
 				  '".$advertisement_attributes."',
 				  '".$advertisement_title."', 				 
 				  '".$advertisement_description."',
-				  '".$advertisment['advertisement_price']."',              
+				  '".$advertisment['advertisement_price']."',
+				  '".$advertisment['advertisement_contactName']."',
+				  '".$advertisment['advertisement_contactNo']."',
+				  '".$advertisment['advertisement_contactEmail']."',              
 				  '1',
 				  '".$advertisement_expire."'";
 		$rows="advertisement_categoryId,
@@ -1160,6 +1163,9 @@ public function checkLogin($user_email, $user_password) {
 			   advertisement_title,
 			   advertisement_description, 
 			   advertisement_price,
+			   advertisement_contactName,
+			   advertisement_contactNo,	
+			   advertisement_contactEmail,			   
 			   advertisement_status,
 			   advertisement_expire";
 		if($db->insert($table,$values,$rows) ){
