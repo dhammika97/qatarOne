@@ -1,3 +1,5 @@
 controllers.addvertismentController= function($scope,advertismentFactory, $routeParams){
-	$scope.categories = advertismentFactory.getAdd($routeParams.id);		
+	$scope.adversiment = advertismentFactory.getAdd($routeParams.id);		
+		
+	//alert($scope.adversiment);
 }

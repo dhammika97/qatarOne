@@ -1072,7 +1072,19 @@ public function checkLogin($user_email, $user_password) {
 			if($db->insert($table,$values,$rows) ){
 				return true;
 			}	
-		}  		
+		}  	
+	public function advertismentDetail($id){
+		$db = new database();
+		$table = 'advertisment a, advertisement_images i, locations l, suburbs s';
+		$rows ='a.advertisement_title, i.advertisement_image, l.location_name, 	
+				l.location_cordinates,s.suburb_name,s.suburb_cordinates';
+		$where = 'a.advertisment_id = i.advertisement_id
+				 AND a.advertisement_location= l.location_id
+				 AND a.advertisement_suburb = s.suburb_id
+				 AND a.advertisment_id = "'.$id.'"';
+		$db->selectJson($table,$rows,$where,'','');
+		$add = $db->getJson();
+		return $add;
+	}	
 }
-
 ?>
