@@ -1,71 +1,75 @@
 // JavaScript Document
 var App = angular.module('QatartOneApp',['ngRoute','ngResource','angular.filter']) 
 
+window.routes =
+{
+    "/portal/:name": {
+        templateUrl: 'app/partials/home/home.html', 
+        controller: 'controllers.dashController', 
+        requireLogin: false
+	},
+    "/show-list/:parent_id": {
+        templateUrl: 'app/partials/resultListing/resultListing.html', 
+        controller: '', 
+        requireLogin: false
+    },
+	"/news-details/:id": {
+        controller:'controllers.newsDetailsController',
+		templateUrl:'app/partials/newsdetails/NewsDetails.html',
+		requireLogin: false
+    },
+	"/events-details/:id": {
+        controller:'controllers.eventsDetailsController',
+		templateUrl:'app/partials/eventsdetails/EventsDetails.html',
+		requireLogin: false
+    },
+	"/pages/:pageName": {
+        controller:'controllers.pageNavController',
+		templateUrl:'app/partials/CMS/CMSPage.html',
+		requireLogin: false
+    },
+	"/post-ad": {
+        templateUrl:'app/partials/postAd/postAdMain.html',
+		requireLogin: true
+    },
+	'/login': {
+		templateUrl:'app/partials/login/loginMain.html',
+		requireLogin: false
+	},
+	'/details-view/:id': {
+		templateUrl:'app/partials/detailsView/detailsView.html',
+		requireLogin: false
+	}
+};
+
 App.config(function($routeProvider, $httpProvider){
 	//$httpProvider.defaults.headers.common.Authorization = getUser();
-	$routeProvider
-	.when('/portal/:name',
-		{
-			controller:'controllers.dashController',
-			templateUrl:'app/partials/home/home.html'
-		}
-	)
-	.when('/show-list/:parent_id',
-		{
-			templateUrl:'app/partials/resultListing/resultListing.html'
-		}
-	)
-	.when('/details-view/:id',
-		{
-			templateUrl:'app/partials/detailsView/detailsView.html'
-		}
-	)
-	
-	.when('/login',
-		{
-			templateUrl:'app/partials/login/loginMain.html'
-		}
-	)
-	
-	.when('/post-ad',
-		{
-			templateUrl:'app/partials/postAd/postAdMain.html'
-		}
-	)
-	
-	.when('/pages/:pageName',
-		{
-			controller:'controllers.pageNavController',
-			templateUrl:'app/partials/CMS/CMSPage.html'
-		}
-	).when('/news-details/:id',
-		{
-			controller:'controllers.newsDetailsController',
-			templateUrl:'app/partials/newsdetails/NewsDetails.html'
-		}
-	).when('/events-details/:id',
-			{
-		controller:'controllers.eventsDetailsController',
-		templateUrl:'app/partials/eventsdetails/EventsDetails.html' 
-	}
-)
-
-	
-	.otherwise({
+	for(var path in window.routes) {
+        $routeProvider.when(path, window.routes[path]);
+    }
+	$routeProvider.otherwise({
 		redirectTo:'/portal/classified'
 	});
 	
 })
 
-/*.run( function($rootScope, $location, User) {
+.run( function($rootScope, $location, auth) {
     // register listener to watch route changes
-    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-      if ( $rootScope.accessToken == null ) {
-          window.location.replace('../')
-      }
+    $rootScope.$on( "$locationChangeStart", function(event, next, current) {
+	  
+	for(var i in window.routes) {
+		if(next.indexOf(i.split('/')[1]) != -1) {
+			if(window.routes[i].requireLogin && $rootScope.accessToken == null) {
+				alert("Please Login to the system to view this page!");
+				event.preventDefault();
+			}
+		}
+    }
+	  
+	  
     });
  })
- 
+/* 
  var getUser = function(){
 	var ArrayCookies = document.cookie.split(';')
 	for(i=0; i<ArrayCookies.length; i++){
