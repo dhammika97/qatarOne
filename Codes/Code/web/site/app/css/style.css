@@ -169,6 +169,12 @@ header .top-nav ul li.active a { color: white; }
 .login-page .login-form .btn:hover, .login-page .registration-form .btn:hover { color: white; }
 .login-page .login-form .forgot-pass, .login-page .registration-form .forgot-pass { font-size: 9px; line-height: 14px; font-size: 0.9rem; line-height: 1.4rem; color: #a3a0a0; }
 
+.news-events h1, .inner-pages h1 { font-size: 22px; line-height: 24px; font-size: 2.2rem; line-height: 2.4rem; font-family: "Roboto Slab", serif; padding: 30px 0; }
+.news-events .news-event-content, .inner-pages .news-event-content { overflow: hidden; *zoom: 1; padding-bottom: 30px; }
+.news-events .news-event-content p, .inner-pages .news-event-content p { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; padding: 5px 0; }
+.news-events .news-event-content img, .inner-pages .news-event-content img { padding-right: 20px; }
+.news-events .panel-body, .inner-pages .panel-body { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; padding: 15px; }
+
 .modal .modal-title { font-family: "Roboto Slab", serif; font-size: 18px; line-height: 24px; font-size: 1.8rem; line-height: 2.4rem; }
 .modal p { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; padding: 5px 0; }
 .modal input { max-width: 300px; }

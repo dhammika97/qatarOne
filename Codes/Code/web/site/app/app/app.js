@@ -33,6 +33,12 @@ App.config(function($routeProvider, $httpProvider){
 		}
 	)
 	
+	.when('/pages/:pageName',
+		{
+			templateUrl:'app/partials/CMS/CMSPage.html'
+		}
+	)
+	
 	.otherwise({
 		redirectTo:'/portal/classifieds'
 	});
