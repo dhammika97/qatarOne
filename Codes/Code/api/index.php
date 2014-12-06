@@ -785,7 +785,7 @@ $app->delete('/page/:id', 'authenticate', function($page_id) use($app) {
  * url - /login
  * method - POST
  * params -email, password */
-$app->post('/login', function() use ($app) {    						
+/*$app->post('/login', function() use ($app) {    						
 		// reading post params						 
 		$email = $app->request()->post('email');
 		$password = $app->request()->post('password');
@@ -818,118 +818,50 @@ $app->post('/login', function() use ($app) {
 			echoRespnse(200, $response);
 		}
 			
-});
-//===================================================================================
-// * list all pagesCantent                                                          =
-// * url - /pageContent                                                             =
-// * method - get                                                                   =
-// * params -                                                                       =
-//$app->get('/pageContent', function()  {                                           =
-//		$DbHandler = new DbHandler();                                               =
-//		$response = array();                                                        =
-//		$result = $DbHandler->getAllPagesContent();                                 =
-//		if (!$result) {                                                             =
-//			$response["error"] = TRUE;                                              =
-//			$response["message"] = "The requested resource doesn't exists";         =
-//			echoRespnse(404, $response);                                            =
-//		} else {                                                                    =
-//			$response["error"] = false;                                             =
-//			$response["pagecontents"]=$result;                                      =
-//			echoRespnse(200, $response);                                            =
-//		}                                                                           =
-//});                                                                               =
-//                                                                                  =
-//                                                                                  =
-//===================================================================================
+});*/
 
 
 
-// * list single pageContent
-// * url - /page
-// * method - get
-// * params - subcategoryID
-$app->get('/pageContent/:id', function($pageContent_id) {
-		$DbHandler = new DbHandler();
-		$response = array();
-		$row = $DbHandler->GetPageContentDetail($pageContent_id);
-		if ($row != NULL) {
-			$response["error"] = false;
-			$response["pageContent"]=json_decode($row);
-			echoRespnse(200, $response);
-		} else {
-			$response["error"] = true;
-			$response["message"] = "The requested resource doesn't exists";
-			echoRespnse(404, $response);
-		}
-});
-
-// * Add pageContent
-// * url - /pageContent
-// * method - post
-// * params - 
-
-$app->post('/pageContent', 'authenticate', function() use ($app) {	
-		$DbHandler = new DbHandler();
-		$response = array();
-		$category = array();
-		$request = $app->request();
-		$pageContent = $request->getBody();
-		$user_ID = "1";
-		//User ID should be a global variable
-		$pageContent['page_addedBy'] = $user_ID;
-		//print_r($subCategory);
-		if ($DbHandler->addPageContent($pageContent)) {
-			$response["error"] = false;
-			$response["message"] = "Successfully created the category";
-			echoRespnse(201, $response);
-		} else {
-			$response["error"] = true;
-			$response["message"] = "category not created ";
-			echoRespnse(400, $response);
-		}
-});
-// * Edit pageContent
-// * url - /pageContent/:id
-// * method - put
-// * params - 
-
-$app->put('/pageContent/:pageContentId', 'authenticate', function ($pageContentId) use ( $app) {
-		$DbHandler = new DbHandler();
-		$request = $app->request();
-		$pageContent = $request->getBody();		  
-		if ($result = $DbHandler->updatePagesContent($pageContent, $pageContentId)) {
-			$response["error"] = FALSE;
-			$response["message"] = "Successfully Updated";
-			echoRespnse(200, $response);
-		}else{
-			$response["error"] = TRUE;
-			$response["message"] = "Updated falid";
-			echoRespnse(400, $response);
-		}
-});
 /**
- * Delete pages
- * url - /page/:id
- * method - DELETE
- * params - page id */ 
-$app->delete('/pageContent/:pageContentId', 'authenticate', function($pageContentId) use($app) {
-		$DbHandler = new DbHandler();
-		$response = array();
-		$result = $DbHandler->deletePageContent($pageContentId);
-		
-		if ($result) {
-			// user deleted successfully				
-			$response["error"] = false;
-			$response["message"] = "page content deleted succesfully";
-			echoRespnse(200, $response);
-		} else {
-			// task failed to delete
-			$response["error"] = true;
-			$response["message"] = "page content failed to delete. Please try again!";
-			echoRespnse(404, $response);
+ * User Login
+ * url - /login
+ * method - POST
+ * params -email, password */
+$app->post('/login', function() use ($app) {    						
+		// reading post params
+		if($app->request()->post('email')){
+			$email = $app->request()->post('email');
+			$password = $app->request()->post('password');
+		}else{
+			$params = $app->request()->getBody();
+			$email= $params['email'];
+			$password = $params['password'];
 		}
+		$response = array();
+		$db = new DbHandler();
+		if ($db->checkLogin($email, $password)) {
+			//get the user by email
+			$logged_User = $db->getUserByEmail($email);
+			
+			if ($logged_User != NULL) {
+				$response["error"] = false;
+				$response['accessToken'] = $logged_User['user_accessToken'];
+				$response['message'] = "Successfully authenticated";
+				echoRespnse(200, $response);
+			} else {
+				// unknown error occurred
+				$response['error'] = true;
+				$response['message'] = "An error occurred. Please try again";
+				echoRespnse(200, $response);
+			}
+		} else {
+			// user credentials are wrong
+			$response['error'] = true;
+			$response['message'] = 'Login failed. Incorrect credentials';
+			echoRespnse(200, $response);
+		}
+			
 });
-
 
 /**
  * Get all suburbs

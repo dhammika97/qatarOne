@@ -46,7 +46,7 @@ App.config(function($routeProvider, $httpProvider){
 	)
 	
 	.otherwise({
-		redirectTo:'/portal/classifieds'
+		redirectTo:'/portal/classified'
 	});
 	
 })

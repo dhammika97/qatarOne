@@ -4,3 +4,9 @@ controllers.registerUser = function($scope, registerFactory){
 		registerFactory.saveUser($scope)
 	}
 }
+
+controllers.loginController = function($scope,loginFactory){
+	$scope.loginAuth = function(){
+		loginFactory.userLogin($scope)
+	}
+}

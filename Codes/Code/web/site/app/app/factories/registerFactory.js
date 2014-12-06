@@ -13,13 +13,34 @@ App.factory('registerFactory',function($resource){
 			}).then(
 			function(value){
 				alert(value.message)
-				//$scope.go('/sdsd')
+				$scope.register=''
 			})	
 		}else{
 			alert('Password mis-matched!')
 		}
 	}
+
+	return factory
+})
+
+App.factory('loginFactory',function($resource){
+	var login = $resource('../../../api/login', {}, {
+		query: { method: 'POST', params: {}, isArray: false }
+    });
 	
+	var factory = {}
 	
+	factory.userLogin = function($scope){
+		return tld = login.query({'email':$scope.login.email, 'password':$scope.login.password },
+		function(data){
+			if(data.error==false){
+				alert(data.message)
+				sessionStorage.setItem("accessKey", data.accessToken);
+				$scope.go('/classifieds')
+			}else{
+				alert(data.message)
+			}
+		});
+	}
 	return factory
 })
