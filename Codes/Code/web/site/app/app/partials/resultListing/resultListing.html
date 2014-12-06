@@ -67,7 +67,7 @@
         <div class="filter-heading">
           <i class="fa fa-map-marker"></i> Location </div>
           <ul  ng-repeat="resultList in resultList.advertisments | unique:'location'">
-            <li><a href="" ng-click='setParamsCat(resultList.categoryid)'>{{resultList.location}}<span>20500</span></a></li>
+            <li><a href="" ng-click='setParamsLocation(resultList.locationid)'>{{resultList.location}}<span>20500</span></a></li>
           </ul>
            <div class="filter-heading">
           <i class="fa fa-th-list"></i> Category </div>

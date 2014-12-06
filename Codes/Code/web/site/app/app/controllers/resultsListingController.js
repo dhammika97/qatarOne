@@ -8,6 +8,12 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		params = {'advertisement_categoryId' :$routeParams.parent_id, 'advertisement_subCategoryId' :paramVal}
 		results(params)
 	}
+	$scope.setParamsLocation = function(paramVal){
+		var prid = $routeParams.parent_id;
+		params = {'advertisement_categoryId' :$routeParams.parent_id, 'location_id' :paramVal}
+		results(params)
+	}
+	
 	
 	
 	var results = function(params){

@@ -1127,10 +1127,11 @@ public function checkLogin($user_email, $user_password) {
 		$table = 'advertisment a, advertisement_images i, locations l , category_sub c';
 		$rows  ='a.advertisement_title, a.advertisement_price as price, a.advertisement_description, i.advertisement_image
 				,date(a.advertisement_date) as date,time(a.advertisement_date) as time, l.location_name as location, 
-				c.category_sub_name as category,c.category_sub_id as categoryid';
+				l.location_id as locationid,c.category_sub_name as category,c.category_sub_id as categoryid';
 		$where = 'a.advertisment_id = i.advertisement_id
-				 AND advertisement_location = l.location_id
-				 AND a.advertisement_subCategoryId	 = c.category_sub_id'.$where_atri;
+				 AND advertisement_location = l.location_id 
+				 AND advertisement_status = "1"
+				 AND a.advertisement_subCategoryId = c.category_sub_id'.$where_atri;
 		$db->selectJson($table,$rows,$where,'','');
 		$add = $db->getJson();
 		return $add;
