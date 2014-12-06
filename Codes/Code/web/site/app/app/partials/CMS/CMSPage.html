@@ -1,17 +1,13 @@
-
-    <section class="inner-pages">
-      <div class="container">
+ <section>
+      <div class="container-pages" >
         <div class="row">
           <div class="col-lg-12">
-            <h1>About Us</h1>
-            <div class="news-event-content">
-              <p>              
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dignissim mauris eu lectus sagittis, vel egestas nulla iaculis. Pellentesque vestibulum velit vitae tempor commodoLorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dignissim mauris eu lectus sagittis, vel egestas nulla iaculis. Pellentesque vestibulum velit vitae tempor commodo</p>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula quam sed ligula laoreet, pulvinar egestas enim hendrerit. Donec non metus non nulla rutrum pretium. Maecenas mi lacus, malesuada et lorem eu, convallis consequat sapien. Integer luctus lobortis erat, quis tristique lectus ullamcorper at. Etiam scelerisque elit at neque ullamcorper, facilisis feugiat augue hendrerit. Maecenas volutpat finibus felis ac iaculis. Duis posuere massa quis magna fringilla vulputate. In nec est pulvinar, gravida mi at, consectetur leo.</p>
-
-<p>Nulla sed pellentesque sapien. Nunc a scelerisque nibh. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris fermentum lacinia nibh, vel viverra lacus luctus ac. Aenean nec magna consequat, gravida nulla fermentum, congue urna. Maecenas semper ornare nisi, vitae varius elit condimentum sed. Nunc congue est ut augue sodales, sit amet consequat erat pharetra. Nam tortor ipsum, hendrerit non enim eget, ornare commodo diam. Mauris blandit laoreet leo, eget ultricies lorem sodales vel. Nam non nisi justo. Donec tortor diam, gravida ut orci sit amet, hendrerit pellentesque felis. Pellentesque sit amet tincidunt elit, et sagittis ipsum. Vestibulum quis arcu placerat, eleifend enim quis, hendrerit metus. Vivamus dignissim magna ac auctor vulputate. Etiam ac accumsan ex, sit amet cursus diam. Cras finibus mattis mauris et eleifend.</p>
-
-<p>Etiam imperdiet eros ut nisl consectetur ultrices. Phasellus et velit eget diam lacinia sollicitudin. In dignissim ipsum a erat ullamcorper aliquet. Morbi sed tortor vitae nisi pellentesque pharetra vel vel lacus. Duis et congue leo, ac tincidunt arcu. Maecenas eu arcu et mauris bibendum mollis id et nisl. Phasellus iaculis, purus eget varius accumsan, tortor ex commodo ex, sit amet consectetur magna quam at ante. Proin nec diam dapibus, porta ligula et, sagittis turpis. Donec rutrum felis id lacus aliquet mollis. Aliquam a finibus velit. Aenean sed tincidunt justo, ut auctor tortor. Nullam turpis lorem, rhoncus vitae mattis sed, aliquet non felis. Etiam elit tortor, laoreet id lacus eu, posuere vulputate justo. Curabitur interdum lorem tincidunt tortor sollicitudin, et bibendum orci venenatis. Mauris rhoncus eget urna vel malesuada. Praesent viverra sagittis massa eget viverra.</p>
+           <!--  <h1>{{page}}</h1> -->
+           <h1>{{page.page[0].page_title}}</h1>
+            <div class="page-content">
+              <p>
+                  {{page.page[0].page_content}}
+              </p>
             </div>
           </div>
         </div>
