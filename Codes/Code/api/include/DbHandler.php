@@ -1082,7 +1082,7 @@ public function checkLogin($user_email, $user_password) {
 			$table  = "usersubscription";
 			(isset($userSubscription['subscription_email']) ? $subscription_email = $userSubscription['subscription_email'] : $subscription_email = "" );
 			
-			$values = "'".$subscription_email."',
+			$values = "'".$subscription_email."',  
 			 			'1'";	
 						
 			$rows   = "subscription_email,subscription_status";
@@ -1092,14 +1092,16 @@ public function checkLogin($user_email, $user_password) {
 		}  	
 	public function advertismentDetail($id){
 		$db = new database();
-		$table = 'advertisment a, advertisement_images i, locations l, suburbs s';
-		$rows ='a.advertisement_title,a.advertisement_contactName,a.advertisement_contactNo,date(advertisement_date) as date,
+		$table = 'advertisment a, advertisement_images i, locations l, suburbs s, category_sub c';
+		$rows ='a.advertisement_title,a.advertisement_contactName,a.advertisement_price,a.advertisement_description,a.advertisement_attributes
+		,a.advertisement_contactNo,date(advertisement_date) as date,
 				time(advertisement_date) as time , i.advertisement_image, 
 				l.location_name, 	
-				l.location_cordinates,s.suburb_name,s.suburb_cordinates';
+				l.location_cordinates,s.suburb_name,s.suburb_cordinates, c.category_sub_name';
 		$where = 'a.advertisment_id = i.advertisement_id
 				 AND a.advertisement_location= l.location_id
 				 AND a.advertisement_suburb = s.suburb_id
+				 AND a.advertisement_subCategoryId	 = c.category_sub_id
 				 AND a.advertisment_id = "'.$id.'"';
 		$db->selectJson($table,$rows,$where,'','');
 		$add = $db->getJson();

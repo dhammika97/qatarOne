@@ -29,14 +29,14 @@
 
 
 
-<section class="main-page">
+<section class="main-page" ng-controller="addvertismentController">
   <div class="shadow"></div>
   <div class="breadcrumb-bar">
     <div class="container">
     <div class="row">
     <ul class="pull-left">
-      <li>All Ads</li>
-      <li>Mobile Phones</li>
+      <li><a href="">All Ads</a></li>
+      <li><a href="">{{adversiment.advertisment[0].category_sub_name}}</a></li>
     </ul>
     <a class="pull-right back-link">Back to categories</a>
   </div>
@@ -44,10 +44,11 @@
   </div>
   <div class="ad-title">
     <div class="container">
-    <div class="row" ng-controller="addvertismentController"><!--addvertisment-->
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> 
-        <h2>IPHONE 6 Plus</h2>{{adversiment}}
-        <span>Posted by Usama 05 Nov 02:16 pm, Al Khor</span>
+    <div class="row" ><!--addvertisment-->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+        <h2>{{adversiment.advertisment[0].advertisement_title}}</h2>
+        <span>Posted by {{adversiment.advertisment[0].advertisement_contactName}}, {{adversiment.advertisment[0].date}} 
+        		{{adversiment.advertisment[0].time}}, {{adversiment.advertisment[0].location_name}}</span>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rating-bar text-right"> 
        <span class="rating">######</span>
@@ -122,23 +123,21 @@
         </div>
         <div class="col-lg-6 col-md-6 ad-description">
           <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ad-price">QR799</div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ad-location text-right">Location<span>Al Khor, Qatar</span></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ad-price">{{adversiment.advertisment[0].advertisement_price}}</div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ad-location text-right">Location<span>
+            		{{adversiment.advertisment[0].suburb_name}},{{adversiment.advertisment[0].location_name}}</span></div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="Flexible-container">
 <!--<iframe width="600" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Bern&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>-->
 </div>          
-            <p>Apple iPhone 6 is the latest iPhone from Apple. It is powered by Apple's latest A8 chip with 64-bit architecture. It comes with 4.7 inch Retina HD Display and 8MP iSight Camera.</p>
-            <ul>
-              <li>4.7 Inch Retina HD Display</li> 
-              <li>A8 Chip With 64-Bit Architecture</li>  
-              <li>8MP ISight Camera</li>  
-              <li>1.2MP Front Facing Camera</li>  
-              <li>Touch ID</li>  
-              <li>LTE Support</li>
+            <p>{{adversiment.advertisment[0].advertisement_description}}</p>
+            {{adversiment.advertisment[0].advertisement_attributes}}
+            <ul >
+            	<!--ng-repeat="dd in adversiment.advertisment[0].advertisement_attributes track by $index"-->
+              <li>{{dd}}</li> 
             </ul>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 contact-no">
-              <i class="fa fa-phone fa-2x"></i> 13423453564
+              <i class="fa fa-phone fa-2x"></i> {{adversiment.advertisment[0].advertisement_contactNo}}
             </div>
              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 comments-btn text-right"><i class="fa fa-pencil-square-o fa-2x"></i> Comments &amp; Ratings</div>
             </div>
