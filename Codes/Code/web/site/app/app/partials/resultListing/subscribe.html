@@ -1,11 +1,13 @@
 <div class="filter-heading">
 	<i class="fa fa-envelope"></i> Subscribe 
 </div>
+<div ng-controller="subscriberController">
 <div class="filter-content">
     <div class="input-group">                  
-        <input type="text" class="form-control">
+        <input type="text" class="form-control"  ng-model="subscriber.subscription_email">
         <span class="input-group-btn">
-        	<button class="btn btn-default" type="button"><i class="fa fa-arrow-circle-right fa-lg"></i></button>
+        	<button class="btn btn-default" type="button" ng-click="addSubscriber()"><i class="fa fa-arrow-circle-right fa-lg"></i></button>
         </span>
     </div><!-- /input-group -->
+</div>
 </div>
