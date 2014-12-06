@@ -1076,7 +1076,9 @@ public function checkLogin($user_email, $user_password) {
 	public function advertismentDetail($id){
 		$db = new database();
 		$table = 'advertisment a, advertisement_images i, locations l, suburbs s';
-		$rows ='a.advertisement_title, i.advertisement_image, l.location_name, 	
+		$rows ='a.advertisement_title,a.advertisement_contactName,a.advertisement_contactNo,date(advertisement_date) as date,
+				time(advertisement_date) as time , i.advertisement_image, 
+				l.location_name, 	
 				l.location_cordinates,s.suburb_name,s.suburb_cordinates';
 		$where = 'a.advertisment_id = i.advertisement_id
 				 AND a.advertisement_location= l.location_id
