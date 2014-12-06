@@ -1109,8 +1109,18 @@ public function checkLogin($user_email, $user_password) {
 	}	
 	
 	public function advertisments($params){
-		$catid = $params['categoryID'];
+		//$catid = $params['categoryID'];
+		$where_atri = '';
+		$i = 1;
 		
+		
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where_atri .= ' AND '.$key .'='.$value;
+			else
+			$where_atri .= ' AND '.$key .'="'.$value.'"';
+			$i++;
+		}
 		
 		
 		$db = new database();
@@ -1119,9 +1129,8 @@ public function checkLogin($user_email, $user_password) {
 				,date(a.advertisement_date) as date,time(a.advertisement_date) as time, l.location_name as location, 
 				c.category_sub_name as category,c.category_sub_id as categoryid';
 		$where = 'a.advertisment_id = i.advertisement_id
-				 AND a.advertisement_categoryId = "'.$catid.'"
 				 AND advertisement_location = l.location_id
-				 AND a.advertisement_subCategoryId	 = c.category_sub_id';
+				 AND a.advertisement_subCategoryId	 = c.category_sub_id'.$where_atri;
 		$db->selectJson($table,$rows,$where,'','');
 		$add = $db->getJson();
 		return $add;

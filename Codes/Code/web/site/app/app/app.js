@@ -1,5 +1,5 @@
 // JavaScript Document
-var App = angular.module('QatartOneApp',['ngRoute','ngResource'])
+var App = angular.module('QatartOneApp',['ngRoute','ngResource','angular.filter']) 
 
 App.config(function($routeProvider, $httpProvider){
 	//$httpProvider.defaults.headers.common.Authorization = getUser();
