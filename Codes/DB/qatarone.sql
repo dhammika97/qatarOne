@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2014 at 10:47 AM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Generation Time: Dec 06, 2014 at 03:29 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,7 +31,16 @@ CREATE TABLE IF NOT EXISTS `advertisement_images` (
   `advertisement_id` int(11) NOT NULL,
   `advertisement_image` varchar(255) NOT NULL,
   PRIMARY KEY (`advertisement_imageId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `advertisement_images`
+--
+
+INSERT INTO `advertisement_images` (`advertisement_imageId`, `advertisement_id`, `advertisement_image`) VALUES
+(1, 5, 'phone.jpeg'),
+(2, 1, 'htcm8'),
+(3, 2, 'nexus');
 
 -- --------------------------------------------------------
 
@@ -57,17 +66,18 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
   `advertisement_status` int(1) NOT NULL,
   `advertisement_expire` datetime NOT NULL,
   PRIMARY KEY (`advertisment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `advertisment`
 --
 
 INSERT INTO `advertisment` (`advertisment_id`, `advertisement_categoryId`, `advertisement_subCategoryId`, `advertisement_attributes`, `advertisement_title`, `advertisement_description`, `advertisement_price`, `advertisement_contactName`, `advertisement_contactNo`, `advertisement_contactEmail`, `advertisement_location`, `advertisement_suburb`, `advertisement_googleCodes`, `advertisement_date`, `advertisement_status`, `advertisement_expire`) VALUES
-(1, 2, 1, 'sdfsdf', 'sdfsd', 'sdfsdf', '124', 'sdfsdf', '', '', 0, 0, '', '2014-12-05 08:07:28', 0, '0000-00-00 00:00:00'),
-(2, 2, 1, 'sdfsdfe', 'sddfg', 'ddfg', '125', 'sdfsdf', 'sdfsdf', '', 0, 0, '', '2014-12-05 08:05:01', 0, '0000-00-00 00:00:00'),
-(3, 4, 2, 'sdfsdfsdf', 'sdfsf', 'sdfsdf', '0', '', '', '', 0, 0, '', '2014-12-05 08:07:32', 0, '0000-00-00 00:00:00'),
-(4, 5, 2, 'sfsdfsdq', 'sdsdf', 'sdfsdf', '0', '', '', '', 0, 0, '', '2014-12-05 08:06:53', 0, '0000-00-00 00:00:00');
+(1, 4, 1, 'sdfsdf', 'htc m8', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s wit', '125', 'Marsh', '0711129349', 'marsh@gmail.com', 1, 1, '', '2014-12-06 10:23:16', 1, '0000-00-00 00:00:00'),
+(2, 4, 1, 'sdfsdfe', 'Nexus5', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s wit', '125', 'dhammika', '0711129349', 'dhammika@gmail.com', 2, 3, '', '2014-12-06 10:33:53', 0, '2014-12-31 00:00:00'),
+(3, 7, 2, 'sdfsdfsdf', 'sdfsf', 'sdfsdf', '0', '', '', '', 0, 0, '', '2014-12-05 10:33:28', 0, '0000-00-00 00:00:00'),
+(4, 8, 2, 'sfsdfsdq', 'sdsdf', 'sdfsdf', '0', '', '', '', 0, 0, '', '2014-12-05 10:33:35', 0, '0000-00-00 00:00:00'),
+(5, 4, 1, '[{0:''4.7 Inch Retina HD Display'',1:''A8 Chip With 64-Bit Architecture'',4:''8MP ISight Camera'',5:''1.2MP Front Facing Camera'',6:\n''LTE Support''}]', 'HTC x8', 'Let''s not mince words: When the Huawei Ascend D1 Quad XL starts shipping globally, it will face some steep competition. Thanks to months of delays, what once was billed as the "world''s fastest smartphone" is now just another entry on the growing list of quad-core powerhouses available. That''s not to say it isn''t powerful or fast -- on the contrary, it performs exactly the way you''d expect a phone with four CPU cores to, and it''s Huawei''s best phone to date -- but we unfortunately aren''t seeing many features that will help it stand out. The saving grace for the XL will be its price; with a tentative MSRP of about 2,699 yuan ($450), its cost will be the only thing preventing it from getting lost in the crowd.', '18', 'jhone', '09711129349', 'jone@gmail.com', 1, 1, '', '2014-12-06 09:40:07', 1, '2014-12-31 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -93,8 +103,8 @@ INSERT INTO `category` (`category_id`, `category_parentId`, `category_name`, `ca
 (1, 0, 'Classifides', '2014-11-21 06:01:14', 1, 1),
 (2, 0, 'Job Seeker', '2014-11-21 06:02:44', 1, 1),
 (3, 1, 'Antiques', '2014-11-21 09:29:09', 1, 1),
-(4, 1, 'Art', '2014-11-21 09:29:09', 1, 1),
-(5, 1, 'Baby', '2014-11-21 09:29:50', 1, 1),
+(4, 1, 'Electronics', '2014-12-06 04:47:51', 1, 1),
+(5, 1, 'Automobile', '2014-12-06 04:49:38', 1, 1),
 (6, 1, 'Books', '2014-11-21 09:29:50', 1, 1),
 (7, 2, 'Accounting/ Finance', '2014-11-21 09:31:54', 1, 1),
 (8, 2, 'Admin/ Human Resources', '2014-11-21 09:31:54', 1, 1),
@@ -135,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
 --
 
 INSERT INTO `category_sub` (`category_sub_id`, `category_sub_name`, `category_sub_enteredDate`, `category_sub_enteredBy`, `category_sub_status`, `category_sub_parentId`) VALUES
-(1, 'Audit & Taxation', '2014-11-21 09:33:40', 1, 1, 7),
+(1, 'Mobile Phones', '2014-12-06 04:51:05', 1, 1, 4),
 (2, 'Banking & Financial', '2014-11-21 09:33:40', 1, 1, 7),
 (3, 'Antiquities', '2014-11-21 09:35:25', 1, 1, 3),
 (5, 'test update', '2014-12-02 00:48:57', 0, 0, 1),
@@ -157,14 +167,15 @@ CREATE TABLE IF NOT EXISTS `events` (
   `event_image` varchar(255) NOT NULL,
   `event_status` int(1) NOT NULL,
   PRIMARY KEY (`evenet_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `events`
 --
 
 INSERT INTO `events` (`evenet_id`, `event_title`, `event_date`, `event_shortDescription`, `event_description`, `event_image`, `event_status`) VALUES
-(10, 'asdasd', '2014-12-10', 'test description asdasd', 'test description', 'A07CD6ED3D3FE5F9C58DEE2610987204MBP2488.jpg', 1);
+(10, 'asdasd', '2014-12-10', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', '3A5FD88B3861F2DEAD03BF8A78F4AB98Tulips.jpg', 1),
+(11, 'second event', '2014-07-21', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', 'CA28D86147D2C20D3F4553AB2CF49F25Desert.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -181,14 +192,21 @@ CREATE TABLE IF NOT EXISTS `fixedads` (
   `fixedads_status` int(1) NOT NULL,
   `fixedads_title` varchar(100) NOT NULL,
   PRIMARY KEY (`fixedads_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `fixedads`
 --
 
 INSERT INTO `fixedads` (`fixedads_id`, `fixedads_type`, `fixedads_image`, `fixedads_enetredDate`, `fixedads_url`, `fixedads_status`, `fixedads_title`) VALUES
-(12, 1, '049CFAB4CFDA07C6405A8D3C3AE765EETalkFloor_CRIBanner5.jpg', '2014-12-05 09:18:03', 'http://www.dialog.lk', 1, 'Dialog top add');
+(12, 4, 'BE2B2F10E58994C73FCD81528E395C39728-x-90.gif', '2014-12-05 13:39:22', 'http://www.dialog.lk', 1, 'Dialog top add'),
+(13, 5, '466FDEE5C3D80BFFC89F7E7188FA8469728-x-90 - Copy.jpg', '2014-12-05 13:38:55', 'http://www.dialog.lk/', 1, 'dialog bottom add'),
+(14, 2, '6F226270BBB98E2C343729EC3FB388C315441498865313608811.gif', '2014-12-05 13:48:37', 'www.shuboothi.com', 1, 'leftadd'),
+(15, 3, '5648712D26DE70810EE897A879E11F4D7483126944720115748.png', '2014-12-05 13:49:21', 'www.google.com', 1, 'right'),
+(16, 2, '16ED8807517D21A3F63827B0EAB082256591726479222682286.gif', '2014-12-05 13:56:35', 'www.google.com', 1, 'left'),
+(17, 1, 'F45FD36C977B4BCA0F69B9F9B04792E1728-x-90 - Copy.jpg', '2014-12-05 14:07:48', 'www.dialog.lk', 1, 'top'),
+(18, 2, '0F65DE6A893C97D585B8B8E4BC83B2FE7483126944720115748.png', '2014-12-05 15:11:50', 'dfgsdfgsd', 1, 'dagd'),
+(19, 1, 'A137BFCA5C153BFDEBF4EFFFBA0374BD728-x-90.gif', '2014-12-05 15:51:29', 'sfagsdf', 1, 'top');
 
 -- --------------------------------------------------------
 
@@ -227,14 +245,16 @@ CREATE TABLE IF NOT EXISTS `news` (
   `news_date` datetime NOT NULL,
   `news_status` int(1) NOT NULL,
   PRIMARY KEY (`news_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`news_id`, `news_title`, `news_shortDescription`, `news_Description`, `news_image`, `news_date`, `news_status`) VALUES
-(16, 'asdasd', 'ssdfsd', 'sdfsdfdsf', 'F96E7589228F3B80808E5D4F38EE4E57MBP2488.jpg', '2014-12-04 00:00:00', 1);
+(16, 'asdasd', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.f', '8AC25C5BD9D7E2D5D10FBBBD4EAA8D50Lighthouse.jpg', '2014-12-04 00:00:00', 1),
+(17, 'sdcsa', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500', 'sDASD', 'F9BB613F70E8EE9E3D2DBCAABDBA3B88Hydrangeas.jpg', '2014-12-05 00:00:00', 1),
+(18, 'title', '"description"', '"sdafsdfsdfds"', '0C94299F4E9A99C1AB0CF541E1FBAA5ALighthouse.jpg', '2014-12-05 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -258,11 +278,11 @@ CREATE TABLE IF NOT EXISTS `packagetypes` (
 -- Dumping data for table `packagetypes`
 --
 
-INSERT INTO `packagetypes` (`package_id`, `package_name`, `package_Description`, `package_price`, `package_adLimit`, `package_addedBy`, `package_status`) VALUES
-(1, 'test package', 'test description', '2500', 3, 1, 0),
-(3, 'test package 3', 'test', '2500', 300, 1, 0),
-(7, 'test first', 'test description', '21540', 15, 1, 1),
-(9, 'ssdf', 'sdfsf asdasdas dasdas', '123', 123, 1, 1);
+INSERT INTO `packagetypes` (`package_id`, `packageType`, `package_name`, `package_Description`, `package_price`, `package_adLimit`, `package_addedBy`, `package_status`) VALUES
+(1, 0, 'test package', 'test description', '2500', 3, 1, 0),
+(3, 0, 'test package 3', 'test', '2500', 300, 1, 0),
+(7, 0, 'test first', 'test description', '21540', 15, 1, 1),
+(9, 0, 'ssdf', 'sdfsf asdasdas dasdas', '123', 123, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -301,15 +321,16 @@ CREATE TABLE IF NOT EXISTS `sliders` (
   `slider_url` varchar(255) NOT NULL,
   `slider_status` int(1) NOT NULL,
   PRIMARY KEY (`slider_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `sliders`
 --
 
 INSERT INTO `sliders` (`slider_id`, `slider_title`, `slider_image`, `slider_url`, `slider_status`) VALUES
-(11, 'asdasd', '40C1C4F6ECC1583821688107915E7544MBP2488.jpg', 'sdfsdf', 0),
-(12, 'sdfsfd', 'F99B426AA6B80C39DA03020B1F01A879Interior-Bar-Nashville-Set.jpg', 'sdfsdf', 0);
+(11, 'asdasd', '1AEB35BCF9475C876DBDE694BB1CFE5CDesert.jpg', 'sdfsdf', 1),
+(12, 'sdfsfd', 'BAA548B6C44347E3212732348A905D88Jellyfish.jpg', 'sdfsdf', 1),
+(13, 'dsDgds', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -331,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `suburbs` (
 
 INSERT INTO `suburbs` (`suburb_id`, `suburb_location_id`, `suburb_name`, `suburb_cordinates`) VALUES
 (1, 1, 'test', '89.124575,102.457832'),
-(3, 1, 'kolkata', '45.78451,68.124578'),
+(3, 2, 'kolkata', '45.78451,68.124578'),
 (4, 2, 'asdasd', 'asdasd'),
 (5, 1, 'Talawa', '12254544');
 
