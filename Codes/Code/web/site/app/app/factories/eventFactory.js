@@ -18,6 +18,14 @@ App.factory('eventFactory',function($resource){
 			
 		})
 	}
+	factory.getEventsDetails = function(params){
+		alert(params)
+		return tld = eventList.query({'evenet_id':params});
+		tld.$promise.catch(function(e){
+			alert(e.data.message)
+			
+		})
+	}
 	
 	
 	return factory
