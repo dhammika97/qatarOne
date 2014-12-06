@@ -35,6 +35,7 @@ App.config(function($routeProvider, $httpProvider){
 	
 	.when('/pages/:pageName',
 		{
+			controller:'controllers.pageNavController',
 			templateUrl:'app/partials/CMS/CMSPage.html'
 		}
 	).when('/news-details/:id',
