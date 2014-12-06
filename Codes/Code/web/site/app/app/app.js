@@ -43,7 +43,13 @@ App.config(function($routeProvider, $httpProvider){
 			controller:'controllers.newsDetailsController',
 			templateUrl:'app/partials/newsdetails/NewsDetails.html'
 		}
-	)
+	).when('/events-details/:id',
+			{
+		controller:'controllers.eventsDetailsController',
+		templateUrl:'app/partials/eventsdetails/EventsDetails.html' 
+	}
+)
+
 	
 	.otherwise({
 		redirectTo:'/portal/classified'
