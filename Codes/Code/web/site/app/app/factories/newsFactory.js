@@ -18,7 +18,14 @@ App.factory('newsFactory',function($resource){
 			
 		})
 	}
-	
+	factory.getNewsDetails = function(params){
+		
+		return tld = newsList.query({'news_id':params,'news_status':1 });
+		tld.$promise.catch(function(e){
+			alert(e.data.message)
+			
+		})
+	}
 	
 	return factory
 })

@@ -37,6 +37,11 @@ App.config(function($routeProvider, $httpProvider){
 		{
 			templateUrl:'app/partials/CMS/CMSPage.html'
 		}
+	).when('/news-details/:id',
+		{
+			controller:'controllers.newsDetailsController',
+			templateUrl:'app/partials/newsdetails/NewsDetails.html'
+		}
 	)
 	
 	.otherwise({
