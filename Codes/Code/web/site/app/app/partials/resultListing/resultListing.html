@@ -1,27 +1,23 @@
-<section class="search-bar">
+<div ng-controller="resultsListingController">
+<section class="search-bar" >
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-4 keyword"><input type="text" class="form-control" id="keyword" placeholder="What are you lookig for ?"></div>
       <div class="col-lg-3  col-md-3 category">
-        <select class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <select class="form-control"  >
+          <option>Select category</option>
+          <option ng-repeat="resultList in resultList.advertisments | unique:'category'" value="{{resultList.categoryid}}">{{resultList.category}}</option>
+          
         </select>
       </div>
       <div class="col-lg-3  col-md-3 location">
         <select class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+                  <option>Select Location</option>
+          <option ng-repeat="resultList in resultList.advertisments | unique:'location'" value="{{resultList.locationid}}">{{resultList.location}}</option>
         </select>
       </div>
       <div class="col-lg-2  col-md-2">
-        <a class="search-btn" href="#"><i class="fa fa-search"></i> Search</a>
+        <a class="search-btn" href="" ng-click='setParamsCat()'><i class="fa fa-search"></i> Search</a>
       </div>
     </div>
   </div>
@@ -30,7 +26,7 @@
 	<ng-include src="'app/partials/resultListing/slider.html'"></ng-include>
 </section>
 
-<section class="main-page" 	ng-controller="resultsListingController">
+<section class="main-page">
   <div class="shadow"></div>
   <div class="filter-bar">
      <div class="container">
@@ -117,3 +113,4 @@
   </div>
   </div>
 </section>
+</div>
