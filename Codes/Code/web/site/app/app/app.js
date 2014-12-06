@@ -1,5 +1,5 @@
 // JavaScript Document
-var App = angular.module('QatartOneApp',['ngRoute','ngResource','angular.filter']) 
+var App = angular.module('QatartOneApp',['ngRoute','ngResource','angular.filter','ui.bootstrap']) 
 
 window.routes =
 {

@@ -17,7 +17,7 @@ if ( !empty( $_FILES ) ) {
 		$unique = strtoupper(md5(uniqid(rand(), true)));	
 		$image = new SimpleImage();
 		$image->load($_FILES['slider_image']['tmp_name']);
-		//$image->resize(466,350);
+		$image->resize(1899,570);
 		$image->save($dir.$unique.$_FILES['slider_image']['name']);
 		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.$_FILES['slider_image']['name']);
 		$json = json_encode($response);
