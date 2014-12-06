@@ -74,8 +74,7 @@ class DbHandler {
 		(isset($users['user_city']) ? $user_city = $users['user_city'] : $user_city = "" );
 		(isset($users['user_contactNo']) ? $user_contactNo = $users['user_contactNo'] : $user_contactNo = "" );
 		
-		$values = "'".$users['user_username']."', 
-					  '".md5 ($users['user_password'])."', 
+		$values = "'".md5 ($users['user_password'])."', 
 					  '".$users['user_email']."', 
 					  '".$user_firstname."', 
 					  '".$user_lastname."', 
@@ -88,8 +87,7 @@ class DbHandler {
 					  '1',
 					  '".strtoupper(md5(uniqid(rand(), true)))."'";		
 					  
-		$rows   = "user_username, 
-				   user_password,
+		$rows   = "user_password,
 				   user_email,
 				   user_firstname,
 				   user_lastname,
@@ -102,7 +100,7 @@ class DbHandler {
 				   user_status,
 				   user_accessToken";		
 		if($db->insert($table,$values,$rows) ){
-			return true;
+			return $db->getInsertId();
 		}else{
 			return false;
 		}				
@@ -542,13 +540,13 @@ public function checkLogin($user_email, $user_password) {
 	$db = new database();	
 	$table = 'user';
 	$rows ='*';
-	$where = 'user_email= "'.$user_email.'" AND user_status = 1 AND user_type = 0 or user_email= "'.$user_email.'" AND user_status = 1 AND user_type = 1';
+	$where = 'user_email= "'.$user_email.'" AND user_status = 1';
 	
 	$db->select($table,$rows,$where,'','');
 	$logged_User = $db->getResults();
 	//return true;
 	if ($logged_User != NULL) {
-		if (PassHash::check_password($logged_User["user_password"], $user_password)) {
+		if ($logged_User["user_password"]== md5($user_password)) {
 			return TRUE;
 		} else {	      		
 			return FALSE;
@@ -888,9 +886,9 @@ public function checkLogin($user_email, $user_password) {
 	
 	public function updateNews($news_id, $news){
 		$db = new database();	
-		$table = 'news';
+		$table = "news";
 		$rows  = $news ;
-		$where = 'news_id = "'.$news_id.'"';
+		$where = "news_id = '".$news_id."'";
 		if($db->update($table,$rows,$where) ){
 			return true;
 		}else{
@@ -908,6 +906,7 @@ public function checkLogin($user_email, $user_password) {
 	}
 	
 	public function createPackageType($packageType){
+		(isset($packageType['packageType']) ? $package_type = $packageType['packageType'] : $package_type = "" );
 		(isset($packageType['package_name']) ? $package_name = $packageType['package_name'] : $package_name = "" );
 		(isset($packageType['package_Description']) ? $package_description = $packageType['package_Description'] : $package_description = "" );
 		(isset($packageType['package_price']) ? $package_price = $packageType['package_price'] : $package_price = "" );
@@ -915,13 +914,15 @@ public function checkLogin($user_email, $user_password) {
 		
 		$db = new database();
 		$table  = "packagetypes";
-		$values = "'".$package_name."', 
+		$values = "'".$package_type."',
+				'".$package_name."', 
 				'".$package_description."',
 				'".$package_price."',
 				'".$package_adLimit."',
 				'1',
 				'1'";					  
-		$rows   = "package_name, 
+		$rows   = "packageType,
+				   package_name, 
 				   package_Description,
 				   package_price,
 				   package_adLimit,
@@ -1027,30 +1028,46 @@ public function checkLogin($user_email, $user_password) {
 			return false;
 		}				
 	}
+	
+	public function checkUserAvailability($user_email) {
+		$db = new database();	
+		$table = 'user';
+		$rows ='*';
+		$where = 'user_email= "'.$user_email.'"';
+		
+		$db->select($table,$rows,$where,'','');
+		$avail_User = $db->getResults();
+		//return true;
+		if ($avail_User != NULL) {	      		
+			return true;
+		} else {                  
+			return false;
+		}      
+	}
 
 	public function getAllDefaultPackages(){
 
 		$db = new database();  
 		$table = ' packagetypes';
-		$rows ='*';
-		$where = 'package_type = 0';		
+		$rows ='package_id,package_adLimit';
+		$where = 'packageType = 0';		
 		$db->selectJson($table,$rows,$where,'','');
 		$default_package_list = $db->getJson();
 		return $default_package_list;
 	}
 
-	public function CreateUserPackages($userpkg_userId,$userpkg_pkgId,$userpkg_expirey,$userpkg_status){
+	public function CreateUserPackages($userpkg_userId,$userpkg_pkgId,$userpkg_remainAds){
 		$db = new database();
 		
 		$table  = "userpackge";
 		$values = "'".$userpkg_userId."', 					 
 					  '".$userpkg_pkgId."',
-					  '".$userpkg_expirey."', 
-					  '".$userpkg_status."'";	
+					  '".$userpkg_remainAds."', 
+					  '1'";	
 					 				  
 		$rows   = "userpkg_userId, 
 				   userpkg_pkgId,
-				   userpkg_expirey,
+				   userpkg_remainAds,
 				   userpkg_status";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
