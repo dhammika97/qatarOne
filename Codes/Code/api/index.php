@@ -112,7 +112,7 @@ $app->post('/user', 'authenticate', function() use ($app) {
 			echoRespnse(200, $response);				
 			}else{
 			$response["error"] = true;
-			$response["message"] = "user created unsuccessfull";
+			$response["message"] = "user creation failed!";
 			echoRespnse(400, $response);
 		}
 });
@@ -1506,34 +1506,27 @@ $app->post('/register', function() use ($app) {
 		$DbHandler = new DbHandler();
 
 		$users = $request->getBody();	
-		
-		$new_user_id=$DbHandler->createUser($users);
-		if($new_user_id != NULL){			
-
-			//Get all the packages with the type  0 - Default Package
-			$default_package_list = $DbHandler->getAllDefaultPackages();
-			var_dump($default_package_list);
-			while($row = mysql_fetch_assoc($default_package_list))
-					{
-					   echo $row['package_name']." ";
-					   echo $row['package_Description']." ";
-
-					//  //CreateUserPackages			
-				  	// 	if ( $DbHandler->CreateUserPackages($userpkg_userId,$userpkg_pkgId,$userpkg_expirey,$userpkg_status)){
-				  	// 	 }else{
-						// $response["error"] = false;
-						// $response["message"] = "User Default packages creation unsuccessfull.";
-						// echoRespnse(200, $response);
-						// }		
-					}				
-
-		}else{
+		$users['user_type']='3';
+		if($DbHandler->checkUserAvailability($users['user_email'])){
 			$response["error"] = true;
-			$response["message"] = "User Creation for Registration unsuccessfull";
-		}		
-		
+			$response["message"] = "User already exist! please login to the system";
+			echoRespnse(409, $response);
+		}else{
+			if($userId = $DbHandler->createUser($users)){
+				$defaultPackageList = json_decode($DbHandler->getAllDefaultPackages(),true);
+				for($i=0; $i<count($defaultPackageList);$i++){
+					$DbHandler->CreateUserPackages($userId,$defaultPackageList[$i]['package_id'],$defaultPackageList[$i]['package_adLimit']);
+				}
+				$response["error"] = false;
+				$response["message"] = "User created successFully!";
+				echoRespnse(200, $response);
+			}else{
+				$response["error"] = true;
+				$response["message"] = "User creation failed!, Please contact system administrator";
+				echoRespnse(412, $response);
+			}
+		}
 });
-
 /**
  * Create Subscription 
  * url - /subscription
