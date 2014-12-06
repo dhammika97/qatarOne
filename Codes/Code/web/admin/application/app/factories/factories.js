@@ -8,8 +8,8 @@ App.factory('usersFactory',function($resource){
 		delete:{method:'DELETE',params:{ id:'@id' }}
 	});
 	var factory = {}
-	factory.getUsers = function(){
-		return tld = userList.query();
+	factory.getUsers = function(params){
+		return tld = userList.query(params);
 		tld.$promise.catch(function(e){
 			alert(e.data.message)
 			//window.location.replace('#/dashboard')

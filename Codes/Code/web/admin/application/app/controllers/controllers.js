@@ -7,7 +7,7 @@ controllers.masterController = function($scope){
 }
 
 controllers.userController = function($scope, usersFactory){
-	$scope.users = usersFactory.getUsers()
+	$scope.users = usersFactory.getUsers({"user_type":"0"})
 	
 	$scope.deleteUser = function(id){
 		if(id!=''){

@@ -1505,8 +1505,15 @@ $app->post('/register', function() use ($app) {
 		$request = $app->request();
 		$DbHandler = new DbHandler();
 
-		$users = $request->getBody();	
+		$users = $request->getBody();
+		//echo print_r($users);	
 		$users['user_type']='3';
+		if($users['user_password']!=$users['user_confirmPassword']){
+			$response["error"] = true;
+			$response["message"] = "Password mis-matched!";
+			echoRespnse(409, $response);
+			return;
+		}
 		if($DbHandler->checkUserAvailability($users['user_email'])){
 			$response["error"] = true;
 			$response["message"] = "User already exist! please login to the system";
@@ -1518,7 +1525,7 @@ $app->post('/register', function() use ($app) {
 					$DbHandler->CreateUserPackages($userId,$defaultPackageList[$i]['package_id'],$defaultPackageList[$i]['package_adLimit']);
 				}
 				$response["error"] = false;
-				$response["message"] = "User created successFully!";
+				$response["message"] = "You have successfully registered! We have sent an activation email to ".$users['user_email']." Please activate your account first";
 				echoRespnse(200, $response);
 			}else{
 				$response["error"] = true;
