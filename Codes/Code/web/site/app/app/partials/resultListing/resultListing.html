@@ -75,12 +75,9 @@
           </ul>
            <div class="filter-heading">
           <i class="fa fa-th-list"></i> Category </div>
-          <ul>
-            <li><a href="#" ng-click="setParams('locationid',locations)">Madinat Al Shamal<span>20500</span></a></li>
-            <li><a href="#">Madinat Al Shamal<span>20500</span></a></li>
-            <li><a href="#">Madinat Al Shamal<span>20500</span></a></li>
-            <li><a href="#">Madinat Al Shamal<span>20500</span></a></li>
-            <li><a href="#">Madinat Al Shamal<span>20500</span></a></li>
+          <ul ng-repeat="resultList in resultList.advertisments ">
+            <li><a href="#" ng-click="setParams('categoryid',{{resultList.categoryid}})">{{resultList.category}}<span>20500</span></a></li>
+            
           </ul>
           <div class="filter-heading">
           <i class="fa fa-usd"></i> Price Range </div>

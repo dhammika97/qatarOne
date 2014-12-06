@@ -1094,8 +1094,8 @@ public function checkLogin($user_email, $user_password) {
 		$db = new database();
 		$table = 'advertisment a, advertisement_images i, locations l, suburbs s, category_sub c';
 		$rows ='a.advertisement_title,a.advertisement_contactName,a.advertisement_price,a.advertisement_description,a.advertisement_attributes
-		,a.advertisement_contactNo,date(advertisement_date) as date,
-				time(advertisement_date) as time , i.advertisement_image, 
+		,a.advertisement_contactNo,date(a.advertisement_date) as date,
+				time(a.advertisement_date) as time , i.advertisement_image, 
 				l.location_name, 	
 				l.location_cordinates,s.suburb_name,s.suburb_cordinates, c.category_sub_name';
 		$where = 'a.advertisment_id = i.advertisement_id
@@ -1107,5 +1107,26 @@ public function checkLogin($user_email, $user_password) {
 		$add = $db->getJson();
 		return $add;
 	}	
+	
+	public function advertisments($params){
+		$catid = $params['categoryID'];
+		
+		
+		
+		$db = new database();
+		$table = 'advertisment a, advertisement_images i, locations l , category_sub c';
+		$rows  ='a.advertisement_title, a.advertisement_price as price, a.advertisement_description, i.advertisement_image
+				,date(a.advertisement_date) as date,time(a.advertisement_date) as time, l.location_name as location, 
+				c.category_sub_name as category,c.category_sub_id as categoryid';
+		$where = 'a.advertisment_id = i.advertisement_id
+				 AND a.advertisement_categoryId = "'.$catid.'"
+				 AND advertisement_location = l.location_id
+				 AND a.advertisement_subCategoryId	 = c.category_sub_id';
+		$db->selectJson($table,$rows,$where,'','');
+		$add = $db->getJson();
+		return $add;
+	}	
+	
+	
 }
 ?>

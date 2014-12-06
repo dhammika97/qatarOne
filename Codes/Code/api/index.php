@@ -1509,6 +1509,27 @@ $app->get('/advertisment/:id', function($id) {
                 echoRespnse(404, $response);
             }
         });	 
+/**
+ * Get advertisments 
+ * url - /advertisment
+ * method - GET
+ * params -advertisments*/		
+$app->get('/advertisments', function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+		$response = array();
+		$DbHandler = new DbHandler();	
+		$result = $DbHandler->advertisments($params);
+        if ($result != NULL) {
+        	$response["error"] = false;
+				$response['advertisments'] = json_decode($result);
+                echoRespnse(200	, $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+        });	 
 
 $app->run();
 		
