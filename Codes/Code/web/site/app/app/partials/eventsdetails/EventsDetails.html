@@ -1,0 +1,22 @@
+    <div class="shadow"></div>
+    <ol class="breadcrumb">
+  <li class="active"> <a href="#/portal/classified">classified</a>	</li>
+  <li class="active"> Events</li>
+</ol>
+    <div ng-repeat="event in events.events">
+    <section class="news-events">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>{{event.event_shortDescription}}</h1>
+            <div class="news-event-content">
+              <p>
+               <img class="img-responsive" ng-src="../../../api/uploads/events/{{event.event_image}}" align="left">
+              {{event.event_description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+    <div class="shadow"></div>
