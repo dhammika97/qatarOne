@@ -244,6 +244,7 @@ INSERT INTO `news` (`news_id`, `news_title`, `news_shortDescription`, `news_Desc
 
 CREATE TABLE IF NOT EXISTS `packagetypes` (
   `package_id` int(2) NOT NULL AUTO_INCREMENT,
+  `packageType` int(2) NOT NULL,
   `package_name` varchar(100) NOT NULL,
   `package_Description` longtext NOT NULL,
   `package_price` decimal(10,0) NOT NULL,
