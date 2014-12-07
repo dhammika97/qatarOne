@@ -29,6 +29,7 @@ window.routes =
 		requireLogin: false
     },
 	"/post-ad": {
+		controller:'controllers.advertismentAddController',
         templateUrl:'app/partials/postAd/postAdMain.html',
 		requireLogin: true
     },
