@@ -64,8 +64,8 @@
           <!-- bootstrap carousel -->
             <div id="ad-preview" class="carousel slide" data-ride="carousel" data-interval="false">
                 <carousel interval="3000">
-                  <slide ngif="$index==0" ng-repeat="slide in adversiment.advertisment" active="slide.active">
-                    {{$index}}<img ng-src="../../../api/uploads/advertisement/{{slide.advertisement_image}}" style="margin:auto;">
+                  <slide ng-if="$index!=0" ng-repeat="slide in adversiment.advertisment" active="slide.active">
+                    <img ng-src="../../../api/uploads/advertisement/{{slide.advertisement_image}}" style="margin:auto;">
                     <div class="carousel-caption">
                     	<!--comented-->
                     </div>

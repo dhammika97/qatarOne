@@ -356,6 +356,7 @@ class DbHandler {
 		$subcategories = $db->getJson();
 		return $subcategories;
 	}
+	
 
 	public function GetsubCategoryDetail($id){
 		$db = new database();
