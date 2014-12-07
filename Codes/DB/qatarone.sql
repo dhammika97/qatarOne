@@ -132,13 +132,14 @@ CREATE TABLE IF NOT EXISTS `categoryattributes` (
 CREATE TABLE IF NOT EXISTS `category_sub` (
   `category_sub_id` int(4) NOT NULL AUTO_INCREMENT,
   `category_sub_name` varchar(250) NOT NULL,
+  `category_sub_tplType` varchar(50) NOT NULL,
   `category_sub_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_sub_enteredBy` int(5) NOT NULL,
   `category_sub_status` int(1) NOT NULL,
   `category_sub_parentId` int(4) NOT NULL,
   PRIMARY KEY (`category_sub_id`),
   KEY `category_sub_id` (`category_sub_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `category_sub`
