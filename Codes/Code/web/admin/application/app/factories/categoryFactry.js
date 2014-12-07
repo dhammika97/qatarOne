@@ -43,7 +43,7 @@ App.factory('categoryFactry',function($resource){
 	factory.getCategoryDetails = function(id){
 		return tmp = categoryList.get({id:id})
 			tmp.$promise.catch(function(e){
-			console.log(e.data.message)
+			//console.log(e.data.message)
 			window.location.replace('#/dashboard')
 		})
 	}

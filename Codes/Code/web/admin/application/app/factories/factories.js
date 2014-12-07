@@ -36,7 +36,7 @@ App.factory('usersFactory',function($resource){
 	factory.getUser = function(id){
 		return tmp = userList.get({id:id})
 		tmp.$promise.catch(function(e){
-			console.log(e.data.message)
+			//console.log(e.data.message)
 			window.location.replace('#/dashboard')
 		})
 	}
@@ -119,7 +119,7 @@ App.factory('suburbsFactory',function($resource){
 	factory.getSuburb = function(id){
 		return tmp = suburbList.get({id:id})
 		tmp.$promise.catch(function(e){
-			console.log(e.data.message)
+			//console.log(e.data.message)
 			window.location.replace('#/dashboard')
 		})
 	}

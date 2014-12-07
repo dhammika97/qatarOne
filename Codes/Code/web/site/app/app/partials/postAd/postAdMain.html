@@ -1,107 +1,102 @@
 <section class="post-single-ad">
   <div class="container">
     <div class="row top-breadcrumb">
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 active"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Fill In Details</div> 
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 active"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Fill In Details</div>
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Check Your Ad</div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Confirmation</div> 
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Confirmation</div>
     </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="panel panel-default">
-           <div class="panel-heading">
+          <div class="panel-heading">
             <h3 class="panel-title">Fill Your Details</h3>
-           </div>
-            <div class="panel-body">
-           <form class="form-horizontal" role="form">
+          </div>
+          <div class="panel-body">
+          <form class="form-horizontal" name="adUpload" role="form">
             <div class="form-group">
               <label for="category" class="col-sm-2 control-label" >Category</label>
               <div class="col-sm-10">
-              	<select class="form-control">
-                	<optgroup label="testtest">
-                		<option>test</option>
-                    </optgroup>
-                </select>
-                <!--<select class="form-control" ng-model="adversiment.advertisement_subCategoryId" >
-                 <option>cat1</option>
-                 <option>cat2</option>
-                 <option>cat3</option>
-                 <option>cat4</option>
+                <!--<select class="form-control" ng-model="adversiment.advertisement_subCategoryId" ng-change="changeTpl()" required ng-options="obj.category_sub_id as obj.category_sub_name for obj in catList.catList">
                 </select>-->
+                <select class="form-control" ng-model="suburbs.suburb_location_id" required ng-options="obj.category_sub_id as obj.category_sub_name group by obj.category_name for obj in catList.categorymatrix"></select>
               </div>
             </div>
             <div class="form-group">
               <label for="title" class="col-sm-2 control-label">Ad Title</label>
               <div class="col-sm-10">
-                <input type="title" class="form-control" ng-model="adversiment.advertisement_title" id="title"
-                 placeholder="Enter Title">
+                <input type="title" class="form-control" ng-model="adversiment.advertisement_title" required >
               </div>
             </div>
+            <ng-include src="templatePath"></ng-include>
             <div class="form-group">
               <label for="Description" class="col-sm-2 control-label">Description</label>
               <div class="col-sm-10">
-           <textarea name="" cols="" rows="" class="form-control" ng-model="adversiment.advertisement_description"></textarea>
+                <textarea class="form-control" ng-model="adversiment.advertisement_description" rows="10"></textarea>
               </div>
-            </div>
-             <div class="form-group">
-              <label for="price" class="col-sm-2 control-label">Price</label>
-           <div class="col-sm-10">
-             <div class="input-group input-group-sm">
-               <span class="input-group-addon">QR</span>
-              <input type="text" class="form-control price-tag" placeholder="" ng-model="adversiment.advertisement_price">
-            </div>
-            </div>
             </div>
             <div class="form-group">
-              <!-- <label for="upload" class="col-sm-2 control-label">Upload Photos</label>
+              <label for="price" class="col-sm-2 control-label">Price</label>
               <div class="col-sm-10">
-                <input type="file" class="form-control" id="upload">
-              </div> -->
-             <!--  <div class="col-sm-10">
-                <input type="file" nv-file-select=""  uploader="uploader" options="{'alias':'advertisement_image'}" ng-model="adversiment.advertisement_image" >
-            </div> -->
-            </div> 
-             <div class="form-group">
+                <div class="input-group input-group-sm"> 
+                	<span class="input-group-addon">QR</span>
+                  	<input type="text" class="form-control price-tag" ng-model="adversiment.advertisement_price">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
               <label for="contactName" class="col-sm-2 control-label">Contact Name</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="adversiment.advertisement_contactName" id="contactName"
-                 placeholder="">
+                <input type="text" class="form-control" ng-model="adversiment.advertisement_contactName" required >
               </div>
-            </div> 
+            </div>
             <div class="form-group">
               <label for="contactNo" class="col-sm-2 control-label">Contact No</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="adversiment.advertisement_contactNo" id="contactNo"
-                 placeholder="">
+                <input type="tel" class="form-control" ng-model="adversiment.advertisement_contactNo" required >
               </div>
             </div>
-              <div class="form-group">
+            <div class="form-group">
               <label for="contactNo" class="col-sm-2 control-label">Contact Email</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="adversiment.advertisement_contactEmail" id="contactEmail"
-                 placeholder="">
+                <input type="email" class="form-control" ng-model="adversiment.advertisement_contactEmail" required >
               </div>
-            </div>  
-
-          <div class="form-group">
+            </div>
+            <div class="form-group">
+              <label for="contactNo" class="col-sm-2 control-label">Location</label>
+              <div class="col-sm-10">
+              	<select class="form-control" ng-model="adversiment.advertisement_location" required>
+                	<option>location</option>
+                </select>
+              </div>
+            </div>
+			<div class="form-group">
+              <label for="contactNo" class="col-sm-2 control-label">Suburb</label>
+              <div class="col-sm-10">
+              	<select class="form-control" ng-model="adversiment.advertisement_suburb" ng-disabled="!adversiment.advertisement_location" required>
+                	<option>test</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox terms">
                   <label>
-                    <input type="checkbox">I accept terms and conditions
-                  </label>
+                    <input type="checkbox" required>
+                    I accept terms and conditions </label>
                 </div>
               </div>
-            </div> 
-          </form>
             </div>
-            <div class="panel-footer" style="overflow:hidden;text-align:right;">
-              <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button  class="btn btn-success" ng-click="addAdvertisment()">Check Your Ad</button>                  
-              </div>
-            </div>  
+          </form>
+        </div>
+        <div class="panel-footer" style="overflow:hidden;text-align:right;">
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button  class="btn btn-success" ng-click="addAdvertisment()" ng-disabled="adUpload.$invalid">Check Your Ad</button>
             </div>
           </div>
+        </div>
       </div>
     </div>
+  </div>
   </div>
 </section>

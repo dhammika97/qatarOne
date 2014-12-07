@@ -28,3 +28,19 @@ App.factory('advertismentFactory',function($resource){
 	return factory
 })
 
+App.factory('advertismentCatFactory',function($resource){
+	var category = $resource('../../../api/categoryMatrix/:id', {}, {
+        query: { method: 'GET', params: {}, isArray: false }
+        });
+
+	var factory = {}
+	factory.getCategory = function(){
+		return tld = category.query();
+		//tld.$promise.catch(function(e){
+		//	alert(e.data.message)
+		//})
+	}
+
+
+	return factory
+})

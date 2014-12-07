@@ -40,7 +40,7 @@ App.factory('locationFactory',function($resource){
 	factory.getLocation = function(id){
 		return tmp = locationList.get({id:id})
 		tmp.$promise.catch(function(e){
-			console.log(e.data.message)
+			//console.log(e.data.message)
 			window.location.replace('#/dashboard')
 		})
 	}

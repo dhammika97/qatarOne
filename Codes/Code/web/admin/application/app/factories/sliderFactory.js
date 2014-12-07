@@ -30,7 +30,7 @@ App.factory('sliderFactory',function($resource){
 	factory.getSlider_edit = function(id){
 		return tmp = sliderList.get({id:id})
 		tmp.$promise.catch(function(e){
-			console.log(e.data.message)
+			//console.log(e.data.message)
 			window.location.replace('#/dashboard')
 		})
 	}

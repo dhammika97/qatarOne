@@ -1,6 +1,6 @@
 //Flot Line Chart with Tooltips
 $(document).ready(function(){
-	console.log("document ready");
+	//console.log("document ready");
 	var offset = 0;
 	plot();
 	function plot(){

@@ -41,7 +41,7 @@ App.factory('pageFactory',function($resource){
 	factory.getPage = function(id){
 		return tmp = Pages.get({id:id})
 		tmp.$promise.catch(function(e){
-			console.log(e.data.message)
+			//console.log(e.data.message)
 			window.location.replace('#/dashboard')
 		})
 	}

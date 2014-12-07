@@ -31,7 +31,7 @@ App.factory('eventFactory',function($resource){
 		//alert(id);
 		return tmp = eventsList.get({id:id})
 		tmp.$promise.catch(function(e){
-			console.log(e.data.message)
+			//console.log(e.data.message)
 			window.location.replace('#/dashboard')
 		})
 	}
