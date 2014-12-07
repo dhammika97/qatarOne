@@ -1533,6 +1533,8 @@ $app->get('/advertisments', function() {
         });	 
 
 
+
+
 /**
  * Create  Advertisment 
  * url 		- /advertisment
@@ -1566,6 +1568,30 @@ $app->post('/advertisment', function() use ($app) {
 
 
 
+/**
+ * Get advertismentsByLocation 
+ * url - /advertisment
+ * method - GET
+ * params -advertisments*/		
+$app->get('/advertismentsBYlocation', function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+		$response = array();
+		$DbHandler = new DbHandler();	
+		$result = $DbHandler->advertismentsByLocation($params);
+        if ($result != NULL) {
+        	$response["error"] = false;
+				$response['advertisments'] = json_decode($result);
+                echoRespnse(200	, $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+        });	 
+
+
+
 // * list all categories 
 // * url - /category
 // * method - get
@@ -1593,8 +1619,8 @@ $app->get('/category2', function() {
 
 
 
-// * list all sub-category
-// * url - /subCategory
+// * list sub-categories belongs to each categories  
+// * url - /categoryMatrix
 // * method - get
 // * params - 
 
@@ -1616,6 +1642,7 @@ $app->get('/categoryMatrix', function()  {
 			echoRespnse(200, $response);
 		}
 });
+
 
 $app->run();
 		
