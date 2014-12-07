@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.0.9
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2014 at 03:29 PM
--- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- Generation Time: Dec 07, 2014 at 06:25 AM
+-- Server version: 5.6.14
+-- PHP Version: 5.5.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -38,9 +38,9 @@ CREATE TABLE IF NOT EXISTS `advertisement_images` (
 --
 
 INSERT INTO `advertisement_images` (`advertisement_imageId`, `advertisement_id`, `advertisement_image`) VALUES
-(1, 5, 'phone.jpeg'),
+(1, 1, 'phone.jpeg'),
 (2, 1, 'htcm8'),
-(3, 2, 'nexus');
+(3, 1, 'nexus');
 
 -- --------------------------------------------------------
 
@@ -174,8 +174,8 @@ CREATE TABLE IF NOT EXISTS `events` (
 --
 
 INSERT INTO `events` (`evenet_id`, `event_title`, `event_date`, `event_shortDescription`, `event_description`, `event_image`, `event_status`) VALUES
-(10, 'asdasd', '2014-12-10', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', '3A5FD88B3861F2DEAD03BF8A78F4AB98Tulips.jpg', 1),
-(11, 'second event', '2014-07-21', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', 'CA28D86147D2C20D3F4553AB2CF49F25Desert.jpg', 1);
+(10, 'Test Title', '2014-12-10', 'Test Tile one', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', '6880B31C8FD43AC55D2E47DE3FA1E5AEScreenshot (1).png', 1),
+(11, 'second event', '2014-07-21', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', '13F9F5384610FDAB7BEA89DB3BD79DDC728-x-90.gif', 1);
 
 -- --------------------------------------------------------
 
@@ -199,14 +199,14 @@ CREATE TABLE IF NOT EXISTS `fixedads` (
 --
 
 INSERT INTO `fixedads` (`fixedads_id`, `fixedads_type`, `fixedads_image`, `fixedads_enetredDate`, `fixedads_url`, `fixedads_status`, `fixedads_title`) VALUES
-(12, 4, 'BE2B2F10E58994C73FCD81528E395C39728-x-90.gif', '2014-12-05 13:39:22', 'http://www.dialog.lk', 1, 'Dialog top add'),
-(13, 5, '466FDEE5C3D80BFFC89F7E7188FA8469728-x-90 - Copy.jpg', '2014-12-05 13:38:55', 'http://www.dialog.lk/', 1, 'dialog bottom add'),
-(14, 2, '6F226270BBB98E2C343729EC3FB388C315441498865313608811.gif', '2014-12-05 13:48:37', 'www.shuboothi.com', 1, 'leftadd'),
-(15, 3, '5648712D26DE70810EE897A879E11F4D7483126944720115748.png', '2014-12-05 13:49:21', 'www.google.com', 1, 'right'),
-(16, 2, '16ED8807517D21A3F63827B0EAB082256591726479222682286.gif', '2014-12-05 13:56:35', 'www.google.com', 1, 'left'),
-(17, 1, 'F45FD36C977B4BCA0F69B9F9B04792E1728-x-90 - Copy.jpg', '2014-12-05 14:07:48', 'www.dialog.lk', 1, 'top'),
-(18, 2, '0F65DE6A893C97D585B8B8E4BC83B2FE7483126944720115748.png', '2014-12-05 15:11:50', 'dfgsdfgsd', 1, 'dagd'),
-(19, 1, 'A137BFCA5C153BFDEBF4EFFFBA0374BD728-x-90.gif', '2014-12-05 15:51:29', 'sfagsdf', 1, 'top');
+(12, 4, '57F9DECE5D89E787703820CDA3E99E0D728-x-90.gif', '2014-12-05 13:39:22', 'http://www.dialog.lk', 1, 'Dialog top add'),
+(13, 5, '863DB708EE07D69EAA38BF72E62A5F5E728-x-90 - Copy.jpg', '2014-12-05 13:38:55', 'http://www.dialog.lk/', 1, 'dialog bottom add'),
+(14, 2, '752108EC3F897B72A7B65CFD9566E14B6591726479222682286.gif', '2014-12-05 13:48:37', 'www.shuboothi.com', 1, 'leftadd'),
+(15, 3, 'B7B9376F9ECB64CF05DF8EFB3419F0B47483126944720115748.png', '2014-12-05 13:49:21', 'www.google.com', 1, 'right'),
+(16, 2, '40ABAFF4265EE3DB7DACB5D10266B2AB15441498865313608811.gif', '2014-12-05 13:56:35', 'www.google.com', 1, 'left'),
+(17, 1, 'E536AD0E9B9B76D1C8BA50E53D0E0D7B728-x-90 - Copy.jpg', '2014-12-05 14:07:48', 'www.dialog.lk', 1, 'top'),
+(18, 3, 'F7CB8713A5AB0E994C8EB1FAD803DA936591726479222682286.gif', '2014-12-05 15:11:50', 'dfgsdfgsd', 1, 'dagd'),
+(19, 1, '02A1BA8443B8E1DE6C8B1DBCE658ACD9728-x-90.gif', '2014-12-05 15:51:29', 'sfagsdf', 1, 'top');
 
 -- --------------------------------------------------------
 
@@ -252,9 +252,8 @@ CREATE TABLE IF NOT EXISTS `news` (
 --
 
 INSERT INTO `news` (`news_id`, `news_title`, `news_shortDescription`, `news_Description`, `news_image`, `news_date`, `news_status`) VALUES
-(16, 'asdasd', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.f', '8AC25C5BD9D7E2D5D10FBBBD4EAA8D50Lighthouse.jpg', '2014-12-04 00:00:00', 1),
-(17, 'sdcsa', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500', 'sDASD', 'F9BB613F70E8EE9E3D2DBCAABDBA3B88Hydrangeas.jpg', '2014-12-05 00:00:00', 1),
-(18, 'title', '"description"', '"sdafsdfsdfds"', '0C94299F4E9A99C1AB0CF541E1FBAA5ALighthouse.jpg', '2014-12-05 00:00:00', 1);
+(16, 'News Title', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type', 'B497E8C9C8A19CBD20ADA04F4319613CMBP2488.jpg', '2014-12-04 00:00:00', 1),
+(17, 'sdcsa', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500', 'sDASD', 'BE9C5F766BB753554774C1EBE2CAC2BCMBP2488.jpg', '2014-12-05 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -328,8 +327,8 @@ CREATE TABLE IF NOT EXISTS `sliders` (
 --
 
 INSERT INTO `sliders` (`slider_id`, `slider_title`, `slider_image`, `slider_url`, `slider_status`) VALUES
-(11, 'asdasd', '1AEB35BCF9475C876DBDE694BB1CFE5CDesert.jpg', 'sdfsdf', 1),
-(12, 'sdfsfd', 'BAA548B6C44347E3212732348A905D88Jellyfish.jpg', 'sdfsdf', 1),
+(11, 'asdasd', 'E662DAF13311D35CEEAE424890D9B55AMBP2488.jpg', 'sdfsdf', 1),
+(12, 'sdfsfd', '9BD82BE1C118532D9B0F4E822528732CInterior-Bar-Nashville-Set.jpg', 'sdfsdf', 1),
 (13, 'dsDgds', '', '', 0);
 
 -- --------------------------------------------------------
@@ -378,18 +377,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_status` int(1) NOT NULL,
   `user_accessToken` text NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `user_firstname`, `user_lastname`, `user_address1`, `user_address2`, `user_city`, `user_contactNo`, `user_registeredDate`, `user_type`, `user_status`, `user_accessToken`) VALUES
-(1, 'dhammika97', '$2a$10$473928c6b93fb4742c3abuBJjEH.TVTADD75q0j9UnkIiOox9JeKu', 'dhammika97@gmail.com', 'dhammika', 'gunaratne', '176/4, walatenna', 'gallellagama', 'kandy', '777339803', '2014-11-20 00:00:00', 0, 1, 'kjsjjdfshdfhsdbfjhsbdfsdfsf'),
-(26, 'sdfsdf', '27d779cba60f2b5d48debdd970c8e732', 'sdsd@sdfsd', 'sdfsd', 'sdfsdf', 'sdfsdf', 'sdfsdf', 'sddf', 'sdfsdf', '2014-11-27 00:00:00', 0, 1, '40D08248FD796D6C8FC34141D46A35AB'),
-(28, 'asdasd', '0aa1ea9a5a04b78d4581dd6d17742627', 'ssdsf@dfsdf', 'dfsdf', 'sdfsdf', 'dsfsdf', 'dfsdf', 'sdfsdf', 'dsfsf', '2014-11-27 00:00:00', 0, 1, '61D78F2173F82567EE27BCB121267011'),
-(29, 'test', '098f6bcd4621d373cade4e832627b4f6', 'test@test', 'test', 'test', 'test', 'test', 'test', 'test', '2014-11-27 00:00:00', 0, 1, 'ADBC4ABAD086391B217F1C8DDECBBAC5'),
-(30, 'test test', '202cb962ac59075b964b07152d234b70', 'test@test', 'sdf', 'sdf', 'sdf', '', '', '', '2014-11-27 00:00:00', 0, 1, '6893F05404F0DEBCF41325624039B85B');
+(1, 'dhammika97', '202cb962ac59075b964b07152d234b70', 'dhammika97@gmail.com', 'dhammika', 'gunaratne', '176/4, walatenna', 'gallellagama', 'kandy', '777339803', '2014-11-20 00:00:00', 0, 1, 'kjsjjdfshdfhsdbfjhsbdfsdfsf'),
+(31, '', '202cb962ac59075b964b07152d234b70', 'dhammika9@gmail.com', 'test', '', '', '', '', '', '2014-12-06 00:00:00', 3, 1, '1C078C9F93582F9D780C55507BB274B6');
 
 -- --------------------------------------------------------
 
@@ -405,7 +401,17 @@ CREATE TABLE IF NOT EXISTS `userpackge` (
   `userpkg_expirey` date NOT NULL,
   `userpkg_status` int(1) NOT NULL,
   PRIMARY KEY (`userpkg_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `userpackge`
+--
+
+INSERT INTO `userpackge` (`userpkg_id`, `userpkg_userId`, `userpkg_pkgId`, `userpkg_remainAds`, `userpkg_expirey`, `userpkg_status`) VALUES
+(1, 31, 1, 3, '0000-00-00', 1),
+(2, 31, 3, 300, '0000-00-00', 1),
+(3, 31, 7, 15, '0000-00-00', 1),
+(4, 31, 9, 123, '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -418,7 +424,14 @@ CREATE TABLE IF NOT EXISTS `usersubscription` (
   `subscription_email` varchar(50) NOT NULL,
   `subscription_status` int(11) NOT NULL,
   PRIMARY KEY (`subscription_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `usersubscription`
+--
+
+INSERT INTO `usersubscription` (`subscription_id`, `subscription_email`, `subscription_status`) VALUES
+(1, 'dhammika97@gmail.com', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
