@@ -16,9 +16,7 @@
             <div class="form-group">
               <label for="category" class="col-sm-2 control-label" >Category</label>
               <div class="col-sm-10">
-                <!--<select class="form-control" ng-model="adversiment.advertisement_subCategoryId" ng-change="changeTpl()" required ng-options="obj.category_sub_id as obj.category_sub_name for obj in catList.catList">
-                </select>-->
-                <select class="form-control" ng-model="suburbs.suburb_location_id" required ng-options="obj.category_sub_id as obj.category_sub_name group by obj.category_name for obj in catList.categorymatrix"></select>
+                <select class="form-control" ng-model="adversiment.advertisement_subCategoryId" required ng-options="obj.category_sub_id as obj.category_sub_name group by obj.category_name for obj in catList.categorymatrix" ng-change="changeTpl()"></select>
               </div>
             </div>
             <div class="form-group">

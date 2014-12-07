@@ -6,12 +6,13 @@ controllers.advertismentAddController = function($scope, advertismentFactory, ad
 	$scope.catList = advertismentCatFactory.getCategory()
 	
 	$scope.changeTpl = function(){
-		for(i=0; i<$scope.catList.catList.length; i++){
+		for(i=0; i<$scope.catList.categorymatrix.length; i++){
 			if($scope.adversiment.advertisement_subCategoryId==i){
-				console.log($scope.catList.catList[i].category_name)
+				$scope.templatePath = "app/partials/postAd/adTemplate-"+$scope.catList.categorymatrix[i].category_sub_tplType+".html"
+				//console.log($scope.catList.categorymatrix[i].category_sub_tplType)
 			}
 		}
-		$scope.templatePath = "app/partials/postAd/adTemplate-"+$scope.adversiment.advertisement_subCategoryId+".html"
+		//$scope.templatePath = "app/partials/postAd/adTemplate-"+$scope.catList.categorymatrix[i].category_sub_tplType+".html"
 	}
 	
 	

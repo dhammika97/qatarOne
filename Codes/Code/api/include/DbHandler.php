@@ -10,7 +10,7 @@ class DbHandler {
 		$where = 'category_status=1';
 		$db = new database();
 		$table = 'category c inner join category_sub s on c.category_id = s.category_sub_parentId';
-		$rows ='c.category_id,c.category_name,s.category_sub_id,s.category_sub_name';	
+		$rows ='c.category_id,c.category_name,s.category_sub_id,s.category_sub_name,s.category_sub_tplType';	
 		$db->selectJson($table,$rows,$where,'','','');
 		$subcategories = $db->getJson();
 		return $subcategories;
@@ -382,11 +382,12 @@ class DbHandler {
 	public function addsubCategory($category){	
 		$db = new database();
 		$table  = "category_sub";
+		(isset($category['category_sub_tplType']) ? $category_sub_tplType = $category['category_sub_tplType'] : $category_sub_tplType = "" );
 		(isset($category['category_sub_name']) ? $category_sub_name = $category['category_sub_name'] : $category_sub_name = "" );
 		(isset($category['category_sub_enteredBy']) ? $category_sub_enteredBy = $category['category_sub_enteredBy'] : $category_sub_enteredBy = "" );
 		(isset($category['category_sub_parentId']) ? $category_sub_parentId = $category['category_sub_parentId'] : $category_sub_parentId = "" );
-		$values = "'".$category_sub_name."', '".$category_sub_parentId."' , '".$category_sub_enteredBy."'";								
-		$rows   = "category_sub_name, category_sub_enteredBy, category_sub_parentId";
+		$values = "'".$category_sub_name."', '".$category_sub_parentId."' , '".$category_sub_enteredBy."','".$category_sub_tplType."'";								
+		$rows   = "category_sub_name, category_sub_enteredBy, category_sub_parentId, category_sub_tplType";
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}	
