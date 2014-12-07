@@ -1092,19 +1092,30 @@ public function checkLogin($user_email, $user_password) {
 		}  	
 	public function advertismentDetail($id){
 		$db = new database();
-		$table = 'advertisment a, advertisement_images i, locations l, suburbs s, category_sub c';
+		$table = 'advertisment a , locations l, suburbs s, category_sub c';
 		$rows ='a.advertisement_title,a.advertisement_contactName,a.advertisement_price,a.advertisement_description,a.advertisement_attributes
 		,a.advertisement_contactNo,date(a.advertisement_date) as date,
-				time(a.advertisement_date) as time , i.advertisement_image, 
+				time(a.advertisement_date) as time , 
 				l.location_name, 	
 				l.location_cordinates,s.suburb_name,s.suburb_cordinates, c.category_sub_name';
-		$where = 'a.advertisment_id = i.advertisement_id
-				 AND a.advertisement_location= l.location_id
+		$where = 'a.advertisement_location= l.location_id
 				 AND a.advertisement_suburb = s.suburb_id
 				 AND a.advertisement_subCategoryId	 = c.category_sub_id
 				 AND a.advertisment_id = "'.$id.'"';
 		$db->selectJson($table,$rows,$where,'','');
-		$add = $db->getJson();
+		$prod = json_decode($db->getJson(),true);
+		//print_r ($prod);
+		$db = new database();
+		$table = 'advertisement_images';
+		$rows = 'advertisement_image';
+		$where = 'advertisement_id = "'.$id.'"';
+		$db->selectJson($table,$rows,$where,'','');
+		$images = $db->getJson();
+		$images = json_decode($images,true);
+		$obj = array_merge($prod,$images);
+		//print_r( $obj);
+		//$add = $db->getJson();
+		$add = json_encode($obj);
 		return $add;
 	}	
 	

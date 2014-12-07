@@ -63,62 +63,14 @@
         <div class="col-lg-6 col-md-6">
           <!-- bootstrap carousel -->
             <div id="ad-preview" class="carousel slide" data-ride="carousel" data-interval="false">
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-                <li data-target="#ad-preview" data-slide-to="0" class="active"></li>
-                <li data-target="#ad-preview" data-slide-to="1"></li>
-                <li data-target="#ad-preview" data-slide-to="2"></li>
-                <li data-target="#ad-preview" data-slide-to="3"></li>
-              </ol>
-
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner">
-
-                <div class="item active srle">
-                  <img src="images/phone.jpg" alt="1.jpg" class="img-responsive">
-                  <div class="carousel-caption">
-                    <p> 1.jpg </p>
-                  </div>
-                </div>
-
-                <div class="item">
-                  <img src="images/phone.jpg" alt="2.jpg" class="img-responsive">
-                  <div class="carousel-caption">
-                    <p> 2.jpg </p>
-                  </div>
-                </div>
-
-                <div class="item">
-                  <img src="images/phone.jpg" alt="3.jpg" class="img-responsive">
-                  <div class="carousel-caption">
-                    <p> 3.jpg </p>
-                  </div>
-                </div>
-
-                <div class="item">
-                  <img src="images/phone.jpg" alt="4.jpg" class="img-responsive">
-                  <div class="carousel-caption">
-                    <p> 4.jpg </p>
-                  </div>
-                </div>
-
-              </div>
-
-              <!-- Controls -->
-              <a class="left carousel-control" href="#ad-previewc" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-              </a>
-              <a class="right carousel-control" href="#ad-preview" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-              </a>
-
-              <!-- Thumbnails --> 
-              <!--<ul class="thumbnails-carousel clearfix">
-                <li><img class="img-responsive"src="images/phone_t1n.jpg" alt="1_tn.jpg"></li>
-              <li><img src="images/phone_t1n.jpg" alt="1_tn.jpg"></li>
-              <li><img src="images/phone_t1n.jpg" alt="1_tn.jpg"></li>
-              <li><img src="images/phone_t1n.jpg" alt="1_tn.jpg"></li>
-              </ul>-->
+                <carousel interval="3000">
+                  <slide ngif="$index==0" ng-repeat="slide in adversiment.advertisment" active="slide.active">
+                    {{$index}}<img ng-src="../../../api/uploads/advertisement/{{slide.advertisement_image}}" style="margin:auto;">
+                    <div class="carousel-caption">
+                    	<!--comented-->
+                    </div>
+                  </slide>
+                </carousel>
             </div>
         </div>
         <div class="col-lg-6 col-md-6 ad-description">

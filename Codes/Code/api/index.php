@@ -1457,7 +1457,7 @@ $app->post('/register', function() use ($app) {
 					$DbHandler->CreateUserPackages($userId,$defaultPackageList[$i]['package_id'],$defaultPackageList[$i]['package_adLimit']);
 				}
 				$response["error"] = false;
-				$response["message"] = "You have successfully registered! We have sent an activation email to ".$users['user_email']." Please activate your account first";
+				$response["message"] = "Congradulations! We have sent an activation email to ".$users['user_email']." Please activate your account first";
 				echoRespnse(200, $response);
 			}else{
 				$response["error"] = true;
