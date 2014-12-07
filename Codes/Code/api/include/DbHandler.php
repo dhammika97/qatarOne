@@ -6,6 +6,29 @@
  */
 class DbHandler {
 
+
+/*public function newcategorylist($category_statys) {     
+		$db = new database();
+		$table = 'category c, category_sub s';
+
+		$rows ='category_id,category_name,category_sub_id,category_sub_name';
+		$where = 'category_parentid=category_sub_id';	
+		$db->select($table,$rows,$where,'','');
+		$user = $db->getResults();
+		return $user;	
+	}
+*/
+	public function getCategoryMatrix($params){
+		$where = 'category_parentid=category_sub_id and category_sub_status=1 and category_status=1';
+		$db = new database();
+		$table = 'category c, category_sub s';
+		$rows ='category_id,category_name,category_sub_id,category_sub_name';	
+		$db->selectJson($table,$rows,$where,'','','');
+		$subcategories = $db->getJson();
+		return $subcategories;
+	}
+
+
 	public function isValidAccessToken($user_accessToken) {     
 		$db = new database();
 		$table = 'user';
