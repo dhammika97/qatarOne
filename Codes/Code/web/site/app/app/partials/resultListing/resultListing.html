@@ -4,20 +4,20 @@
     <div class="row">
       <div class="col-lg-4 col-md-4 keyword"><input type="text" class="form-control" id="keyword" placeholder="What are you lookig for ?"></div>
       <div class="col-lg-3  col-md-3 category">
-        <select class="form-control"  >
-          <option>Select category</option>
+        <select class="form-control" ng-model="searchproduct.category" >
+          <option selected="selected">Select category</option>
           <option ng-repeat="resultList in resultList.advertisments | unique:'category'" value="{{resultList.categoryid}}">{{resultList.category}}</option>
           
         </select>
       </div>
       <div class="col-lg-3  col-md-3 location">
-        <select class="form-control">
-                  <option>Select Location</option>
+        <select class="form-control" ng-model="searchproduct.location">
+                  <option selected="selected">Select Location</option>
           <option ng-repeat="resultList in resultList.advertisments | unique:'location'" value="{{resultList.locationid}}">{{resultList.location}}</option>
         </select>
       </div>
       <div class="col-lg-2  col-md-2">
-        <a class="search-btn" href="" ng-click='setParamsCat()'><i class="fa fa-search"></i> Search</a>
+        <a class="search-btn" href="" ng-click='searchProduct(search)'><i class="fa fa-search"></i> Search</a>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@
      <div class="container">
     <div class="row">
         <div class="col-lg-6">
-          <div class="pull-left count">234234 Mobile Phones</div>
+          <div class="pull-left count">Mobile Phones</div>
         </div>
          <div class="col-lg-6 filters">
           <ul class="nav nav-pills pull-right">                
@@ -65,6 +65,12 @@
           <ul  ng-repeat="resultList in resultList.advertisments | unique:'location'">
             <li><a href="" ng-click='setParamsLocation(resultList.locationid)'>{{resultList.location}}<span>20500</span></a></li>
           </ul>
+       <div class="filter-heading">
+          <i class="fa fa-map-marker"></i> Suberb </div>
+          <ul  ng-repeat="resultList in resultList.suburb | unique:'suburbid'">
+            <li><a href="" ng-click='setParamsLocation(resultList.suburbid)'>{{resultList.suberb}}<span>20500</span></a></li>
+          </ul>
+       
            <div class="filter-heading">
           <i class="fa fa-th-list"></i> Category </div>
           <ul ng-repeat="resultList in resultList.advertisments | unique:'category'">
@@ -78,8 +84,8 @@
       </div>
       <div class="col-lg-9" >
         <div id="products" class="row list-group" >
-            <div class="item  col-xs-6 col-sm-6 col-md-4 col-lg-4 grid-group-item" ng-click="go('/details-view/1')" ng-repeat="resultList in resultList.advertisments">
-                <div class="thumbnail">
+            <div class="item  col-xs-6 col-sm-6 col-md-4 col-lg-4 grid-group-item"  ng-repeat="resultList in resultList.advertisments">
+                <div class="thumbnail" ng-click="go('/details-view/{{resultList.aid}}')">
              <img class="group list-group-image" ng-src="../../../api/uploads/advertisement/{{resultList.advertisement_image}}" alt="" />
                     <div class="caption">
                       <div class="details">

@@ -1,8 +1,15 @@
 var params = new Array;
-controllers.resultsListingController = function($scope,resultsListingFactory, $routeParams){
+controllers.resultsListingController = function($scope,resultsListingFactory,resultsListingByLocation, $routeParams){
 	params = {'advertisement_categoryId':$routeParams.parent_id}
 	
+	$scope.searchProduct = function(){
+	///	alert($scope.searchproduct.category)
+		params = {'advertisement_categoryId' :$routeParams.parent_id, 
+		'advertisement_subCategoryId' :$scope.searchproduct.category, 'location_id':$scope.searchproduct.location}
+		results(params)
+	}
 	$scope.resultList = resultsListingFactory.getResultList(params);
+	
 	$scope.setParamsCat = function(paramVal){
 		var prid = $routeParams.parent_id;
 		params = {'advertisement_categoryId' :$routeParams.parent_id, 'advertisement_subCategoryId' :paramVal}
@@ -11,6 +18,7 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	$scope.setParamsLocation = function(paramVal){
 		var prid = $routeParams.parent_id;
 		params = {'advertisement_categoryId' :$routeParams.parent_id, 'location_id' :paramVal}
+		//$scope.resultList = resultsListingByLocation.getResultList(params);
 		results(params)
 	}
 	
