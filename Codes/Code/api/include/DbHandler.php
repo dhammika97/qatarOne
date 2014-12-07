@@ -1160,7 +1160,7 @@ public function checkLogin($user_email, $user_password) {
 		
 		$db = new database();
 		$table = 'advertisment a, advertisement_images i, locations l , category_sub c';
-		$rows  ='a.advertisement_title, a.advertisement_price as price, a.advertisement_description, i.advertisement_image
+		$rows  ='a.advertisement_title, a.advertisment_id, a.advertisement_price as price, a.advertisement_description, i.advertisement_image
 				,date(a.advertisement_date) as date,time(a.advertisement_date) as time, l.location_name as location, 
 				l.location_id as locationid,c.category_sub_name as category,c.category_sub_id as categoryid';
 		$where = 'a.advertisment_id = i.advertisement_id
