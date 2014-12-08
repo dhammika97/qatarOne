@@ -42,6 +42,16 @@ if ( !empty( $_FILES ) ) {
 		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.$_FILES['fixedads_image']['name']);
 		$json = json_encode($response);
 		echo $json;
+	}elseif(isset($_FILES['advertismentImage']['name']) !=''){
+		$dir = '../uploads/advertisement/';
+		$unique = strtoupper(md5(uniqid(rand(), true)));	
+		$image = new SimpleImage();
+		$image->load($_FILES['advertismentImage']['tmp_name']);
+		$image->resize(555,415);
+		$image->save($dir.$unique.$_FILES['advertismentImage']['name']);
+		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.$_FILES['advertismentImage']['name']);
+		$json = json_encode($response);
+		echo $json;
 	}else{
 		$response = array('error' => true, 'message'=>'Bad Request');
 		$json = json_encode($response);

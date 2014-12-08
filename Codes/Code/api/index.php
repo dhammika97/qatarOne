@@ -1534,24 +1534,16 @@ $app->post('/advertisment', 'authenticate', function() use ($app) {
 		$db = new DbHandler();
 		global $user_id;
 		//$category = $db->GetsubCategoryDetail($adDetails['advertisement_subCategoryId']);
-		$db->createAdvertisment($adDetails);
-	 /*if($advertismentID = $db->createAdvertisment($advertisment)){
-	 	if (isset($advertisment['advertisement_image'])){
-				if($db->CreateAdvertismentImage($advertismentID,$advertisment['advertisement_image'])){
-						$response["error"] = false;
-						$response["message"] = "Advertisment created successfully";                
-						echoRespnse(201, $response);
-						}
-					} else{
-							$response["error"] = false;
-							$response["message"] = "Advertisment created successfully";                
-							echoRespnse(201, $response);
-						}
-			}else {
-				$response["error"] = true;
-				$response["message"] = "Failed to create Advertisment. Please try again";
-				echoRespnse(400, $response);
-			 }*/	           
+		if($adId = $db->createAdvertisment($adDetails)){
+			$response["error"] = false;
+			$response["message"] = "Advertisment created successfully";
+			$response["insertedId"]=$adId;
+			echoRespnse(201, $response);
+		}else{
+			$response["error"] = true;
+			$response["message"] = "Failed to create Advertisment. Please try again";
+			echoRespnse(400, $response);
+		}	           
 });
 
 /**

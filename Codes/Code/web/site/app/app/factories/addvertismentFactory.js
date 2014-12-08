@@ -12,14 +12,15 @@ App.factory('advertismentFactory',function($resource){
 			alert(e.data.message)
 		})
 	}
-	factory.saveAdvertisment = function($scope){			
+	factory.saveAdvertisment = function($scope){
+		//alert($scope.imageList)			
 		return advertisment.save($scope.ad)
 		.$promise.catch(function(e){
 			alert(e.data.message)
 		}).then(
-		function(value){
-			alert(value.message)
-			//$scope.ad=''
+		function(e){
+			console.log(e)
+			
 		})
 	}
 	var category = $resource('../../../api/categoryMatrix/:id', {}, {

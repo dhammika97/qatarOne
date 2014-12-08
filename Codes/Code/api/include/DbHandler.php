@@ -1099,23 +1099,29 @@ public function checkLogin($user_email, $user_password) {
 	public function createAdvertisment($adDetail) {
 		global $user_id;
 		$db = new database();
-		$advertisement_expire = $end = date('Y-m-d', strtotime('+3 months'));
+		$expire = $end = date('Y-m-d', strtotime('+3 months'));
 		$table  = "advertisment";
 		$category = json_decode(self::GetsubCategoryDetail($adDetail['advertisement_subCategoryId']),true);
-		$categoryID = $category[0]['category_sub_parentId'];
-		//print_r($advertisement_expire);
-		/*$values = "'".$advertisment['advertisement_categoryId']."',
-				  '".$advertisment['advertisement_subCategoryId']."',
-				  '".$advertisement_attributes."',
-				  '".$advertisement_title."', 				 
-				  '".$advertisement_description."',
-				  '".$advertisment['advertisement_price']."',
-				  '".$advertisment['advertisement_contactName']."',
-				  '".$advertisment['advertisement_contactNo']."',
-				  '".$advertisment['advertisement_contactEmail']."',
-				  '".$user_id."',           
-				  '1',
-				  ' '";*/
+		
+		(isset($adDetail['advertisement_attributes']) ? $attr = json_encode($adDetail['advertisement_attributes']) : $attr = "" );
+		(isset($adDetail['advertisement_price']) ? $attr = $adDetail['advertisement_price'] : $attr = "" );
+		
+		
+		$values = "'".$category[0]['category_sub_parentId']."',
+				'".$adDetail['advertisement_subCategoryId']."',
+				'".json_encode($adDetail['advertisement_attributes'])."',
+				'".$adDetail['advertisement_title']."',
+				'".$adDetail['advertisement_description']."',
+				'".$adDetail['advertisement_price']."',
+				'".$adDetail['advertisement_contactName']."',
+				'".$adDetail['advertisement_contactNo']."',
+				'".$adDetail['advertisement_contactEmail']."',
+				'".$adDetail['advertisement_location']."',
+				'".$adDetail['advertisement_suburb']."',
+				'6.934023, 79.845219',
+				'0',
+				'".$expire."',
+				'".$user_id."'";
 		$rows = "advertisement_categoryId,
 				advertisement_subCategoryId,
 				advertisement_attributes,
@@ -1131,11 +1137,11 @@ public function checkLogin($user_email, $user_password) {
 				advertisement_status,
 				advertisement_expire,
 				advertisement_addedBy";
-		/*if($db->insert($table,$values,$rows) ){
+		if($db->insert($table,$values,$rows) ){
 			return $db->getInsertId();
 		}else{
 			return false;
-		}*/				
+		}
 	}
 
 	
