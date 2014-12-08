@@ -5,6 +5,11 @@ App.factory('advertismentFactory',function($resource){
         save:{method: 'POST'}
     });
 
+	var adImage = $resource('../../../api/postAdImage/:id', {}, {
+        query: { method: 'GET', params: {}, isArray: false },
+        save:{method: 'POST'}
+    });
+	
 	var factory = {}
 	factory.getAdd = function(id){
 		return tld = advertisment.get({'id':id});
@@ -12,6 +17,8 @@ App.factory('advertismentFactory',function($resource){
 			alert(e.data.message)
 		})
 	}
+	
+	
 	factory.saveAdvertisment = function($scope){
 		//alert($scope.imageList)			
 		return advertisment.save($scope.ad)
@@ -19,8 +26,16 @@ App.factory('advertismentFactory',function($resource){
 			alert(e.data.message)
 		}).then(
 		function(e){
-			console.log(e)
-			
+			if($scope.imageList.length > 0){
+				return adImage.save($scope.imageList,e.insertedId)
+				.$promise.catch(function(e){
+					alert(e.message)
+				}).then(function(e){
+					alert(e.message)
+				})	
+			}else{
+				alert(e.message)
+			}
 		})
 	}
 	var category = $resource('../../../api/categoryMatrix/:id', {}, {

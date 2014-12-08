@@ -1096,6 +1096,20 @@ public function checkLogin($user_email, $user_password) {
 		return $add;
 	}
 	
+	public function addAdImage($image,$ad){
+		$db = new database();
+		$table = "advertisement_images";
+		$values = "'".$image."',
+					'".$ad."'";
+		$rows = "advertisement_image, advertisement_id";
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
 	public function createAdvertisment($adDetail) {
 		global $user_id;
 		$db = new database();

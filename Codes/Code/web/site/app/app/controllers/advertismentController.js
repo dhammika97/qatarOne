@@ -47,7 +47,7 @@ controllers.advertismentAddController = function($scope, advertismentFactory, Fi
 				advertismentFactory.saveAdvertisment($scope)
 			};
 		}else{
-			//advertismentFactory.saveAdvertisment($scope)
+			advertismentFactory.saveAdvertisment($scope)
 		}
 	}
 }
