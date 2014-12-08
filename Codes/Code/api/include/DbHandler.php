@@ -27,17 +27,14 @@ class DbHandler {
 		return $user;	
 	}
 	
-	public function getUserId($api_key) {
-		$stmt = $this->conn->prepare("SELECT id FROM users WHERE api_key = ?");
-		$stmt->bind_param("s", $api_key);
-		if ($stmt->execute()) {
-			$stmt->bind_result($user_id);
-			$stmt->fetch();
-			$stmt->close();
-			return $user_id;
-		} else {
-			return NULL;
-		}
+	public function getUserId($user_accessToken) {
+		$db = new database();
+		$table = 'user';
+		$rows = '*';
+		$where = 'user_accessToken = "'.$user_accessToken.'"';
+		$db->select($table,$rows,$where,'','');
+		$user = $db->getResults();
+		return $user;
 	}
 
 	private function generateApiKey() {
@@ -292,7 +289,7 @@ class DbHandler {
 		$db = new database();
 		$table = 'category';
 		$rows ='*';
-		$where = 'category_id = "'.$category_id.'" AND category_status = "1" ';
+		$where = 'category_id = "'.$category_id.'"';
 		$db->selectJson($table,$rows,$where,'','','');
 		$user = $db->getJson();
 		return $user;			
@@ -300,6 +297,7 @@ class DbHandler {
 
 	public function addCategory($category){
 		$db = new database();
+		global $user_id;
 		$table1 = 'category';
 		$rows1 ='category_name';
 		$where1 = 'category_name = "'.$category['category_name'].'"';
@@ -310,10 +308,9 @@ class DbHandler {
 		}
 		$table  = "category";
 		(isset($category['category_name']) ? $category_name = $category['category_name'] : $category_name = "" );
-		(isset($category['category_enteredBy']) ? $category_enteredBy = $category['category_enteredBy'] : $category_enteredBy = "" );
 		(isset($category['category_parentId']) ? $category_parentId = $category['category_parentId'] : $category_parentId = "" );
 		$values = "'".$category_name."', 
-				  '".$category_enteredBy."' , 
+				  '".$user_id."' , 
 				  '".$category_parentId."'";				
 		$rows   = "category_name, category_enteredBy, category_parentId";		
 		if($db->insert($table,$values,$rows) ){
@@ -379,15 +376,15 @@ class DbHandler {
 		return $subcategory;	
 	}
 
-	public function addsubCategory($category){	
+	public function addsubCategory($category){
+		global $user_id;
 		$db = new database();
 		$table  = "category_sub";
 		(isset($category['category_sub_tplType']) ? $category_sub_tplType = $category['category_sub_tplType'] : $category_sub_tplType = "" );
 		(isset($category['category_sub_name']) ? $category_sub_name = $category['category_sub_name'] : $category_sub_name = "" );
-		(isset($category['category_sub_enteredBy']) ? $category_sub_enteredBy = $category['category_sub_enteredBy'] : $category_sub_enteredBy = "" );
 		(isset($category['category_sub_parentId']) ? $category_sub_parentId = $category['category_sub_parentId'] : $category_sub_parentId = "" );
-		$values = "'".$category_sub_name."', '".$category_sub_parentId."' , '".$category_sub_enteredBy."','".$category_sub_tplType."'";								
-		$rows   = "category_sub_name, category_sub_enteredBy, category_sub_parentId, category_sub_tplType";
+		$values = "'".$category_sub_name."', '".$category_sub_parentId."' , '".$user_id."','".$category_sub_tplType."'";								
+		$rows   = "category_sub_name, category_sub_parentId, category_sub_enteredBy, category_sub_tplType";
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}	
@@ -486,6 +483,7 @@ class DbHandler {
 	}
 	
 	public function addPage($page){
+		global $user_id;
 		$db = new database();
 		$table1 = 'pages';
 		$rows1 ='page_title';
@@ -496,7 +494,7 @@ class DbHandler {
 			return false;
 		}
 		$table  = "pages";
-		$values = "'".$page['page_title']."', '".$page['page_content']."','".$page['page_addedBy']."'";				
+		$values = "'".$page['page_title']."', '".$page['page_content']."','".$user_id."'";				
 		$rows   = "page_title,page_content, page_addedBy";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
@@ -581,63 +579,6 @@ public function checkLogin($user_email, $user_password) {
  	  return $logged_User;
 
    }
-   	
-	public function addPageContent($pageContent){
-		$db = new database();
-		/*$table1 = 'pagecontent';
-		$rows1 ='pageContent_pageTitle';
-		$where1 = 'pageContent_pageTitle = "'.$pageContent['pageContent_pageTitle'].'"';
-		$db->select($table1,$rows1,$where1,'','');
-		$pageNumRows = $db->getNumRows();	
-		if( $pageNumRows > 1 ){
-			return false;
-		}*/
-		$table  = "pagecontent";
-		$values = "'".$pageContent['pageContent_pageId']['page_id']."', '".$pageContent['pageContent_Description']."'";				
-		$rows   = "pageContent_pageId, pageContent_Description";		
-		if($db->insert($table,$values,$rows) ){
-			return true;
-		}
-	}
-	public function updatePagesContent($pageContent, $pageContent_id){
-		$db = new database();  
-		$table = 'pagecontent';
-		$rows  = $pageContent;
-		$where = 'pageContent_id = "'.$pageContent_id.'"';
-		if($db->update($table,$rows,$where) ){
-			return true;
-		}else{
-			return false;
-		}
-	}	
-	public function deletePageContent($pageContent_id){
-		$db = new database();
-		$table = 'pagecontent';
-		$where = 'pageContent_id = "'.$pageContent_id.'"';
-		if ($db->delete($table,$where) ){
-				return true;
-		}
-	}
-	
-	public function getAllPagesContent(){
-		$db = new database();  
-		$table = 'pagecontent';
-		$rows ='*';
-		
-		$db->selectJson($table,$rows,'','','');
-		$pages_list = $db->getJson();
-		return $pages_list;
-	}
-	public function GetPageContentDetail($pageContent_id){
-		$db = new database();
-		$table = 'pagecontent';
-		$rows ='*';
-		$where = 'pageContent_id = "'.$pageContent_id.'"';
-		$db->selectJson($table,$rows,$where,'','');
-		$page = $db->getJson();
-		return $page;			
-	}
-	
 	
 	public function createSuburb($suburb){
 		$db = new database();
@@ -706,14 +647,6 @@ public function checkLogin($user_email, $user_password) {
 	
 	public function addEvent($event){
 		$db = new database();
-		$table1 = 'events';
-		$rows1 ='event_title';
-		$where1 = 'event_title = "'.$event['event_title'].'"';
-		$db->select($table1,$rows1,$where1,'','');
-		$pageNumRows = $db->getNumRows();	
-		if( $pageNumRows > 1 ){
-			return false;
-		}
 		
 		$table  = "events";
 		(isset($event['event_title']) ? $event_title = $event['event_title'] : $event_title = "" );
@@ -919,6 +852,7 @@ public function checkLogin($user_email, $user_password) {
 	}
 	
 	public function createPackageType($packageType){
+		global $user_id;
 		(isset($packageType['packageType']) ? $package_type = $packageType['packageType'] : $package_type = "" );
 		(isset($packageType['package_name']) ? $package_name = $packageType['package_name'] : $package_name = "" );
 		(isset($packageType['package_Description']) ? $package_description = $packageType['package_Description'] : $package_description = "" );
@@ -932,7 +866,7 @@ public function checkLogin($user_email, $user_password) {
 				'".$package_description."',
 				'".$package_price."',
 				'".$package_adLimit."',
-				'1',
+				'".$user_id."',
 				'1'";					  
 		$rows   = "packageType,
 				   package_name, 
@@ -1162,16 +1096,15 @@ public function checkLogin($user_email, $user_password) {
 		return $add;
 	}
 	
-	public function createAdvertisment( $advertisment) {
+	public function createAdvertisment($adDetail) {
+		global $user_id;
 		$db = new database();
-		$advertisement_expire= $end = date('Y-m-d', strtotime('+1 years'));
+		$advertisement_expire = $end = date('Y-m-d', strtotime('+3 months'));
 		$table  = "advertisment";
-		
-		isset($advertisment['advertisement_attributes']) ? $advertisement_attributes = $advertisment['advertisement_attributes'] : $advertisement_attributes = "" ;		
-		isset($advertisment['advertisement_title']) ? $advertisement_title = $advertisment['advertisement_title'] : $advertisement_title = "" ;
-		isset($advertisment['advertisement_description']) ? $advertisement_description = $advertisment['advertisement_description'] : $advertisement_description = "" ;
-		
-		$values = "'".$advertisment['advertisement_categoryId']."',
+		$category = json_decode(self::GetsubCategoryDetail($adDetail['advertisement_subCategoryId']),true);
+		$categoryID = $category[0]['category_sub_parentId'];
+		//print_r($advertisement_expire);
+		/*$values = "'".$advertisment['advertisement_categoryId']."',
 				  '".$advertisment['advertisement_subCategoryId']."',
 				  '".$advertisement_attributes."',
 				  '".$advertisement_title."', 				 
@@ -1179,44 +1112,32 @@ public function checkLogin($user_email, $user_password) {
 				  '".$advertisment['advertisement_price']."',
 				  '".$advertisment['advertisement_contactName']."',
 				  '".$advertisment['advertisement_contactNo']."',
-				  '".$advertisment['advertisement_contactEmail']."',              
+				  '".$advertisment['advertisement_contactEmail']."',
+				  '".$user_id."',           
 				  '1',
-				  '".$advertisement_expire."'";
-		$rows="advertisement_categoryId,
-			   advertisement_subCategoryId, 
-			   advertisement_attributes,
-			   advertisement_title,
-			   advertisement_description, 
-			   advertisement_price,
-			   advertisement_contactName,
-			   advertisement_contactNo,	
-			   advertisement_contactEmail,			   
-			   advertisement_status,
-			   advertisement_expire";
-		if($db->insert($table,$values,$rows) ){
+				  ' '";*/
+		$rows = "advertisement_categoryId,
+				advertisement_subCategoryId,
+				advertisement_attributes,
+				advertisement_title,
+				advertisement_description,
+				advertisement_price,
+				advertisement_contactName,
+				advertisement_contactNo,
+				advertisement_contactEmail,
+				advertisement_location,
+				advertisement_suburb,
+				advertisement_googleCodes,
+				advertisement_status,
+				advertisement_expire,
+				advertisement_addedBy";
+		/*if($db->insert($table,$values,$rows) ){
 			return $db->getInsertId();
 		}else{
 			return false;
-		}				
+		}*/				
 	}
 
-	public function CreateAdvertismentImage( $advertisement_id,$advertisement_image) {
-		$db = new database();		
-		$table  = "advertisement_images";
-		
-		isset($advertisment['advertisement_image']) ? $advertisement_image = $advertisment['advertisement_image'] : $advertisement_image = "" ;		
-		
-		$values = "'".$advertisement_id."',			
-				  '".$advertisement_image."'";
-		$rows="advertisement_id,
-			   advertisement_image";
-
-		if($db->insert($table,$values,$rows) ){
-			return true;
-		}else{
-			return false;
-		}				
-	}
 	
 public function advertismentsByLocation($params){
 		$where_atri = '';

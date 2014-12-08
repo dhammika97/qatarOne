@@ -44,7 +44,7 @@ window.routes =
 };
 
 App.config(function($routeProvider, $httpProvider){
-	//$httpProvider.defaults.headers.common.Authorization = getUser();
+	$httpProvider.defaults.headers.common.Authorization = sessionStorage.getItem("accessKey");
 	for(var path in window.routes) {
         $routeProvider.when(path, window.routes[path]);
     }
@@ -60,7 +60,7 @@ App.config(function($routeProvider, $httpProvider){
 	  
 	for(var i in window.routes) {
 		if(next.indexOf(i.split('/')[1]) != -1) {
-			if(window.routes[i].requireLogin && $rootScope.accessToken == null) {
+			if(window.routes[i].requireLogin && sessionStorage.getItem("accessKey") == null) {
 				alert("Please Login to the system to view this page!");
 				event.preventDefault();
 			}

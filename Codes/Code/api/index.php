@@ -37,6 +37,12 @@ function authenticate(\Slim\Route $route) {
             $response["message"] = "Access Denied. Invalid Access Token";
             echoRespnse(401, $response);
             $app->stop();
+        }else{
+            global $user_id;
+            // get user primary key id
+            $user = $db->getUserId($user_accessToken);
+			$user_id = $user['user_id'];
+			//$user_id = $user['user_id'];
         }        
     } else {
         // User Access Token is missing in header
@@ -337,26 +343,6 @@ $app->get('/categoryWithCount', function() {
 		$response = array();
 		$result = $DbHandler->getAllCategoriesWithCount($params);
 
-		if(!$result){
-			$response["error"] = TRUE;
-			$response["message"] = "The requested resource doesn't exists";
-			echoRespnse(404, $response);
-		}else{
-			$response["error"] = false;
-			$response['categories'] = json_decode($result);
-			echoRespnse(200, $response);
-		}
-});
-
-// * list all parent categories 
-// * url - /category
-// * method - get
-// * params -  
-  
-$app->get('/parentCategory', function() {	
-		$DbHandler = new DbHandler();
-		$response = array();
-		$result = $DbHandler->getParentCategories();				
 		if(!$result){
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -1541,13 +1527,15 @@ $app->get('/advertisments', function() {
  * method 	- POST
  * params 	- Advertisment  object*/
 
-$app->post('/advertisment', function() use ($app) {
+$app->post('/advertisment', 'authenticate', function() use ($app) {
 		$response = array();           
 		$request = \Slim\Slim::getInstance()->request();
-		$advertisment = $request->getBody();
+		$adDetails = $request->getBody();
 		$db = new DbHandler();
-		
-	 if($advertismentID = $db->createAdvertisment($advertisment)){
+		global $user_id;
+		//$category = $db->GetsubCategoryDetail($adDetails['advertisement_subCategoryId']);
+		$db->createAdvertisment($adDetails);
+	 /*if($advertismentID = $db->createAdvertisment($advertisment)){
 	 	if (isset($advertisment['advertisement_image'])){
 				if($db->CreateAdvertismentImage($advertismentID,$advertisment['advertisement_image'])){
 						$response["error"] = false;
@@ -1563,7 +1551,7 @@ $app->post('/advertisment', function() use ($app) {
 				$response["error"] = true;
 				$response["message"] = "Failed to create Advertisment. Please try again";
 				echoRespnse(400, $response);
-			 }	           
+			 }*/	           
 });
 
 /**
