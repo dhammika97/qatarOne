@@ -39,6 +39,10 @@
       </div>      
     </header>
     <div class="shadow"></div>
+    <div class="container">
+    	<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+    
 	<div ng-view></div>
     <div class="shadow"></div>
     <footer>

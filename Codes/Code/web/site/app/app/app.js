@@ -74,6 +74,7 @@ App.config(function($routeProvider, $httpProvider){
 		if(next.indexOf(i.split('/')[1]) != -1) {
 			if(window.routes[i].requireLogin && sessionStorage.getItem("accessKey") == null) {
 				if(i=='/post-ad'){
+					//$rootScope.addAlert()
 					alert('You should have registered account to add advertisements. If you are already registered please login')
 					$location.path('/login')
 				}else{
