@@ -1,5 +1,6 @@
 controllers.addvertismentController= function($scope,advertismentFactory, $routeParams){
 	var tmp = $scope.adversiment = advertismentFactory.getAdd($routeParams.id);
+	$scope.similarItems = advertismentFactory.getSimilarItems($routeParams.id);
 	//console.log(tmp)
 	//var values = {"make":"tata","model":"Corolla 110","year":"2000","bodyType":"MVP","condition":"Recondition","transmission":"Manual","fuelType":"Diesel"};
 //	var log = [];
