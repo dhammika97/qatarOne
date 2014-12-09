@@ -79,7 +79,8 @@ App.config(function($routeProvider, $httpProvider){
 					$location.path('/login')
 				}else{
 					alert("Please Login to the system to view this page!");
-					event.preventDefault();
+					//event.preventDefault();
+					$location.path('/login')
 				}
 			}
 		}
