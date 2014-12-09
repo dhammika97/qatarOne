@@ -1181,7 +1181,27 @@ public function advertismentsByLocation($params){
 		$add = $db->getJson();
 		return $add;
 	}
-	
+public function getSimilarItems($params){
+		$aid = $params['advertistment'];
+		
+		$db = new database();
+		$table = 'advertisment';
+		$rows  ='advertisement_subCategoryId';
+		$where = 'advertisment_id ="'.$aid .'"';
+		$db->select($table,$rows,$where,'','');
+		$cat = $db->getResults();
+
+		$db = new database();
+		$table = 'advertisment';
+		$rows  ='*';
+		$where = 'advertisement_subCategoryId	 ="'.$cat['advertisement_subCategoryId'] .'"
+				  AND advertisment_id != "'.$aid.'"
+				  AND  advertisement_status = "1"';
+		$db->selectJson($table,$rows,$where,'','');
+		$items = $db->getJson();
+
+		return $items;
+	}	
 	
 }
 ?>
