@@ -50,6 +50,7 @@ window.routes =
 		requireLogin: false
 	},
 	'/settings': {
+		controller:'controllers.settingController',
 		templateUrl:'app/partials/settings/settingsMain.html',
 		requireLogin: true
 	}
