@@ -1,6 +1,90 @@
 <div class="form-group">
-  	<label for="Description" class="col-sm-2 control-label">Auto Property</label>
+  	<label for="Description" class="col-sm-2 control-label">Select Brand</label>
     <div class="col-sm-10">
-	    <input type="text" class="form-control" ng-model="ad.advertisement_attributes.test"/>
+	    <select class="form-control" ng-model="ad.advertisement_attributes.make" required>
+        	<option value="alfa-romeo">Alfa Romeo</option>
+            <option value="aston-martin">Aston Martin</option>
+            <option value="audi">Audi</option>
+            <option value="austin">Austin</option>
+            <option value="bmw">BMW</option>
+            <option value="buick">Buick</option>
+            <option value="cadillac">Cadillac</option>
+            <option value="changan">Changan</option>
+            <option value="chery">Chery</option>
+            <option value="chevrolet">Chevrolet</option>
+            <option value="chrysler">Chrysler</option>
+            <option value="citroen">Citroën</option>
+            <option value="daewoo">Daewoo</option>
+            <option value="daihatsu">Daihatsu</option>
+            <option value="datsun">Datsun</option>
+            <option value="dodge">Dodge</option>
+            <option value="ferrari">Ferrari</option>
+            <option value="fiat">Fiat</option>
+            <option value="ford">Ford</option>
+            <option value="geely">Geely</option>
+            <option value="gmc">GMC</option>
+            <option value="hino">Hino</option>
+            <option value="honda">Honda</option>
+            <option value="hummer">Hummer</option>
+            <option value="hyundai">Hyundai</option>
+            <option value="isuzu">Isuzu</option>
+            <option value="jaguar">Jaguar</option>
+            <option value="jeep">Jeep</option>
+            <option value="kia">Kia</option>
+            <option value="lamborghini">Lamborghini</option>
+            <option value="land-rover">Land Rover</option>
+            <option value="lexus">Lexus</option>
+            <option value="lincoln">Lincoln</option>
+            <option value="mahindra">Mahindra</option>
+            <option value="maruti">Maruti</option>
+            <option value="mazda">Mazda</option>
+            <option value="mercedes-benz">Mercedes-Benz</option>
+            <option value="mg">MG</option>
+            <option value="micro">Micro</option>
+            <option value="mini">Mini</option>
+            <option value="mitsubishi">Mitsubishi</option>
+            <option value="morris">Morris</option>
+            <option value="moto-guzzi">Moto Guzzi</option>
+            <option value="nissan">Nissan</option>
+            <option value="oldsmobile">Oldsmobile</option>
+            <option value="opel">Opel</option>
+            <option value="perodua">Perodua</option>
+            <option value="peugeot">Peugeot</option>
+            <option value="plymoth">Plymouth</option>
+            <option value="pontiac">Pontiac</option>
+            <option value="porsche">Porsche</option>
+            <option value="proton">Proton</option>
+            <option value="renault">Renault</option>
+            <option value="rover">Rover</option>
+            <option value="royal-enfield">Royal Enfield</option>
+            <option value="saab">SAAB</option>
+            <option value="scion">Scion</option>
+            <option value="seat">SEAT</option>
+            <option value="skoda">Skoda</option>
+            <option value="smart">Smart</option>
+            <option value="ssang-yong">Ssang Yong</option>
+            <option value="subaru">Subaru</option>
+            <option value="suzuki">Suzuki</option>
+            <option value="tata">Tata</option>
+            <option value="toyota">Toyota</option>
+            <option value="vauxhall">Vauxhall</option>
+            <option value="volkswagen">Volkswagen</option>
+            <option value="volvo">Volvo</option>
+            <option value="zoyte">Zotye</option>
+            <option value="all_other">Other brand</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+  	<label for="Description" class="col-sm-2 control-label">Model</label>
+    <div class="col-sm-10">
+
+	    <input type="text" class="form-control" placeholder="Model" ng-model="ad.advertisement_attributes.model"/>
+    </div>
+</div>
+<div class="form-group">
+  	<label for="Description" class="col-sm-2 control-label">Model Year</label>
+    <div class="col-sm-10">
+	    <input type="text" class="form-control" placeholder="Model Year" ng-model="ad.advertisement_attributes.year" />
     </div>
 </div>

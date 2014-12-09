@@ -29,7 +29,7 @@ header .top-nav ul li.active { background: #661041; }
 header .top-nav ul li.active a { color: white; }
 
 .btn { background: #661041; color: white; border: none; font-size: 14px; line-height: 18px; font-size: 1.4rem; line-height: 1.8rem; }
-.btn:hover { background: #747474; }
+.btn:hover, .btn:focus, .btn.disabled { background: #747474; }
 
 .form-control, .btn { -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; height: 45px; }
 
@@ -126,6 +126,16 @@ header .top-nav ul li.active a { color: white; }
 .main-page .ad-comments-viewer { background: #747474; padding-bottom: 50px; }
 .main-page .ad-comments-viewer .container { position: relative; }
 .main-page .ad-comments-viewer .comments-box { padding: 20px 15px; }
+.main-page .ad-comments-viewer .comments-box .detailBox { background: whitesmoke; border: 1px solid #bbb; margin: 10px 0; }
+.main-page .ad-comments-viewer .comments-box .actionBox .form-group:first-child { width: 80%; }
+.main-page .ad-comments-viewer .comments-box .actionBox .form-group:nth-child(2) { width: 18%; }
+.main-page .ad-comments-viewer .comments-box .actionBox .form-group * { width: 100%; }
+.main-page .ad-comments-viewer .comments-box .commentList { padding: 0; list-style: none; max-height: 250px; overflow: auto; }
+.main-page .ad-comments-viewer .comments-box .commentList li { margin: 0; margin-top: 10px; }
+.main-page .ad-comments-viewer .comments-box .commentList li > div { display: table-cell; }
+.main-page .ad-comments-viewer .comments-box .commentText p { margin: 0; color: #333333; }
+.main-page .ad-comments-viewer .comments-box .sub-text { color: #aaa; font-family: verdana; font-size: 11px; }
+.main-page .ad-comments-viewer .comments-box .actionBox { border-top: 1px solid #bbb; padding: 20px; }
 .main-page .ad-comments-viewer h2 { color: white; font-size: 20px; line-height: 18px; font-size: 2rem; line-height: 1.8rem; font-family: "Roboto Slab", serif; margin-bottom: 20px; text-transform: uppercase; }
 .main-page .ad-comments-viewer p { font-size: 12px; line-height: 16px; font-size: 1.2rem; line-height: 1.6rem; color: white; }
 .main-page .ad-comments-viewer span { font-size: 12px; line-height: 16px; font-size: 1.2rem; line-height: 1.6rem; color: white; display: block; }
@@ -187,6 +197,8 @@ header .top-nav ul li.active a { color: white; }
 .modal p { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; padding: 5px 0; }
 .modal input { max-width: 300px; }
 .modal label { font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; }
+
+.alert { -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; font-size: 10px; line-height: 14px; font-size: 1rem; line-height: 1.4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
 
 footer { text-align: center; font-family: "Roboto Slab", serif; }
 footer p { color: #a3a0a0; font-size: 10px; line-height: 12px; font-size: 1rem; line-height: 1.2rem; font-weight: 300; padding: 30px 0; }
