@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2014 at 12:43 PM
+-- Generation Time: Dec 09, 2014 at 05:00 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
 
 INSERT INTO `advertisment` (`advertisment_id`, `advertisement_categoryId`, `advertisement_subCategoryId`, `advertisement_attributes`, `advertisement_title`, `advertisement_description`, `advertisement_price`, `advertisement_contactName`, `advertisement_contactNo`, `advertisement_contactEmail`, `advertisement_location`, `advertisement_suburb`, `advertisement_googleCodes`, `advertisement_date`, `advertisement_status`, `advertisement_expire`, `advertisement_addedBy`) VALUES
 (27, 5, 13, '{"test":"sdfsdf"}', 'asasd', 'sdfsdf', '123', 'asasd', '234', 'ass@sdfsdf', 1, 1, '6.934023, 79.845219', '2014-12-08 19:19:27', 0, '2015-03-08 00:00:00', 31),
-(28, 5, 12, '{"make":"tata","model":"Corolla 110","year":"2000","bodyType":"MVP","condition":"Recondition","transmission":"Manual","fuelType":"Diesel"}', 'Toyota Corolla', 'Mint Condition', '1400000', 'Dhammika', '777339803', 'dhammika97@gmail.com', 1, 1, '6.934023, 79.845219', '2014-12-08 19:35:05', 0, '2015-03-08 00:00:00', 31);
+(28, 5, 12, '[{"make":"tata","model":"Corolla 110","year":"2000","bodyType":"MVP","condition":"Recondition","transmission":"Manual","fuelType":"Diesel"}]', 'Toyota Corolla', 'Mint Condition', '1400000', 'Dhammika', '777339803', 'dhammika97@gmail.com', 1, 1, '6.934023, 79.845219', '2014-12-09 12:07:25', 0, '2015-03-08 00:00:00', 31);
 
 -- --------------------------------------------------------
 
