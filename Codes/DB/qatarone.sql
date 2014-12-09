@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2014 at 06:25 AM
+-- Generation Time: Dec 09, 2014 at 12:43 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -31,16 +31,15 @@ CREATE TABLE IF NOT EXISTS `advertisement_images` (
   `advertisement_id` int(11) NOT NULL,
   `advertisement_image` varchar(255) NOT NULL,
   PRIMARY KEY (`advertisement_imageId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `advertisement_images`
 --
 
 INSERT INTO `advertisement_images` (`advertisement_imageId`, `advertisement_id`, `advertisement_image`) VALUES
-(1, 1, 'phone.jpeg'),
-(2, 1, 'htcm8'),
-(3, 1, 'nexus');
+(7, 28, 'C23EB700608877BB1EB2C004FF938D9C230405b.jpeg'),
+(8, 28, 'F004CC91A8AD43C06C81B269C77A907BFuel-efficient-Quick-Sale-Cars.jpg');
 
 -- --------------------------------------------------------
 
@@ -65,19 +64,17 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
   `advertisement_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `advertisement_status` int(1) NOT NULL,
   `advertisement_expire` datetime NOT NULL,
+  `advertisement_addedBy` int(11) NOT NULL,
   PRIMARY KEY (`advertisment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `advertisment`
 --
 
-INSERT INTO `advertisment` (`advertisment_id`, `advertisement_categoryId`, `advertisement_subCategoryId`, `advertisement_attributes`, `advertisement_title`, `advertisement_description`, `advertisement_price`, `advertisement_contactName`, `advertisement_contactNo`, `advertisement_contactEmail`, `advertisement_location`, `advertisement_suburb`, `advertisement_googleCodes`, `advertisement_date`, `advertisement_status`, `advertisement_expire`) VALUES
-(1, 4, 1, 'sdfsdf', 'htc m8', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s wit', '125', 'Marsh', '0711129349', 'marsh@gmail.com', 1, 1, '', '2014-12-06 10:23:16', 1, '0000-00-00 00:00:00'),
-(2, 4, 1, 'sdfsdfe', 'Nexus5', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s wit', '125', 'dhammika', '0711129349', 'dhammika@gmail.com', 2, 3, '', '2014-12-06 10:33:53', 0, '2014-12-31 00:00:00'),
-(3, 7, 2, 'sdfsdfsdf', 'sdfsf', 'sdfsdf', '0', '', '', '', 0, 0, '', '2014-12-05 10:33:28', 0, '0000-00-00 00:00:00'),
-(4, 8, 2, 'sfsdfsdq', 'sdsdf', 'sdfsdf', '0', '', '', '', 0, 0, '', '2014-12-05 10:33:35', 0, '0000-00-00 00:00:00'),
-(5, 4, 1, '[{0:''4.7 Inch Retina HD Display'',1:''A8 Chip With 64-Bit Architecture'',4:''8MP ISight Camera'',5:''1.2MP Front Facing Camera'',6:\n''LTE Support''}]', 'HTC x8', 'Let''s not mince words: When the Huawei Ascend D1 Quad XL starts shipping globally, it will face some steep competition. Thanks to months of delays, what once was billed as the "world''s fastest smartphone" is now just another entry on the growing list of quad-core powerhouses available. That''s not to say it isn''t powerful or fast -- on the contrary, it performs exactly the way you''d expect a phone with four CPU cores to, and it''s Huawei''s best phone to date -- but we unfortunately aren''t seeing many features that will help it stand out. The saving grace for the XL will be its price; with a tentative MSRP of about 2,699 yuan ($450), its cost will be the only thing preventing it from getting lost in the crowd.', '18', 'jhone', '09711129349', 'jone@gmail.com', 1, 1, '', '2014-12-06 09:40:07', 1, '2014-12-31 00:00:00');
+INSERT INTO `advertisment` (`advertisment_id`, `advertisement_categoryId`, `advertisement_subCategoryId`, `advertisement_attributes`, `advertisement_title`, `advertisement_description`, `advertisement_price`, `advertisement_contactName`, `advertisement_contactNo`, `advertisement_contactEmail`, `advertisement_location`, `advertisement_suburb`, `advertisement_googleCodes`, `advertisement_date`, `advertisement_status`, `advertisement_expire`, `advertisement_addedBy`) VALUES
+(27, 5, 13, '{"test":"sdfsdf"}', 'asasd', 'sdfsdf', '123', 'asasd', '234', 'ass@sdfsdf', 1, 1, '6.934023, 79.845219', '2014-12-08 19:19:27', 0, '2015-03-08 00:00:00', 31),
+(28, 5, 12, '{"make":"tata","model":"Corolla 110","year":"2000","bodyType":"MVP","condition":"Recondition","transmission":"Manual","fuelType":"Diesel"}', 'Toyota Corolla', 'Mint Condition', '1400000', 'Dhammika', '777339803', 'dhammika97@gmail.com', 1, 1, '6.934023, 79.845219', '2014-12-08 19:35:05', 0, '2015-03-08 00:00:00', 31);
 
 -- --------------------------------------------------------
 
@@ -93,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `category_enteredBy` int(11) NOT NULL,
   `category_status` int(1) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `category`
@@ -108,7 +105,9 @@ INSERT INTO `category` (`category_id`, `category_parentId`, `category_name`, `ca
 (6, 1, 'Books', '2014-11-21 09:29:50', 1, 1),
 (7, 2, 'Accounting/ Finance', '2014-11-21 09:31:54', 1, 1),
 (8, 2, 'Admin/ Human Resources', '2014-11-21 09:31:54', 1, 1),
-(9, 2, 'test test test test test', '2014-12-02 01:25:34', 1, 0);
+(9, 2, 'IT/ Software', '2014-12-08 14:32:43', 1, 1),
+(10, 2, 'IT/ Harware', '2014-12-08 14:32:46', 1, 1),
+(11, 2, 'test Category', '2014-12-08 14:32:50', 31, 1);
 
 -- --------------------------------------------------------
 
@@ -139,19 +138,24 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
   `category_sub_parentId` int(4) NOT NULL,
   PRIMARY KEY (`category_sub_id`),
   KEY `category_sub_id` (`category_sub_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `category_sub`
 --
 
-INSERT INTO `category_sub` (`category_sub_id`, `category_sub_name`, `category_sub_enteredDate`, `category_sub_enteredBy`, `category_sub_status`, `category_sub_parentId`) VALUES
-(1, 'Mobile Phones', '2014-12-06 04:51:05', 1, 1, 4),
-(2, 'Banking & Financial', '2014-11-21 09:33:40', 1, 1, 7),
-(3, 'Antiquities', '2014-11-21 09:35:25', 1, 1, 3),
-(5, 'test update', '2014-12-02 00:48:57', 0, 0, 1),
-(6, 'test 2 update', '2014-12-02 00:51:04', 5, 0, 1),
-(7, 'Wonderful Book', '2014-12-02 01:06:26', 6, 0, 1);
+INSERT INTO `category_sub` (`category_sub_id`, `category_sub_name`, `category_sub_tplType`, `category_sub_enteredDate`, `category_sub_enteredBy`, `category_sub_status`, `category_sub_parentId`) VALUES
+(9, 'Mobile Phones', 'Mobile', '2014-12-07 12:43:59', 4, 0, 4),
+(10, 'Mobile Phone Assessories', 'General', '2014-12-07 12:44:29', 4, 0, 4),
+(11, 'Kids Collection', 'General', '2014-12-07 12:45:08', 6, 0, 6),
+(12, 'Cars', 'Car', '2014-12-07 12:45:56', 5, 0, 5),
+(13, 'Lorries Vans & Busses', 'Auto', '2014-12-07 12:46:24', 5, 0, 5),
+(14, 'Motor Cycle', 'Auto', '2014-12-07 12:46:42', 5, 0, 5),
+(15, 'TV/ Radio', 'General', '2014-12-07 12:54:48', 1, 0, 4),
+(16, 'Yet Another Sub Category', 'General', '2014-12-08 09:48:08', 31, 0, 6),
+(17, 'Web/ UI', 'General', '2014-12-08 14:35:42', 31, 0, 9),
+(18, 'Network Engineering', 'General', '2014-12-08 14:36:38', 31, 0, 10),
+(19, 'test', 'General', '2014-12-08 14:36:55', 31, 0, 11);
 
 -- --------------------------------------------------------
 
@@ -220,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `locations` (
   `location_name` varchar(100) NOT NULL,
   `location_cordinates` varchar(20) NOT NULL,
   PRIMARY KEY (`location_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `locations`
@@ -229,7 +233,8 @@ CREATE TABLE IF NOT EXISTS `locations` (
 INSERT INTO `locations` (`location_id`, `location_name`, `location_cordinates`) VALUES
 (1, 'Anuradhapura', '48.124587,59.215478'),
 (2, 'Wadduwa', '48.124587,59.215478'),
-(4, 'Hambanthota', '5646546546');
+(4, 'Hambanthota', '5646546546'),
+(6, 'asdasdasd asdasd', 'asdasdasdasd');
 
 -- --------------------------------------------------------
 
@@ -246,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `news_date` datetime NOT NULL,
   `news_status` int(1) NOT NULL,
   PRIMARY KEY (`news_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `news`
@@ -297,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `page_status` int(1) NOT NULL,
   `page_addedBy` int(2) NOT NULL,
   PRIMARY KEY (`page_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `pages`
@@ -305,8 +310,9 @@ CREATE TABLE IF NOT EXISTS `pages` (
 
 INSERT INTO `pages` (`page_id`, `page_title`, `page_content`, `page_status`, `page_addedBy`) VALUES
 (1, 'Terms & Coditions', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac dolor sit amet mi laoreet finibus at et nisl. Phasellus sodales ex et bibendum accumsan. Sed hendrerit mauris non vehicula consectetur. Nullam pulvinar sit amet turpis venenatis euismod. Curabitur lobortis fermentum maximus. Sed commodo orci nec malesuada euismod. Maecenas posuere dictum felis. Integer justo velit, feugiat maximus ligula id, cursus pharetra nisi. Mauris porttitor malesuada purus, et auctor nulla ultricies ut.\n\nNulla a quam iaculis, iaculis turpis vitae, dignissim purus. Pellentesque sodales pellentesque magna sit amet maximus. Etiam in leo at arcu eleifend gravida. Phasellus consequat porttitor lectus, eu vestibulum ipsum ultrices sed. In ornare vehicula justo, nec semper ipsum aliquet et. Quisque sagittis diam eget ex maximus, et pharetra arcu pulvinar. Pellentesque ornare risus quis imperdiet hendrerit. Vivamus lorem quam, pulvinar at tortor vitae, vehicula pretium augue. Donec ornare elementum nunc non efficitur. Cras euismod tellus venenatis mauris aliquam gravida. Nullam in fermentum quam. Praesent condimentum fermentum pharetra. Proin gravida erat vitae porttitor faucibus. Morbi nec sem lectus. Sed in leo tristique, rutrum justo et, laoreet velit.\n\nSuspendisse potenti. Nam lectus purus, pretium in tellus ac, venenatis fermentum nunc. Curabitur eget viverra dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent sit amet venenatis leo. Aenean est dui, cursus nec efficitur ac, tristique ac eros. Duis at consectetur nisl. Suspendisse iaculis, tortor sit amet faucibus semper, tortor mi pulvinar lorem, in cursus urna metus eu velit. Duis pretium ultrices metus, eu dapibus erat malesuada sit amet. Etiam quis vulputate augue. Vestibulum diam nisl, porttitor ullamcorper dui quis, varius tristique arcu. Nulla sit amet euismod neque, sed cursus arcu.\n\nPhasellus faucibus nulla et massa imperdiet ornare. Cras at velit quis dolor volutpat condimentum. In vel libero vestibulum, sagittis tellus vel, porttitor arcu. In nec leo euismod, pulvinar leo vel, aliquam purus. Quisque dictum tincidunt nulla ut egestas. Sed non dictum eros. Sed sollicitudin pulvinar dui, ac efficitur sapien dapibus sit amet. Integer dictum et libero at suscipit. Mauris at diam vitae nunc accumsan commodo. Sed ut sapien vitae nulla iaculis aliquam. Nam lobortis sem nec dui accumsan accumsan. Sed scelerisque massa id justo imperdiet fringilla. Vestibulum ante augue, dictum ut rutrum eleifend, iaculis a mi. Phasellus rutrum egestas elit malesuada convallis. Vivamus iaculis scelerisque mollis. Vestibulum sodales ultricies dictum.\n\nNam faucibus v', 0, 1),
-(2, 'About Us', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac dolor sit amet mi laoreet finibus at et nisl. Phasellus sodales ex et bibendum accumsan. Sed hendrerit mauris non vehicula consectetur. Nullam pulvinar sit amet turpis venenatis euismod. Curabitur lobortis fermentum maximus. Sed commodo orci nec malesuada euismod. Maecenas posuere dictum felis. Integer justo velit, feugiat maximus ligula id, cursus pharetra nisi. Mauris porttitor malesuada purus, et auctor nulla ultricies ut.\n\nNulla a quam iaculis, iaculis turpis vitae, dignissim purus. Pellentesque sodales pellentesque magna sit amet maximus. Etiam in leo at arcu eleifend gravida. Phasellus consequat porttitor lectus, eu vestibulum ipsum ultrices sed. In ornare vehicula justo, nec semper ipsum aliquet et. Quisque sagittis diam eget ex maximus, et pharetra arcu pulvinar. Pellentesque ornare risus quis imperdiet hendrerit. Vivamus lorem quam, pulvinar at tortor vitae, vehicula pretium augue. Donec ornare elementum nunc non efficitur. Cras euismod tellus venenatis mauris aliquam gravida. Nullam in fermentum quam. Praesent condimentum fermentum pharetra. Proin gravida erat vitae porttitor faucibus. Morbi nec sem lectus. Sed in leo tristique, rutrum justo et, laoreet velit.\n\nSuspendisse potenti. Nam lectus purus, pretium in tellus ac, venenatis fermentum nunc. Curabitur eget viverra dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent sit amet venenatis leo. Aenean est dui, cursus nec efficitur ac, tristique ac eros. Duis at consectetur nisl. Suspendisse iaculis, tortor sit amet faucibus semper, tortor mi pulvinar lorem, in cursus urna metus eu velit. Duis pretium ultrices metus, eu dapibus erat malesuada sit amet. Etiam quis vulputate augue. Vestibulum diam nisl, porttitor ullamcorper dui quis, varius tristique arcu. Nulla sit amet euismod neque, sed cursus arcu.\n\nPhasellus faucibus nulla et massa imperdiet ornare. Cras at velit quis dolor volutpat condimentum. In vel libero vestibulum, sagittis tellus vel, porttitor arcu. In nec leo euismod, pulvinar leo vel, aliquam purus. Quisque dictum tincidunt nulla ut egestas. Sed non dictum eros. Sed sollicitudin pulvinar dui, ac efficitur sapien dapibus sit amet. Integer dictum et libero at suscipit. Mauris at diam vitae nunc accumsan commodo. Sed ut sapien vitae nulla iaculis aliquam. Nam lobortis sem nec dui accumsan accumsan. Sed scelerisque massa id justo imperdiet fringilla. Vestibulum ante augue, dictum ut rutrum eleifend, iaculis a mi. Phasellus rutrum egestas elit malesuada convallis. Vivamus iaculis scelerisque mollis. Vestibulum sodales ultricies dictum.', 0, 1),
-(3, 'Yet Another Page', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac dolor sit amet mi laoreet finibus at et nisl. Phasellus sodales ex et bibendum accumsan. Sed hendrerit mauris non vehicula consectetur. Nullam pulvinar sit amet turpis venenatis euismod. Curabitur lobortis fermentum maximus. Sed commodo orci nec malesuada euismod. Maecenas posuere dictum felis. Integer justo velit, feugiat maximus ligula id, cursus pharetra nisi. Mauris porttitor malesuada purus, et auctor nulla ultricies ut.\n\nNulla a quam iaculis, iaculis turpis vitae, dignissim purus. Pellentesque sodales pellentesque magna sit amet maximus. Etiam in leo at arcu eleifend gravida. Phasellus consequat porttitor lectus, eu vestibulum ipsum ultrices sed. In ornare vehicula justo, nec semper ipsum aliquet et. Quisque sagittis diam eget ex maximus, et pharetra arcu pulvinar. Pellentesque ornare risus quis imperdiet hendrerit. Vivamus lorem quam, pulvinar at tortor vitae, vehicula pretium augue. Donec ornare elementum nunc non efficitur. Cras euismod tellus venenatis mauris aliquam gravida. Nullam in fermentum quam. Praesent condimentum fermentum pharetra. Proin gravida erat vitae porttitor faucibus. Morbi nec sem lectus. Sed in leo tristique, rutrum justo et, laoreet velit.\n\nSuspendisse potenti. Nam lectus purus, pretium in tellus ac, venenatis fermentum nunc. Curabitur eget viverra dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent sit amet venenatis leo. Aenean est dui, cursus nec efficitur ac, tristique ac eros. Duis at consectetur nisl. Suspendisse iaculis, tortor sit amet faucibus semper, tortor mi pulvinar lorem, in cursus urna metus eu velit. Duis pretium ultrices metus, eu dapibus erat malesuada sit amet. Etiam quis vulputate augue. Vestibulum diam nisl, porttitor ullamcorper dui quis, varius tristique arcu. Nulla sit amet euismod neque, sed cursus arcu.\n\nPhasellus faucibus nulla et massa imperdiet ornare. Cras at velit quis dolor volutpat condimentum. In vel libero vestibulum, sagittis tellus vel, porttitor arcu. In nec leo euismod, pulvinar leo vel, aliquam purus. Quisque dictum tincidunt nulla ut egestas. Sed non dictum eros. Sed sollicitudin pulvinar dui, ac efficitur sapien dapibus sit amet. Integer dictum et libero at suscipit. Mauris at diam vitae nunc accumsan commodo. Sed ut sapien vitae nulla iaculis aliquam. Nam lobortis sem nec dui accumsan accumsan. Sed scelerisque massa id justo imperdiet fringilla. Vestibulum ante augue, dictum ut rutrum eleifend, iaculis a mi. Phasellus rutrum egestas elit malesuada convallis. Vivamus iaculis scelerisque mollis. Vestibulum sodales ultricies dictum.\n\nNam faucibus v', 0, 1);
+(2, 'About Us', '<script>alert(''ayyoo salli'')</script>', 0, 1),
+(3, 'Yet Another Page', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac dolor sit amet mi laoreet finibus at et nisl. Phasellus sodales ex et bibendum accumsan. Sed hendrerit mauris non vehicula consectetur. Nullam pulvinar sit amet turpis venenatis euismod. Curabitur lobortis fermentum maximus. Sed commodo orci nec malesuada euismod. Maecenas posuere dictum felis. Integer justo velit, feugiat maximus ligula id, cursus pharetra nisi. Mauris porttitor malesuada purus, et auctor nulla ultricies ut.\n\nNulla a quam iaculis, iaculis turpis vitae, dignissim purus. Pellentesque sodales pellentesque magna sit amet maximus. Etiam in leo at arcu eleifend gravida. Phasellus consequat porttitor lectus, eu vestibulum ipsum ultrices sed. In ornare vehicula justo, nec semper ipsum aliquet et. Quisque sagittis diam eget ex maximus, et pharetra arcu pulvinar. Pellentesque ornare risus quis imperdiet hendrerit. Vivamus lorem quam, pulvinar at tortor vitae, vehicula pretium augue. Donec ornare elementum nunc non efficitur. Cras euismod tellus venenatis mauris aliquam gravida. Nullam in fermentum quam. Praesent condimentum fermentum pharetra. Proin gravida erat vitae porttitor faucibus. Morbi nec sem lectus. Sed in leo tristique, rutrum justo et, laoreet velit.\n\nSuspendisse potenti. Nam lectus purus, pretium in tellus ac, venenatis fermentum nunc. Curabitur eget viverra dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent sit amet venenatis leo. Aenean est dui, cursus nec efficitur ac, tristique ac eros. Duis at consectetur nisl. Suspendisse iaculis, tortor sit amet faucibus semper, tortor mi pulvinar lorem, in cursus urna metus eu velit. Duis pretium ultrices metus, eu dapibus erat malesuada sit amet. Etiam quis vulputate augue. Vestibulum diam nisl, porttitor ullamcorper dui quis, varius tristique arcu. Nulla sit amet euismod neque, sed cursus arcu.\n\nPhasellus faucibus nulla et massa imperdiet ornare. Cras at velit quis dolor volutpat condimentum. In vel libero vestibulum, sagittis tellus vel, porttitor arcu. In nec leo euismod, pulvinar leo vel, aliquam purus. Quisque dictum tincidunt nulla ut egestas. Sed non dictum eros. Sed sollicitudin pulvinar dui, ac efficitur sapien dapibus sit amet. Integer dictum et libero at suscipit. Mauris at diam vitae nunc accumsan commodo. Sed ut sapien vitae nulla iaculis aliquam. Nam lobortis sem nec dui accumsan accumsan. Sed scelerisque massa id justo imperdiet fringilla. Vestibulum ante augue, dictum ut rutrum eleifend, iaculis a mi. Phasellus rutrum egestas elit malesuada convallis. Vivamus iaculis scelerisque mollis. Vestibulum sodales ultricies dictum.\n\nNam faucibus v', 0, 1),
+(4, 'Sample Page', 'Sample Content', 0, 31);
 
 -- --------------------------------------------------------
 
@@ -344,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `suburbs` (
   `suburb_name` varchar(100) NOT NULL,
   `suburb_cordinates` varchar(20) NOT NULL,
   PRIMARY KEY (`suburb_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `suburbs`
@@ -354,7 +360,8 @@ INSERT INTO `suburbs` (`suburb_id`, `suburb_location_id`, `suburb_name`, `suburb
 (1, 1, 'test', '89.124575,102.457832'),
 (3, 2, 'kolkata', '45.78451,68.124578'),
 (4, 2, 'asdasd', 'asdasd'),
-(5, 1, 'Talawa', '12254544');
+(5, 1, 'Talawa', '12254544'),
+(6, 2, 'location val 6', 'aASD');
 
 -- --------------------------------------------------------
 
@@ -378,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_status` int(1) NOT NULL,
   `user_accessToken` text NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `user`
@@ -386,7 +393,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `user_firstname`, `user_lastname`, `user_address1`, `user_address2`, `user_city`, `user_contactNo`, `user_registeredDate`, `user_type`, `user_status`, `user_accessToken`) VALUES
 (1, 'dhammika97', '202cb962ac59075b964b07152d234b70', 'dhammika97@gmail.com', 'dhammika', 'gunaratne', '176/4, walatenna', 'gallellagama', 'kandy', '777339803', '2014-11-20 00:00:00', 0, 1, 'kjsjjdfshdfhsdbfjhsbdfsdfsf'),
-(31, '', '202cb962ac59075b964b07152d234b70', 'dhammika9@gmail.com', 'test', '', '', '', '', '', '2014-12-06 00:00:00', 3, 1, '1C078C9F93582F9D780C55507BB274B6');
+(31, '', '202cb962ac59075b964b07152d234b70', 'dhammika9@gmail.com', 'test', '', '', '', '', '', '2014-12-06 00:00:00', 3, 1, '1C078C9F93582F9D780C55507BB274B6'),
+(32, '', '202cb962ac59075b964b07152d234b70', 'damn@123.com', '123', '123', '', '', '', '', '2014-12-09 00:00:00', 3, 1, 'BD9EC52A01EF7DD33EFE5AB92EC7D99F');
 
 -- --------------------------------------------------------
 
@@ -402,7 +410,7 @@ CREATE TABLE IF NOT EXISTS `userpackge` (
   `userpkg_expirey` date NOT NULL,
   `userpkg_status` int(1) NOT NULL,
   PRIMARY KEY (`userpkg_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `userpackge`
@@ -412,7 +420,11 @@ INSERT INTO `userpackge` (`userpkg_id`, `userpkg_userId`, `userpkg_pkgId`, `user
 (1, 31, 1, 3, '0000-00-00', 1),
 (2, 31, 3, 300, '0000-00-00', 1),
 (3, 31, 7, 15, '0000-00-00', 1),
-(4, 31, 9, 123, '0000-00-00', 1);
+(4, 31, 9, 123, '0000-00-00', 1),
+(5, 32, 1, 3, '0000-00-00', 1),
+(6, 32, 3, 300, '0000-00-00', 1),
+(7, 32, 7, 15, '0000-00-00', 1),
+(8, 32, 9, 123, '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
