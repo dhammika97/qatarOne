@@ -2,7 +2,7 @@
 <h1>Events</h1>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 events-item" ng-repeat="event in events.events">
- <div class="news-item" ng-click="go('/events-details/1')">
+ <div class="news-item" ng-click="go('/events-details/'+event.evenet_id)">
   <img class="img-responsive" ng-src="../../../api/uploads/events/{{event.event_image}}">
   <h4>{{event.event_title}}</h4>
   <span>{{event.event_date}}</span>

@@ -167,7 +167,15 @@ header .top-nav ul li.active a { color: white; }
 .login-page .login-form label, .login-page .registration-form label { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; }
 .login-page .login-form .btn, .login-page .registration-form .btn { width: auto; }
 .login-page .login-form .btn:hover, .login-page .registration-form .btn:hover { color: white; }
+.login-page .login-form .upgrade, .login-page .registration-form .upgrade { font-size: 20px; line-height: 24px; font-size: 2rem; line-height: 2.4rem; padding: 30px 70px; height: auto; }
 .login-page .login-form .forgot-pass, .login-page .registration-form .forgot-pass { font-size: 9px; line-height: 14px; font-size: 0.9rem; line-height: 1.4rem; color: #a3a0a0; }
+
+.packages { padding: 30px 0; }
+.packages h1 { font-size: 22px; line-height: 24px; font-size: 2.2rem; line-height: 2.4rem; font-family: "Roboto Slab", serif; padding: 20px 0; }
+.packages .panel-info, .packages .panel { overflow: hidden; *zoom: 1; }
+.packages ul li { font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; }
+.packages .premium-package .panel, .packages .free-package .panel { padding-bottom: 0px; box-shadow: none; margin-bottom: 0; }
+.packages .premium-package .main-panel, .packages .free-package .main-panel { padding-bottom: 15px; }
 
 .news-events h1, .inner-pages h1 { font-size: 22px; line-height: 24px; font-size: 2.2rem; line-height: 2.4rem; font-family: "Roboto Slab", serif; padding: 30px 0; }
 .news-events .news-event-content, .inner-pages .news-event-content { overflow: hidden; *zoom: 1; padding-bottom: 30px; }

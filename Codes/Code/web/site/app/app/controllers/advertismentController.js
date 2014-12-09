@@ -1,7 +1,7 @@
 controllers.addvertismentController= function($scope,advertismentFactory, $routeParams){
-	$scope.adversiment = advertismentFactory.getAdd($routeParams.id);
-	
-	//var values = {name: 'misko', gender: 'male'};
+	var tmp = $scope.adversiment = advertismentFactory.getAdd($routeParams.id);
+	//console.log(tmp)
+	//var values = {"make":"tata","model":"Corolla 110","year":"2000","bodyType":"MVP","condition":"Recondition","transmission":"Manual","fuelType":"Diesel"};
 //	var log = [];
 //	angular.forEach(values, function(value, key) {
 //		this.push(key + ': ' + value);

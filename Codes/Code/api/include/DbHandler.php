@@ -1050,21 +1050,19 @@ public function checkLogin($user_email, $user_password) {
 				 AND a.advertisement_subCategoryId	 = c.category_sub_id
 				 AND a.advertisment_id = "'.$id.'"';
 		$db->selectJson($table,$rows,$where,'','');
-		$prod = json_decode($db->getJson(),true);
-		//print_r ($prod);
+		$add = $db->getJson();
+		return $add;
+	}
+	
+	public function adImages($id){
 		$db = new database();
 		$table = 'advertisement_images';
 		$rows = 'advertisement_image';
 		$where = 'advertisement_id = "'.$id.'"';
 		$db->selectJson($table,$rows,$where,'','');
 		$images = $db->getJson();
-		$images = json_decode($images,true);
-		$obj = array_merge($prod,$images);
-		//print_r( $obj);
-		//$add = $db->getJson();
-		$add = json_encode($obj);
-		return $add;
-	}	
+		return $images;
+	}
 	
 	public function advertisments($params){
 		//$catid = $params['categoryID'];

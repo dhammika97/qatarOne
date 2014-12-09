@@ -833,6 +833,7 @@ $app->post('/login', function() use ($app) {
 			if ($logged_User != NULL) {
 				$response["error"] = false;
 				$response['accessToken'] = $logged_User['user_accessToken'];
+				$response['username'] = $logged_User['user_firstname'];
 				$response['message'] = "Successfully authenticated";
 				echoRespnse(200, $response);
 			} else {
@@ -1487,15 +1488,17 @@ $app->get('/advertisment/:id', function($id) {
 		$DbHandler = new DbHandler();	
 		$result = $DbHandler->advertismentDetail($id);
         if ($result != NULL) {
-        	$response["error"] = false;
-				$response['advertisment'] = json_decode($result);
-                echoRespnse(200	, $response);
-            } else {
-                $response["error"] = true;
-                $response["message"] = "The requested resource doesn't exists";
-                echoRespnse(404, $response);
-            }
-        });	 
+			$images = $DbHandler->adImages($id);
+			$response["error"] = false;
+			$response["images"] = json_decode($images);
+			$response['advertisment'] = json_decode($result);
+			echoRespnse(200	, $response);
+        } else {
+			$response["error"] = true;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}
+});	 
 /**
  * Get advertisments 
  * url - /advertisment

@@ -1,7 +1,7 @@
 <div ng-controller="newsController">
 	<h1>News</h1>
 	<div ng-repeat="news in news.news">
-    <div class="news-item" ng-click="go('/news-details/2')">
+    <div class="news-item" ng-click="go('/news-detail/'+news.news_id)" >
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <img class="img-responsive"  ng-src="../../../api/uploads/news/{{news.news_image}}"/>
         </div>

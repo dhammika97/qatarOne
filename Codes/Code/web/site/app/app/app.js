@@ -13,7 +13,7 @@ window.routes =
         controller: '', 
         requireLogin: false
     },
-	"/news-details/:id": {
+	"/news-detail/:id": {
         controller:'controllers.newsDetailsController',
 		templateUrl:'app/partials/newsdetails/NewsDetails.html',
 		requireLogin: false
@@ -40,6 +40,18 @@ window.routes =
 	'/details-view/:id': {
 		templateUrl:'app/partials/detailsView/detailsView.html',
 		requireLogin: false
+	},
+	'/packages-view': {
+		templateUrl:'app/partials/packageView/packages.html',
+		requireLogin: false
+	},
+	'/payment-details': {
+		templateUrl:'app/partials/payment/paymentMain.html',
+		requireLogin: false
+	},
+	'/settings': {
+		templateUrl:'app/partials/settings/settingsMain.html',
+		requireLogin: true
 	}
 };
 
@@ -54,15 +66,20 @@ App.config(function($routeProvider, $httpProvider){
 	
 })
 
-.run( function($rootScope, $location, auth) {
+.run( function($rootScope, $location, auth, $location) {
     // register listener to watch route changes
     $rootScope.$on( "$locationChangeStart", function(event, next, current) {
 	  
 	for(var i in window.routes) {
 		if(next.indexOf(i.split('/')[1]) != -1) {
 			if(window.routes[i].requireLogin && sessionStorage.getItem("accessKey") == null) {
-				alert("Please Login to the system to view this page!");
-				event.preventDefault();
+				if(i=='/post-ad'){
+					alert('You should have registered account to add advertisements. If you are already registered please login')
+					$location.path('/login')
+				}else{
+					alert("Please Login to the system to view this page!");
+					event.preventDefault();
+				}
 			}
 		}
     }

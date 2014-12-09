@@ -1,5 +1,5 @@
 // JavaScript Document
-App.factory('registerFactory',function($resource){
+App.factory('registerFactory',function($resource, $location){
 	var register = $resource('../../../api/register', {}, {
 		save:{method: 'POST'}
     });
@@ -13,7 +13,8 @@ App.factory('registerFactory',function($resource){
 			}).then(
 			function(value){
 				alert(value.message)
-				$scope.register=''
+				//$scope.register=''
+				$location.path('/packages-view')
 			})	
 		}else{
 			alert('Password mis-matched!')
@@ -36,11 +37,19 @@ App.factory('loginFactory',function($resource){
 			if(data.error==false){
 				alert(data.message)
 				sessionStorage.setItem("accessKey", data.accessToken);
+				sessionStorage.setItem("username", data.username)
+				//$scope.username = data.username;
+				//console.log($scope.username)
+				//return $scope.username
 				$scope.go('/classifieds')
 			}else{
 				alert(data.message)
 			}
 		});
+	}
+	
+	factory.getUser = function(){
+		return sessionStorage.getItem("username")
 	}
 	return factory
 })
