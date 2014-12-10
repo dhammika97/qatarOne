@@ -83,7 +83,7 @@ App.factory('advertismentFactory',function($resource){
     });
 	factory.getComments = function(id){
 	
-		return getComments.query({"advertistment":id})
+		return getComments.query({"advertisment_Id":id})
 	}
 	
 	return factory

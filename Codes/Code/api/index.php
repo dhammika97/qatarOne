@@ -1771,7 +1771,7 @@ $app->get('/similarItems', function()  {
 	/*
 		ADD Comments 
 	*/
-	$app->post('/fixedAds', 'authenticate', function() use ($app) {
+	$app->post('/comments', 'authenticate', function() use ($app) {
 		
 		$response = array();           
 		$request = \Slim\Slim::getInstance()->request();
@@ -1792,15 +1792,15 @@ $app->get('/similarItems', function()  {
 	/*Get All Comments*/
 
 	$app->get('/getComments', function() {
-			//$request = \Slim\Slim::getInstance()->request();
-			//$params = $request->params();
-			$parameter='';
+			$request = \Slim\Slim::getInstance()->request();
+			$params = $request->params();
+			
 			$response = array();
 			$DbHandler = new DbHandler();
-			$result = $DbHandler->advertismentsResults($parameter);
+			$result = $DbHandler->getComments($params);
 			if ($result != NULL) {
 				$response["error"] = false;
-				$response['advertisments'] = json_decode($result);
+				$response['comments'] = json_decode($result);
 				echoRespnse(200	, $response);
 			} else {
 				$response["error"] = true;

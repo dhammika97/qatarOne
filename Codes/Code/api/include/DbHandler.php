@@ -1316,13 +1316,14 @@ public function getSimilarItems($params){
 			return false;
 		}				
 	}
-	public function getComments($id){
-		
+	public function getComments($params){
+		$id = $params['advertisment_Id'];
 		$db = new database ();
 		$table = 'advertisment a, item_comments  c';
 		$rows = ' c.* , a.advertisment_id';
 		$where = 'c.advertisment_Id = a.advertisment_id
-				  AND c.advertisment_Id = "'.$id.'"';
+				  AND c.advertisment_Id = "'.$id.'"
+				  AND comment_status - "1"';
 		$db->selectJson ( $table, $rows, $where, '', '' );
 		$add = $db->getJson ();
 		return $add;
