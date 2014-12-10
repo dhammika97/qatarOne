@@ -1317,12 +1317,12 @@ public function getSimilarItems($params){
 		}				
 	}
 	public function getComments($id){
-		$where_atri = ' AND advertisement_categoryId = ' . $id;
 		
 		$db = new database ();
-		$table = '';
-		$rows = '';
-		$where = '';
+		$table = 'advertisment a, item_comments  c';
+		$rows = ' c.* , a.advertisment_id';
+		$where = 'c.advertisment_Id = a.advertisment_id
+				  AND c.advertisment_Id = "'.$id.'"';
 		$db->selectJson ( $table, $rows, $where, '', '' );
 		$add = $db->getJson ();
 		return $add;
