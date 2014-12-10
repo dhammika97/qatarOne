@@ -1,17 +1,12 @@
-controllers.addvertismentController= function($scope,advertismentFactory, $routeParams){
-	var tmp = $scope.adversiment = advertismentFactory.getAdd($routeParams.id);
-	$scope.similarItems = advertismentFactory.getSimilarItems($routeParams.id);
-	//console.log(tmp)
-	//var values = {"make":"tata","model":"Corolla 110","year":"2000","bodyType":"MVP","condition":"Recondition","transmission":"Manual","fuelType":"Diesel"};
-//	var log = [];
-//	angular.forEach(values, function(value, key) {
-//		this.push(key + ': ' + value);
-//	}, log);
-//	console.log(log)
-	//expect(log).toEqual(['name: misko', 'gender: male']);
+controllers.addvertismentController= function($scope,advertismentFactory, $routeParams, ngProgress){
+	//ngProgress.start()
+	var tmp = $scope.adversiment = advertismentFactory.getAdd($routeParams.id, ngProgress);
+	//$scope.similarItems = advertismentFactory.getSimilarItems($routeParams.id);
+	$scope.attributes = ['one','two','three','four','five']
+	//setTimeout(function(){ngProgress.complete()},500)
 }
 
-controllers.advertismentAddController = function($scope, advertismentFactory, FileUploader){
+controllers.advertismentAddController = function($scope, advertismentFactory, FileUploader, ngProgress, $timeout){
 	$scope.catList = advertismentFactory.getCategory()
 	$scope.locationList = advertismentFactory.getLocations()
 	$scope.suburbOptions = "item.suburb_id as item.suburb_name for item in list.suburbs"
@@ -33,6 +28,7 @@ controllers.advertismentAddController = function($scope, advertismentFactory, Fi
 	})
 	
 	$scope.addAdvertisment = function(){
+		ngProgress.start()
 		var imageArray = new Array
 		if(uploader.queue.length !=0){
 			uploader.uploadAll()
@@ -45,7 +41,7 @@ controllers.advertismentAddController = function($scope, advertismentFactory, Fi
 			};
 			uploader.onCompleteAll = function() {
 				$scope.imageList = imageArray
-				advertismentFactory.saveAdvertisment($scope)
+				advertismentFactory.saveAdvertisment($scope, ngProgress, $timeout)
 			};
 		}else{
 			advertismentFactory.saveAdvertisment($scope)

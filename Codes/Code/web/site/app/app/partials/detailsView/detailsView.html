@@ -56,7 +56,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-6"> 
           <!-- bootstrap carousel -->
-          <div id="ad-preview" class="carousel slide" data-ride="carousel" data-interval="false"> 
+          <div class="carousel slide" > 
             <carousel interval="3000" ng-if="adversiment.images.length > 0">
                   <slide ng-repeat="slide in adversiment.images" active="slide.active">
                     <img ng-src="../../../api/uploads/advertisement/{{slide.advertisement_image}}" style="margin:auto;">
@@ -76,9 +76,9 @@
                 <!--<iframe width="600" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Bern&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>--> 
               </div>
               <p>{{adversiment.advertisment[0].advertisement_description}}</p>
-              {{adversiment.advertisment[0].advertisement_attributes}}
+              <!--{{adversiment.advertisment[0].advertisement_attributes}}-->
               <ul>
-                <li ng-repeat="">s</li>
+                <li >{{attributes}}</li>
               </ul>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 contact-no"> <i class="fa fa-phone fa-2x"></i> {{adversiment.advertisment[0].advertisement_contactNo}} </div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 comments-btn text-right"><i class="fa fa-pencil-square-o fa-2x"></i> Comments &amp; Ratings</div>

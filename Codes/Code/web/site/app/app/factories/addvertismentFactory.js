@@ -11,30 +11,45 @@ App.factory('advertismentFactory',function($resource){
     });
 	
 	var factory = {}
+	
 	factory.getAdd = function(id){
-		return tld = advertisment.get({'id':id});
-		tld.$promise.catch(function(e){
-			alert(e.data.message)
-		})
+		return advertisment.get({'id':id})
 	}
 	
 	
-	factory.saveAdvertisment = function($scope){
+	factory.saveAdvertisment = function($scope,ngProgress, $timeout){
 		//alert($scope.imageList)			
 		return advertisment.save($scope.ad)
 		.$promise.catch(function(e){
-			alert(e.data.message)
+			$scope.addAlert('danger',e.message)
+			ngProgress.complete()
+			$timeout(function(){
+				$scope.closeAlert();
+			}, 3000);
 		}).then(
 		function(e){
 			if($scope.imageList.length > 0){
 				return adImage.save($scope.imageList,e.insertedId)
 				.$promise.catch(function(e){
-					alert(e.message)
+					$scope.addAlert('danger',e.message)
+					ngProgress.complete()
+					$timeout(function(){
+						$scope.closeAlert();
+					}, 3000);
 				}).then(function(e){
-					alert(e.message)
+					$scope.addAlert('success',e.message)
+					ngProgress.complete()
+					$timeout(function(){
+						$scope.closeAlert;
+					}, 3000);
 				})	
 			}else{
-				alert(e.message)
+				//alert(e.message)
+				$scope.addAlert('success',e.message)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert;
+				}, 3000);
 			}
 		})
 	}

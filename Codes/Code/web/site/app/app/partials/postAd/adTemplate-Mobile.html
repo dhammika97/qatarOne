@@ -39,88 +39,13 @@
     </div>
 </div>
 <div class="form-group">
-  	<label for="Description" class="col-sm-2 control-label">Model</label>
+  	<label for="Description" class="col-sm-2 control-label">Features</label>
     <div class="col-sm-10">
-
-	    <input type="text" class="form-control" placeholder="Model" ng-model="ad.advertisement_attributes.model"/>
+	    <label class="checkbox">
+        	<input type="checkbox" ng-model="ad.advertisement_attributes.touchscreen"/> Touchscreen
+        </label>
+        <label class="checkbox">
+        	<input type="checkbox" ng-model="ad.advertisement_attributes.replica"/> Replica
+        </label>
     </div>
 </div>
-<div class="form-group">
-  	<label for="Description" class="col-sm-2 control-label">Model Year</label>
-    <div class="col-sm-10">
-	    <input type="text" class="form-control" placeholder="Model Year" ng-model="ad.advertisement_attributes.year" />
-    </div>
-</div>
-<div class="form-group">
-  	<label for="Description" class="col-sm-2 control-label">Body Type</label>
-    <div class="col-sm-10">
-	    <select class="form-control" ng-model="ad.advertisement_attributes.bodyType">
-        	<option value="Saloon"></option>
-            <option value="Hatchback">Hatchback</option>
-            <option value="Station wagon">Station wagon</option>
-            <option value="Convertible">Convertible</option>
-            <option value="Coupe/ Sports">Coupe/ Sports</option>
-            <option value="SUV">SUV</option>
-            <option value="MVP">MVP</option>
-        </select>
-    </div>
-</div>
-<div class="form-group">
-  	<label for="Description" class="col-sm-2 control-label">Condition</label>
-    <div class="col-sm-10">
-	    <label><input ng-model="ad.advertisement_attributes.condition" type="radio" name="Condition" value="New" /> New </label>
-        <label><input ng-model="ad.advertisement_attributes.condition" type="radio" name="Condition" value="Recondition" /> Recondition</label> 
-        <label><input ng-model="ad.advertisement_attributes.condition" type="radio" name="Condition" value="Used" /> Used </label>
-    </div>
-</div>
-<div class="form-group">
-  	<label for="Description" class="col-sm-2 control-label">Transmission</label>
-    <div class="col-sm-10">
-	    <label><input ng-model="ad.advertisement_attributes.transmission" type="radio" name="Transmission" value="Manual" /> Manual </label>
-        <label><input ng-model="ad.advertisement_attributes.transmission" type="radio" name="Transmission" value="Automatic" /> Automatic</label> 
-        <label><input ng-model="ad.advertisement_attributes.transmission" type="radio" name="Transmission" value="Other Transmission" /> Other Transmission </label>
-    </div>
-</div>
-<div class="form-group">
-  	<label for="Description" class="col-sm-2 control-label">Fuel Type</label>
-    <div class="col-sm-10">
-	    <label><input ng-model="ad.advertisement_attributes.fuelType" type="radio" name="FuelType" value="Diesel" /> Diesel </label>
-        <label><input ng-model="ad.advertisement_attributes.fuelType" type="radio" name="FuelType" value="Patrol" /> Patrol</label> 
-        <label><input ng-model="ad.advertisement_attributes.fuelType" type="radio" name="FuelType" value="CNG" /> CNG </label>
-        <label><input ng-model="ad.advertisement_attributes.fuelType" type="radio" name="FuelType" value="Other Fuel Type" /> Other Fuel Type </label>
-    </div>
-</div>
-<select class="select required" id="ad_properties_brand_value" name="ad[properties][brand][value]" prompt="Select brand" required="required"><option value="">Select brand</option>
-<option value="acer">Acer</option>
-<option value="ag-tel">Ag-tel</option>
-<option value="alcatel">Alcatel</option>
-<option value="apple">Apple</option>
-<option value="asus">Asus</option>
-<option value="benq">BenQ</option>
-<option value="blackberry">Blackberry</option>
-<option value="china-mobile">China Mobile</option>
-<option value="dell">Dell</option>
-<option value="dialog">Dialog</option>
-<option value="e-tel">E-tel</option>
-<option value="greentel">Greentel</option>
-<option value="google-nexus">Google Nexus</option>
-<option value="hp">HP</option>
-<option value="htc">HTC</option>
-<option value="huawei">Huawei</option>
-<option value="i-mate">I-Mate</option>
-<option value="ipro">iPro</option>
-<option value="lg">LG</option>
-<option value="mega-gate">Mega Gate</option>
-<option value="micromax">Micromax</option>
-<option value="motorola">Motorola</option>
-<option value="nokia">Nokia</option>
-<option value="palm">Palm</option>
-<option value="philips">Philips</option>
-<option value="q-mobile">Q Mobile</option>
-<option value="samsung">Samsung</option>
-<option value="sky">Sky</option>
-<option value="sony">Sony</option>
-<option value="sony-ericsson">Sony Ericsson</option>
-<option value="zigo">Zigo</option>
-<option value="zte">ZTE</option>
-<option value="all_other">Other brands</option></select>

@@ -1116,7 +1116,8 @@ public function checkLogin($user_email, $user_password) {
 		$category = json_decode(self::GetsubCategoryDetail($adDetail['advertisement_subCategoryId']),true);
 		
 		(isset($adDetail['advertisement_attributes']) ? $attr = json_encode($adDetail['advertisement_attributes']) : $attr = "" );
-		(isset($adDetail['advertisement_price']) ? $attr = $adDetail['advertisement_price'] : $attr = "" );
+		(isset($adDetail['advertisement_price']) ? $price = $adDetail['advertisement_price'] : $price = "" );
+		
 		
 		
 		$values = "'".$category[0]['category_sub_parentId']."',
@@ -1124,7 +1125,7 @@ public function checkLogin($user_email, $user_password) {
 				'".json_encode($adDetail['advertisement_attributes'])."',
 				'".$adDetail['advertisement_title']."',
 				'".$adDetail['advertisement_description']."',
-				'".$adDetail['advertisement_price']."',
+				'".$price."',
 				'".$adDetail['advertisement_contactName']."',
 				'".$adDetail['advertisement_contactNo']."',
 				'".$adDetail['advertisement_contactEmail']."',

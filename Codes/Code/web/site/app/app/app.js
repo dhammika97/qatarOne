@@ -1,5 +1,11 @@
 // JavaScript Document
-var App = angular.module('QatartOneApp',['ngRoute','ngResource','angular.filter','ui.bootstrap','angularFileUpload']) 
+var App = angular.module('QatartOneApp',[
+	'ngRoute',
+	'ngResource',
+	'angular.filter',
+	'ui.bootstrap',
+	'angularFileUpload',
+	'ngProgress']) 
 
 window.routes =
 {
@@ -67,10 +73,10 @@ App.config(function($routeProvider, $httpProvider){
 	
 })
 
-.run( function($rootScope, $location, auth, $location) {
+.run( function($rootScope, $location, auth, $location, ngProgress) {
     // register listener to watch route changes
     $rootScope.$on( "$locationChangeStart", function(event, next, current) {
-	  
+	ngProgress.start()
 	for(var i in window.routes) {
 		if(next.indexOf(i.split('/')[1]) != -1) {
 			if(window.routes[i].requireLogin && sessionStorage.getItem("accessKey") == null) {
