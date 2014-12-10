@@ -1204,5 +1204,85 @@ public function getSimilarItems($params){
 		return $items;
 	}	
 	
+
+	public function advertismentsResults($id){
+		$where_atri = ' AND advertisement_categoryId = ' . $id;
+		
+		$db = new database ();
+		$table = 'advertisment a, advertisement_images i, locations l , category_sub c, suburbs s';
+		$rows = 'a.advertisement_title, a.advertisment_id as aid, a.advertisement_price as price, a.advertisement_description, i.advertisement_image, s.suburb_name as suberb, s.suburb_id as suburbid
+				,date(a.advertisement_date) as date,time(a.advertisement_date) as time, l.location_name as location,
+				l.location_id as locationid,c.category_sub_name as category,a.advertisement_categoryId as categoryid';
+		$where = 'a.advertisment_id = i.advertisement_id
+				  AND a.advertisement_location= l.location_id
+				 AND a.advertisement_suburb = s.suburb_id
+				 AND a.advertisement_subCategoryId	 = c.category_sub_id
+				 AND advertisement_status = "1" ' . $where_atri;
+		$db->selectJson ( $table, $rows, $where, '', '' );
+		$add = $db->getJson ();
+		return $add;
+	}
+	
+	
+	public function advertiesmentsResults($params){
+			// echo $params;
+		print_r ( $params );
+		$where_atri = '';
+		$order_by = '';
+		$i = 0;
+		foreach ( $params as $key => $value ) {
+			
+			if ($i != count ( $params )) {
+				if ($key == 'category') {
+					$where_atri =$where_atri. ' AND a.advertisement_categoryId = ' . $value;
+					echo ' category.....!.<br />';
+				}
+				if ($key == 'location') {
+					$where_atri =$where_atri. ' AND a.advertisement_location = ' . $value;
+					echo ' location.....!.<br />';
+				}
+				if ($key == 'searchby') {
+					$where_atri =$where_atri. " AND a.advertisement_title LIKE '%" . $value . "%'";
+					echo ' searchby.....!.<br />';
+				}
+				
+				if ($key == 'pricerangegreaterthan') {
+					$where_atri =$where_atri. ' AND a.advertisement_price >= ' . $value;
+					echo ' pricerangegreaterthan.....!.<br />';
+				}
+				if ($key == 'pricerangelessthan') {
+					$where_atri =$where_atri. ' AND a.advertisement_price < ' . $value;
+					echo ' pricerangelessthan.....!.<br />';
+				}
+				 if ($key == 'sortby') {
+					$order_by = ' order by ' . $value;
+					echo ' filterby.....!.<br />';
+				} 
+				
+				// $where_atri .= ' AND '.$key .'='.$value;
+			} else {
+				$where_atri .= ' AND ' . $key . '="' . $value . '"';
+			}
+			$i ++;
+		}
+		$where_atri =$where_atri. $order_by;
+		
+		
+		$db = new database ();
+		$table = 'advertisment a, advertisement_images i, locations l , category_sub c, suburbs s';
+		$rows = 'a.advertisement_title, a.advertisment_id as aid, a.advertisement_price as price, a.advertisement_description, i.advertisement_image, s.suburb_name as suberb, s.suburb_id as suburbid
+				,date(a.advertisement_date) as date,time(a.advertisement_date) as time, l.location_name as location,
+				l.location_id as locationid,c.category_sub_name as category,a.advertisement_categoryId as categoryid';
+		$where = 'a.advertisment_id = i.advertisement_id
+				  AND a.advertisement_location= l.location_id
+				 AND a.advertisement_suburb = s.suburb_id
+				 AND a.advertisement_subCategoryId	 = c.category_sub_id
+				 AND advertisement_status = "1" ' . $where_atri;
+		echo $where;
+		$db->selectJson ( $table, $rows, $where, '', '' );
+		$add = $db->getJson ();
+		return $add;
+	}
+	
 }
 ?>

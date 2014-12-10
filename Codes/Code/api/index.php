@@ -1669,6 +1669,80 @@ $app->get('/similarItems', function()  {
 		}
 });
 
+	/**
+	 * Get advertisments by category
+	 * Tempararily created. 
+	 * url - /advertismentsresults/id
+	 * method - GET
+	 * params -advertismentsresults*/
+	$app->get('/advertismentsresults/:id', function($id) {
+		//$request = \Slim\Slim::getInstance()->request();
+		//	$params = $request->params();
+		$response = array();
+	
+		$DbHandler = new DbHandler();
+		$result = $DbHandler->advertismentsResults($id);
+		if ($result != NULL) {
+			$response["error"] = false;
+			$response['advertisments'] = json_decode($result);
+			echoRespnse(200	, $response);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}
+	});
+	
+		/**
+		 * Get advertisments
+		 * url - /advertismentsresults
+		 * method - GET
+		* params -advertismentsresults*/
+		$app->get('/advertismentsresults', function() {
+			//$request = \Slim\Slim::getInstance()->request();
+			//$params = $request->params();
+			$parameter='';
+			$response = array();
+			$DbHandler = new DbHandler();
+			$result = $DbHandler->advertismentsResults($parameter);
+			if ($result != NULL) {
+				$response["error"] = false;
+				$response['advertisments'] = json_decode($result);
+				echoRespnse(200	, $response);
+			} else {
+				$response["error"] = true;
+				$response["message"] = "The requested resource doesn't exists";
+				echoRespnse(404, $response);
+			}
+		});
+	
+			/**
+			 * Get advertisments by category,location,searchby and sortby
+			 * url - /advertiesmentsresultslist?category=4&location=2&searchby=Mobile&sortby=price
+			 * 
+			 * Get advertisments by category,location,searchby, sortby and price range 
+			 * url - /advertiesmentsresultslist?category=4&location=2&searchby=Mobile&sortby=price&pricerangegreaterthan=1000&pricerangelessthan=150000
+			 * 
+			 * method - GET
+			* params -advertiesmentsresultslist*/
+			$app->get('/advertiesmentsresultslist', function() {
+				$request = \Slim\Slim::getInstance()->request();
+				$params = $request->params();
+				$response = array();
+					
+				$DbHandler = new DbHandler();
+				$result = $DbHandler->advertiesmentsResults($params);
+				if ($result != NULL) {
+					$response["error"] = false;
+					$response['advertisments'] = json_decode($result);
+					echoRespnse(200	, $response);
+				} else {
+					$response["error"] = true;
+					$response["message"] = "The requested resource doesn't exists";
+					echoRespnse(404, $response);
+				}
+			});
+	
 
 
 $app->run();
