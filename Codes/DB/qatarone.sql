@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2014 at 06:34 PM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Generation Time: Dec 10, 2014 at 07:27 PM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,8 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `qatarone`
+-- Database: `quatarone`
 --
+CREATE DATABASE IF NOT EXISTS `quatarone` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `quatarone`;
 
 -- --------------------------------------------------------
 
@@ -235,6 +237,23 @@ INSERT INTO `fixedads` (`fixedads_id`, `fixedads_type`, `fixedads_image`, `fixed
 (17, 1, 'E536AD0E9B9B76D1C8BA50E53D0E0D7B728-x-90 - Copy.jpg', '2014-12-05 14:07:48', 'www.dialog.lk', 1, 'top'),
 (18, 3, 'F7CB8713A5AB0E994C8EB1FAD803DA936591726479222682286.gif', '2014-12-05 15:11:50', 'dfgsdfgsd', 1, 'dagd'),
 (19, 1, '02A1BA8443B8E1DE6C8B1DBCE658ACD9728-x-90.gif', '2014-12-05 15:51:29', 'sfagsdf', 1, 'top');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_comments`
+--
+
+CREATE TABLE IF NOT EXISTS `item_comments` (
+  `comment_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `advertisment_Id` int(11) NOT NULL,
+  `comment_Date` date NOT NULL,
+  `comment_Time` time NOT NULL,
+  `comment_status` int(11) NOT NULL,
+  `comment_addedBy` int(11) NOT NULL,
+  `Comment` varchar(255) NOT NULL,
+  PRIMARY KEY (`comment_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
