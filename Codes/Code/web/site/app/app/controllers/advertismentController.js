@@ -36,7 +36,10 @@ controllers.advertismentAddController = function($scope, advertismentFactory, Fi
 				if(response.error==false){
 					imageArray.push(response.image)
 				}else{
-					alert('fail to upload the images!')
+					$scope.addAlert('danger','fail to upload the images!')
+					$timeout(function(){
+						$scope.closeAlert();
+					}, 3000);
 				}
 			};
 			uploader.onCompleteAll = function() {

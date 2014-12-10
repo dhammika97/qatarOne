@@ -185,7 +185,7 @@ App.config(function($routeProvider, $httpProvider){
 	.when('/editFixedAdvertisment/:id',
 			{
 				controller:'controllers.fixedAdvertismentDetailsController',
-				templateUrl:'app/partials/fixedAdvertisment/editFixedAdvertisment.html'
+				templateUrl:'app/partials/fixedAdvertisment/editfixedAdvertisment.html'
 			}
 
 		)	

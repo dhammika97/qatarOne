@@ -2,6 +2,7 @@
 var controllers = {};
 ///ng-controller="masterController"
 controllers.masterController = function($scope, $location, ngProgress, $timeout){
+	$scope.username = ''
 	$scope.username = sessionStorage.getItem("username")
 	
 	$scope.isActive = function (viewLocation) { 

@@ -1,13 +1,13 @@
 // JavaScript Document
-controllers.registerUser = function($scope, registerFactory){
+controllers.registerUser = function($scope, registerFactory, ngProgress, $timeout){
 	$scope.registerUser = function(){
-		registerFactory.saveUser($scope)
+		registerFactory.saveUser($scope, ngProgress, $timeout)
 	}
 }
 
-controllers.loginController = function($scope,loginFactory){
+controllers.loginController = function($scope,loginFactory,ngProgress, $timeout){
 	$scope.loginAuth = function(){
-		loginFactory.userLogin($scope)
+		loginFactory.userLogin($scope, ngProgress, $timeout)
 		//$scope.username = sessionStorage.getItem("username")
 		//console.log(loginFactory.getUser())
 	}

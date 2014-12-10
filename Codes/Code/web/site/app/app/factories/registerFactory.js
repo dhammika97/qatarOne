@@ -5,19 +5,31 @@ App.factory('registerFactory',function($resource, $location){
     });
 	
 	var factory = {}
-	factory.saveUser = function($scope){
+	factory.saveUser = function($scope,ngProgress, $timeout){
+		ngProgress.start()
 		if($scope.register.user_password==$scope.register.user_confirmPassword){
 			return register.save($scope.register)
 			.$promise.catch(function(e){
-				alert(e.data.message)
+				$scope.addAlert('danger',e.data.message)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert();
+				}, 3000);
 			}).then(
 			function(value){
-				alert(value.message)
-				//$scope.register=''
-				$location.path('/packages-view')
+				$scope.addAlert('success',value.message)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert();
+					$location.path('/packages-view')
+				}, 2000);
 			})	
 		}else{
-			alert('Password mis-matched!')
+			$scope.addAlert('danger','Password mis-matched!')
+			ngProgress.complete()
+			$timeout(function(){
+				$scope.closeAlert();
+			}, 3000);
 		}
 	}
 
@@ -31,19 +43,27 @@ App.factory('loginFactory',function($resource){
 	
 	var factory = {}
 	
-	factory.userLogin = function($scope){
+	factory.userLogin = function($scope, ngProgress, $timeout){
 		return tld = login.query({'email':$scope.login.email, 'password':$scope.login.password },
 		function(data){
 			if(data.error==false){
-				alert(data.message)
-				sessionStorage.setItem("accessKey", data.accessToken);
-				sessionStorage.setItem("username", data.username)
-				//$scope.username = data.username;
-				//console.log($scope.username)
-				//return $scope.username
-				$scope.go('/classifieds')
+				$scope.addAlert('success',data.message)
+				ngProgress.complete()
+				$timeout(function(){
+					sessionStorage.setItem("accessKey", data.accessToken);
+					sessionStorage.setItem("username", data.username)
+					$scope.$parent.username = data.username;
+					$scope.closeAlert();
+					$scope.go('/classifieds')
+				}, 2000);
+				
+				
 			}else{
-				alert(data.message)
+				$scope.addAlert('danger',data.message)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert();
+				}, 3000);
 			}
 		});
 	}

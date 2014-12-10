@@ -19,7 +19,11 @@ App.factory('categoryFactory',function($resource){
 		
 		return tld = categoryList.query({'category_parentId':parent_id, 'category_status':1 });
 		tld.$promise.catch(function(e){
-			alert(e.data.message)
+			$scope.addAlert('danger',e.data.message)
+			ngProgress.complete()
+			$timeout(function(){
+				$scope.closeAlert();
+			}, 3000);
 			//window.location.replace('#/dashboard')
 		})
 	}
