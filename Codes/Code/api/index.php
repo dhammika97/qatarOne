@@ -1771,28 +1771,23 @@ $app->get('/similarItems', function()  {
 	/*
 		ADD Comments 
 	*/
-	$app->post('/addComments', function() use ($app){
-	$response = array();
-	$ad = $app->request()->getBody();
-	$params = $app->request()->params();
-	$db = new DbHandler();
-	$img = false;
-	for($i=0; $i < count($params); $i++){
-		if($db->addAdImage($params[$i],$ad))
-		$img = true;
-		else
-		$img = false;
-	}
-	if($img){
-		$response["error"] = false;
-		$response["message"] = "Advertisment created successfully";
-		echoRespnse(201, $response);
-	}else{
-		$response["error"] = true;
-		$response["message"] = "Failed to update Images. Please try again";
-		echoRespnse(400, $response);
-	}
-	});	
+	$app->post('/fixedAds', 'authenticate', function() use ($app) {
+		
+		$response = array();           
+		$request = \Slim\Slim::getInstance()->request();
+		$comment = $request->getBody();
+		$DbHandler = new DbHandler();
+		$result = $DbHandler->addComment($comment);
+		if ($result) {
+			$response["error"] = false;
+			$response["message"] = "Comment Added successfully";                
+			echoRespnse(201, $response);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "Failed to add the Comment. Please try again";
+			echoRespnse(400, $response);
+		}            
+	});
 
 	/*Get All Comments*/
 

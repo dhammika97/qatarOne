@@ -1286,6 +1286,38 @@ public function getSimilarItems($params){
 		$add = $db->getJson ();
 		return $add;
 	}
+	public function addComment($comment) {
+		$db = new database();
+		$table  = "item_comments";
+		
+		isset($comment['advertisment_Id']) ? $advertisment_Id = $comment['advertisment_Id'] : $advertisment_Id = "" ;
+		isset($comment['comment_Date']) ? $comment_Date = $comment['comment_Date'] : $comment_Date = "" ;
+		isset($comment['comment_Time']) ? $comment_Time = $comment['comment_Time'] : $comment_Time = "" ;		
+		isset($comment['comment_status']) ? $comment_status = $comment['comment_status'] : $comment_status = "" ;
+		isset($comment['comment_addedBy']) ? $comment_addedBy = $comment['comment_addedBy'] : $comment_addedBy = "" ;
+		isset($comment['comment']) ? $comment = $comment['comment'] : $comment = "" ;
+		
+		$values = "'".$advertisment_Id."',
+				  '".$comment_Date."',
+				  '".$comment_Time."',
+				  '".$comment_status."',
+				  '".$comment_addedBy."',
+				  '".$comment."';              
+				  
+		$rows="advertisment_Id,
+			   comment_Date, 
+			   comment_Time,
+			   comment_status,
+			   comment_addedBy,
+			   Comment";
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}				
+	}
+
+
 	
 }
 ?>
