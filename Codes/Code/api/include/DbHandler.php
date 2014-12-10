@@ -1286,23 +1286,23 @@ public function getSimilarItems($params){
 		$add = $db->getJson ();
 		return $add;
 	}
-	public function addComment($comment) {
+	public function addComment( $params) {
 		$db = new database();
+	
+		$advertisment_Id = $params['advertisment_Id'];
+		$comment_Date  =  date("Y-m-d"); 
+		$comment_Time  =  date("H:i:s");  
+		$comment_status = "1";
+		$commentBody = $params['body'];
+		$comment_addedBy = '33';
+
 		$table  = "item_comments";
-		
-		isset($comment['advertisment_Id']) ? $advertisment_Id = $comment['advertisment_Id'] : $advertisment_Id = "" ;
-		isset($comment['comment_Date']) ? $comment_Date = $comment['comment_Date'] : $comment_Date = "" ;
-		isset($comment['comment_Time']) ? $comment_Time = $comment['comment_Time'] : $comment_Time = "" ;		
-		isset($comment['comment_status']) ? $comment_status = $comment['comment_status'] : $comment_status = "" ;
-		isset($comment['comment_addedBy']) ? $comment_addedBy = $comment['comment_addedBy'] : $comment_addedBy = "" ;
-		isset($comment['comment']) ? $comment = $comment['comment'] : $comment = "" ;
-		
 		$values = "'".$advertisment_Id."',
 				  '".$comment_Date."',
 				  '".$comment_Time."',
 				  '".$comment_status."',
 				  '".$comment_addedBy."',
-				  '".$comment."'";              
+				  '".$commentBody."'";              
 				  
 		$rows="advertisment_Id,
 			   comment_Date, 

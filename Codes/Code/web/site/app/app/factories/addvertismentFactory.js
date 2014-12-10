@@ -85,6 +85,14 @@ App.factory('advertismentFactory',function($resource){
 	
 		return getComments.query({"advertisment_Id":id})
 	}
+	var addComment = $resource('../../../api/comments/:id', {}, {
+        save:{method: 'POST'}
+    });
+	factory.addComment = function($scope, id){
+		var comment = $scope.comment.body;
+		
+		return addComment.save($scope.comment, {"advertisment_Id":id, "body":comment})
+	}
 	
 	return factory
 })

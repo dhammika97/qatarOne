@@ -5,6 +5,9 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	$scope.attributes = ['one','two','three','four','five']
 	$scope.comments = advertismentFactory.getComments($routeParams.id);
 	//setTimeout(function(){ngProgress.complete()},500)
+	$scope.addComment = function(comment){
+		advertismentFactory.addComment($scope, $routeParams.id);
+	}
 }
 
 controllers.advertismentAddController = function($scope, advertismentFactory, FileUploader, ngProgress, $timeout){

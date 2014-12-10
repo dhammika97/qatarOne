@@ -1775,9 +1775,10 @@ $app->get('/similarItems', function()  {
 		
 		$response = array();           
 		$request = \Slim\Slim::getInstance()->request();
-		$comment = $request->getBody();
+		$params = $request->params();
+		//$comment = $request->getBody();
 		$DbHandler = new DbHandler();
-		$result = $DbHandler->addComment($comment);
+		$result = $DbHandler->addComment($params);
 		if ($result) {
 			$response["error"] = false;
 			$response["message"] = "Comment Added successfully";                
