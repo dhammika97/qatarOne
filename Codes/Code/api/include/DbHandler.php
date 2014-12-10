@@ -1302,7 +1302,7 @@ public function getSimilarItems($params){
 				  '".$comment_Time."',
 				  '".$comment_status."',
 				  '".$comment_addedBy."',
-				  '".$comment."';              
+				  '".$comment."'";              
 				  
 		$rows="advertisment_Id,
 			   comment_Date, 
