@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2014 at 05:00 PM
+-- Generation Time: Dec 10, 2014 at 06:34 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `advertisement_images` (
   `advertisement_id` int(11) NOT NULL,
   `advertisement_image` varchar(255) NOT NULL,
   PRIMARY KEY (`advertisement_imageId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `advertisement_images`
@@ -39,7 +39,18 @@ CREATE TABLE IF NOT EXISTS `advertisement_images` (
 
 INSERT INTO `advertisement_images` (`advertisement_imageId`, `advertisement_id`, `advertisement_image`) VALUES
 (7, 28, 'C23EB700608877BB1EB2C004FF938D9C230405b.jpeg'),
-(8, 28, 'F004CC91A8AD43C06C81B269C77A907BFuel-efficient-Quick-Sale-Cars.jpg');
+(8, 28, 'F004CC91A8AD43C06C81B269C77A907BFuel-efficient-Quick-Sale-Cars.jpg'),
+(9, 29, 'C85AC1D7DD6FD73C6AA5954DF4D72531MBP2488.jpg'),
+(10, 30, 'AC45B512E42214DF2D5DAD80A58A65C4MBP2488.jpg'),
+(11, 31, 'EA334E1EA6C5B5E094C42675DB9F7EC0MBP2488.jpg'),
+(12, 33, '6CFB5257981BA321035E573CEE579E7BMBP2488.jpg'),
+(13, 34, '7C7A840FE2727B88C7A07EBDE6598EDAInterior-Bar-Nashville-Set.jpg'),
+(14, 34, '87564CB8AF83515B4A4C85528567F24BMBP2488.jpg'),
+(15, 35, 'D1D93CCE31EFD8052B04B3E26F9F9CB0Interior-Bar-Nashville-Set.jpg'),
+(16, 35, '5843C4B1899D5B6C68A5FEE4BE879850MBP2488.jpg'),
+(17, 36, '661B81AD99A35D5559FE456436C523DAInterior-Bar-Nashville-Set.jpg'),
+(18, 37, '939101EEFF0449E2729F20855CAC74BBMBP2488.jpg'),
+(19, 38, '33EEF74E0D8A39C4A6C7B90BFE92AF07MBP2488.jpg');
 
 -- --------------------------------------------------------
 
@@ -66,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
   `advertisement_expire` datetime NOT NULL,
   `advertisement_addedBy` int(11) NOT NULL,
   PRIMARY KEY (`advertisment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `advertisment`
@@ -74,7 +85,17 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
 
 INSERT INTO `advertisment` (`advertisment_id`, `advertisement_categoryId`, `advertisement_subCategoryId`, `advertisement_attributes`, `advertisement_title`, `advertisement_description`, `advertisement_price`, `advertisement_contactName`, `advertisement_contactNo`, `advertisement_contactEmail`, `advertisement_location`, `advertisement_suburb`, `advertisement_googleCodes`, `advertisement_date`, `advertisement_status`, `advertisement_expire`, `advertisement_addedBy`) VALUES
 (27, 5, 13, '{"test":"sdfsdf"}', 'asasd', 'sdfsdf', '123', 'asasd', '234', 'ass@sdfsdf', 1, 1, '6.934023, 79.845219', '2014-12-08 19:19:27', 0, '2015-03-08 00:00:00', 31),
-(28, 5, 12, '[{"make":"tata","model":"Corolla 110","year":"2000","bodyType":"MVP","condition":"Recondition","transmission":"Manual","fuelType":"Diesel"}]', 'Toyota Corolla', 'Mint Condition', '1400000', 'Dhammika', '777339803', 'dhammika97@gmail.com', 1, 1, '6.934023, 79.845219', '2014-12-09 12:07:25', 0, '2015-03-08 00:00:00', 31);
+(28, 5, 12, '[{"make":"tata","model":"Corolla 110","year":"2000","bodyType":"MVP","condition":"Recondition","transmission":"Manual","fuelType":"Diesel"}]', 'Toyota Corolla', 'Mint Condition', '1400000', 'Dhammika', '777339803', 'dhammika97@gmail.com', 1, 1, '6.934023, 79.845219', '2014-12-09 12:07:25', 0, '2015-03-08 00:00:00', 31),
+(29, 4, 10, '""', 'asd', 'sdsd', '0', 'dsdf', '23123', 'sdfs@sdsd', 1, 1, '6.934023, 79.845219', '2014-12-10 11:15:29', 0, '2015-03-10 00:00:00', 1),
+(30, 4, 9, '{"brand":"acer","touchscreen":true,"replica":true}', 'sdfsdf', 'sfsdfsdf', '123', 'sdfsdf', '123', 'sdsd@sfsdf', 1, 1, '6.934023, 79.845219', '2014-12-10 11:31:50', 0, '2015-03-10 00:00:00', 1),
+(31, 4, 15, '""', 'adasd', 'sdfsdf', '0', 'asdasd', '123', 'sdd@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-10 11:34:05', 0, '2015-03-10 00:00:00', 1),
+(32, 4, 9, '{"brand":"samsung"}', 'sdfsdf', 'sdfsdf', '0', 'sdfsdf', 'sdfdf', 'sdfsd@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-10 11:35:49', 0, '2015-03-10 00:00:00', 1),
+(33, 4, 9, '{"brand":"samsung"}', 'sdfsdf', 'sdfsdf', '0', 'sdfsdf', 'sdfdf', 'sdfsd@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-10 11:35:57', 0, '2015-03-10 00:00:00', 1),
+(34, 4, 9, '{"brand":"htc","touchscreen":true}', 'zssd', 'asdasd', '123', 'sdfsdf', '234', 'test@sdf', 2, 3, '6.934023, 79.845219', '2014-12-10 17:12:19', 0, '2015-03-10 00:00:00', 32),
+(35, 11, 20, '{"bedrooms":"3","bathrooms":"2","houseSize":"2341","landSize":"9.5"}', 'rwerwr  werwerwe rwer w', 'awdsd adsa dasd asd asd', '0', 'asdasd asd ad', '12345', 'sdfsd@sdfsd', 2, 6, '6.934023, 79.845219', '2014-12-10 17:24:21', 0, '2015-03-10 00:00:00', 32),
+(36, 6, 11, '""', 'asdasd', 'dfsdf', '234', 'adasdasd2', '234234', 'sdfsdf@sdfsdf', 1, 1, '6.934023, 79.845219', '2014-12-10 17:27:59', 0, '2015-03-10 00:00:00', 32),
+(37, 9, 17, '{"jobType":"Part time","landSize":"Qatar one sfdsfdfsdf"}', 'web developer', 'web developer', '0', 'asdas', '23423', 'sdf@sdf', 2, 3, '6.934023, 79.845219', '2014-12-10 17:30:44', 0, '2015-03-10 00:00:00', 32),
+(38, 11, 22, '{"landSize":"25"}', 'sds sdf sdf sdf', 'ewr wer weroi jjwjer weri wier iwuerw er', '234', 'sdfsd sdf sdf', '35345', 'sdfs@dfdfg', 1, 5, '6.934023, 79.845219', '2014-12-10 17:32:39', 0, '2015-03-10 00:00:00', 32);
 
 -- --------------------------------------------------------
 
@@ -107,7 +128,7 @@ INSERT INTO `category` (`category_id`, `category_parentId`, `category_name`, `ca
 (8, 2, 'Admin/ Human Resources', '2014-11-21 09:31:54', 1, 1),
 (9, 2, 'IT/ Software', '2014-12-08 14:32:43', 1, 1),
 (10, 2, 'IT/ Harware', '2014-12-08 14:32:46', 1, 1),
-(11, 2, 'test Category', '2014-12-08 14:32:50', 31, 1);
+(11, 1, 'Property', '2014-12-08 14:32:50', 31, 1);
 
 -- --------------------------------------------------------
 
@@ -138,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
   `category_sub_parentId` int(4) NOT NULL,
   PRIMARY KEY (`category_sub_id`),
   KEY `category_sub_id` (`category_sub_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `category_sub`
@@ -153,9 +174,11 @@ INSERT INTO `category_sub` (`category_sub_id`, `category_sub_name`, `category_su
 (14, 'Motor Cycle', 'Auto', '2014-12-07 12:46:42', 5, 0, 5),
 (15, 'TV/ Radio', 'General', '2014-12-07 12:54:48', 1, 0, 4),
 (16, 'Yet Another Sub Category', 'General', '2014-12-08 09:48:08', 31, 0, 6),
-(17, 'Web/ UI', 'General', '2014-12-08 14:35:42', 31, 0, 9),
-(18, 'Network Engineering', 'General', '2014-12-08 14:36:38', 31, 0, 10),
-(19, 'test', 'General', '2014-12-08 14:36:55', 31, 0, 11);
+(17, 'Web/ UI', 'Job', '2014-12-08 14:35:42', 31, 0, 9),
+(18, 'Network Engineering', 'Job', '2014-12-08 14:36:38', 31, 0, 10),
+(20, 'House', 'Property', '2014-12-10 04:59:41', 31, 0, 11),
+(21, 'Apartment', 'Property', '2014-12-10 05:00:09', 31, 0, 11),
+(22, 'Land', 'Land', '2014-12-10 05:07:08', 31, 0, 11);
 
 -- --------------------------------------------------------
 
