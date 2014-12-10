@@ -1323,7 +1323,7 @@ public function getSimilarItems($params){
 		$rows = ' c.* , a.advertisment_id';
 		$where = 'c.advertisment_Id = a.advertisment_id
 				  AND c.advertisment_Id = "'.$id.'"
-				  AND comment_status - "1"';
+				  AND comment_status = "1"';
 		$db->selectJson ( $table, $rows, $where, '', '' );
 		$add = $db->getJson ();
 		return $add;

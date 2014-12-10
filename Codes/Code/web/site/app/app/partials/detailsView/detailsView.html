@@ -93,7 +93,7 @@
       <div class="row">
            
               <div class="col-lg-7 col-md-7 comments-box">
-                <h2>Comments</h2>      {{comments}}         
+                <h2>Comments</h2>             
                 <div class="detailBox">               
                      <div class="actionBox">
                       <form class="form-inline" role="form">
@@ -104,48 +104,13 @@
                                 <button class="btn btn-default">Add</button>
                             </div>
                         </form>
-                        <ul class="commentList">
+                        <ul class="commentList" ng-repeat="comment in comments.comments">
                             <li>                                
                                 <div class="commentText">
-                                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on Dec 9th, 2014</span>
+                                    <p class="">{{comment.Comment}}.</p> <span class="date sub-text">on {{comment.comment_Date}}</span>
 
                                 </div>
                             </li>
-                            <li>                                
-                                <div class="commentText">
-                                    <p class="">Hello this is a test comment</p> <span class="date sub-text">on Dec 9th, 2014</span>
-
-                                </div>
-                            </li>
-                            <li>
-                                
-                                <div class="commentText">
-                                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on Dec 9th, 2014</span>
-
-                                </div>
-                            </li>
-                            <li>
-                                
-                                <div class="commentText">
-                                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on Dec 9th, 2014</span>
-
-                                </div>
-                            </li>
-                            <li>
-                                
-                                <div class="commentText">
-                                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on Dec 9th, 2014</span>
-
-                                </div>
-                            </li>
-                            <li>
-                                
-                                <div class="commentText">
-                                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on Dec 9th, 2014</span>
-
-                                </div>
-                            </li>
-                            
                         </ul>
                         
                     </div>
