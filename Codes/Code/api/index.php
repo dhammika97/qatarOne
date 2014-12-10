@@ -98,6 +98,30 @@ $app->get('/user/:id', 'authenticate', function($user_id) {
 		}
 	});	 
 
+
+/**
+ * Get user by checking the Accesstoken passed in header
+ * url 		- /GetUserDetail
+ * method 	- GET
+ * params 	- '' */	
+$app->get('/GetUserDetail', 'authenticate', function() {
+		$response = array();
+		$DbHandler = new DbHandler();
+		global $user_id;			
+		$result = $DbHandler->GetUserDetail($user_id);
+		
+        if ($result != NULL) {
+        	$response["error"] = false;
+			$response['user'] = json_decode($result);
+			echoRespnse(200	, $response);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		}
+	});	 
+
+
 /**
  * Create user 
  * url - /userlist
