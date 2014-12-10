@@ -1192,12 +1192,15 @@ public function getSimilarItems($params){
 		$db->select($table,$rows,$where,'','');
 		$cat = $db->getResults();
 
+		
+
 		$db = new database();
-		$table = 'advertisment';
-		$rows  ='*';
-		$where = 'advertisement_subCategoryId	 ="'.$cat['advertisement_subCategoryId'] .'"
-				  AND advertisment_id != "'.$aid.'"
-				  AND  advertisement_status = "1"';
+		$table = 'advertisment a ,advertisement_images i';
+		$rows  ='a.advertisment_id, i.advertisement_image';
+		$where = 'i.advertisement_id = a.advertisment_id 
+				  AND a.advertisement_subCategoryId	 ="'.$cat['advertisement_subCategoryId'] .'"
+				  AND a.advertisment_id != "'.$aid.'"
+				  AND  a.advertisement_status = "1"';
 		$db->selectJson($table,$rows,$where,'','');
 		$items = $db->getJson();
 

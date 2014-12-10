@@ -71,6 +71,13 @@ App.factory('advertismentFactory',function($resource){
 	factory.getSuburbs = function(id){
 		return suburbList.query({"suburb_location_id":id})
 	}
+	var similarItems = $resource('../../../api/similarItems/:id', {}, {
+        query: { method: 'GET', params: {}, isArray: false }
+    });
+	factory.getSimilarItems = function(id){
+	
+		return similarItems.query({"advertistment":id})
+	}
 	
 	return factory
 })
