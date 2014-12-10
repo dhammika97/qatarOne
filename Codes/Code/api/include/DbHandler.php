@@ -1226,7 +1226,7 @@ public function getSimilarItems($params){
 	
 	public function advertiesmentsResults($params){
 			// echo $params;
-		print_r ( $params );
+		//print_r ( $params );
 		$where_atri = '';
 		$order_by = '';
 		$i = 0;
@@ -1235,28 +1235,28 @@ public function getSimilarItems($params){
 			if ($i != count ( $params )) {
 				if ($key == 'category') {
 					$where_atri =$where_atri. ' AND a.advertisement_categoryId = ' . $value;
-					echo ' category.....!.<br />';
+				//	echo ' category.....!.<br />';
 				}
 				if ($key == 'location') {
 					$where_atri =$where_atri. ' AND a.advertisement_location = ' . $value;
-					echo ' location.....!.<br />';
+				//	echo ' location.....!.<br />';
 				}
 				if ($key == 'searchby') {
 					$where_atri =$where_atri. " AND a.advertisement_title LIKE '%" . $value . "%'";
-					echo ' searchby.....!.<br />';
+				//	echo ' searchby.....!.<br />';
 				}
 				
 				if ($key == 'pricerangegreaterthan') {
 					$where_atri =$where_atri. ' AND a.advertisement_price >= ' . $value;
-					echo ' pricerangegreaterthan.....!.<br />';
+				//	echo ' pricerangegreaterthan.....!.<br />';
 				}
 				if ($key == 'pricerangelessthan') {
 					$where_atri =$where_atri. ' AND a.advertisement_price < ' . $value;
-					echo ' pricerangelessthan.....!.<br />';
+				//	echo ' pricerangelessthan.....!.<br />';
 				}
 				 if ($key == 'sortby') {
 					$order_by = ' order by ' . $value;
-					echo ' filterby.....!.<br />';
+				//	echo ' filterby.....!.<br />';
 				} 
 				
 				// $where_atri .= ' AND '.$key .'='.$value;
@@ -1278,7 +1278,7 @@ public function getSimilarItems($params){
 				 AND a.advertisement_suburb = s.suburb_id
 				 AND a.advertisement_subCategoryId	 = c.category_sub_id
 				 AND advertisement_status = "1" ' . $where_atri;
-		echo $where;
+		//echo $where;
 		$db->selectJson ( $table, $rows, $where, '', '' );
 		$add = $db->getJson ();
 		return $add;
