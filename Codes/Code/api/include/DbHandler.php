@@ -1316,7 +1316,17 @@ public function getSimilarItems($params){
 			return false;
 		}				
 	}
-
+	public function getComments($id){
+		$where_atri = ' AND advertisement_categoryId = ' . $id;
+		
+		$db = new database ();
+		$table = '';
+		$rows = '';
+		$where = '';
+		$db->selectJson ( $table, $rows, $where, '', '' );
+		$add = $db->getJson ();
+		return $add;
+	}
 
 	
 }
