@@ -75,8 +75,15 @@ App.factory('advertismentFactory',function($resource){
         query: { method: 'GET', params: {}, isArray: false }
     });
 	factory.getSimilarItems = function(id){
-	
+
 		return similarItems.query({"advertistment":id})
+	}
+	var getComments = $resource('../../../api/getComments/:id', {}, {
+        query: { method: 'GET', params: {}, isArray: false }
+    });
+	factory.getComments = function(id){
+	
+		return getComments.query({"advertistment":id})
 	}
 	
 	return factory

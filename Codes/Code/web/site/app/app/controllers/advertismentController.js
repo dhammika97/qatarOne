@@ -3,6 +3,7 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	var tmp = $scope.adversiment = advertismentFactory.getAdd($routeParams.id, ngProgress);
 	$scope.similarItems = advertismentFactory.getSimilarItems($routeParams.id); 
 	$scope.attributes = ['one','two','three','four','five']
+	$scope.comments = advertismentFactory.getComments($routeParams.id);
 	//setTimeout(function(){ngProgress.complete()},500)
 }
 
