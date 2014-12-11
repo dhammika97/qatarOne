@@ -1,0 +1,22 @@
+<h1>Category<a href="#/addCategory" class="btn btn-primary pull-right">Add New Category</a></h1>
+<ol class="breadcrumb">
+  <li class="active"> Comments</li>
+</ol>
+<table class="table table-hover tablesorter">
+    <thead>
+      <tr>
+        <th>Comment Name</th>
+        <th>Added by</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="category in categories.categories">
+      
+   		<td>Comment</td>
+        <td>admin</td>
+        
+        <td><a href="#/editCategory/{{category.category_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteCategory(category.category_id)">publish</button></td>
+      </tr>
+    </tbody>
+</table>

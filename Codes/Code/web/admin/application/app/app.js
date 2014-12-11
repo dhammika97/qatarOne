@@ -226,6 +226,12 @@ App.config(function($routeProvider, $httpProvider){
 			templateUrl:'app/partials/packageType/editPackageType.html'
 		}
 	)
+	.when('/comments',
+		{
+			//controller:'controllers.commentsController',
+			templateUrl:'app/partials/comments/listComments.html'
+		}
+	)
 	.otherwise({
 		redirectTo:'/'
 	});
