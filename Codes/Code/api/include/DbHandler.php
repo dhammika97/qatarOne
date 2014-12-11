@@ -1277,14 +1277,14 @@ public function getSimilarItems($params){
 		return $add;
 	}
 	
-	public function addComment( $params) {
+	public function addComment( $comment, $id) {
 		$db = new database();
-	
-		$advertisment_Id = $params['advertisment_Id'];
+		
+		$advertisment_Id = $id;
 		$comment_Date  =  date("Y-m-d"); 
 		$comment_Time  =  date("H:i:s");  
 		$comment_status = "1";
-		$commentBody = $params['body'];
+		//$commentBody = $params;
 		$comment_addedBy = '33';
 
 		$table  = "item_comments";
@@ -1293,7 +1293,7 @@ public function getSimilarItems($params){
 				  '".$comment_Time."',
 				  '".$comment_status."',
 				  '".$comment_addedBy."',
-				  '".$commentBody."'";              
+				  '".$comment."'";              
 				  
 		$rows="advertisment_Id,
 			   comment_Date, 

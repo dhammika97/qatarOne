@@ -1771,14 +1771,14 @@ $app->get('/similarItems', function()  {
 	/*
 		ADD Comments 
 	*/
-	$app->post('/comments', 'authenticate', function() use ($app) {
+	$app->post('/comments/:id', 'authenticate', function($id) use ($app) {
 		
 		$response = array();           
 		$request = \Slim\Slim::getInstance()->request();
-		$params = $request->params();
-		//$comment = $request->getBody();
+		//$params = $request->params();
+		$comment = $request->getBody();
 		$DbHandler = new DbHandler();
-		$result = $DbHandler->addComment($params);
+		$result = $DbHandler->addComment($comment,$id);
 		if ($result) {
 			$response["error"] = false;
 			$response["message"] = "Comment Added successfully";                
@@ -1795,7 +1795,6 @@ $app->get('/similarItems', function()  {
 	$app->get('/getComments', function() {
 			$request = \Slim\Slim::getInstance()->request();
 			$params = $request->params();
-			
 			$response = array();
 			$DbHandler = new DbHandler();
 			$result = $DbHandler->getComments($params);

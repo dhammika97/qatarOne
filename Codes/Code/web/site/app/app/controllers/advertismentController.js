@@ -5,7 +5,7 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	$scope.attributes = ['one','two','three','four','five']
 	$scope.comments = advertismentFactory.getComments($routeParams.id);
 	//setTimeout(function(){ngProgress.complete()},500)
-	$scope.addComment = function(comment){
+	$scope.addComment = function(){
 		advertismentFactory.addComment($scope, $routeParams.id);
 	}
 }
