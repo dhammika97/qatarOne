@@ -22,7 +22,7 @@
 </head>
 <body  ng-controller="masterController">
 <alert class="text-center" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-	  <header>      
+	  <header class="navbar-fixed-top">      
        <div class="container">
         <div class="row">
           <div class="top-nav">
@@ -38,9 +38,10 @@
             </div>
           </div>
         </div>
-      </div>      
+      </div>
+      <div class="shadow"></div>      
     </header>
-    <div class="shadow"></div>
+    
     
 	<div ng-view></div>
     <div class="shadow"></div>
