@@ -1316,7 +1316,8 @@ public function getSimilarItems($params){
 		$where = 'c.advertisment_Id = a.advertisment_id
 				  AND c.advertisment_Id = "'.$id.'"
 				  AND comment_status = "1"';
-		$db->selectJson ( $table, $rows, $where, '', '' );
+		$order_by = "c.comment_Id DESC";
+		$db->selectJson ( $table, $rows, $where, $order_by, '' );
 		$add = $db->getJson ();
 		return $add;
 	}
