@@ -1201,7 +1201,8 @@ public function getSimilarItems($params){
 				  AND a.advertisement_subCategoryId	 ="'.$cat['advertisement_subCategoryId'] .'"
 				  AND a.advertisment_id != "'.$aid.'"
 				  AND  a.advertisement_status = "1"';
-		$db->selectJson($table,$rows,$where,'','');
+		$order_by = 'RAND()';
+		$db->selectJson($table,$rows,$where,$order_by,'');
 		$items = $db->getJson();
 
 		return $items;
