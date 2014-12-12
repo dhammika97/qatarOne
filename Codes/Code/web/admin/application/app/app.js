@@ -228,7 +228,7 @@ App.config(function($routeProvider, $httpProvider){
 	)
 	.when('/comments',
 		{
-			//controller:'controllers.commentsController',
+			controller:'controllers.commentsController',
 			templateUrl:'app/partials/comments/listComments.html'
 		}
 	)
