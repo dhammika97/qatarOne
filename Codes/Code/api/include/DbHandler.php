@@ -11,7 +11,7 @@ class DbHandler {
 		$db = new database();
 		$table = 'category c inner join category_sub s on c.category_id = s.category_sub_parentId';
 		$rows ='c.category_id,c.category_name,s.category_sub_id,s.category_sub_name,s.category_sub_tplType';	
-		$db->selectJson($table,$rows,$where,'','','');
+		$db->selectJson($table,$rows,$where,'c.category_name','','');
 		$subcategories = $db->getJson();
 		return $subcategories;
 	}
@@ -245,6 +245,7 @@ class DbHandler {
 	}
 	
 	public function getAllCategories($params){
+		//print_r($params);
 		$where = '';
 		$i = 1;
 		foreach($params as $key => $value){
@@ -257,7 +258,7 @@ class DbHandler {
 		$db = new database();  
 		$table = 'category';
 		$rows ='*';
-		$db->selectJson($table,$rows,$where,'','','');
+		$db->selectJson($table,$rows,$where,'category_name','','');
 		$category_list = $db->getJson();
 		return $category_list;
 	}
@@ -311,10 +312,13 @@ class DbHandler {
 		$table  = "category";
 		(isset($category['category_name']) ? $category_name = $category['category_name'] : $category_name = "" );
 		(isset($category['category_parentId']) ? $category_parentId = $category['category_parentId'] : $category_parentId = "" );
+		(isset($category['category_alias']) ? $cat_alias = $category['category_alias'] : $cat_alias = "" );
+		
 		$values = "'".$category_name."', 
 				  '".$user_id."' , 
-				  '".$category_parentId."'";				
-		$rows   = "category_name, category_enteredBy, category_parentId";		
+				  '".$category_parentId."',
+				  '".$cat_alias."'";				
+		$rows   = "category_name, category_enteredBy, category_parentId,category_alias";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}
@@ -385,8 +389,17 @@ class DbHandler {
 		(isset($category['category_sub_tplType']) ? $category_sub_tplType = $category['category_sub_tplType'] : $category_sub_tplType = "" );
 		(isset($category['category_sub_name']) ? $category_sub_name = $category['category_sub_name'] : $category_sub_name = "" );
 		(isset($category['category_sub_parentId']) ? $category_sub_parentId = $category['category_sub_parentId'] : $category_sub_parentId = "" );
-		$values = "'".$category_sub_name."', '".$category_sub_parentId."' , '".$user_id."','".$category_sub_tplType."'";								
-		$rows   = "category_sub_name, category_sub_parentId, category_sub_enteredBy, category_sub_tplType";
+		(isset($category['category_sub_alias']) ? $cat_alias = $category['category_sub_alias'] : $cat_alias = "" );
+		$values = "'".$category_sub_name."',
+				 '".$category_sub_parentId."' ,
+				 '".$user_id."',
+				 '".$category_sub_tplType."',
+				 '".$cat_alias."'";								
+		$rows   = "category_sub_name, 
+				category_sub_parentId, 
+				category_sub_enteredBy, 
+				category_sub_tplType,
+				category_sub_alias";
 		if($db->insert($table,$values,$rows) ){
 			return true;
 		}	
@@ -416,9 +429,11 @@ class DbHandler {
 	public function createLocation($location){
 		$db = new database();
 		$table  = "locations";
-		$values = "'".$location['location_name']."', 
+		$values = "'".$location['location_name']."',
+				'".$location['location_alias']."',
 				'".$location['location_cordinates']."'";					  
-		$rows   = "location_name, 
+		$rows   = "location_name,
+				   location_alias,
 				   location_cordinates";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
@@ -587,9 +602,11 @@ public function checkLogin($user_email, $user_password) {
 		$table  = "suburbs";
 		$values = "'".$suburb['suburb_location_id']."', 
 				'".$suburb['suburb_name']."',
+				'".$suburb['suburb_alias']."',
 				'".$suburb['suburb_cordinates']."'";					  
 		$rows   = "suburb_location_id, 
 				   suburb_name,
+				   suburb_alias,
 				   suburb_cordinates";		
 		if($db->insert($table,$values,$rows) ){
 			return true;
@@ -1234,14 +1251,64 @@ public function getSimilarItems($params){
 		$where_atri = '';
 		$order_by = '';
 		$i = 0;
+		$dd = Array();
+		$categoryLst = json_decode(self::getAllCategories($dd),true);
+		$subCategoryLst = json_decode(self::getAllsubCategorys($dd),true);
+		$locationLst = json_decode(self::getAllLocations($dd),true);
+		$suburbLst = json_decode(self::getAllSuburbs($dd),true);
+		
 		foreach ( $params as $key => $value ) {
 			
 			if ($i != count ( $params )) {
-				if ($key == 'category' && $value!='') {
-					$where_atri =$where_atri. ' AND a.advertisement_categoryId = ' . $value;
+				if ($key == 'category') {
+					for($s=0; count($categoryLst)>$s; $s++){
+						if($value == $categoryLst[$s]['category_alias']){
+							$cat = $categoryLst[$s]['category_id'];
+							break;
+						}else{
+							$cat = '';
+						}
+					}
+					if($cat != ""){
+						$where_atri =$where_atri. ' AND a.advertisement_categoryId = ' . $cat;
+					}
 				}
-				if ($key == 'location' && $value!='') {
-					$where_atri =$where_atri. ' AND a.advertisement_location = ' . $value;
+				if ($key == 'subcategory') {
+					for($s=0; count($subCategoryLst)>$s; $s++){
+						if($value == $subCategoryLst[$s]['category_sub_alias']){
+							$subcat = $subCategoryLst[$s]['category_sub_id'];
+							break;
+						}else{
+							$subcat = '';
+						}
+					}
+					if($subcat!='')
+					$where_atri =$where_atri. ' AND a.advertisement_subCategoryId = ' . $subcat;
+				}
+				if ($key == 'location') {
+					
+					for($s=0; count($locationLst)>$s; $s++){
+						if($value == $locationLst[$s]['location_alias']){
+							$loc = $locationLst[$s]['location_id'];
+							break;
+						}else{
+							$loc = '';
+						}
+					}
+					if($loc!='')
+					$where_atri =$where_atri. ' AND a.advertisement_location = ' . $loc;
+				}
+				if ($key == 'suburb' && $value!='') {
+					for($s=0; count($suburbLst)>$s; $s++){
+						if($value == $suburbLst[$s]['suburb_alias']){
+							$sub = $suburbLst[$s]['suburb_id'];
+							break;
+						}else{
+							$sub = '';
+						}
+					}
+					if($sub!='')
+					$where_atri =$where_atri. ' AND a.advertisement_suburb = ' . $sub;
 				}
 				if ($key == 'searchby' && $value!='') {
 					$where_atri =$where_atri. " AND a.advertisement_title LIKE '%" . $value . "%'";
@@ -1257,23 +1324,17 @@ public function getSimilarItems($params){
 					$order_by = ' order by ' . $value;
 				} 
 			} else {
-				$where_atri .= ' AND ' . $key . '="' . $value . '"';
+				//$where_atri .= ' AND ' . $key . '="' . $value . '"';
 			}
 			$i ++;
 		}
 		$where_atri =$where_atri. $order_by;
-		
+		//echo $where_atri;
 		
 		$db = new database ();
-		$table = 'advertisment a, advertisement_images i, locations l , category_sub c, suburbs s';
-		$rows = 'a.advertisement_title, a.advertisment_id as aid, a.advertisement_price as price, a.advertisement_description, i.advertisement_image, s.suburb_name as suberb, s.suburb_id as suburbid
-				,date(a.advertisement_date) as date,time(a.advertisement_date) as time, l.location_name as location,
-				l.location_id as locationid,c.category_sub_name as category,a.advertisement_categoryId as categoryid';
-		$where = 'a.advertisment_id = i.advertisement_id
-				  AND a.advertisement_location= l.location_id
-				 AND a.advertisement_suburb = s.suburb_id
-				 AND a.advertisement_subCategoryId	 = c.category_sub_id
-				 AND advertisement_status = "1" ' . $where_atri;
+		$table = 'advertisment a inner join locations l on l.location_id = a.advertisement_location inner join category c on c.category_id = a.advertisement_categoryId inner join category_sub sc on sc.category_sub_id = a.advertisement_subCategoryId inner join suburbs s on s.suburb_id = a.advertisement_suburb';
+		$rows = 'a.advertisement_title, a.advertisment_id as aid, a.advertisement_price as price, a.advertisement_description, s.suburb_name as suberb, s.suburb_id as suburbid ,date(a.advertisement_date) as date, time(a.advertisement_date) as time, l.location_name as location, l.location_id as locationid, sc.category_sub_name as category, a.advertisement_categoryId as categoryid, sc.category_sub_alias as scalias, l.location_alias as lalias, s.suburb_alias as sub_alias';
+		$where = 'advertisement_status = "1" ' . $where_atri;
 		//echo $where;
 		$db->selectJson ( $table, $rows, $where, '', '' );
 		$add = $db->getJson ();

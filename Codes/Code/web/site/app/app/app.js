@@ -14,7 +14,12 @@ window.routes =
         controller: 'controllers.dashController', 
         requireLogin: false
 	},
-    "/show-list/:parent_id": {
+/*    "/show-list/:parent_id": {
+        templateUrl: 'app/partials/resultListing/resultListing.html', 
+        controller: '', 
+        requireLogin: false
+    },*/
+	"/show-list/:params": {
         templateUrl: 'app/partials/resultListing/resultListing.html', 
         controller: '', 
         requireLogin: false

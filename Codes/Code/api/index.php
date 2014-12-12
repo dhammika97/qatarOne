@@ -1749,7 +1749,7 @@ $app->get('/similarItems', function()  {
 			 * 
 			 * method - GET
 			* params -advertiesmentsresultslist*/
-			$app->get('/advertiesmentsresultslist', function() {
+			$app->get('/adlist', function() {
 				$request = \Slim\Slim::getInstance()->request();
 				$params = $request->params();
 				$response = array();

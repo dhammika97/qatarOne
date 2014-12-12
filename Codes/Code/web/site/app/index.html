@@ -21,7 +21,6 @@
     <![endif]-->
 </head>
 <body  ng-controller="masterController">
-<alert class="text-center" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 	  <header class="navbar-fixed-top">      
        <div class="container">
         <div class="row">
@@ -103,5 +102,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="libs/bootstrap/bootstrap.min.js"></script>
+<alert class="text-center" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 </body>
 </html>

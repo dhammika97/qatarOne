@@ -28,6 +28,7 @@ App.factory('advertismentFactory',function($resource){
 			}, 3000);
 		}).then(
 		function(e){
+			$scope.ad=''
 			if($scope.imageList.length > 0){
 				return adImage.save($scope.imageList,e.insertedId)
 				.$promise.catch(function(e){
@@ -40,15 +41,15 @@ App.factory('advertismentFactory',function($resource){
 					$scope.addAlert('success',e.message)
 					ngProgress.complete()
 					$timeout(function(){
-						$scope.closeAlert;
+						$scope.closeAlert();
 					}, 3000);
 				})	
 			}else{
 				//alert(e.message)
-				$scope.addAlert('success',e.message)
-				ngProgress.complete()
+				$scope.addAlert('success','Advertisment added successfully!')
+				ngProgress.complete()				
 				$timeout(function(){
-					$scope.closeAlert;
+					$scope.closeAlert();
 				}, 3000);
 			}
 		})

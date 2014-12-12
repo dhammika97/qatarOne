@@ -1,5 +1,5 @@
 App.factory('resultsListingFactory',function($resource){
-	var resultList = $resource('../../../api/advertisments/:id', {}, {
+	var resultList = $resource('../../../api/adlist/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false }
     });
 	

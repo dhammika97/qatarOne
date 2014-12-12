@@ -2,119 +2,106 @@
 <section class="search-bar" >
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-md-4 keyword"><input type="text" class="form-control" id="keyword" placeholder="What are you lookig for ?"></div>
+      <div class="col-lg-4 col-md-4 keyword">
+        <input type="text" class="form-control" id="keyword" placeholder="What are you lookig for ?">
+      </div>
       <div class="col-lg-3  col-md-3 category">
         <select class="form-control" ng-model="searchproduct.category" >
           <option selected="selected">Select category</option>
           <option ng-repeat="resultList in resultList.advertisments | unique:'category'" value="{{resultList.categoryid}}">{{resultList.category}}</option>
-          
         </select>
       </div>
       <div class="col-lg-3  col-md-3 location">
         <select class="form-control" ng-model="searchproduct.location">
-                  <option selected="selected">Select Location</option>
+          <option selected="selected">Select Location</option>
           <option ng-repeat="resultList in resultList.advertisments | unique:'location'" value="{{resultList.locationid}}">{{resultList.location}}</option>
         </select>
       </div>
-      <div class="col-lg-2  col-md-2">
-        <a class="search-btn" href="" ng-click='searchProduct(search)'><i class="fa fa-search"></i> Search</a>
-      </div>
+      <div class="col-lg-2  col-md-2"> <a class="search-btn" href="" ng-click='searchProduct(search)'><i class="fa fa-search"></i> Search</a> </div>
     </div>
   </div>
 </section>
-<section class="main-slider hidden-xs hidden-sm">
+<!--<section class="main-slider hidden-xs hidden-sm">
 	<ng-include src="'app/partials/resultListing/slider.html'"></ng-include>
-</section>
+</section>-->
 
 <section class="main-page">
   <div class="shadow"></div>
   <div class="filter-bar">
-     <div class="container">
-    <div class="row">
+    <div class="container">
+      <div class="row">
         <div class="col-lg-6">
           <div class="pull-left count">Mobile Phones</div>
         </div>
-         <div class="col-lg-6 filters">
-          <ul class="nav nav-pills pull-right">                
-              <li role="presentation" class="dropdown">
-                <a id="drop6" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                  Filter By
-                  <span class="caret"></span>
-                </a>
-                <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop6">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Lowest Price</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Highest Price</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">...</a></li>                      
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">...</a></li>
-                </ul>
-              </li>
+        <div class="col-lg-6 filters">
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="dropdown"> <a id="drop6" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false"> Filter By <span class="caret"></span> </a>
+              <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop6">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Lowest Price</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Highest Price</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">...</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">...</a></li>
+              </ul>
+            </li>
             <li role="presentation"><a href="" id="grid"><i class="fa fa-th-large fa-lg"></i></a></li>
             <li role="presentation"><a href="" id="list"><i class="fa fa-th-list fa-lg"></i></a></li>
           </ul>
-         </div>
-      </div>
         </div>
-          </div>
-          <div class="shadow"></div>
-          <div class="cateogry-listing">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 filter-side-bar">
-        <div class="filter-heading">
-          <i class="fa fa-map-marker"></i> Location </div>
-          <ul  ng-repeat="resultList in resultList.advertisments | unique:'location'">
-            <li><a href="" ng-click='setParamsLocation(resultList.locationid)'>{{resultList.location}}<span>20500</span></a></li>
+      </div>
+    </div>
+  </div>
+  <div class="shadow"></div>
+  <div class="cateogry-listing">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 filter-side-bar">
+          <div class="filter-heading"> <i class="fa fa-th-list"></i> Category </div>
+          <ul >
+            <li ng-repeat="resultList in resultList.advertisments | unique:'category'">
+            	<a href="" ng-click='setParams("subcategory",resultList.scalias)'>{{resultList.category}}<span>20500</span></a>
+            </li>
           </ul>
-       <div class="filter-heading">
-          <i class="fa fa-map-marker"></i> Suberb </div>
-          <ul  ng-repeat="resultList in resultList.suburb | unique:'suburbid'">
-            <li><a href="" ng-click='setParamsLocation(resultList.suburbid)'>{{resultList.suberb}}<span>20500</span></a></li>
+
+          <div class="filter-heading"> <i class="fa fa-map-marker"></i> Location </div>
+          <ul  >
+            <li ng-repeat="resultList in resultList.advertisments | unique:'location'">
+            	<a href="" ng-click='setParams("location",resultList.lalias)'>{{resultList.location}}<span>20500</span></a>
+            </li>
           </ul>
-       
-           <div class="filter-heading">
-          <i class="fa fa-th-list"></i> Category </div>
-          <ul ng-repeat="resultList in resultList.advertisments | unique:'category'">
-            <li><a href="" ng-click='setParamsCat(resultList.categoryid)'>{{resultList.category}}<span>20500</span></a></li>
-            
+          <div class="filter-heading"> <i class="fa fa-map-marker"></i> Suberb </div>
+          <ul>
+            <li ng-repeat="resultList in resultList.advertisments | unique:'suburbid'">
+            	<a href="" ng-click='setParams("suburb",resultList.sub_alias)'>{{resultList.suberb}}<span>20500</span></a>
+            </li>
           </ul>
-          <div class="filter-heading">
-          <i class="fa fa-usd"></i> Price Range </div>
+          <div class="filter-heading"> <i class="fa fa-usd"></i> Price Range </div>
           <div class="filter-content"></div>
           <ng-include src="'app/partials/resultListing/subscribe.html'"></ng-include>
-      </div>
-      <div class="col-lg-9" >
-        <div id="products" class="row list-group" >
+        </div>
+        <div class="col-lg-9" >
+          <div id="products" class="row list-group" >
             <div class="item  col-xs-6 col-sm-6 col-md-4 col-lg-4 grid-group-item"  ng-repeat="resultList in resultList.advertisments">
-                <div class="thumbnail" ng-click="go('/details-view/{{resultList.aid}}')">
-             <img class="group list-group-image" ng-src="../../../api/uploads/advertisement/{{resultList.advertisement_image}}" alt="" />
-                    <div class="caption">
-                      <div class="details">
-                        <h4 class="group inner list-group-item-heading">
-                           {{resultList.advertisement_title}}</h4>
-                        <p class="group inner list-group-item-text">
-                          <span class="datestamp"> {{resultList.date}} {{resultList.time}}</span>
-                            Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                            </div>
-                        <div class="price">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="rating">######</span>
-                              <span class="comments">5 Comments</span>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                              <span class="price-tag"> {{resultList.price}}</span>
-                            </div>
-                        </div>
-                        </div>
+              <div class="thumbnail" ng-click="go('/details-view/'+resultList.aid)"> <img class="group list-group-image" ng-src="../../../api/uploads/advertisement/{{resultList.advertisement_image}}" alt="" />
+                <div class="caption">
+                  <div class="details">
+                    <h4 class="group inner list-group-item-heading"> {{resultList.advertisement_title}}</h4>
+                    <p class="group inner list-group-item-text"> <span class="datestamp"> {{resultList.date}} {{resultList.time}}</span>									
+                    	{{resultList.advertisement_description}}
+                    </p>
+                  </div>
+                  <div class="price">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-6 col-md-6"> <span class="rating">######</span> <span class="comments">5 Comments</span> </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6"> <span class="price-tag"> {{resultList.price}}</span> </div>
                     </div>
+                  </div>
                 </div>
-            </div> 
-           </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="pagination pull-right"> << < 1 | 2 | 3 > >></div>
       </div>
-
     </div>
   </div>
   </div>
