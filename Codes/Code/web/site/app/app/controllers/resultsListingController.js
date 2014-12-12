@@ -47,7 +47,7 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 			default:
 				params['category'] = $routeParams.parent_id
 		}
-		console.log(params['suburb'])
+		//console.log(params['suburb'])
 		var str = '/show-list/'
 		if(params['category']!='undefined')
 		str += params['category']
@@ -63,14 +63,22 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		if(params['suburb']!='undefined')
 		str += '-at-'+params['suburb']
 		
-		console.log(str)
-		console.log(params)
-		//$scope.go(str)
+		//console.log(str)
+		//console.log(params)
+		$scope.go(str)
 		//var url = '/show-list'
 		//for(i in params)
 		//url += '/'+params[i]
 		//console.log(url)
 		//$scope.resultList = resultsListingFactory.getResultList(params);
 	}
+	$scope.isList = true
 	
+	$scope.changeView = function(param){
+		if(param=='grid'){
+			$scope.isList = true
+		}else{
+			$scope.isList = false
+		}
+	}
 }

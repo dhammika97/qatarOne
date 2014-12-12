@@ -43,8 +43,8 @@
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">...</a></li>
               </ul>
             </li>
-            <li role="presentation"><a href="" id="grid"><i class="fa fa-th-large fa-lg"></i></a></li>
-            <li role="presentation"><a href="" id="list"><i class="fa fa-th-list fa-lg"></i></a></li>
+            <li role="presentation"><a href="" ng-click="changeView('grid')"><i class="fa fa-th-large fa-lg"></i></a></li>
+            <li role="presentation"><a href="" ng-click="changeView('list')"><i class="fa fa-th-list fa-lg"></i></a></li>
           </ul>
         </div>
       </div>
@@ -79,8 +79,9 @@
           <ng-include src="'app/partials/resultListing/subscribe.html'"></ng-include>
         </div>
         <div class="col-lg-9" >
-          <div id="products" class="row list-group" >
-            <div class="item  col-xs-6 col-sm-6 col-md-4 col-lg-4 grid-group-item"  ng-repeat="resultList in resultList.advertisments">
+        {{isList}}
+          <div id="products" class="row" >
+            <div class="item  col-xs-6 col-sm-6 col-md-4 col-lg-4" ng-class="{'grid-group-item':isList, 'list-group-item':!isList}"  ng-repeat="resultList in resultList.advertisments">
               <div class="thumbnail" ng-click="go('/details-view/'+resultList.aid)"> <img class="group list-group-image" ng-src="../../../api/uploads/advertisement/{{resultList.advertisement_image}}" alt="" />
                 <div class="caption">
                   <div class="details">
