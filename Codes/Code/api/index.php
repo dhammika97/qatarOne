@@ -1809,6 +1809,41 @@ $app->get('/similarItems', function()  {
 			}
 		});
 
+	/**
+ * User Profile
+ * url - /userProfile/:id
+ * method - POST
+ * params - $user Profile object
+ */
+$app->put('/userProfile/:id', function($id) use ($app) {
+            
+        $users  = array();
+		$response = array();
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+
+		$userProfile = $request->getBody();
+		//echo print_r($users);	
+		
+		if($userProfile['user_confirmPassword']!=$userProfile['user_confirmPassword']){
+			$response["error"] = true;
+			$response["message"] = "Password mis-matched!";
+			echoRespnse(409, $response);
+			return;
+		}else{
+				
+				$userProfile['user_password']=md5($userProfile['user_confirmPassword']);
+				unset($userProfile['user_New_password']);
+				unset($userProfile['user_confirmPassword']);
+				var_dump($userProfile);
+			 if($DbHandler->updateUserProfile($id,$userProfile)){
+				$response["error"] = false;
+				$response["message"] = "User Profile details updated suceesfully";
+				echoRespnse(200, $response);
+			}
+		}
+});
+
 $app->run();
 		
 		

@@ -62,7 +62,9 @@ class DbHandler {
 	public function GetUserDetail($user_id) {
 		$db = new database();
 		$table = 'user';
-		$rows ='*';
+		$rows = 'user_id,user_username,user_email, user_firstname,'.
+				'user_lastname,user_address1,user_address2, user_city,user_contactNo,'.
+				'user_registeredDate,user_type,user_status, user_accessToken';
 		$where = 'user_id = "'.$user_id.'"';	
 		$db->selectJson($table,$rows,$where,'','','');
 		$user = $db->getJson();
@@ -1320,6 +1322,18 @@ public function getSimilarItems($params){
 		$db->selectJson ( $table, $rows, $where, $order_by, '' );
 		$add = $db->getJson ();
 		return $add;
+	}
+
+	public function updateUserProfile($user_id, $userProfile){
+		$db = new database();	
+		$table = 'user';
+		$rows  = $userProfile ;//.$userProfile['user_id'].		
+		$where = 'user_id = "'.$user_id.'"';
+		if($db->update($table,$rows,$where) ){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	
