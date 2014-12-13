@@ -18,14 +18,15 @@ App.factory('settingFactory',function($resource){
     });
 
 
-	factory.saveUserSetting = function($scope,id){
+	factory.saveUserSetting = function($scope,id,ngProgress,$timeout){
 
-		alert($scope.userSetting.user[0].user_confirmPassword);
+		//alert($scope.userSetting.user[0].user_confirmPassword);
 		//ngProgress.start()
 
-		if($scope.userSetting.user[0].user_New_password==$scope.userSetting.user[0].user_confirmPassword){			
+		// if($scope.userSetting.user[0].user_New_password==$scope.userSetting.user[0].user_confirmPassword){			
 			return userProfile.update({id:id},$scope.userSetting.user[0])
-			.$promise.catch(function(e){
+			.$promise.catch(function(e){	
+				//console.log(e.data)			
 				$scope.addAlert('danger',e.data.message)
 				ngProgress.complete()
 				$timeout(function(){
@@ -33,21 +34,21 @@ App.factory('settingFactory',function($resource){
 				}, 3000);
 			}).then(
 			function(value){
+				//console.log(value)
 				$scope.addAlert('success',value.message)
 				ngProgress.complete()
 				$timeout(function(){
-					$scope.closeAlert();
-					//$location.path('/packages-view')
+					$scope.closeAlert();					
 				}, 2000);
 			})	
-		}else{
-			alert('false');
-			$scope.addAlert('danger','Password mis-matched!')
-			ngProgress.complete()
-			$timeout(function(){
-				$scope.closeAlert();
-			}, 3000);
-		}
+		//}
+		// else{			
+		// 	$scope.addAlert('danger','Password mis-matched!')
+		// 	ngProgress.complete()
+		// 	$timeout(function(){
+		// 		$scope.closeAlert();
+		// 	}, 3000);
+		// }
 	}
 	return factory
 })
