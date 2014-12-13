@@ -141,6 +141,68 @@ function sendMail($content, $headers){
                             </html>';
              
              break;
+             case 'changePassword':
+             $subject ='Qatar One - Change password';
+             $message = '
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'<br>
+                                </p> 
+                                please use the link below to reset you password, if you did not request to change your
+                                password please inform the administrator<br>
+                                http://kasunengineers.com/qone/web/site/app/#/login <br>
+                                Thank You!<br>
+                                 
+                                <p>
+                                Best Regards!<br>
+                                Team Qatar One
+                                </p>
+                                  
+                            </body>
+                            </html>';
+             
+             break;
+             case 'changedPassword':
+             $subject ='Qatar One - Password successfully changed';
+             $message = '
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'<br>
+                                </p> 
+                                Your password successfully changed<br>
+                                Thank you!
+                                <p>
+                                Best Regards!<br>
+                                Team Qatar One
+                                </p>
+                                  
+                            </body>
+                            </html>';
+             
+             break;
+             case 'subscribe':
+             $subject ='Qatar One - You have successfully subscribed';
+             $message = '
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'<br>
+                                </p> 
+                                You have successfully subscribed to qatar one news letter, You will recive news letter now on<br>
+                                Thank you</br>
+                                <p>
+                                Best Regards!<br>
+                                Team Qatar One
+                                </p>
+                                  
+                            </body>
+                            </html>';
+             
+             break;
+
+
      } 
 
     if(mail($content['to'], $subject, $message, $headers)) return true; else return false;
