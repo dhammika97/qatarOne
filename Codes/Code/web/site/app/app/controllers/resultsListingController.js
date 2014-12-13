@@ -15,6 +15,9 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	params['sortby'] = ''
 	params['pricerangegreaterthan'] = ''
 	params['pricerangelessthan'] = ''
+	
+	$scope.parameters = params
+	
 	$scope.resultList = resultsListingFactory.getResultList(params);
 	
 	$scope.setParams = function(key,value){
@@ -52,25 +55,17 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		if(params['category']!='undefined')
 		str += params['category']
 		
-		if(params['subcategory']!='undefined')
+		if(typeof params['subcategory'] != 'undefined')
 		str += '-on-'+params['subcategory']
 		
 		str += '-in-'
-		
-		if(params['location']!='undefined')
+		if(typeof params['location'] != 'undefined')
 		str += params['location']
 		
-		if(params['suburb']!='undefined')
+		if(typeof params['suburb'] != 'undefined')
 		str += '-at-'+params['suburb']
 		
-		//console.log(str)
-		//console.log(params)
 		$scope.go(str)
-		//var url = '/show-list'
-		//for(i in params)
-		//url += '/'+params[i]
-		//console.log(url)
-		//$scope.resultList = resultsListingFactory.getResultList(params);
 	}
 	$scope.isList = true
 	

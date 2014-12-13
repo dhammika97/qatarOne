@@ -1,4 +1,4 @@
-<section class="search-bar">
+<!--<section class="search-bar">
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-4 keyword"><input type="text" class="form-control" id="keyword" placeholder="What are you lookig for ?"></div>
@@ -26,18 +26,15 @@
         </div>
       </div>
     </section>
-
+-->
 <section class="main-page" ng-controller="addvertismentController">  
-<<<<<<< HEAD
 <div class="shadow"></div>
-=======
->>>>>>> 3dad92a6e1e87e0d67df98a1d7d77a0084ed7080
   <div class="breadcrumb-bar">
     <div class="container">
       <div class="row">
         <ul class="pull-left">
-          <li><a href="">All Ads</a></li>
-          <li><a href="">{{adversiment.advertisment[0].category_sub_name}}</a></li>
+          <li><a href="#/portal/classified">All Ads</a></li>
+          <li><a href="javascript:history.go(-1)">{{adversiment.advertisment[0].category_sub_name}}</a></li>
         </ul>
         <a class="pull-right back-link">Back to categories</a> </div>
     </div>
@@ -49,7 +46,7 @@
           <h2>{{adversiment.advertisment[0].advertisement_title}}</h2>
           <span>Posted by {{adversiment.advertisment[0].advertisement_contactName}}, {{adversiment.advertisment[0].date}} 
           {{adversiment.advertisment[0].time}}, {{adversiment.advertisment[0].location_name}}</span> </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rating-bar text-right"> <span class="rating">######</span> <span class="comments">5 Comments</span> </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rating-bar text-right"> <span class="rating">######</span> <span class="comments">{{comments.comments.length}} Comments</span> </div>
       </div>
       <!--addvertisment--> 
     </div>
@@ -75,8 +72,10 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ad-price">{{adversiment.advertisment[0].advertisement_price}}</div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ad-location text-right">Location<span> {{adversiment.advertisment[0].suburb_name}}, {{adversiment.advertisment[0].location_name}}</span></div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="Flexible-container"> 
-                <iframe width="600" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Bern&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe> 
+              <div class="Flexible-container">
+              	
+              	<div id="map-canvas" style="height:100%; top:0; bottom:0; left:0; right:0; position:absolute" data-tap-disabled="true"></div>
+                <!--<iframe width="600" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Bern&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>--> 
               </div>
               <p>{{adversiment.advertisment[0].advertisement_description}}</p>
               <!--{{adversiment.advertisment[0].advertisement_attributes}}-->
@@ -96,10 +95,10 @@
       <div class="row">
            
               <div class="col-lg-7 col-md-7 comments-box">
-                <h2>Comments</h2>             
+                <h2>Comments</h2>         
                 <div class="detailBox">               
                      <div class="actionBox">
-                      <form class="form-inline" role="form">
+                      <form class="form-inline" role="form" ng-if="username">
                             <div class="form-group">
                                 <input class="form-control" type="text" ng-model="comment.body" placeholder="Your comments" />
                             </div>
@@ -107,7 +106,7 @@
                                 <button class="btn btn-default" ng-click="addComment()">Add</button>
                             </div>
                         </form>
-                        <ul class="commentList" ng-repeat="comment in comments.comments">
+                        <ul class="commentList" ng-if="comments.comments.length > 0" ng-repeat="comment in comments.comments">
                             <li>                                
                                 <div class="commentText">
                                     <p class="">{{comment.Comment}}.</p> <span class="date sub-text">on {{comment.comment_Date}}</span>
@@ -116,6 +115,14 @@
                             </li>
                         </ul>
                         
+                        <ul class="commentList" ng-if="!comments.comments.length > 0" >
+                            <li>                                
+                                <div class="commentText">
+                                    <p ng-if="username">No comments made yet.. be the first one to comment</p>
+									<p ng-if="!username">No comments made yet.. please login to comment </p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
               </div>
@@ -123,7 +130,7 @@
                 <h2>Ratings &amp; Reviews</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dignissim mauris eu lectus sagittis, vel egestas nulla iaculis. Pellentesque vestibulum velit vitae tempor commodo</p>
                 <span class="rating">######</span>
-            <span class="comments">5 Comments</span>
+            <span class="comments">{{comments.comments.length}} Comments</span>
               </div>
             </div>
             <div class="viewer-btn"><i class="fa fa-angle-double-up fa-2x"></i></div>

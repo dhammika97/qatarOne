@@ -12,8 +12,12 @@ App.factory('advertismentFactory',function($resource){
 	
 	var factory = {}
 	
-	factory.getAdd = function(id){
-		return advertisment.get({'id':id})
+	factory.getAdd = function(id, ngProgress, $scope){
+		return advertisment.get({'id':id}).$promise.then(
+			function(e){
+				$scope.mapLoad(e)
+			}
+		)
 	}
 	
 	

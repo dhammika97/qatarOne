@@ -41,10 +41,11 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="pull-left count">Mobile Phones</div>
+          
         </div>
         <div class="col-lg-6 filters">
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="dropdown"> <a id="drop6" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false"> Filter By <span class="caret"></span> </a>
+            <li class="dropdown"> <a id="drop6" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false"> Filter By <span class="caret"></span> </a>
               <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop6">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Lowest Price</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Highest Price</a></li>
@@ -52,8 +53,8 @@
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">...</a></li>
               </ul>
             </li>
-            <li role="presentation"><a href="" ng-click="changeView('grid')"><i class="fa fa-th-large fa-lg"></i></a></li>
-            <li role="presentation"><a href="" ng-click="changeView('list')"><i class="fa fa-th-list fa-lg"></i></a></li>
+            <li ><a href="" ng-click="changeView('grid')"><i class="fa fa-th-large fa-lg"></i></a></li>
+            <li ><a href="" ng-click="changeView('list')"><i class="fa fa-th-list fa-lg"></i></a></li>
           </ul>
         </div>
       </div>
@@ -72,7 +73,7 @@
           </ul>
 
           <div class="filter-heading"> <i class="fa fa-map-marker"></i> Location </div>
-          <ul  >
+          <ul>
             <li ng-repeat="resultList in resultList.advertisments | unique:'location'">
             	<a href="" ng-click='setParams("location",resultList.lalias)'>{{resultList.location}}<span>20500</span></a>
             </li>
@@ -88,7 +89,6 @@
           <ng-include src="'app/partials/resultListing/subscribe.html'"></ng-include>
         </div>
         <div class="col-lg-9" >
-        {{isList}}
           <div id="products" class="row" >
             <div class="item  col-xs-6 col-sm-6 col-md-4 col-lg-4" ng-class="{'grid-group-item':isList, 'list-group-item':!isList}"  ng-repeat="resultList in resultList.advertisments">
               <div class="thumbnail" ng-click="go('/details-view/'+resultList.aid)"> <img class="group list-group-image" ng-src="../../../api/uploads/advertisement/{{resultList.advertisement_image}}" alt="" />

@@ -1,6 +1,7 @@
-controllers.addvertismentController= function($scope,advertismentFactory, $routeParams, ngProgress){
+controllers.addvertismentController= function($scope,advertismentFactory, $routeParams, ngProgress, $timeout){
 	//ngProgress.start()
-	var tmp = $scope.adversiment = advertismentFactory.getAdd($routeParams.id, ngProgress);
+	advertismentFactory.getAdd($routeParams.id, ngProgress, $scope);
+	
 	advertismentFactory.getSimilarItems($scope,$routeParams.id); 
 
 	 // $scope.similarItems2 = advertismentFactory.getSimilarItems($routeParams.id); 
@@ -36,6 +37,25 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	$scope.addComment = function(){
 		advertismentFactory.addComment($scope, $routeParams.id);
 	}
+	
+	$scope.mapLoad = function(e){
+		$scope.adversiment = e
+		$scope.latlang = $scope.adversiment['advertisment'][0].suburb_cordinates
+		var cordinates = $scope.latlang.split(',')
+		var myLatlng = new google.maps.LatLng(cordinates[0],cordinates[1])
+		var mapOptions = {
+			center:  myLatlng,
+			disableDefaultUI: true,
+			zoom: 14
+		}
+		var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		new google.maps.Marker({
+			position: myLatlng,
+			map: map,
+			animation: google.maps.Animation.DROP
+		});
+	}
+	
 }
 
 controllers.advertismentAddController = function($scope, advertismentFactory, FileUploader, ngProgress, $timeout){
