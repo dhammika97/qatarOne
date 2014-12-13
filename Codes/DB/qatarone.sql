@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2014 at 06:10 AM
+-- Generation Time: Dec 13, 2014 at 06:29 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -306,8 +306,8 @@ INSERT INTO `locations` (`location_id`, `location_name`, `location_alias`, `loca
 (1, 'Anuradhapura', 'anuradhapura', '48.124587,59.215478'),
 (2, 'Wadduwa', 'wadduwa', '48.124587,59.215478'),
 (4, 'Hambanthota', 'hambanthota', '5646546546'),
-(6, 'asdasdasd asdasd', 'asdasdasd-asdasd', 'asdasdasdasd'),
-(7, 'test location', 'test-location', 'asdasd');
+(6, 'Colombo', 'colombo', '40.124578, 82.256894'),
+(7, 'Galle', 'galle', '5.124587, 10.25698');
 
 -- --------------------------------------------------------
 
@@ -431,12 +431,12 @@ CREATE TABLE IF NOT EXISTS `suburbs` (
 --
 
 INSERT INTO `suburbs` (`suburb_id`, `suburb_location_id`, `suburb_name`, `suburb_alias`, `suburb_cordinates`) VALUES
-(1, 1, 'test', 'test', '89.124575,102.457832'),
-(3, 2, 'Kolkata', 'kolkata', '45.78451,68.124578'),
-(4, 2, 'asdasd', 'asdasd', 'asdasd'),
-(5, 1, 'Talawa', 'talawa', '12254544'),
-(6, 2, 'location val 6', 'location-val-6', 'aASD'),
-(7, 1, 'test test test', 'test-test-test', 'sdfsdf');
+(1, 6, 'Battaramulla', 'battaramulla', '89.124575,102.457832'),
+(3, 6, 'Nugegoda', 'nugegoda', '45.78451,68.124578'),
+(4, 6, 'Maharagama', 'maharagama', '41.25487, 20.148752'),
+(5, 6, 'Rajagiriya', 'rajagiriya', '12.457895, 10.254786'),
+(6, 6, 'Colombo 6', 'colombo-6', '10.25478, 82.21547'),
+(7, 6, 'Dehiwala', 'dehiwala', '21.36589, 12.5487965');
 
 -- --------------------------------------------------------
 
