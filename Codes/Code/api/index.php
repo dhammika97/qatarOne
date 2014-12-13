@@ -1831,7 +1831,23 @@ $app->put('/userProfile/:id', function($id) use ($app) {
 					echoRespnse(200, $response);
 		}
 });
-
+$app->post('/mail', function() {
+			$request = \Slim\Slim::getInstance()->request();
+			$content = $request->getBody();
+			$response = array();
+			$headers  = 'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$headers .= 'From: dhammika <dhammika97@gmail.com>' . "\r\n";
+			if (sendMail($content, $headers)) {
+				$response["error"] = false;
+				$response["message"] = "Mail successfully sent";
+				echoRespnse(200	, $response);
+			} else {
+				$response["error"] = true;
+				$response["message"] = "Something wrong, mail not sent";
+				echoRespnse(404, $response);
+			}
+		});
 $app->run();
 		
 		

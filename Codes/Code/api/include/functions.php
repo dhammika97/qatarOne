@@ -7,9 +7,9 @@ function echoRespnse($status_code, $response) {
 
     // setting response content type to json
     $app->contentType('application/json');
-	
+    
     echo json_encode($response);
-		
+        
 }
 
 
@@ -51,6 +51,99 @@ function validateEmail($email) {
         echoRespnse(400, $response);
         $app->stop();
     }
+}
+
+
+function sendMail($content, $headers){
+
+
+    switch ($content['mailType']) {
+         case 'advertismentAdd':
+             $subject ='Qatar One - Addvertisment successfully added';
+             $message = '
+    
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'
+                                </p>
+                                <p>
+                                Your advertisment is successfully added, You will recive an Email once <br>
+                                it is published by an administrator<br> 
+                                Thank you for connecting with Qatar One<br>
+                                </p>
+                                <p>
+                                    Best Regards!<br>
+                                    Team Qatar One
+                                </p>
+                                  
+                            </body>
+                            </html>';
+             break;
+         case 'advertismentStatusUpdate':
+             $subject ='Qatar One - Addvertisment published';
+             $message = '
+    
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'<br>
+                                Congratulations!, Your advertisment is published on Qatar One website
+                                </p>
+                                <p>
+                                Best Regards!<br>
+                                Team Qatar One
+                                </p>
+                                  
+                            </body>
+                            </html>';
+             
+             break;
+        case 'registrationActivation':
+             $subject ='Qatar One - Please confirm your email account';
+             $message = '
+    
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'<br>
+                                
+                                </p> 
+                                You have successfully registred to Qatar One, Please clck the link below in order to 
+                                login<br>
+                                http://kasunengineers.com/qone/web/site/app/#/login <br>
+                                <p>
+                                Best Regards!<br>
+                                Team Qatar One
+                                </p>
+                                  
+                            </body>
+                            </html>';
+             
+             break;
+        case 'registrationactivated':
+             $subject ='Qatar One - You have registred successfully';
+             $message = '
+    
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'<br>
+                                </p> 
+                                Congratulations! You have successfully registred to Qatar One<br>
+                                
+                                <p>
+                                Best Regards!<br>
+                                Team Qatar One
+                                </p>
+                                  
+                            </body>
+                            </html>';
+             
+             break;
+     } 
+
+    if(mail($content['to'], $subject, $message, $headers)) return true; else return false;
 }
 
 ?>
