@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.0.9
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2014 at 07:27 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Generation Time: Dec 13, 2014 at 06:10 AM
+-- Server version: 5.6.14
+-- PHP Version: 5.5.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,10 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `quatarone`
+-- Database: `qatarone`
 --
-CREATE DATABASE IF NOT EXISTS `quatarone` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `quatarone`;
 
 -- --------------------------------------------------------
 
@@ -33,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `advertisement_images` (
   `advertisement_id` int(11) NOT NULL,
   `advertisement_image` varchar(255) NOT NULL,
   PRIMARY KEY (`advertisement_imageId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `advertisement_images`
@@ -52,7 +50,14 @@ INSERT INTO `advertisement_images` (`advertisement_imageId`, `advertisement_id`,
 (16, 35, '5843C4B1899D5B6C68A5FEE4BE879850MBP2488.jpg'),
 (17, 36, '661B81AD99A35D5559FE456436C523DAInterior-Bar-Nashville-Set.jpg'),
 (18, 37, '939101EEFF0449E2729F20855CAC74BBMBP2488.jpg'),
-(19, 38, '33EEF74E0D8A39C4A6C7B90BFE92AF07MBP2488.jpg');
+(19, 38, '33EEF74E0D8A39C4A6C7B90BFE92AF07MBP2488.jpg'),
+(24, 42, 'BF436C74945D218DBFB3078DA0103F0FIMG_3710.JPG'),
+(25, 42, '5A29B70E6EFC6F7612B68842C6431C42IMG_3711.JPG'),
+(26, 43, '9BA96D40C21CDA308E144928BF20E1D9IMG_3709 - Copy.JPG'),
+(27, 43, 'C6B2DC01AE22DD91EBA65E916FD54388IMG_3709.JPG'),
+(28, 45, 'DCEFA23C591F9B679542F1E63174954AMBP2488.jpg'),
+(29, 46, '3B11C393FAABC94BD3F199FAA904612CSmartphone.jpg'),
+(30, 46, '3CB2ECCF4B3CE5410AD8256AB41ED26DSmartphone.jpg');
 
 -- --------------------------------------------------------
 
@@ -79,25 +84,21 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
   `advertisement_expire` datetime NOT NULL,
   `advertisement_addedBy` int(11) NOT NULL,
   PRIMARY KEY (`advertisment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 --
 -- Dumping data for table `advertisment`
 --
 
 INSERT INTO `advertisment` (`advertisment_id`, `advertisement_categoryId`, `advertisement_subCategoryId`, `advertisement_attributes`, `advertisement_title`, `advertisement_description`, `advertisement_price`, `advertisement_contactName`, `advertisement_contactNo`, `advertisement_contactEmail`, `advertisement_location`, `advertisement_suburb`, `advertisement_googleCodes`, `advertisement_date`, `advertisement_status`, `advertisement_expire`, `advertisement_addedBy`) VALUES
-(27, 5, 13, '{"test":"sdfsdf"}', 'asasd', 'sdfsdf', '123', 'asasd', '234', 'ass@sdfsdf', 1, 1, '6.934023, 79.845219', '2014-12-08 19:19:27', 0, '2015-03-08 00:00:00', 31),
-(28, 5, 12, '[{"make":"tata","model":"Corolla 110","year":"2000","bodyType":"MVP","condition":"Recondition","transmission":"Manual","fuelType":"Diesel"}]', 'Toyota Corolla', 'Mint Condition', '1400000', 'Dhammika', '777339803', 'dhammika97@gmail.com', 1, 1, '6.934023, 79.845219', '2014-12-09 12:07:25', 0, '2015-03-08 00:00:00', 31),
-(29, 4, 10, '""', 'asd', 'sdsd', '0', 'dsdf', '23123', 'sdfs@sdsd', 1, 1, '6.934023, 79.845219', '2014-12-10 11:15:29', 0, '2015-03-10 00:00:00', 1),
-(30, 4, 9, '{"brand":"acer","touchscreen":true,"replica":true}', 'sdfsdf', 'sfsdfsdf', '123', 'sdfsdf', '123', 'sdsd@sfsdf', 1, 1, '6.934023, 79.845219', '2014-12-10 11:31:50', 0, '2015-03-10 00:00:00', 1),
-(31, 4, 15, '""', 'adasd', 'sdfsdf', '0', 'asdasd', '123', 'sdd@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-10 11:34:05', 0, '2015-03-10 00:00:00', 1),
-(32, 4, 9, '{"brand":"samsung"}', 'sdfsdf', 'sdfsdf', '0', 'sdfsdf', 'sdfdf', 'sdfsd@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-10 11:35:49', 0, '2015-03-10 00:00:00', 1),
-(33, 4, 9, '{"brand":"samsung"}', 'sdfsdf', 'sdfsdf', '0', 'sdfsdf', 'sdfdf', 'sdfsd@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-10 11:35:57', 0, '2015-03-10 00:00:00', 1),
-(34, 4, 9, '{"brand":"htc","touchscreen":true}', 'zssd', 'asdasd', '123', 'sdfsdf', '234', 'test@sdf', 2, 3, '6.934023, 79.845219', '2014-12-10 17:12:19', 0, '2015-03-10 00:00:00', 32),
-(35, 11, 20, '{"bedrooms":"3","bathrooms":"2","houseSize":"2341","landSize":"9.5"}', 'rwerwr  werwerwe rwer w', 'awdsd adsa dasd asd asd', '0', 'asdasd asd ad', '12345', 'sdfsd@sdfsd', 2, 6, '6.934023, 79.845219', '2014-12-10 17:24:21', 0, '2015-03-10 00:00:00', 32),
-(36, 6, 11, '""', 'asdasd', 'dfsdf', '234', 'adasdasd2', '234234', 'sdfsdf@sdfsdf', 1, 1, '6.934023, 79.845219', '2014-12-10 17:27:59', 0, '2015-03-10 00:00:00', 32),
-(37, 9, 17, '{"jobType":"Part time","landSize":"Qatar one sfdsfdfsdf"}', 'web developer', 'web developer', '0', 'asdas', '23423', 'sdf@sdf', 2, 3, '6.934023, 79.845219', '2014-12-10 17:30:44', 0, '2015-03-10 00:00:00', 32),
-(38, 11, 22, '{"landSize":"25"}', 'sds sdf sdf sdf', 'ewr wer weroi jjwjer weri wier iwuerw er', '234', 'sdfsd sdf sdf', '35345', 'sdfs@dfdfg', 1, 5, '6.934023, 79.845219', '2014-12-10 17:32:39', 0, '2015-03-10 00:00:00', 32);
+(39, 3, 23, '""', 'asdasd', 'sdfsdf', '123', 'sdasda asd asd', '234234234', 'sdsdf@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-11 17:13:03', 1, '2015-03-11 00:00:00', 1),
+(40, 15, 26, '""', 'asdasd', 'sdsdfsdf', '234', 'sdasdas', '23434', 'ssd@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-11 17:13:09', 1, '2015-03-11 00:00:00', 1),
+(41, 17, 28, '""', 'asdasd asd asd', 'asda sdasd asd asd asd', '123', 'asdasd', '123456', 'asdas@sdfsdf', 2, 3, '6.934023, 79.845219', '2014-12-11 17:13:14', 1, '2015-03-11 00:00:00', 1),
+(42, 23, 29, '{"brand":"apple","touchscreen":true}', 'asdasd asdasd', 'asdasd asd ad', '234', 'asdas asdasd', '412563', 'asdas@sdfsdf', 2, 6, '6.934023, 79.845219', '2014-12-11 17:13:18', 1, '2015-03-11 00:00:00', 1),
+(43, 17, 28, '""', 'asd asd asd asd', 'asdasd asd asd', '1452', 'asdas asd', '123456', 'asd@sdf', 2, 4, '6.934023, 79.845219', '2014-12-11 17:13:22', 1, '2015-03-11 00:00:00', 1),
+(44, 17, 27, '""', 'cable ad', 'sdfsdf d asd', '123', 'sdfsd fsdfs', '234234', 'sdas@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-12 05:07:28', 1, '2015-03-12 00:00:00', 31),
+(45, 3, 23, '""', 'asdasd', 'sdfsdf', '234', 'ssdf sf sdf', '234234234', 'ssdf@sdfsdf', 1, 7, '6.934023, 79.845219', '2014-12-13 04:48:56', 1, '2015-03-13 00:00:00', 31),
+(46, 23, 29, '{"brand":"apple","touchscreen":true}', 'Apple iPhone 5s', 'iPhone 5s for sale. \nPrice negotiable', '100000', 'Dhammika Gunaratne', '123456789', 'dhammika97@gmail.com', 2, 6, '6.934023, 79.845219', '2014-12-13 04:48:59', 1, '2015-03-13 00:00:00', 31);
 
 -- --------------------------------------------------------
 
@@ -109,28 +110,52 @@ CREATE TABLE IF NOT EXISTS `category` (
   `category_id` int(5) NOT NULL AUTO_INCREMENT,
   `category_parentId` int(5) NOT NULL,
   `category_name` varchar(250) NOT NULL,
+  `category_alias` varchar(255) NOT NULL,
   `category_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_enteredBy` int(11) NOT NULL,
   `category_status` int(1) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`category_id`, `category_parentId`, `category_name`, `category_enteredDate`, `category_enteredBy`, `category_status`) VALUES
-(1, 0, 'Classifides', '2014-11-21 06:01:14', 1, 1),
-(2, 0, 'Job Seeker', '2014-11-21 06:02:44', 1, 1),
-(3, 1, 'Antiques', '2014-11-21 09:29:09', 1, 1),
-(4, 1, 'Electronics', '2014-12-06 04:47:51', 1, 1),
-(5, 1, 'Automobile', '2014-12-06 04:49:38', 1, 1),
-(6, 1, 'Books', '2014-11-21 09:29:50', 1, 1),
-(7, 2, 'Accounting/ Finance', '2014-11-21 09:31:54', 1, 1),
-(8, 2, 'Admin/ Human Resources', '2014-11-21 09:31:54', 1, 1),
-(9, 2, 'IT/ Software', '2014-12-08 14:32:43', 1, 1),
-(10, 2, 'IT/ Harware', '2014-12-08 14:32:46', 1, 1),
-(11, 1, 'Property', '2014-12-08 14:32:50', 31, 1);
+INSERT INTO `category` (`category_id`, `category_parentId`, `category_name`, `category_alias`, `category_enteredDate`, `category_enteredBy`, `category_status`) VALUES
+(1, 0, 'Classifides', '', '2014-11-21 06:01:14', 1, 1),
+(2, 0, 'Jobs', '', '2014-11-21 06:02:44', 1, 1),
+(3, 1, 'Antiques', 'antiques', '2014-11-21 09:29:09', 1, 1),
+(6, 1, 'Books', 'books', '2014-11-21 09:29:50', 1, 1),
+(12, 1, 'Art', 'art', '2014-12-11 09:21:53', 1, 1),
+(13, 1, 'Baby', 'baby', '2014-12-11 09:21:57', 1, 1),
+(14, 1, 'Business & Industrial', 'business-industrial', '2014-12-11 09:22:00', 1, 1),
+(15, 1, 'Cameras & Photos', 'cameras-photos', '2014-12-11 09:22:26', 1, 1),
+(16, 1, 'Clothing, Footware & Accessories', 'clothing-footware-accessories', '2014-12-11 09:22:30', 1, 1),
+(17, 1, 'Computer & Tablets', 'computer-tablets', '2014-12-11 09:22:35', 1, 1),
+(18, 1, 'Consumer Electronics', 'consumer-electronics', '2014-12-11 09:22:37', 1, 1),
+(19, 1, 'Crafts', 'crafts', '2014-12-11 09:22:41', 1, 1),
+(20, 1, 'Health & Beauty', 'health-beauty', '2014-12-11 09:22:46', 1, 1),
+(21, 1, 'Home & Garden', 'home-garden', '2014-12-11 09:22:50', 1, 1),
+(22, 1, 'Jewellery & Watches', 'jewellery-watches', '2014-12-11 09:22:52', 1, 1),
+(23, 1, 'Mobile phone & Accessories', 'mobile-phone-accessories', '2014-12-11 09:22:55', 1, 1),
+(24, 1, 'Musical Instruments', 'musical-instruments', '2014-12-11 09:22:57', 1, 1),
+(25, 1, 'Real Estate', 'real-estate', '2014-12-11 09:23:01', 1, 1),
+(26, 1, 'Sporting Goods', 'sporting-goods', '2014-12-11 09:23:04', 1, 1),
+(27, 1, 'Toys & Hobbies', 'toys-hobbies', '2014-12-11 09:23:06', 1, 1),
+(28, 1, 'Vehicle Part & Accessories', 'vehicle-part-accessories', '2014-12-11 09:23:09', 1, 1),
+(29, 2, 'Accounting & Finance', 'accounting-finance', '2014-12-11 09:23:11', 1, 1),
+(30, 2, 'Admin/ Human Resource', 'admin-human-resource', '2014-12-11 09:23:13', 1, 1),
+(31, 2, 'Arts/ Media/ Communications', 'arts-media-communications', '2014-12-11 09:23:16', 1, 1),
+(32, 2, 'Building Construction', 'building-construction', '2014-12-11 09:23:19', 1, 1),
+(33, 2, 'Computer/ Information Technology', 'computer-information-technology', '2014-12-11 09:23:22', 1, 1),
+(34, 2, 'Education/ Training', 'education-training', '2014-12-11 09:23:24', 1, 1),
+(35, 2, 'Engineering', 'engineering', '2014-12-11 09:23:27', 1, 1),
+(36, 2, 'Hotel/ Restaurent', 'hotel-restaurent', '2014-12-11 09:23:30', 1, 1),
+(37, 2, 'Manufacturing', 'manufacturing', '2014-12-11 09:23:38', 1, 1),
+(38, 2, 'Sales & Marketting', 'sales-marketting', '2014-12-11 09:23:40', 1, 1),
+(39, 2, 'Science', 'science', '2014-12-11 09:23:43', 1, 1),
+(40, 2, 'Services', 'services', '2014-12-11 09:23:45', 1, 1),
+(41, 2, 'Other', 'other', '2014-12-11 09:23:47', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -154,6 +179,7 @@ CREATE TABLE IF NOT EXISTS `categoryattributes` (
 CREATE TABLE IF NOT EXISTS `category_sub` (
   `category_sub_id` int(4) NOT NULL AUTO_INCREMENT,
   `category_sub_name` varchar(250) NOT NULL,
+  `category_sub_alias` varchar(255) NOT NULL,
   `category_sub_tplType` varchar(50) NOT NULL,
   `category_sub_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_sub_enteredBy` int(5) NOT NULL,
@@ -161,26 +187,21 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
   `category_sub_parentId` int(4) NOT NULL,
   PRIMARY KEY (`category_sub_id`),
   KEY `category_sub_id` (`category_sub_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `category_sub`
 --
 
-INSERT INTO `category_sub` (`category_sub_id`, `category_sub_name`, `category_sub_tplType`, `category_sub_enteredDate`, `category_sub_enteredBy`, `category_sub_status`, `category_sub_parentId`) VALUES
-(9, 'Mobile Phones', 'Mobile', '2014-12-07 12:43:59', 4, 0, 4),
-(10, 'Mobile Phone Assessories', 'General', '2014-12-07 12:44:29', 4, 0, 4),
-(11, 'Kids Collection', 'General', '2014-12-07 12:45:08', 6, 0, 6),
-(12, 'Cars', 'Car', '2014-12-07 12:45:56', 5, 0, 5),
-(13, 'Lorries Vans & Busses', 'Auto', '2014-12-07 12:46:24', 5, 0, 5),
-(14, 'Motor Cycle', 'Auto', '2014-12-07 12:46:42', 5, 0, 5),
-(15, 'TV/ Radio', 'General', '2014-12-07 12:54:48', 1, 0, 4),
-(16, 'Yet Another Sub Category', 'General', '2014-12-08 09:48:08', 31, 0, 6),
-(17, 'Web/ UI', 'Job', '2014-12-08 14:35:42', 31, 0, 9),
-(18, 'Network Engineering', 'Job', '2014-12-08 14:36:38', 31, 0, 10),
-(20, 'House', 'Property', '2014-12-10 04:59:41', 31, 0, 11),
-(21, 'Apartment', 'Property', '2014-12-10 05:00:09', 31, 0, 11),
-(22, 'Land', 'Land', '2014-12-10 05:07:08', 31, 0, 11);
+INSERT INTO `category_sub` (`category_sub_id`, `category_sub_name`, `category_sub_alias`, `category_sub_tplType`, `category_sub_enteredDate`, `category_sub_enteredBy`, `category_sub_status`, `category_sub_parentId`) VALUES
+(23, 'Antiquities', 'antiquites', 'General', '2014-12-11 09:27:48', 1, 0, 3),
+(24, 'Antique Books & Manuscripts', 'antique-books-manuscripts', 'General', '2014-12-11 09:28:31', 1, 0, 3),
+(25, 'Camcorders', 'camcorders', 'General', '2014-12-11 09:29:47', 1, 0, 15),
+(26, 'Camera & photo Accessories', 'camera-photo-accessories', 'General', '2014-12-11 09:30:39', 1, 0, 15),
+(27, 'Cables & Connectors', 'cables-connectors', 'General', '2014-12-11 12:12:41', 1, 0, 17),
+(28, 'Desktops', 'desktops', 'General', '2014-12-11 12:13:41', 1, 0, 17),
+(29, 'Mobile Phones', '', 'Mobile', '2014-12-11 12:15:17', 1, 0, 23),
+(30, 'Mobile Phone Accessories', '', 'General', '2014-12-11 12:15:47', 1, 0, 23);
 
 -- --------------------------------------------------------
 
@@ -204,8 +225,8 @@ CREATE TABLE IF NOT EXISTS `events` (
 --
 
 INSERT INTO `events` (`evenet_id`, `event_title`, `event_date`, `event_shortDescription`, `event_description`, `event_image`, `event_status`) VALUES
-(10, 'Test Title', '2014-12-10', 'Test Tile one', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', '6880B31C8FD43AC55D2E47DE3FA1E5AEScreenshot (1).png', 1),
-(11, 'second event', '2014-07-21', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', '13F9F5384610FDAB7BEA89DB3BD79DDC728-x-90.gif', 1);
+(10, 'Test Title', '2014-12-10', 'Test Tile one', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', '366CDA5C04240EFB509B90B13FF094ADIMG_3709 - Copy.JPG', 1),
+(11, 'second event', '2014-07-21', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of typ', '7D808022F03163B376DDE1727983163FIMG_3709.JPG', 1);
 
 -- --------------------------------------------------------
 
@@ -229,13 +250,13 @@ CREATE TABLE IF NOT EXISTS `fixedads` (
 --
 
 INSERT INTO `fixedads` (`fixedads_id`, `fixedads_type`, `fixedads_image`, `fixedads_enetredDate`, `fixedads_url`, `fixedads_status`, `fixedads_title`) VALUES
-(12, 4, '57F9DECE5D89E787703820CDA3E99E0D728-x-90.gif', '2014-12-05 13:39:22', 'http://www.dialog.lk', 1, 'Dialog top add'),
-(13, 5, '863DB708EE07D69EAA38BF72E62A5F5E728-x-90 - Copy.jpg', '2014-12-05 13:38:55', 'http://www.dialog.lk/', 1, 'dialog bottom add'),
-(14, 2, '752108EC3F897B72A7B65CFD9566E14B6591726479222682286.gif', '2014-12-05 13:48:37', 'www.shuboothi.com', 1, 'leftadd'),
-(15, 3, 'B7B9376F9ECB64CF05DF8EFB3419F0B47483126944720115748.png', '2014-12-05 13:49:21', 'www.google.com', 1, 'right'),
-(16, 2, '40ABAFF4265EE3DB7DACB5D10266B2AB15441498865313608811.gif', '2014-12-05 13:56:35', 'www.google.com', 1, 'left'),
-(17, 1, 'E536AD0E9B9B76D1C8BA50E53D0E0D7B728-x-90 - Copy.jpg', '2014-12-05 14:07:48', 'www.dialog.lk', 1, 'top'),
-(18, 3, 'F7CB8713A5AB0E994C8EB1FAD803DA936591726479222682286.gif', '2014-12-05 15:11:50', 'dfgsdfgsd', 1, 'dagd'),
+(12, 4, 'FDD2B152BF31CD4FF1FC8F47D4D6F002728-x-90 - Copy.jpg', '2014-12-05 13:39:22', 'http://www.dialog.lk', 1, 'Dialog top add'),
+(13, 5, '5E6045B8FAA2D56E1F99420BB40A1D0B728-x-90.gif', '2014-12-05 13:38:55', 'http://www.dialog.lk/', 1, 'dialog bottom add'),
+(14, 2, '370BD900C5B3241F25F2E5780BD946706591726479222682286.gif', '2014-12-05 13:48:37', 'www.shuboothi.com', 1, 'leftadd'),
+(15, 3, '4DDDCEA17574A6DE92A0D29A88E431DC7483126944720115748.png', '2014-12-05 13:49:21', 'www.google.com', 1, 'right'),
+(16, 2, 'AECE2071AE28FEB5E17CE3B88AD8276815441498865313608811.gif', '2014-12-05 13:56:35', 'www.google.com', 1, 'left'),
+(17, 1, '99A10816C85217D40013C052535F8B38TalkFloor_CRIBanner5.jpg', '2014-12-05 14:07:48', 'www.dialog.lk', 1, 'top'),
+(18, 3, '29E272A9B35816BCD853E3A47BFFF9E77483126944720115748.png', '2014-12-05 15:11:50', 'dfgsdfgsd', 1, 'dagd'),
 (19, 1, '02A1BA8443B8E1DE6C8B1DBCE658ACD9728-x-90.gif', '2014-12-05 15:51:29', 'sfagsdf', 1, 'top');
 
 -- --------------------------------------------------------
@@ -253,7 +274,15 @@ CREATE TABLE IF NOT EXISTS `item_comments` (
   `comment_addedBy` int(11) NOT NULL,
   `Comment` varchar(255) NOT NULL,
   PRIMARY KEY (`comment_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `item_comments`
+--
+
+INSERT INTO `item_comments` (`comment_Id`, `advertisment_Id`, `comment_Date`, `comment_Time`, `comment_status`, `comment_addedBy`, `Comment`) VALUES
+(1, 46, '2014-12-13', '05:58:13', 1, 33, 'woww....'),
+(2, 46, '2014-12-13', '05:58:28', 1, 33, 'woww....');
 
 -- --------------------------------------------------------
 
@@ -264,19 +293,21 @@ CREATE TABLE IF NOT EXISTS `item_comments` (
 CREATE TABLE IF NOT EXISTS `locations` (
   `location_id` int(5) NOT NULL AUTO_INCREMENT,
   `location_name` varchar(100) NOT NULL,
+  `location_alias` varchar(255) NOT NULL,
   `location_cordinates` varchar(20) NOT NULL,
   PRIMARY KEY (`location_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `locations`
 --
 
-INSERT INTO `locations` (`location_id`, `location_name`, `location_cordinates`) VALUES
-(1, 'Anuradhapura', '48.124587,59.215478'),
-(2, 'Wadduwa', '48.124587,59.215478'),
-(4, 'Hambanthota', '5646546546'),
-(6, 'asdasdasd asdasd', 'asdasdasdasd');
+INSERT INTO `locations` (`location_id`, `location_name`, `location_alias`, `location_cordinates`) VALUES
+(1, 'Anuradhapura', 'anuradhapura', '48.124587,59.215478'),
+(2, 'Wadduwa', 'wadduwa', '48.124587,59.215478'),
+(4, 'Hambanthota', 'hambanthota', '5646546546'),
+(6, 'asdasdasd asdasd', 'asdasdasd-asdasd', 'asdasdasdasd'),
+(7, 'test location', 'test-location', 'asdasd');
 
 -- --------------------------------------------------------
 
@@ -300,8 +331,8 @@ CREATE TABLE IF NOT EXISTS `news` (
 --
 
 INSERT INTO `news` (`news_id`, `news_title`, `news_shortDescription`, `news_Description`, `news_image`, `news_date`, `news_status`) VALUES
-(16, 'News Title', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type', 'B497E8C9C8A19CBD20ADA04F4319613CMBP2488.jpg', '2014-12-04 00:00:00', 1),
-(17, 'sdcsa', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500', 'sDASD', 'BE9C5F766BB753554774C1EBE2CAC2BCMBP2488.jpg', '2014-12-05 00:00:00', 1);
+(16, 'News Title', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type kjh hashd ausd asd asd asd asd asd asd asd asd asd asd a', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type', '03BB9153F7971D6E7F8FD3A9D76821ABIMG_3711.JPG', '2014-12-04 00:00:00', 1),
+(17, 'sdcsa', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500', 'sDASD', 'C99E2B231C92E6AB22C055DA757FAFB1IMG_3713.JPG', '2014-12-05 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -390,20 +421,22 @@ CREATE TABLE IF NOT EXISTS `suburbs` (
   `suburb_id` int(5) NOT NULL AUTO_INCREMENT,
   `suburb_location_id` int(5) NOT NULL,
   `suburb_name` varchar(100) NOT NULL,
+  `suburb_alias` varchar(255) NOT NULL,
   `suburb_cordinates` varchar(20) NOT NULL,
   PRIMARY KEY (`suburb_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `suburbs`
 --
 
-INSERT INTO `suburbs` (`suburb_id`, `suburb_location_id`, `suburb_name`, `suburb_cordinates`) VALUES
-(1, 1, 'test', '89.124575,102.457832'),
-(3, 2, 'kolkata', '45.78451,68.124578'),
-(4, 2, 'asdasd', 'asdasd'),
-(5, 1, 'Talawa', '12254544'),
-(6, 2, 'location val 6', 'aASD');
+INSERT INTO `suburbs` (`suburb_id`, `suburb_location_id`, `suburb_name`, `suburb_alias`, `suburb_cordinates`) VALUES
+(1, 1, 'test', 'test', '89.124575,102.457832'),
+(3, 2, 'Kolkata', 'kolkata', '45.78451,68.124578'),
+(4, 2, 'asdasd', 'asdasd', 'asdasd'),
+(5, 1, 'Talawa', 'talawa', '12254544'),
+(6, 2, 'location val 6', 'location-val-6', 'aASD'),
+(7, 1, 'test test test', 'test-test-test', 'sdfsdf');
 
 -- --------------------------------------------------------
 
