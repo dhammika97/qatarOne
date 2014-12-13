@@ -6,6 +6,7 @@
 <table class="table table-hover tablesorter">
     <thead>
       <tr>
+      	<th>Pkg. Type</th>
         <th>Pkg. Name</th>
         <th>Price</th>
         <th>Limit</th>
@@ -15,6 +16,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="packageType in packageTypes.packageTypes">
+        <td>{{packageType.packageType}}</td>
         <td>{{packageType.package_name}}</td>
         <td>{{packageType.package_price}}</td>
         <td>{{packageType.package_adLimit}}</td>
