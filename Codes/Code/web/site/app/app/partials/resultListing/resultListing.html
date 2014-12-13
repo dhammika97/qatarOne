@@ -91,7 +91,7 @@
         <div class="col-lg-9" >
           <div id="products" class="row" >
             <div class="item  col-xs-6 col-sm-6 col-md-4 col-lg-4" ng-class="{'grid-group-item':isList, 'list-group-item':!isList}"  ng-repeat="resultList in resultList.advertisments">
-              <div class="thumbnail" ng-click="go('/details-view/'+resultList.aid)"> <img class="group list-group-image" ng-src="../../../api/uploads/advertisement/{{resultList.advertisement_image}}" alt="" />
+              <div class="thumbnail" ng-click="go('/details-view/'+resultList.aid)"> <img class="group list-group-image" ng-src="../../../api/uploads/advertisement/{{resultList.image}}" alt="" />
                 <div class="caption">
                   <div class="details">
                     <h4 class="group inner list-group-item-heading"> {{resultList.advertisement_title}}</h4>

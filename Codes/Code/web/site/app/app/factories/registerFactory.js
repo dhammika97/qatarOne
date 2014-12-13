@@ -52,7 +52,8 @@ App.factory('loginFactory',function($resource){
 				$timeout(function(){
 					sessionStorage.setItem("accessKey", data.accessToken);
 					sessionStorage.setItem("username", data.username)
-					$scope.$parent.username = data.username;
+					//$scope.$parent.username = data.username;
+					$scope.setUser(data.username);
 					$scope.closeAlert();
 					$scope.go('/classifieds')
 				}, 2000);

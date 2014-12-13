@@ -24,7 +24,9 @@ controllers.masterController = function($scope, $location, ngProgress, $timeout)
 		$location.path(path)
 	}
 	
-	
+	$scope.setUser = function(data){
+		$scope.username = data	
+	}
 	
 	$scope.$on('$viewContentLoaded', function(){
 		ngProgress.complete()//Here your view content is fully loaded !!
