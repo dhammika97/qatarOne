@@ -120,7 +120,7 @@ header .top-nav ul li.active a { color: white; }
 .main-page .ad-title h2 { font-family: "Roboto", serif; font-weight: 300; font-size: 18px; line-height: 20px; font-size: 1.8rem; line-height: 2rem; }
 .main-page .ad-title span { font-weight: 300; font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; color: #a3a0a0; display: block; }
 .main-page .ad-detail .carousel { display: inline-block; }
-.main-page .ad-detail .carousel .carousel-control { margin-bottom: 80px; }
+.main-page .ad-detail .carousel .carousel-control { /*margin-bottom: 80px;*/ }
 .main-page .ad-detail .carousel .carousel-indicators { bottom: 80px; }
 .main-page .ad-detail ul.thumbnails-carousel { padding: 5px 0 0 0; margin: 0; list-style-type: none; text-align: center; }
 .main-page .ad-detail ul.thumbnails-carousel .center { display: inline-block; }
@@ -213,7 +213,7 @@ header .top-nav ul li.active a { color: white; }
 .modal input { max-width: 300px; }
 .modal label { font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; }
 
-.alert { -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; font-size: 10px; line-height: 14px; font-size: 1rem; line-height: 1.4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+.alert { -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; font-size: 10px; line-height: 14px; font-size: 1rem; line-height: 1.4rem; position: fixed; top: 0; width: 100%; z-index: 1999; }
 
 footer { text-align: center; font-family: "Roboto", serif; background: #f8f8f8; }
 footer p { color: #a3a0a0; font-size: 10px; line-height: 12px; font-size: 1rem; line-height: 1.2rem; font-weight: 300; padding: 30px 0; }
