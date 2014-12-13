@@ -25,8 +25,17 @@
 	<ng-include src="'app/partials/resultListing/slider.html'"></ng-include>
 </section>-->
 
-<section class="main-page">
-  <div class="shadow"></div>
+<section class="main-page">  
+    <div class="breadcrumb-bar">
+    <div class="container">
+      <div class="row">
+        <ul class="pull-left">
+          <li><a href="">All Ads</a></li>
+          <li><a href="">{{adversiment.advertisment[0].category_sub_name}}</a></li>
+        </ul>
+        <a class="pull-right back-link">Back to categories</a> </div>
+    </div>
+  </div>
   <div class="filter-bar">
     <div class="container">
       <div class="row">
