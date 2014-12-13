@@ -87,12 +87,13 @@ private $numrows;
 		if($order!=""){
 			$q .= ' order by '.$order;
 		}
-		if($limit!=""){
-			$q .= ' limit '.$limit;
-		}
 		if($group!=""){
 			$q .= ' group by '.$group;
 		}
+		if($limit!=""){
+			$q .= ' limit '.$limit;
+		}
+		
 		//echo $q;
 		$query = mysqli_query($this->con,$q);
 		$numRows = mysqli_num_rows($query);

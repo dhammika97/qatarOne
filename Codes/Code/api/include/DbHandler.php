@@ -1219,9 +1219,10 @@ public function getSimilarItems($params){
 		$where = 'i.advertisement_id = a.advertisment_id 
 				  AND a.advertisement_subCategoryId	 ="'.$cat['advertisement_subCategoryId'] .'"
 				  AND a.advertisment_id != "'.$aid.'"
-				  AND  a.advertisement_status = "1"';
+				  AND  a.advertisement_status = "1" group by a.advertisment_id';
 		$order_by = 'RAND()';
-		$db->selectJson($table,$rows,$where,$order_by,'');
+		$limit = '4';
+		$db->selectJson($table,$rows,$where,$order_by,$limit = '12');
 		$items = $db->getJson();
 
 		return $items;

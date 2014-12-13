@@ -75,9 +75,12 @@ App.factory('advertismentFactory',function($resource){
 	var similarItems = $resource('../../../api/similarItems/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false }
     });
-	factory.getSimilarItems = function(id){
+	factory.getSimilarItems = function($scope,id){
 
 		return similarItems.query({"advertistment":id})
+				.$promise.then(function(e){
+					$scope.testfunction(e.items)
+				});
 	}
 	var getComments = $resource('../../../api/getComments/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false }

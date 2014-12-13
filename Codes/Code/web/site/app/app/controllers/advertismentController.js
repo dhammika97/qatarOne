@@ -1,10 +1,35 @@
 controllers.addvertismentController= function($scope,advertismentFactory, $routeParams, ngProgress){
 	//ngProgress.start()
 	var tmp = $scope.adversiment = advertismentFactory.getAdd($routeParams.id, ngProgress);
-	$scope.similarItems = advertismentFactory.getSimilarItems($routeParams.id); 
-	$scope.similarItems2 = advertismentFactory.getSimilarItems($routeParams.id); 
-	$scope.similarItems3 = advertismentFactory.getSimilarItems($routeParams.id); 
-	$scope.similarItems4 = advertismentFactory.getSimilarItems($routeParams.id); 
+	advertismentFactory.getSimilarItems($scope,$routeParams.id); 
+
+	 // $scope.similarItems2 = advertismentFactory.getSimilarItems($routeParams.id); 
+	 // $scope.similarItems3 = advertismentFactory.getSimilarItems($routeParams.id); 
+	 // $scope.similarItems4 = advertismentFactory.getSimilarItems($routeParams.id); 
+	
+	 $scope.testfunction = function(data){
+	 	//$scope.similarItems = [{'items':data[0]},{'items':data[1]},{'items':data[2]},{'items':data[3]}]; 
+	 	//$scope.similarItems2 = [{'items':data[4]},{'items':data[5]},{'items':data[6]},{'items':data[7]}]; 
+	 //	$scope.similarItems = [{'items':data[0]},{'items':data[1]},{'items':data[2]},{'items':data[2]}]; 
+	 	
+	 	//console.log(data);
+	 	$scope.item1	= data[0];
+	 	$scope.item2	= data[1];
+	 	$scope.item3	= data[2];
+	 	$scope.item4	= data[3];
+	 	$scope.item5	= data[4];
+	 	$scope.item6	= data[5];
+	 	$scope.item7	= data[6];
+	 	$scope.item8	= data[7];
+	 	$scope.item9	= data[8];
+	 	$scope.item10	= data[9];
+	 	$scope.item11	= data[10];
+	 	$scope.item12	= data[11];
+
+	 	
+	 }
+		
+
 	$scope.attributes = ['one','two','three','four','five']
 	$scope.comments = advertismentFactory.getComments($routeParams.id);
 	//setTimeout(function(){ngProgress.complete()},500)

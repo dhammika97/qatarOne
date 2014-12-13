@@ -27,8 +27,8 @@
       </div>
     </section>
 
-<section class="main-page" ng-controller="addvertismentController">  
-<div class="shadow"></div>
+<section class="main-page" ng-controller="addvertismentController">
+  <div class="shadow"></div>
   <div class="breadcrumb-bar">
     <div class="container">
       <div class="row">
@@ -81,7 +81,7 @@
                 <li >{{attributes}}</li>
               </ul>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 contact-no"> <i class="fa fa-phone fa-2x"></i> {{adversiment.advertisment[0].advertisement_contactNo}} </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 comments-btn text-right"><i class="fa fa-pencil-square-o fa-2x"></i> Comments &amp; Ratings</div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 comments-btn text-right"><i class="fa fa-pencil-square-o fa-2x"></i> Commentents &amp; Ratings</div>
             </div>
           </div>
         </div>
@@ -104,6 +104,7 @@
                                 <button class="btn btn-default" ng-click="addComment()">Add</button>
                             </div>
                         </form>
+
                         <ul class="commentList" ng-repeat="comment in comments.comments">
                             <li>                                
                                 <div class="commentText">
@@ -141,8 +142,8 @@
           <!-- Carousel items -->
           <div class="carousel-inner">
             <div class="item active">
-              <div class="row-fluid">
-                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="item1">
+              <div class="row-fluid" >
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="item1">
                 <a href="#x" class="thumbnail"><img ng-src="../../../api/uploads/advertisement/{{item1.advertisement_image}}" alt="Image" style="max-width:100%;" /></a>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="item2">
@@ -153,11 +154,13 @@
                 </div>
                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="item4">
                 <a href="#x" class="thumbnail"><img ng-src="../../../api/uploads/advertisement/{{item4.advertisement_image}}" alt="Image" style="max-width:100%;" /></a>
-                </div>            
+                </div>
+              
               </div>
               <!--/row-fluid--> 
             </div>
             <!--/item-->
+            
             <div class="item">
               <div class="row-fluid">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="item5">
@@ -178,9 +181,10 @@
               </div> 
               
             </div>
+          
             <div class="item">
-              <div class="row-fluid" >
-                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="item9">
+              <div class="row-fluid">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="item9">
 
                 <a href="#x" class="thumbnail"><img ng-src="../../../api/uploads/advertisement/{{item9.advertisement_image}}" alt="Image" style="max-width:100%;" /></a></div>
                 
@@ -194,10 +198,9 @@
  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="item12 ">
                 <a href="#x" class="thumbnail"><img ng-src="../../../api/uploads/advertisement/{{item12.advertisement_image}}" alt="Image" style="max-width:100%;" /></a>
                 </div>
-              <!--/row-fluid--> 
+              </div>
             </div>
-            
-            <!--/item--> 
+                        
             
           </div>
           <!--/carousel-inner--> 
