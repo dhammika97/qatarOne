@@ -122,6 +122,7 @@ header .top-nav ul li.active a { color: white; }
 .main-page .breadcrumb-bar ul li { display: inline; }
 .main-page .breadcrumb-bar ul li:before { font-family: FontAwesome; font-weight: normal; font-style: normal; display: inline-block; text-decoration: inherit; content: "\f0da"; padding: 0 10px; color: #a3a0a0; }
 .main-page .breadcrumb-bar ul li:first-child:before { content: ""; padding: 0px; }
+.main-page .breadcrumb-bar ul li a { color: #333333; text-decoration: none; }
 .main-page .breadcrumb-bar .back-link { padding-right: 20px; font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; color: #333333; text-decoration: none; }
 .main-page .ad-title { padding: 20px 0; }
 .main-page .ad-title h2 { font-family: "Roboto", serif; font-weight: 300; font-size: 18px; line-height: 20px; font-size: 1.8rem; line-height: 2rem; }
@@ -185,12 +186,15 @@ header .top-nav ul li.active a { color: white; }
 .post-single-ad .panel-default { margin: 40px 0; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; }
 .post-single-ad .panel-default .panel-heading, .post-single-ad .panel-default .panel-footer { background: #f1f1f1; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; padding: 20px; color: #333333; }
 .post-single-ad .panel-default .panel-heading h3, .post-single-ad .panel-default .panel-footer h3 { font-size: 14px; line-height: 18px; font-size: 1.4rem; line-height: 1.8rem; }
+.post-single-ad .panel-default .form-horizontal { font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; }
 .post-single-ad .panel-default .form-horizontal input, .post-single-ad .panel-default .form-horizontal textarea { max-width: 500px; }
 .post-single-ad .panel-default .form-horizontal label { font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; }
 .post-single-ad .panel-default .form-horizontal select { max-width: 300px; }
 .post-single-ad .panel-default .form-horizontal input[type="file"] { max-width: 240px; }
 .post-single-ad .panel-default .form-horizontal .price-tag { max-width: 200px; }
 .post-single-ad .panel-default .form-horizontal .terms { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; }
+.post-single-ad.review .form-horizontal .control-label { padding-top: 0; }
+.post-single-ad.review .confirm-text { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; padding: 20px 0; }
 
 .login-page { padding: 50px 0 50px 0; }
 .login-page h1 { font-size: 22px; line-height: 24px; font-size: 2.2rem; line-height: 2.4rem; font-family: "Roboto", serif; }
