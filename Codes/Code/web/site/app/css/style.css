@@ -195,6 +195,9 @@ header .top-nav ul li.active a { color: white; }
 .post-single-ad .panel-default .form-horizontal .terms { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; }
 .post-single-ad.review .form-horizontal .control-label { padding-top: 0; }
 .post-single-ad.review .confirm-text { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; padding: 20px 0; }
+.post-single-ad.review table { margin: 30px auto; float: none; }
+.post-single-ad.review table td { padding: 5px 10px; }
+.post-single-ad.review table td strong { font-weight: 700; }
 
 .login-page { padding: 50px 0 50px 0; }
 .login-page h1 { font-size: 22px; line-height: 24px; font-size: 2.2rem; line-height: 2.4rem; font-family: "Roboto", serif; }
