@@ -4,7 +4,7 @@ controllers.settingController = function($scope, settingFactory, ngProgress, $ti
 
 	$scope.updateUserSetting=function(id){
 		//alert($scope.user_id);
-		settingFactory.saveUserSetting($scope, id);
+		settingFactory.saveUserSetting($scope, id,ngProgress,$timeout);
 	}
 }
 App.controller(controllers)
