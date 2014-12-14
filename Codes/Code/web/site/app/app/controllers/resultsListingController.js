@@ -3,7 +3,8 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	
 	var params = {}
 	//params['category'] = $routeParams.parent_id
-	var param = $routeParams.params.split('-in-')
+	var uri = $routeParams.params.split('++filter_')
+	var param = uri[0].split('-in-')
 	var cat = param[0].split('-on-')
 	var loc = param[1].split('-at-')
 	
@@ -11,14 +12,45 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	params['subcategory'] = cat[1]
 	params['location'] = loc[0]
 	params['suburb'] = loc[1]
-	params['searchby'] = ''
+	params['searchby'] = uri[1]
 	params['sortby'] = ''
 	params['pricerangegreaterthan'] = ''
 	params['pricerangelessthan'] = ''
+	params['limitS'] = 0
+	params['limitE'] = 2
 	
-	$scope.parameters = params
+	//$scope.parameters = params
 	
-	$scope.resultList = resultsListingFactory.getResultList(params);
+	resultsListingFactory.getResultList(params, $scope);
+	
+	$scope.resultLists = function(data){
+		$scope.resultList = data
+		$scope.totalItems = data.advertisments.length;
+		$scope.currentPage = 1;
+		$scope.maxSize = 10;
+		$scope.itemsPerPage = 2
+		//console.log(data.category[0].category_id)
+		$scope.catList = resultsListingFactory.getSubCategories({'category_sub_parentId':data.category[0].category_id})
+		
+		$scope.locationList = resultsListingFactory.getLocations()
+		$scope.searchproduct.title = uri[1].split('=')[1]
+		$scope.searchproduct.category = cat[1]
+		$scope.searchproduct.location = loc[0]
+	}
+	
+	$scope.setPage = function (pageNo) {
+		$scope.currentPage = pageNo;
+	};
+	
+	$scope.pageChanged = function() {
+		alert('dsdf')
+	};
+	
+	$scope.validateMSG = function(data){
+		$scope.error = data
+	}
+	//$scope.bigTotalItems = 175;
+	//$scope.bigCurrentPage = 1;
 	
 	$scope.setParams = function(key,value){
 		//alert(key)
@@ -51,6 +83,35 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 				params['category'] = $routeParams.parent_id
 		}
 		//console.log(params['suburb'])
+		$scope.getURL()
+	}
+	$scope.isList = true
+	
+	$scope.changeView = function(param){
+		if(param=='grid'){
+			$scope.isList = true
+		}else{
+			$scope.isList = false
+		}
+	}
+	
+	$scope.searchProduct = function(){
+		var tmp = $scope.searchproduct
+		if(typeof tmp.category != 'undefined')
+		params['subcategory'] = tmp.category
+		
+		if(typeof tmp.location != 'undefined')
+		params['location'] = tmp.location
+		
+		if(typeof tmp.title != 'undefined')
+		params['searchby'] = 'title='+tmp.title
+		
+		//resultsListingFactory.getResultList(params, $scope);
+		//console.log(params)
+		$scope.getURL()
+	}
+	
+	$scope.getURL = function(){
 		var str = '/show-list/'
 		if(params['category']!='undefined')
 		str += params['category']
@@ -65,15 +126,8 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		if(typeof params['suburb'] != 'undefined')
 		str += '-at-'+params['suburb']
 		
+		if(typeof params['searchby'] != 'undefined')
+		str += '++filter_'+params['searchby']
 		$scope.go(str)
-	}
-	$scope.isList = true
-	
-	$scope.changeView = function(param){
-		if(param=='grid'){
-			$scope.isList = true
-		}else{
-			$scope.isList = false
-		}
 	}
 }

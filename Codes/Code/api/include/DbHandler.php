@@ -1229,7 +1229,7 @@ public function getSimilarItems($params){
 	}	
 	
 
-	public function advertismentsResults($id){
+	/*public function advertismentsResults($id){
 		$where_atri = ' AND advertisement_categoryId = ' . $id;
 		
 		$db = new database ();
@@ -1245,7 +1245,7 @@ public function getSimilarItems($params){
 		$db->selectJson ( $table, $rows, $where, '', '' );
 		$add = $db->getJson ();
 		return $add;
-	}
+	}*/
 	
 	
 	public function advertiesmentsResults($params){
@@ -1312,7 +1312,25 @@ public function getSimilarItems($params){
 					$where_atri =$where_atri. ' AND a.advertisement_suburb = ' . $sub;
 				}
 				if ($key == 'searchby' && $value!='') {
-					$where_atri =$where_atri. " AND a.advertisement_title LIKE '%" . $value . "%'";
+					$like = '';
+					$tmp = explode("&", $value);
+					for($i=0; count($tmp)>$i; $i++){
+						$s = explode('=',$tmp[$i]);
+						switch ($s[0]) {
+							case 'title':
+								$lbl = 'a.advertisement_title';
+								break;
+							default:
+								$lbl = 'a.advertisement_attributes';
+						}
+						
+						
+						$like .= $lbl." like '%".$s[1]."%' ";
+						if($i != count($tmp)-1)
+						$like .= "and ";
+					}
+					//echo $like;
+					$where_atri =$where_atri. " AND ". $like;
 				}
 				
 				if ($key == 'pricerangegreaterthan' && $value!='') {
@@ -1321,7 +1339,13 @@ public function getSimilarItems($params){
 				if ($key == 'pricerangelessthan' && $value!='') {
 					$where_atri =$where_atri. ' AND a.advertisement_price < ' . $value;
 				}
-				 if ($key == 'sortby' && $value!='') {
+				if($key == 'limitS'){
+					$start = $value;
+				}
+				if($key == 'limitE'){
+					$end = $value;
+				}
+				if ($key == 'sortby' && $value!='') {
 					$order_by = ' order by ' . $value;
 				} 
 			} else {
@@ -1334,10 +1358,10 @@ public function getSimilarItems($params){
 		
 		$db = new database ();
 		$table = 'advertisment a inner join locations l on l.location_id = a.advertisement_location inner join category c on c.category_id = a.advertisement_categoryId inner join category_sub sc on sc.category_sub_id = a.advertisement_subCategoryId inner join suburbs s on s.suburb_id = a.advertisement_suburb left join advertisement_images ai on ai.advertisement_id = a.advertisment_id';
-		$rows = 'a.advertisement_title, a.advertisment_id as aid, a.advertisement_price as price, a.advertisement_description, s.suburb_name as suberb, s.suburb_id as suburbid ,date(a.advertisement_date) as date, time(a.advertisement_date) as time, l.location_name as location, l.location_id as locationid, sc.category_sub_name as category, a.advertisement_categoryId as categoryid, sc.category_sub_alias as scalias, l.location_alias as lalias, s.suburb_alias as sub_alias, ai.advertisement_image as image';
+		$rows = 'a.advertisement_title, a.advertisment_id as aid, a.advertisement_price as price, a.advertisement_description, s.suburb_name as suberb, s.suburb_id as suburbid ,date(a.advertisement_date) as date, time(a.advertisement_date) as time, l.location_name as location, l.location_id as locationid, sc.category_sub_name as category, a.advertisement_categoryId as categoryid, sc.category_sub_alias as scalias, l.location_alias as lalias, s.suburb_alias as sub_alias, ai.advertisement_image as image, sc.category_sub_id as subCatId';
 		$where = 'advertisement_status = "1" ' . $where_atri;
 		//echo $where;
-		$db->selectJson ( $table, $rows, $where, '', '','a.advertisment_id' );
+		$db->selectJson ( $table, $rows, $where, '', $start.','.$end,'a.advertisment_id' );
 		$add = $db->getJson ();
 		return $add;
 	}

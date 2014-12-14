@@ -128,8 +128,8 @@ header .top-nav ul li.active a { color: white; }
 .main-page .ad-title h2 { font-family: "Roboto", serif; font-weight: 300; font-size: 18px; line-height: 20px; font-size: 1.8rem; line-height: 2rem; }
 .main-page .ad-title span { font-weight: 300; font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; color: #a3a0a0; display: block; }
 .main-page .ad-detail .carousel { display: inline-block; }
-.main-page .ad-detail .carousel .carousel-control { margin-bottom: 80px; }
-.main-page .ad-detail .carousel .carousel-indicators { bottom: 80px; }
+.main-page .ad-detail .carousel .carousel-control { /*margin-bottom: 80px;*/ }
+.main-page .ad-detail .carousel .carousel-indicators { bottom: 25px; }
 .main-page .ad-detail ul.thumbnails-carousel { padding: 5px 0 0 0; margin: 0; list-style-type: none; text-align: center; }
 .main-page .ad-detail ul.thumbnails-carousel .center { display: inline-block; }
 .main-page .ad-detail ul.thumbnails-carousel li { margin-right: 5px; float: left; cursor: pointer; }

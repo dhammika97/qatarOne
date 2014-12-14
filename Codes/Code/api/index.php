@@ -1739,33 +1739,30 @@ $app->get('/similarItems', function()  {
 				echoRespnse(404, $response);
 			}
 		});
-	
-			/**
-			 * Get advertisments by category,location,searchby and sortby
-			 * url - /advertiesmentsresultslist?category=4&location=2&searchby=Mobile&sortby=price
-			 * 
-			 * Get advertisments by category,location,searchby, sortby and price range 
-			 * url - /advertiesmentsresultslist?category=4&location=2&searchby=Mobile&sortby=price&pricerangegreaterthan=1000&pricerangelessthan=150000
-			 * 
-			 * method - GET
-			* params -advertiesmentsresultslist*/
-			$app->get('/adlist', function() {
-				$request = \Slim\Slim::getInstance()->request();
-				$params = $request->params();
-				$response = array();
-					
-				$DbHandler = new DbHandler();
-				$result = $DbHandler->advertiesmentsResults($params);
-				if ($result != NULL) {
-					$response["error"] = false;
-					$response['advertisments'] = json_decode($result);
-					echoRespnse(200	, $response);
-				} else {
-					$response["error"] = true;
-					$response["message"] = "The requested resource doesn't exists";
-					echoRespnse(404, $response);
-				}
-			});
+		
+		
+		$app->get('/adlist', function() {
+			$request = \Slim\Slim::getInstance()->request();
+			$params = $request->params();
+			$response = array();
+			//print_r($params['category']);	
+			$DbHandler = new DbHandler();
+			$arr = array("category_alias" => "'".$params['category']."'");
+			$cat = $DbHandler->getAllCategories($arr);
+			//print_r($cat);
+			$result = $DbHandler->advertiesmentsResults($params);
+			if ($result != NULL) {
+				$response["error"] = false;
+				$response['advertisments'] = json_decode($result);
+				$response['category'] = json_decode($cat);
+				echoRespnse(200	, $response);
+			} else {
+				$response["error"] = true;
+				$response["message"] = "The requested resource doesn't exists";
+				echoRespnse(404, $response);
+				
+			}
+		});
 	
 
 	/*
