@@ -3,8 +3,16 @@ App.factory('registerFactory',function($resource, $location){
 	var register = $resource('../../../api/register', {}, {
 		save:{method: 'POST'}
     });
+    var sendMail = $resource('../../../api/mail', {}, {
+		query:{method: 'POST'}
+    });
 	
 	var factory = {}
+	factory.sendRegConfirmation = function($scope){
+		console.log($scope.register);
+		sendMail.query({"fname":$scope.register.user_firstname, "to":$scope.register.user_email,"mailType":"registrationActivation"});
+
+	}
 	factory.saveUser = function($scope,ngProgress, $timeout){
 		ngProgress.start()
 		if($scope.register.user_password==$scope.register.user_confirmPassword){
@@ -17,6 +25,7 @@ App.factory('registerFactory',function($resource, $location){
 				}, 3000);
 			}).then(
 			function(value){
+				$scope.sendmail();
 				$scope.addAlert('success',value.message)
 				ngProgress.complete()
 				$timeout(function(){
@@ -52,8 +61,7 @@ App.factory('loginFactory',function($resource){
 				$timeout(function(){
 					sessionStorage.setItem("accessKey", data.accessToken);
 					sessionStorage.setItem("username", data.username)
-					//$scope.$parent.username = data.username;
-					$scope.setUser(data.username);
+					$scope.$parent.username = data.username;
 					$scope.closeAlert();
 					$scope.go('/classifieds')
 				}, 2000);
@@ -72,5 +80,6 @@ App.factory('loginFactory',function($resource){
 	factory.getUser = function(){
 		return sessionStorage.getItem("username")
 	}
+	
 	return factory
 })
