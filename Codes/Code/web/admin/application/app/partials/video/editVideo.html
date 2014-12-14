@@ -21,7 +21,7 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">Video</label>
             <div class="col-sm-8">
-             <video ng-src="{{videoDetails.video[0].video_filename}}" style="width:300px;height:240px" controls preload="none" ></video>
+             <video ng-src="{{videoDetails.video[0].video_filename}}" style="width:300px;height:240px" controls preload="yes" ></video>
               <input type="file" nv-file-select=""  uploader="uploader" options="{'alias':'video_id'}" ng-model="videoDetails.video[0].video_filename" >
             </div>
           </div>
