@@ -31,7 +31,6 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	 }
 		
 
-	$scope.attributes = ['one','two','three','four','five']
 	$scope.comments = advertismentFactory.getComments($routeParams.id);
 	//setTimeout(function(){ngProgress.complete()},500)
 	$scope.addComment = function(){
@@ -40,6 +39,7 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	
 	$scope.mapLoad = function(e){
 		$scope.adversiment = e
+		$scope.attributes = e.advertisment[0].advertisement_attributes
 		$scope.latlang = $scope.adversiment['advertisment'][0].suburb_cordinates
 		var cordinates = $scope.latlang.split(',')
 		var myLatlng = new google.maps.LatLng(cordinates[0],cordinates[1])
