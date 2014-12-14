@@ -32,7 +32,7 @@ App.factory('advertismentFactory',function($resource){
 			}, 3000);
 		}).then(
 		function(e){
-			$scope.ad=''
+			
 			if($scope.imageList.length > 0){
 				return adImage.save($scope.imageList,e.insertedId)
 				.$promise.catch(function(e){
@@ -42,8 +42,10 @@ App.factory('advertismentFactory',function($resource){
 						$scope.closeAlert();
 					}, 3000);
 				}).then(function(e){
+					$scope.advertismentAddMail();
 					$scope.addAlert('success',e.message)
 					ngProgress.complete()
+					$scope.ad=''
 					$timeout(function(){
 						$scope.closeAlert();
 					}, 3000);
@@ -102,6 +104,13 @@ App.factory('advertismentFactory',function($resource){
 
 		return addComment.save({"id":id},comment);
 	}
-	
+	var maildeliver = $resource('../../../api/mail/:id', {}, {
+         query: { method: 'POST', params: {}, isArray: false },
+    });
+	factory.sendAdvertismentMail = function($scope){
+		console.log($scope.ad.advertisement_contactName);
+		maildeliver.query({"fname":$scope.ad.advertisement_contactName, "to":$scope.ad.advertisement_contactEmail,"mailType":"advertismentAdd"});
+	}
+
 	return factory
 })

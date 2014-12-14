@@ -102,4 +102,8 @@ controllers.advertismentAddController = function($scope, advertismentFactory, Fi
 			advertismentFactory.saveAdvertisment($scope)
 		}
 	}
+	$scope.advertismentAddMail = function(){
+		
+		advertismentFactory.sendAdvertismentMail($scope);
+	}
 }
