@@ -1421,7 +1421,78 @@ public function getSimilarItems($params){
 			return false;
 		}
 	}
+	public function getAllVideo($params){
+		$where = '';
+		$i = 1;
+		foreach($params as $key => $value){
+			if($i != count($params) )
+			$where .= $key .'='.$value.' AND ';
+			else
+			$where .= $key .'='.$value;
+			$i++;
+		}
+		$db = new database();
+		$table = 'video';
+		$rows ='*';	
+		$db->selectJson($table,$rows,$where,'','');
+		$video_list = $db->getJson();
+		return $video_list;
+	}
 
+	public function GetVideoDetail($video_id){
+		$db = new database();
+		$table = 'video';
+		$rows ='*';
+		$where = 'video_id = "'.$video_id.'"';
+		$db->selectJson($table,$rows,$where,'','');
+		$video = $db->getJson();
+		return $video;
+	}
+
+
+	public function createVideo($video){
+		
+		(isset($video['video_title']) ? $video_title = $video['video_title'] : $video_title = "" );
+		(isset($video['video_url']) ? $video_url = $video['video_url'] : $video_url = "" );
+		(isset($video['video_filename']) ? $video_filename = $video['video_filename'] : $video_filename='');
 	
+		$db = new database();
+		$table  = "video";
+		$values = "'".$video_title."',
+				'".$video_url."',
+				'".$video_filename."',			
+				'1'";					  
+		$rows   = "video_title,
+				   video_url,
+				   video_filename, 				
+				   video_status";		
+		if($db->insert($table,$values,$rows) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function updateVideo($video_id, $video){
+		$db = new database();	
+		$table = 'video';
+		$rows  = $video ;
+		$where = 'video_id = "'.$video_id.'"';
+		if($db->update($table,$rows,$where) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function deleteVideo($video_id) { 
+		$db = new database();
+		$table = 'video';
+		$where = 'video_id = "'.$video_id.'" ';
+		if ($db->delete($table,$where) ){
+			return true;
+		}		
+	}
+		
 }
 ?>
