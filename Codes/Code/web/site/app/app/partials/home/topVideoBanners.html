@@ -1,5 +1,5 @@
-<div class="ad-placeholder">
-	<div class="col-lg-4 col-md-4 col-sm-4"><img class="img-responsive" src="http://placehold.it/367x266"></div>
-	<div class="col-lg-4 col-md-4 col-sm-4"><img class="img-responsive" src="http://placehold.it/367x266"></div>
-	<div class="col-lg-4 col-md-4 col-sm-4"><img class="img-responsive" src="http://placehold.it/367x266"></div>
+<div class="col-lg-12 ad-placeholder text-center" ng-controller="topVideoBannerController" >
+	<div ng-repeat="video in videoBanner.video">
+ 		<video ng-src="{{video.video_filename}}" style="width:300px;height:240px; horizontal-align:right" controls preload="yes"  ></video>
+ 	</div>
 </div>
