@@ -28,10 +28,10 @@
     <div class="container">
       <div class="row">
         <ul class="pull-left">
-          <li><a href="">All Ads</a></li>
-          <li><a href="">{{adversiment.advertisment[0].category_sub_name}}</a></li>
+          <li><a href="javascript:history.go(-1)">All Ads</a></li>
+          <li><a href="">{{resultList.category[0].category_name}}</a></li>
         </ul>
-        <a class="pull-right back-link">Back to categories</a> </div>
+        <!--<a class="pull-right back-link">Back to categories</a> --></div>
     </div>
   </div>
   <div class="filter-bar">
@@ -110,7 +110,7 @@
           </div>
         </div>
         <div class="pagination pull-right">
-        	<pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="itemsPerPage" first-text="&laquo;" last-text="&raquo;"></pagination>
+        	<pagination boundary-links="true" ng-change="pageChanged()" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="itemsPerPage" first-text="&laquo;" last-text="&raquo;"></pagination>
         </div>
         <!--<div class="pagination pull-right"> << < 1 | 2 | 3 > >></div>-->
       </div>

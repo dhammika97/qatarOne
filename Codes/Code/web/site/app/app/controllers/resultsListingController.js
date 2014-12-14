@@ -1,9 +1,11 @@
 var params = new Array;
 controllers.resultsListingController = function($scope,resultsListingFactory, $routeParams){
-	
+	$scope.itemsPerPage = 20
+	$scope.maxSize = 5;
 	var params = {}
 	//params['category'] = $routeParams.parent_id
-	var uri = $routeParams.params.split('++filter_')
+	var page = $routeParams.params.split('--page_') 
+	var uri = page[0].split('++filter_')
 	var param = uri[0].split('-in-')
 	var cat = param[0].split('-on-')
 	var loc = param[1].split('-at-')
@@ -16,38 +18,45 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	params['sortby'] = ''
 	params['pricerangegreaterthan'] = ''
 	params['pricerangelessthan'] = ''
-	params['limitS'] = 0
-	params['limitE'] = 2
-	
-	//$scope.parameters = params
+	params['currentPage'] = page[1]
+	if(typeof page[1] != 'undefined'){
+		params['limitS'] = ((page[1]-1)*$scope.itemsPerPage)
+	}else{
+		params['limitS'] = 0
+	}
+	params['limitE'] = $scope.itemsPerPage
 	
 	resultsListingFactory.getResultList(params, $scope);
 	
 	$scope.resultLists = function(data){
 		$scope.resultList = data
-		$scope.totalItems = data.advertisments.length;
-		$scope.currentPage = 1;
-		$scope.maxSize = 10;
-		$scope.itemsPerPage = 2
-		//console.log(data.category[0].category_id)
+		$scope.totalItems = data.count;
+		$scope.currentPage = page[1];
+		
+  		//$scope.bigTotalItems = 175;
+  		//$scope.bigCurrentPage = 1;
+		
 		$scope.catList = resultsListingFactory.getSubCategories({'category_sub_parentId':data.category[0].category_id})
 		
 		$scope.locationList = resultsListingFactory.getLocations()
+		if(typeof uri[1] != 'undefined')
 		$scope.searchproduct.title = uri[1].split('=')[1]
 		$scope.searchproduct.category = cat[1]
 		$scope.searchproduct.location = loc[0]
 	}
 	
-	$scope.setPage = function (pageNo) {
-		$scope.currentPage = pageNo;
-	};
-	
-	$scope.pageChanged = function() {
-		alert('dsdf')
-	};
-	
 	$scope.validateMSG = function(data){
 		$scope.error = data
+	}
+	$scope.pageChanged = function(){
+		//params['limitS'] = ($scope.currentPage-1)*$scope.itemsPerPage
+		//params['limitE'] = $scope.currentPage*$scope.itemsPerPage
+		//console.log(params['limitE'])
+		//console.log($scope.currentPage)
+		params['currentPage'] = $scope.currentPage
+		
+		$scope.getURL()
+		//console.log($scope.currentPage)
 	}
 	//$scope.bigTotalItems = 175;
 	//$scope.bigCurrentPage = 1;
@@ -128,6 +137,13 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		
 		if(typeof params['searchby'] != 'undefined')
 		str += '++filter_'+params['searchby']
+		
+		if(typeof params['currentPage'] != 'undefined')
+		str += '--page_'+params['currentPage']
+		
+		//console.log(params['limitS'])
+		
+		//console.log(str)
 		$scope.go(str)
 	}
 }

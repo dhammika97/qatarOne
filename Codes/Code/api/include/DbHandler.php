@@ -1366,6 +1366,116 @@ public function getSimilarItems($params){
 		return $add;
 	}
 	
+	
+	public function advertiesmentCount($params){
+		$where_atri = '';
+		$order_by = '';
+		$i = 0;
+		$dd = Array();
+		$categoryLst = json_decode(self::getAllCategories($dd),true);
+		$subCategoryLst = json_decode(self::getAllsubCategorys($dd),true);
+		$locationLst = json_decode(self::getAllLocations($dd),true);
+		$suburbLst = json_decode(self::getAllSuburbs($dd),true);
+		
+		foreach ( $params as $key => $value ) {
+			
+			if ($i != count ( $params )) {
+				if ($key == 'category') {
+					for($s=0; count($categoryLst)>$s; $s++){
+						if($value == $categoryLst[$s]['category_alias']){
+							$cat = $categoryLst[$s]['category_id'];
+							break;
+						}else{
+							$cat = '';
+						}
+					}
+					if($cat != ""){
+						$where_atri =$where_atri. ' AND a.advertisement_categoryId = ' . $cat;
+					}
+				}
+				if ($key == 'subcategory') {
+					for($s=0; count($subCategoryLst)>$s; $s++){
+						if($value == $subCategoryLst[$s]['category_sub_alias']){
+							$subcat = $subCategoryLst[$s]['category_sub_id'];
+							break;
+						}else{
+							$subcat = '';
+						}
+					}
+					if($subcat!='')
+					$where_atri =$where_atri. ' AND a.advertisement_subCategoryId = ' . $subcat;
+				}
+				if ($key == 'location') {
+					
+					for($s=0; count($locationLst)>$s; $s++){
+						if($value == $locationLst[$s]['location_alias']){
+							$loc = $locationLst[$s]['location_id'];
+							break;
+						}else{
+							$loc = '';
+						}
+					}
+					if($loc!='')
+					$where_atri =$where_atri. ' AND a.advertisement_location = ' . $loc;
+				}
+				if ($key == 'suburb' && $value!='') {
+					for($s=0; count($suburbLst)>$s; $s++){
+						if($value == $suburbLst[$s]['suburb_alias']){
+							$sub = $suburbLst[$s]['suburb_id'];
+							break;
+						}else{
+							$sub = '';
+						}
+					}
+					if($sub!='')
+					$where_atri =$where_atri. ' AND a.advertisement_suburb = ' . $sub;
+				}
+				if ($key == 'searchby' && $value!='') {
+					$like = '';
+					$tmp = explode("&", $value);
+					for($i=0; count($tmp)>$i; $i++){
+						$s = explode('=',$tmp[$i]);
+						switch ($s[0]) {
+							case 'title':
+								$lbl = 'a.advertisement_title';
+								break;
+							default:
+								$lbl = 'a.advertisement_attributes';
+						}
+						
+						
+						$like .= $lbl." like '%".$s[1]."%' ";
+						if($i != count($tmp)-1)
+						$like .= "and ";
+					}
+					//echo $like;
+					$where_atri =$where_atri. " AND ". $like;
+				}
+				
+				if ($key == 'pricerangegreaterthan' && $value!='') {
+					$where_atri =$where_atri. ' AND a.advertisement_price >= ' . $value;
+				}
+				if ($key == 'pricerangelessthan' && $value!='') {
+					$where_atri =$where_atri. ' AND a.advertisement_price < ' . $value;
+				} 
+			} else {
+				//$where_atri .= ' AND ' . $key . '="' . $value . '"';
+			}
+			$i ++;
+		}
+		$where_atri =$where_atri. $order_by;
+		//echo $where_atri;
+		
+		$db = new database ();
+		$table = 'advertisment a inner join locations l on l.location_id = a.advertisement_location inner join category c on c.category_id = a.advertisement_categoryId inner join category_sub sc on sc.category_sub_id = a.advertisement_subCategoryId inner join suburbs s on s.suburb_id = a.advertisement_suburb left join advertisement_images ai on ai.advertisement_id = a.advertisment_id';
+		$rows = 'a.advertisment_id as aid';
+		$where = 'advertisement_status = "1" ' . $where_atri;
+		//echo $where;
+		$db->selectJson ( $table, $rows, $where, '', '','a.advertisment_id' );
+		$add = $db->getNumRows ();
+		return $add;
+	}
+	
 	public function addComment( $comment, $id) {
 		$db = new database();
 		

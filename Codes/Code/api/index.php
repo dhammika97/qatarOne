@@ -1751,11 +1751,13 @@ $app->get('/similarItems', function()  {
 			$arr = array("category_alias" => "'".$params['category']."'");
 			$cat = $DbHandler->getAllCategories($arr);
 			//print_r($cat);
+			$count = $DbHandler->advertiesmentCount($params);
 			$result = $DbHandler->advertiesmentsResults($params);
 			if ($result != NULL) {
 				$response["error"] = false;
 				$response['advertisments'] = json_decode($result);
 				$response['category'] = json_decode($cat);
+				$response['count'] = $count;
 				echoRespnse(200	, $response);
 			} else {
 				$response["error"] = true;
