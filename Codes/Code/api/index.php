@@ -1845,6 +1845,118 @@ $app->post('/mail', function() {
 				echoRespnse(404, $response);
 			}
 		});
+
+
+/**
+ * Get all videos
+ * url - /video
+ * method - GET
+ * params - api Key*/
+
+$app->get('/video', function() {
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+		$response = array();
+		$DbHandler = new DbHandler();		
+		$video = $DbHandler->getAllVideo($params);
+		if (!$video) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["video"]=json_decode($video);
+			echoRespnse(200, $response);
+		}
+});
+
+/**
+ * Get video by video id
+ * url - /video/:id
+ * method - GET
+ * params -video id*/		
+$app->get('/video/:id', function($video_id) {
+		$response = array();
+		$DbHandler = new DbHandler();	
+		$video = $DbHandler->GetVideoDetail($video_id);
+        if ($video != NULL) {
+        	$response["error"] = false;
+				$response['video'] = json_decode($video);
+                echoRespnse(200	, $response);
+            } else {
+                $response["error"] = true;
+                $response["message"] = "The requested resource doesn't exists";
+                echoRespnse(404, $response);
+            }
+        });	 
+
+/**
+ * Create video 
+ * url - /video
+ * method - POST
+ * params -video object*/
+
+$app->post('/video', 'authenticate', function() use ($app) {
+		$packageType  = array();
+		$response = array();
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+
+		$video = $request->getBody();		
+		//verifyRequiredParams(array("user_email", "user_password"));
+		if($DbHandler->createVideo($video)){
+			$response["error"] = false;
+			$response["message"] = "Video created successfully";
+			echoRespnse(201, $response);				
+			}else{
+			$response["error"] = true;
+			$response["message"] = "Video creation failed";
+			echoRespnse(400, $response);
+		}
+});
+		
+/**
+ * Update video 
+ * url - /video/:id
+ * method - PUT
+ * params - video object */
+$app->put('/video/:id', 'authenticate', function($video_id) use ($app) {
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+		$response = array();
+		$video =  $request->getBody();
+		$result = $DbHandler->updateVideo($video_id, $video);
+		if ($result) {
+			$response["error"] = false;
+			$response["message"] = "Video updated successfully";
+			echoRespnse(200, $response);
+		} else {                
+			$response["error"] = true;
+			$response["message"] = "Video failed to update. Please try again!";
+			echoRespnse(404, $response);
+		}				
+});
+ 					
+/**
+ * Delete video
+ * url - /video/:id
+ * method - DELETE
+ * params - video id */ 
+$app->delete('/video/:id', 'authenticate', function($video_id) use($app) {
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->deleteVideo($video_id);
+		
+		if ($result) {			
+			$response["error"] = false;
+			$response["message"] = "Video deleted succesfully";
+			echoRespnse(200, $response);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "Video to delete. Please try again!";
+			echoRespnse(404, $response);
+		}
+});
 $app->run();
 		
 		
