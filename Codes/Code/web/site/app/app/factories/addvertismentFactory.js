@@ -98,11 +98,17 @@ App.factory('advertismentFactory',function($resource){
 	var addComment = $resource('../../../api/comments/:id', {}, {
         save:{method: 'POST'}
     });
-	factory.addComment = function($scope, id){	
-		//var params = {"advertisment_Id":id,"comment" : $scope.comment}
-		var comment = $scope.comment.body;
-
-		return addComment.save({"id":id},comment);
+	factory.addComment = function($scope, id, $timeout){	
+		var comment = $scope.comments.body;
+		return addComment.save({"id":id},comment)
+		.$promise.then(
+		function(e){
+			$scope.addAlert('success',"comment successfully added")
+			$scope.comments.body = '';
+			$timeout(function(){
+						$scope.closeAlert();
+					}, 3000);
+		});	
 	}
 	var maildeliver = $resource('../../../api/mail/:id', {}, {
          query: { method: 'POST', params: {}, isArray: false },

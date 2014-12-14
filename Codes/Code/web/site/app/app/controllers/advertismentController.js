@@ -34,7 +34,7 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	$scope.comments = advertismentFactory.getComments($routeParams.id);
 	//setTimeout(function(){ngProgress.complete()},500)
 	$scope.addComment = function(){
-		advertismentFactory.addComment($scope, $routeParams.id);
+		advertismentFactory.addComment($scope, $routeParams.id, $timeout);
 	}
 	
 	$scope.mapLoad = function(e){
