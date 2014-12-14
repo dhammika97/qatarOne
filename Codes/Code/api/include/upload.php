@@ -52,6 +52,13 @@ if ( !empty( $_FILES ) ) {
 		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.$_FILES['advertismentImage']['name']);
 		$json = json_encode($response);
 		echo $json;
+	}elseif(isset($_FILES['video_id']['name']) != ''){		
+		$unique = strtoupper(md5(uniqid(rand(), true)));	
+		$dir = '../uploads/video/'.$unique.'.'.pathinfo($_FILES["video_id"]["name"],PATHINFO_EXTENSION);
+		move_uploaded_file($_FILES["video_id"]["tmp_name"],  $dir)  or die ("not uploaded");
+		$response = array('error' => false, 'message'=>'File transfered completed!','video' => '../../../api/uploads/video/'.$unique.'.'.pathinfo($_FILES["video_id"]["name"],PATHINFO_EXTENSION));
+		$json = json_encode($response);
+		echo $json;
 	}else{
 		$response = array('error' => true, 'message'=>'Bad Request');
 		$json = json_encode($response);
