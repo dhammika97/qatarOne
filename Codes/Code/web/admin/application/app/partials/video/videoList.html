@@ -1,0 +1,22 @@
+<h1>Video<a href="#/addVideo" class="btn btn-primary pull-right">Add New</a></h1>
+<ol class="breadcrumb">
+  <li class="active"> Videos </li>
+</ol>
+<table class="table table-hover tablesorter">
+    <thead>
+      <tr>
+        <th>Video Title</th>
+        <th>Video URl </th>       
+        <th>Video status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="video in video.video">
+   		<td>{{video.video_title}}</td>
+        <td>{{video.video_url}}</td>   
+        <td>{{video.video_status}}</td>
+        <td><a href="#/editVideo/{{video.video_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteVideo(video.video_id)">Delete</button></td> 
+      </tr>
+    </tbody>
+</table>

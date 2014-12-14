@@ -231,6 +231,24 @@ App.config(function($routeProvider, $httpProvider){
 			controller:'controllers.commentsController',
 			templateUrl:'app/partials/comments/listComments.html'
 		}
+	)	
+	.when('/video',
+		{
+			controller:'controllers.videoController',
+			templateUrl:'app/partials/video/videoList.html'
+		}
+	)
+	.when('/addVideo',
+		{
+			controller:'controllers.videoAddController',
+			templateUrl:'app/partials/video/addVideo.html'
+		}
+	)
+	.when('/editVideo/:id',
+		{
+			controller:'controllers.videoDetailsController',
+			templateUrl:'app/partials/video/editVideo.html'
+		}
 	)
 	.otherwise({
 		redirectTo:'/'
