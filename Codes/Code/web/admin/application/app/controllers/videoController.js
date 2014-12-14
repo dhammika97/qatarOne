@@ -5,7 +5,7 @@ controllers.videoController = function($scope, videoFactory){
 		if(id!=''){
 			var r = confirm("Do you want to delete this video!");
 			if (r == true) {
-				alert(id);
+				
 				 videoFactory.deleteVideo($scope,id)
 			}
 		}
@@ -28,7 +28,7 @@ controllers.videoAddController = function($scope, videoFactory, FileUploader){
 				if(response.error == false){
 					console.log(response);
 					 $scope.video.video_filename = response.video
-					 alert($scope.video.video_filename);
+					 
 					//alert('Video upload successfull!')
 					videoFactory.saveVideo($scope);
 				}else{
