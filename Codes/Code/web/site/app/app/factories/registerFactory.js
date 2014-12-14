@@ -9,15 +9,17 @@ App.factory('registerFactory',function($resource, $location){
 	
 	var factory = {}
 	factory.sendRegConfirmation = function($scope){
-		console.log($scope.register);
-		sendMail.query({"fname":$scope.register.user_firstname, "to":$scope.register.user_email,"mailType":"registrationActivation"});
-
+		var key = (($scope.userId*300)/2)+1603894240973228;
+		sendMail.query({"fname":$scope.register.user_firstname, "to":$scope.register.user_email,
+			"url":"http://kasunengineers.com/qone/api/userActivation/"+key,"mailType":"registrationActivation"});
+		console.log("http://kasunengineers.com/qone/api/userActivation/"+key);
 	}
 	factory.saveUser = function($scope,ngProgress, $timeout){
 		ngProgress.start()
 		if($scope.register.user_password==$scope.register.user_confirmPassword){
 			return register.save($scope.register)
 			.$promise.catch(function(e){
+
 				$scope.addAlert('danger',e.data.message)
 				ngProgress.complete()
 				$timeout(function(){
@@ -25,6 +27,7 @@ App.factory('registerFactory',function($resource, $location){
 				}, 3000);
 			}).then(
 			function(value){
+				$scope.userId = value.user_id;
 				$scope.sendmail();
 				$scope.addAlert('success',value.message)
 				ngProgress.complete()

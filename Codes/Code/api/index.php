@@ -1470,6 +1470,7 @@ $app->post('/register', function() use ($app) {
 				}
 				$response["error"] = false;
 				$response["message"] = "Congradulations! We have sent an activation email to ".$users['user_email']." Please activate your account first";
+				$response["user_id"] = $userId;
 				echoRespnse(200, $response);
 			}else{
 				$response["error"] = true;
@@ -1957,6 +1958,25 @@ $app->delete('/video/:id', 'authenticate', function($video_id) use($app) {
 			echoRespnse(404, $response);
 		}
 });
+$app->get('/userActivation/:id', function($hash)  {
+		
+		$DbHandler = new DbHandler();
+		$response = array();
+		$activater = array('user_status' => '1');
+		$id = (($hash-1603894240973228)*2)/300;
+		$result = $DbHandler->updateUser($id,$activater);	
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "User activation failed";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["message"] = "User activated successfully";
+
+			echoRespnse(200, $response);
+		}
+});
+
 $app->run();
 		
 		
