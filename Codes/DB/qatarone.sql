@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2014 at 06:29 AM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Generation Time: Dec 14, 2014 at 12:51 PM
+-- Server version: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,10 +27,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `advertisement_images` (
-  `advertisement_imageId` int(11) NOT NULL AUTO_INCREMENT,
+`advertisement_imageId` int(11) NOT NULL,
   `advertisement_id` int(11) NOT NULL,
-  `advertisement_image` varchar(255) NOT NULL,
-  PRIMARY KEY (`advertisement_imageId`)
+  `advertisement_image` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
@@ -66,7 +65,7 @@ INSERT INTO `advertisement_images` (`advertisement_imageId`, `advertisement_id`,
 --
 
 CREATE TABLE IF NOT EXISTS `advertisment` (
-  `advertisment_id` int(11) NOT NULL AUTO_INCREMENT,
+`advertisment_id` int(11) NOT NULL,
   `advertisement_categoryId` int(5) NOT NULL,
   `advertisement_subCategoryId` int(5) NOT NULL,
   `advertisement_attributes` longtext NOT NULL,
@@ -82,8 +81,7 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
   `advertisement_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `advertisement_status` int(1) NOT NULL,
   `advertisement_expire` datetime NOT NULL,
-  `advertisement_addedBy` int(11) NOT NULL,
-  PRIMARY KEY (`advertisment_id`)
+  `advertisement_addedBy` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 --
@@ -107,14 +105,13 @@ INSERT INTO `advertisment` (`advertisment_id`, `advertisement_categoryId`, `adve
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `category_id` int(5) NOT NULL AUTO_INCREMENT,
+`category_id` int(5) NOT NULL,
   `category_parentId` int(5) NOT NULL,
   `category_name` varchar(250) NOT NULL,
   `category_alias` varchar(255) NOT NULL,
   `category_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_enteredBy` int(11) NOT NULL,
-  `category_status` int(1) NOT NULL,
-  PRIMARY KEY (`category_id`)
+  `category_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
@@ -164,10 +161,9 @@ INSERT INTO `category` (`category_id`, `category_parentId`, `category_name`, `ca
 --
 
 CREATE TABLE IF NOT EXISTS `categoryattributes` (
-  `attribute_id` int(4) NOT NULL AUTO_INCREMENT,
+`attribute_id` int(4) NOT NULL,
   `attribute_categoryId` int(4) NOT NULL,
-  `attributes` longtext NOT NULL,
-  PRIMARY KEY (`attribute_id`)
+  `attributes` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -177,16 +173,14 @@ CREATE TABLE IF NOT EXISTS `categoryattributes` (
 --
 
 CREATE TABLE IF NOT EXISTS `category_sub` (
-  `category_sub_id` int(4) NOT NULL AUTO_INCREMENT,
+`category_sub_id` int(4) NOT NULL,
   `category_sub_name` varchar(250) NOT NULL,
   `category_sub_alias` varchar(255) NOT NULL,
   `category_sub_tplType` varchar(50) NOT NULL,
   `category_sub_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_sub_enteredBy` int(5) NOT NULL,
   `category_sub_status` int(1) NOT NULL,
-  `category_sub_parentId` int(4) NOT NULL,
-  PRIMARY KEY (`category_sub_id`),
-  KEY `category_sub_id` (`category_sub_id`)
+  `category_sub_parentId` int(4) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
@@ -210,14 +204,13 @@ INSERT INTO `category_sub` (`category_sub_id`, `category_sub_name`, `category_su
 --
 
 CREATE TABLE IF NOT EXISTS `events` (
-  `evenet_id` int(11) NOT NULL AUTO_INCREMENT,
+`evenet_id` int(11) NOT NULL,
   `event_title` varchar(255) NOT NULL,
   `event_date` date NOT NULL,
   `event_shortDescription` varchar(255) NOT NULL,
   `event_description` longtext NOT NULL,
   `event_image` varchar(255) NOT NULL,
-  `event_status` int(1) NOT NULL,
-  PRIMARY KEY (`evenet_id`)
+  `event_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
@@ -235,14 +228,13 @@ INSERT INTO `events` (`evenet_id`, `event_title`, `event_date`, `event_shortDesc
 --
 
 CREATE TABLE IF NOT EXISTS `fixedads` (
-  `fixedads_id` int(11) NOT NULL AUTO_INCREMENT,
+`fixedads_id` int(11) NOT NULL,
   `fixedads_type` int(2) NOT NULL,
   `fixedads_image` varchar(255) NOT NULL,
   `fixedads_enetredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `fixedads_url` varchar(255) NOT NULL,
   `fixedads_status` int(1) NOT NULL,
-  `fixedads_title` varchar(100) NOT NULL,
-  PRIMARY KEY (`fixedads_id`)
+  `fixedads_title` varchar(100) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
@@ -266,14 +258,13 @@ INSERT INTO `fixedads` (`fixedads_id`, `fixedads_type`, `fixedads_image`, `fixed
 --
 
 CREATE TABLE IF NOT EXISTS `item_comments` (
-  `comment_Id` int(11) NOT NULL AUTO_INCREMENT,
+`comment_Id` int(11) NOT NULL,
   `advertisment_Id` int(11) NOT NULL,
   `comment_Date` date NOT NULL,
   `comment_Time` time NOT NULL,
   `comment_status` int(11) NOT NULL,
   `comment_addedBy` int(11) NOT NULL,
-  `Comment` varchar(255) NOT NULL,
-  PRIMARY KEY (`comment_Id`)
+  `Comment` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -291,11 +282,10 @@ INSERT INTO `item_comments` (`comment_Id`, `advertisment_Id`, `comment_Date`, `c
 --
 
 CREATE TABLE IF NOT EXISTS `locations` (
-  `location_id` int(5) NOT NULL AUTO_INCREMENT,
+`location_id` int(5) NOT NULL,
   `location_name` varchar(100) NOT NULL,
   `location_alias` varchar(255) NOT NULL,
-  `location_cordinates` varchar(20) NOT NULL,
-  PRIMARY KEY (`location_id`)
+  `location_cordinates` varchar(20) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
@@ -316,14 +306,13 @@ INSERT INTO `locations` (`location_id`, `location_name`, `location_alias`, `loca
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-  `news_id` int(10) NOT NULL AUTO_INCREMENT,
+`news_id` int(10) NOT NULL,
   `news_title` varchar(255) NOT NULL,
   `news_shortDescription` varchar(255) NOT NULL,
   `news_Description` longtext NOT NULL,
   `news_image` varchar(255) NOT NULL,
   `news_date` datetime NOT NULL,
-  `news_status` int(1) NOT NULL,
-  PRIMARY KEY (`news_id`)
+  `news_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
@@ -341,15 +330,14 @@ INSERT INTO `news` (`news_id`, `news_title`, `news_shortDescription`, `news_Desc
 --
 
 CREATE TABLE IF NOT EXISTS `packagetypes` (
-  `package_id` int(2) NOT NULL AUTO_INCREMENT,
+`package_id` int(2) NOT NULL,
   `packageType` int(2) NOT NULL,
   `package_name` varchar(100) NOT NULL,
   `package_Description` longtext NOT NULL,
   `package_price` decimal(10,0) NOT NULL,
   `package_adLimit` int(5) NOT NULL,
   `package_addedBy` int(3) NOT NULL,
-  `package_status` int(1) NOT NULL,
-  PRIMARY KEY (`package_id`)
+  `package_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
@@ -369,12 +357,11 @@ INSERT INTO `packagetypes` (`package_id`, `packageType`, `package_name`, `packag
 --
 
 CREATE TABLE IF NOT EXISTS `pages` (
-  `page_id` int(2) NOT NULL AUTO_INCREMENT,
+`page_id` int(2) NOT NULL,
   `page_title` varchar(100) NOT NULL,
   `page_content` longtext NOT NULL,
   `page_status` int(1) NOT NULL,
-  `page_addedBy` int(2) NOT NULL,
-  PRIMARY KEY (`page_id`)
+  `page_addedBy` int(2) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -394,12 +381,11 @@ INSERT INTO `pages` (`page_id`, `page_title`, `page_content`, `page_status`, `pa
 --
 
 CREATE TABLE IF NOT EXISTS `sliders` (
-  `slider_id` int(10) NOT NULL AUTO_INCREMENT,
+`slider_id` int(10) NOT NULL,
   `slider_title` varchar(100) NOT NULL,
   `slider_image` varchar(255) NOT NULL,
   `slider_url` varchar(255) NOT NULL,
-  `slider_status` int(1) NOT NULL,
-  PRIMARY KEY (`slider_id`)
+  `slider_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
@@ -418,12 +404,11 @@ INSERT INTO `sliders` (`slider_id`, `slider_title`, `slider_image`, `slider_url`
 --
 
 CREATE TABLE IF NOT EXISTS `suburbs` (
-  `suburb_id` int(5) NOT NULL AUTO_INCREMENT,
+`suburb_id` int(5) NOT NULL,
   `suburb_location_id` int(5) NOT NULL,
   `suburb_name` varchar(100) NOT NULL,
   `suburb_alias` varchar(255) NOT NULL,
-  `suburb_cordinates` varchar(20) NOT NULL,
-  PRIMARY KEY (`suburb_id`)
+  `suburb_cordinates` varchar(20) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
@@ -445,7 +430,7 @@ INSERT INTO `suburbs` (`suburb_id`, `suburb_location_id`, `suburb_name`, `suburb
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
   `user_username` varchar(50) NOT NULL,
   `user_password` text NOT NULL,
   `user_email` varchar(50) NOT NULL,
@@ -458,9 +443,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_registeredDate` datetime NOT NULL,
   `user_type` int(1) NOT NULL,
   `user_status` int(1) NOT NULL,
-  `user_accessToken` text NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+  `user_accessToken` text NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `user`
@@ -469,7 +453,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `user_firstname`, `user_lastname`, `user_address1`, `user_address2`, `user_city`, `user_contactNo`, `user_registeredDate`, `user_type`, `user_status`, `user_accessToken`) VALUES
 (1, 'dhammika97', '202cb962ac59075b964b07152d234b70', 'dhammika97@gmail.com', 'dhammika', 'gunaratne', '176/4, walatenna', 'gallellagama', 'kandy', '777339803', '2014-11-20 00:00:00', 0, 1, 'kjsjjdfshdfhsdbfjhsbdfsdfsf'),
 (31, '', '202cb962ac59075b964b07152d234b70', 'dhammika9@gmail.com', 'test', '', '', '', '', '', '2014-12-06 00:00:00', 3, 1, '1C078C9F93582F9D780C55507BB274B6'),
-(32, '', '202cb962ac59075b964b07152d234b70', 'damn@123.com', '123', '123', '', '', '', '', '2014-12-09 00:00:00', 3, 1, 'BD9EC52A01EF7DD33EFE5AB92EC7D99F');
+(32, '', '202cb962ac59075b964b07152d234b70', 'damn@123.com', '123', '123', '', '', '', '', '2014-12-09 00:00:00', 3, 1, 'BD9EC52A01EF7DD33EFE5AB92EC7D99F'),
+(33, '', 'c4ca4238a0b923820dcc509a6f75849b', 'usama@gmail.com', 'usama', 'cool', '', '', '', '', '2014-12-14 00:00:00', 3, 1, '4BD9F28A87B2E911BD287EF2242F82D2');
 
 -- --------------------------------------------------------
 
@@ -478,14 +463,13 @@ INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `
 --
 
 CREATE TABLE IF NOT EXISTS `userpackge` (
-  `userpkg_id` int(11) NOT NULL AUTO_INCREMENT,
+`userpkg_id` int(11) NOT NULL,
   `userpkg_userId` int(11) NOT NULL,
   `userpkg_pkgId` int(11) NOT NULL,
   `userpkg_remainAds` int(4) NOT NULL,
   `userpkg_expirey` date NOT NULL,
-  `userpkg_status` int(1) NOT NULL,
-  PRIMARY KEY (`userpkg_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  `userpkg_status` int(1) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `userpackge`
@@ -499,7 +483,11 @@ INSERT INTO `userpackge` (`userpkg_id`, `userpkg_userId`, `userpkg_pkgId`, `user
 (5, 32, 1, 3, '0000-00-00', 1),
 (6, 32, 3, 300, '0000-00-00', 1),
 (7, 32, 7, 15, '0000-00-00', 1),
-(8, 32, 9, 123, '0000-00-00', 1);
+(8, 32, 9, 123, '0000-00-00', 1),
+(9, 33, 1, 3, '0000-00-00', 1),
+(10, 33, 3, 300, '0000-00-00', 1),
+(11, 33, 7, 15, '0000-00-00', 1),
+(12, 33, 9, 123, '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -508,19 +496,248 @@ INSERT INTO `userpackge` (`userpkg_id`, `userpkg_userId`, `userpkg_pkgId`, `user
 --
 
 CREATE TABLE IF NOT EXISTS `usersubscription` (
-  `subscription_id` int(11) NOT NULL AUTO_INCREMENT,
+`subscription_id` int(11) NOT NULL,
   `subscription_email` varchar(50) NOT NULL,
-  `subscription_status` int(11) NOT NULL,
-  PRIMARY KEY (`subscription_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `subscription_status` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `usersubscription`
 --
 
 INSERT INTO `usersubscription` (`subscription_id`, `subscription_email`, `subscription_status`) VALUES
-(1, 'dhammika97@gmail.com', 1);
+(1, 'dhammika97@gmail.com', 1),
+(2, 'usamafassy@gmail.com', 1),
+(3, 'usamafassy@gmail.com', 1),
+(4, 'usamafassy@gmail.com', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video`
+--
+
+CREATE TABLE IF NOT EXISTS `video` (
+`video_id` int(11) NOT NULL,
+  `video_title` varchar(255) NOT NULL,
+  `video_filename` varchar(200) NOT NULL,
+  `video_status` int(1) NOT NULL,
+  `video_url` varchar(255) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+
+--
+-- Dumping data for table `video`
+--
+
+INSERT INTO `video` (`video_id`, `video_title`, `video_filename`, `video_status`, `video_url`) VALUES
+(17, 'test', '../../../api/uploads/video/FB5020E67FF2F228B00832C32FBA7AD2.mp4', 1, '');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `advertisement_images`
+--
+ALTER TABLE `advertisement_images`
+ ADD PRIMARY KEY (`advertisement_imageId`);
+
+--
+-- Indexes for table `advertisment`
+--
+ALTER TABLE `advertisment`
+ ADD PRIMARY KEY (`advertisment_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+ ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `categoryattributes`
+--
+ALTER TABLE `categoryattributes`
+ ADD PRIMARY KEY (`attribute_id`);
+
+--
+-- Indexes for table `category_sub`
+--
+ALTER TABLE `category_sub`
+ ADD PRIMARY KEY (`category_sub_id`), ADD KEY `category_sub_id` (`category_sub_id`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+ ADD PRIMARY KEY (`evenet_id`);
+
+--
+-- Indexes for table `fixedads`
+--
+ALTER TABLE `fixedads`
+ ADD PRIMARY KEY (`fixedads_id`);
+
+--
+-- Indexes for table `item_comments`
+--
+ALTER TABLE `item_comments`
+ ADD PRIMARY KEY (`comment_Id`);
+
+--
+-- Indexes for table `locations`
+--
+ALTER TABLE `locations`
+ ADD PRIMARY KEY (`location_id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+ ADD PRIMARY KEY (`news_id`);
+
+--
+-- Indexes for table `packagetypes`
+--
+ALTER TABLE `packagetypes`
+ ADD PRIMARY KEY (`package_id`);
+
+--
+-- Indexes for table `pages`
+--
+ALTER TABLE `pages`
+ ADD PRIMARY KEY (`page_id`);
+
+--
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
+ ADD PRIMARY KEY (`slider_id`);
+
+--
+-- Indexes for table `suburbs`
+--
+ALTER TABLE `suburbs`
+ ADD PRIMARY KEY (`suburb_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `userpackge`
+--
+ALTER TABLE `userpackge`
+ ADD PRIMARY KEY (`userpkg_id`);
+
+--
+-- Indexes for table `usersubscription`
+--
+ALTER TABLE `usersubscription`
+ ADD PRIMARY KEY (`subscription_id`);
+
+--
+-- Indexes for table `video`
+--
+ALTER TABLE `video`
+ ADD PRIMARY KEY (`video_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `advertisement_images`
+--
+ALTER TABLE `advertisement_images`
+MODIFY `advertisement_imageId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `advertisment`
+--
+ALTER TABLE `advertisment`
+MODIFY `advertisment_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+MODIFY `category_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
+--
+-- AUTO_INCREMENT for table `categoryattributes`
+--
+ALTER TABLE `categoryattributes`
+MODIFY `attribute_id` int(4) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `category_sub`
+--
+ALTER TABLE `category_sub`
+MODIFY `category_sub_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+MODIFY `evenet_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `fixedads`
+--
+ALTER TABLE `fixedads`
+MODIFY `fixedads_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `item_comments`
+--
+ALTER TABLE `item_comments`
+MODIFY `comment_Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `locations`
+--
+ALTER TABLE `locations`
+MODIFY `location_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+MODIFY `news_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `packagetypes`
+--
+ALTER TABLE `packagetypes`
+MODIFY `package_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `pages`
+--
+ALTER TABLE `pages`
+MODIFY `page_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `sliders`
+--
+ALTER TABLE `sliders`
+MODIFY `slider_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `suburbs`
+--
+ALTER TABLE `suburbs`
+MODIFY `suburb_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
+--
+-- AUTO_INCREMENT for table `userpackge`
+--
+ALTER TABLE `userpackge`
+MODIFY `userpkg_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `usersubscription`
+--
+ALTER TABLE `usersubscription`
+MODIFY `subscription_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `video`
+--
+ALTER TABLE `video`
+MODIFY `video_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
