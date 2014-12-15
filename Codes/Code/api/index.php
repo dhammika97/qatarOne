@@ -1979,6 +1979,145 @@ $app->get('/userActivation/:id', function($hash)  {
 		}
 });
 
+/* 
+	// * list of sub-categories belongs to each categories and respective user account/package
+	// * url - /categoryMatrixPackageBinding
+	// * method - get
+	// * params -
+		
+	$app->get('/categoryMatrixPackageBinding', function()  {
+		global $user_id;
+		$request = \Slim\Slim::getInstance()->request();
+		$params = $request->params();
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->getCategoryMatrixPackageBinding();
+			
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response['categorymatrix']=json_decode($result);
+				
+			echoRespnse(200, $response);
+		}
+	}); */
+	
+
+		/**
+		 * Create  Advertisment
+		 * url 		- /advertisment
+		 * method 	- POST
+		 * params 	- Advertisment  object*/
+		
+		$app->post('/advertisment', 'authenticate', function() use ($app) {
+			$response = array();
+			$request = \Slim\Slim::getInstance()->request();
+			$adDetails = $request->getBody();
+			$db = new DbHandler();
+			global $user_id;
+			//$category = $db->GetsubCategoryDetail($adDetails['advertisement_subCategoryId']);
+			if($adId = $db->createAdvertisment($adDetails)){
+				if($adId=='No_inventory'){
+						
+					//echo '234';
+					$response["error"] = false;
+					$response['categorymatrix']="No free ads remaining with your current account";
+						
+					echoRespnse(200, $response);
+				}else {
+					$response["error"] = false;
+					$response["message"] = "Advertisment created successfully";
+					$response["insertedId"]=$adId;
+					echoRespnse(201, $response);
+				}
+					
+			}else{
+				$response["error"] = true;
+				$response["message"] = "Failed to create Advertisment. Please try again";
+				echoRespnse(400, $response);
+			}
+		});
+		
+		
+			/**
+			 * Category user package wise
+			 * url - /categoryuserwise/:id
+			 * method - POST
+			 * params - $user Profile object
+			*/
+			$app->put('/userProfile/:id', function($id){
+		
+				$users  = array();
+				$response = array();
+				$request = $app->request();
+				$DbHandler = new DbHandler();
+		
+				$userProfile = $request->getBody();
+				//echo print_r($users);
+		
+				if($DbHandler->updateUserProfile($id,$userProfile)){
+					$response["error"] = false;
+					$response["message"] = "User Profile details updated suceesfully";
+					echoRespnse(200, $response);
+				}
+			});
+		
+		
+				// * post ads - availability based on each user account/package
+				// * url - /categoryuserwise
+				// * method - get
+				// * params -
+					
+				$app->get('/categoryuserwise','authenticate', function() {
+		
+					$parameter='';
+					$response = array();
+					$DbHandler = new DbHandler();
+		
+					$result = $DbHandler->getPackageAvailability();
+		
+					if ($result != NULL) {
+						$response["error"] = false;
+						$response['packageDetails'] = $result;
+						echoRespnse(200	, $response);
+					} else {
+						$response["error"] = true;
+						$response["message"] = "The requested resource doesn't exists";
+						echoRespnse(404, $response);
+					}
+				});
+		
+		
+		
+					// * list of sub-categories belongs to each categories and respective user account/package
+					// * url - /categoryMatrixPackageBinding
+					// * method - get
+					// * params -
+						
+					$app->get('/categoryMatrixPackageBinding','authenticate', function()  {
+						global $user_id;
+						$request = \Slim\Slim::getInstance()->request();
+						$params = $request->params();
+						$DbHandler = new DbHandler();
+						$response = array();
+						$result = $DbHandler->getCategoryMatrixPackageBinding($user_id);
+							
+						if (!$result) {
+							$response["error"] = TRUE;
+							$response["message"] = "The requested resource doesn't exists";
+							echoRespnse(404, $response);
+						} else {
+							$response["error"] = false;
+							$response['categorymatrix']=json_decode($result);
+								
+							echoRespnse(200, $response);
+						}
+					});
+		
+
 $app->run();
 		
 		

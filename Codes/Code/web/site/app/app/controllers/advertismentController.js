@@ -66,7 +66,8 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 }
 
 controllers.advertismentAddController = function($scope, advertismentFactory, FileUploader, ngProgress, $timeout){
-	$scope.catList = advertismentFactory.getCategory()
+	$scope.packageList = advertismentFactory.getPackageDetails()
+	$scope.catList = advertismentFactory.getCategoryPackage()
 	$scope.locationList = advertismentFactory.getLocations()
 	$scope.suburbOptions = "item.suburb_id as item.suburb_name for item in list.suburbs"
 	$scope.changeLoc = function(){

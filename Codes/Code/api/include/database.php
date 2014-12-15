@@ -6,9 +6,9 @@
  */
 class database{
 
-private $db_host = "localhost";
+private $db_host = "localhost:3306";
 private $db_user = "root";
-private $db_pass = "";
+private $db_pass = "123456";
 private $db_name = "qatarone";
 
 //require_once 'Config.php';
@@ -162,7 +162,7 @@ private $numrows;
 		$this->disconnect();
 	}
 	
-	
+
 	
 	public function update($table,$rows,$where){
         $update = 'update '.$table.' set ';
@@ -186,7 +186,15 @@ private $numrows;
 		}
 		$this->disconnect();
     }
-	
+    public function updatePreparedStatment($query){
+    
+    	if($up = mysqli_query($this->con,$query)){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    	$this->disconnect();
+    }
 	
 	function tableExists($table){
 		$tablesInDb = @mysqli_query($this->con,'show tables from '.$this->db_name.' like "'.$table.'"')	;

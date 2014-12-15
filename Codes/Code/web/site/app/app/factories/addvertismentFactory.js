@@ -60,12 +60,27 @@ App.factory('advertismentFactory',function($resource){
 			}
 		})
 	}
-	var category = $resource('../../../api/categoryMatrix/:id', {}, {
+	
+	var packageDetails = $resource('../../../api/categoryuserwise', {}, {
+        query: { method: 'GET', params: {}, isArray: false }
+    });
+	factory.getPackageDetails = function(){
+		return tld = packageDetails.query();
+	}
+	
+	var category = $resource('../../../api/categoryMatrixPackageBinding/:id', {}, {
+        query: { method: 'GET', params: {}, isArray: false }
+    });
+	factory.getCategoryPackage = function(){
+		return tld = category.query();
+	}
+	
+/*	var category = $resource('../../../api/categoryMatrix/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false }
     });
 	factory.getCategory = function(){
 		return tld = category.query();
-	}
+	}*/
 	var locationList = $resource('../../../api/locations/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false }
     });

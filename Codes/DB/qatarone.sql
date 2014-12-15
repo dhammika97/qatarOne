@@ -357,18 +357,18 @@ CREATE TABLE IF NOT EXISTS `packagetypes` (
   `package_adLimit` int(5) NOT NULL,
   `package_addedBy` int(3) NOT NULL,
   `package_status` int(1) NOT NULL,
+  `package_mode` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`package_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 ;
 
---
--- Dumping data for table `packagetypes`
---
 
-INSERT INTO `packagetypes` (`package_id`, `packageType`, `package_name`, `package_Description`, `package_price`, `package_adLimit`, `package_addedBy`, `package_status`) VALUES
-(1, 0, 'test package', 'test description', '2500', 3, 1, 0),
-(3, 0, 'test package 3', 'test', '2500', 300, 1, 0),
-(7, 0, 'test first', 'test description', '21540', 15, 1, 1),
-(9, 0, 'ssdf', 'sdfsf asdasdas dasdas', '123', 123, 1, 1);
+
+insert into packagetypes values
+	(9,1,'ssdf','sdfsf asdasdas dasdas',123,123,1,1,1),
+	(7,0,'test first','test description',21540,15,1,1,2),
+	(3,0,'test package 3','test',2500,300,1,0,1),
+	(1,0,'test package','test description',2500,3,1,0,3)
+;
 
 -- --------------------------------------------------------
 

@@ -262,23 +262,24 @@ class DbHandler {
 		$category_list = $db->getJson();
 		return $category_list;
 	}
+	
 	public function getAllCategoriesWithCount($params){
 		$where = '';
 		$i = 1;
-		foreach($params as $key => $value){
-			if($i != count($params) )
-			$where .= ' AND '.$key .'='.$value.' AND ';
+		foreach ( $params as $key => $value ) {
+			if ($i != count ( $params ))
+				$where .= ' AND ' . $key . '=' . $value . ' AND ';
 			else
-			$where .= $key .'='.$value;
-			$i++;
+				$where .= $key . '=' . $value;
+			$i ++;
 		}
-		$db = new database();  
+		$db = new database ();
 		$table = 'category c, advertisment a';
-		$rows ='c.* , count( a. advertisment_id) as addCount';
-		$where_query = 'a.advertisement_categoryId = c.category_id'.$where;
+		$rows = 'c.* , count( a. advertisment_id) as addCount';
+		$where_query = 'a.advertisement_categoryId = c.category_id' . $where;
 		$group_by = 'c.category_id';
-		$db->selectJson($table,$rows,$where_query,'','',$group_by);
-		$category_list = $db->getJson();
+		$db->selectJson ( $table, $rows, $where_query, '', '', $group_by );
+		$category_list = $db->getJson ();
 		return $category_list;
 	}
 	
@@ -1127,19 +1128,23 @@ public function checkLogin($user_email, $user_password) {
 		
 	}
 	
+
 	public function createAdvertisment($adDetail) {
 		global $user_id;
+		$ads='';
 		$db = new database();
 		$expire = $end = date('Y-m-d', strtotime('+3 months'));
-		$table  = "advertisment";
+		$table = "advertisment";
 		$category = json_decode(self::GetsubCategoryDetail($adDetail['advertisement_subCategoryId']),true);
-		
-		(isset($adDetail['advertisement_attributes']) ? $attr = json_encode($adDetail['advertisement_attributes']) : $attr = "" );
-		(isset($adDetail['advertisement_price']) ? $price = $adDetail['advertisement_price'] : $price = "" );
-		
-		
-		
-		$values = "'".$category[0]['category_sub_parentId']."',
+		$mode=self::GetCategoryParentId($category[0]['category_sub_parentId']);
+		$ads=self::checkPackageAvailability($user_id,$mode);
+		if($ads!=='0'){
+	
+			(isset($adDetail['advertisement_attributes']) ? $attr = json_encode($adDetail['advertisement_attributes']) : $attr = "" );
+			(isset($adDetail['advertisement_price']) ? $price = $adDetail['advertisement_price'] : $price = "" );
+	
+	
+			$values = "'".$category[0]['category_sub_parentId']."',
 				'".$adDetail['advertisement_subCategoryId']."',
 				'".json_encode($adDetail['advertisement_attributes'])."',
 				'".$adDetail['advertisement_title']."',
@@ -1154,7 +1159,7 @@ public function checkLogin($user_email, $user_password) {
 				'0',
 				'".$expire."',
 				'".$user_id."'";
-		$rows = "advertisement_categoryId,
+			$rows = "advertisement_categoryId,
 				advertisement_subCategoryId,
 				advertisement_attributes,
 				advertisement_title,
@@ -1169,10 +1174,16 @@ public function checkLogin($user_email, $user_password) {
 				advertisement_status,
 				advertisement_expire,
 				advertisement_addedBy";
-		if($db->insert($table,$values,$rows) ){
-			return $db->getInsertId();
-		}else{
-			return false;
+			if($db->insert($table,$values,$rows) ){
+				$update=self::updatePackageAvailability(37,1);
+					
+				return $db->getInsertId();
+			}else{
+				return false;
+			}
+	
+		}else {
+			return "No_inventory";
 		}
 	}
 
@@ -1603,6 +1614,147 @@ public function getSimilarItems($params){
 			return true;
 		}		
 	}
+
+	public function getPackageAvailability() {
+		global $user_id;
+		$ads=self::checkPackageAvailability($user_id,1);//check ads =1
+		$jobs=self::checkPackageAvailability($user_id,2);//check jobs =2
+	
+		$response['ads']=$ads;
+		$response['jobs']=$jobs;
+	
+		return $response;
+	}
+	
+	public function checkPackageAvailability($user_id,$mode) {
+	
+		$response=self::checkPayedPackageAvailability($user_id,$mode);
+	
+		if ($response=='Payed_Available') {
+			$response='unlimited';
+		}else {
+			$response=self::checkRegisteredPackageAvailability($user_id,$mode);
+		}
+		return $response;
+	}
+	
+	public function checkPayedPackageAvailability($user_id,$mode) {
+		//echo $user_id;
+	
+		$db = new database ();
+		$table = 'userpackge up, packagetypes pt ';
+		$rows = ' packageType ';
+		$where = 'up.userpkg_pkgid= pt.package_id
+				  AND up.userpkg_userid = "'.$user_id.'"
+				  AND pt.package_mode = "'.$mode.'"
+				  AND pt.packageType = "1"
+				 ';
+		$order_by = " packageType";
+	
+		$db->selectJson ( $table, $rows, $where, $order_by, '' );
+		$resultsset = $db->getJson ();
+			
+		if ($resultsset!=NULL) {
+			$response='Payed_Available';
+		}else {
+			$response='Payed_NotAvailable';
+		}
+	
+		return $response;
+	
+	}
+	
+	public function checkRegisteredPackageAvailability($user_id,$mode) {
+		//echo $user_id;
+	
+		$db = new database ();
+		$table = 'userpackge up, packagetypes pt ';
+		$rows = ' userpkg_remainAds ';
+		$where = 'up.userpkg_pkgid= pt.package_id
+				  AND up.userpkg_userid = "' . $user_id . '"
+				  AND pt.package_mode = "' . $mode . '"
+				   AND pt.packageType = "0"
+				 ';
+		$order_by = " packageType";
+	
+		$db->select ( $table, $rows, $where, $order_by, '' );
+	
+		$resultsset = $db->getResults ();
+	
+		if ($resultsset != NULL) {
+			$response =  $resultsset [0];
+		} else {
+			$response = '0';
+		}
+	
+		return $response;
+	}
+	
+	public function updatePackageAvailability($user_id,$mode) {
+	
+		$response=self::checkPayedPackageAvailability($user_id,$mode);
+	
+		if ($response=='Payed_Available') {
+			$response='TRUE';
+		}else {
+			$response=self::updateRegisteredPackageAvailability($user_id,$mode);
+		}
+		return $response;
+	}
+	
+	
+	public function updateRegisteredPackageAvailability($user_id,$mode){
+		$db = new database();//$user_id,$mode
+		$query= 'update userpackge set userpkg_remainAds=userpkg_remainAds-1
+				where userpkg_userid = '.$user_id.' AND userpkg_pkgid in (select package_id from packagetypes where packagetype=0 AND package_mode = '.$mode.')';
+		if($db->updatePreparedStatment($query) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+	
+	public function getCategoryMatrixPackageBinding($user_id){
+		//global $user_id;
+		$where_atri = '';
+		$ads=self::checkPackageAvailability($user_id,1);//check ads =1
+		$jobs=self::checkPackageAvailability($user_id,2);//check jobs =2
+	echo $ads;
+	echo $jobs;
+	
+		if ($ads=='0') {
+			$where_atri =$where_atri. ' AND c.category_parentId != 1 ';
+		}
+	
+		if ($jobs=='0') {
+			$where_atri =$where_atri. ' AND c.category_parentId != 2 ';
+		}
+	
+		$where = 'category_status=1'. $where_atri;
+		$db = new database();
+		$table = 'category c inner join category_sub s on c.category_id = s.category_sub_parentId';
+		$rows ='c.category_id,c.category_name,s.category_sub_id,s.category_sub_name,s.category_sub_tplType';
+		$db->selectJson($table,$rows,$where,'c.category_name','','');
+		//echo 'select '.$rows.' from '.$table.' '.$where;
+		$subcategories = $db->getJson();
+	
+		return $subcategories;
+	}
+	
+	public function GetCategoryParentId($id){
+		$db = new database();
+		$table = 'category ';
+		$rows ='category_parentId ';
+		$where = ' category_id = '. $id;
+		$db->select($table,$rows,$where,'','','');
+		$subcategory = $db->getResults();
+	
+		return $subcategory[0];
+	}
+	
+	
 		
 }
 ?>
