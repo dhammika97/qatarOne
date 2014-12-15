@@ -65,6 +65,11 @@ window.routes =
 		controller:'controllers.settingController',
 		templateUrl:'app/partials/settings/settingsMain.html',
 		requireLogin: true
+	},
+	'/contact-us': {
+		//controller:'controllers.settingController',
+		templateUrl:'app/partials/contact/contactus.html',
+		requireLogin: false
 	}
 };
 
