@@ -54,6 +54,13 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 			map: map,
 			animation: google.maps.Animation.DROP
 		});
+		
+		var json = e.advertisment[0].advertisement_attributes
+		var result = [];
+
+		for(var i in json)
+		result.push([i, json [i]]);
+		console.log(result)
 	}
 	
 }

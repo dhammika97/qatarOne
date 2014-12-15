@@ -5,6 +5,7 @@ var App = angular.module('QatartOneApp',[
 	'angular.filter',
 	'ui.bootstrap',
 	'angularFileUpload',
+	'ngSanitize',
 	'ngProgress']) 
 
 window.routes =

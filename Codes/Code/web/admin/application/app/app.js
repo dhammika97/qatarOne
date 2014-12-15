@@ -1,5 +1,5 @@
 // JavaScript Document
-var App = angular.module('QatartOne',['ngRoute','ngResource', 'angularFileUpload', 'ngWig'])
+var App = angular.module('QatartOne',['ngRoute','ngResource', 'angularFileUpload','textAngular'])
 
 App.config(function($routeProvider, $httpProvider){
 	

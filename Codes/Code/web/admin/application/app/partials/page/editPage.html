@@ -15,7 +15,8 @@
           	<div class="form-group">
                 <label class="col-sm-3 control-label">Page Content</label>
                 <div class="col-sm-8">
-                  <textarea type="text" class="form-control" ng-model="pageDetails.page[0].page_content" rows="15" required></textarea>
+                  <!--<textarea type="text" class="form-control" ng-model="pageDetails.page[0].page_content" rows="15" required></textarea>-->
+                  <div text-angular="text-angular" name="htmlcontent" ng-model="pageDetails.page[0].page_content" ta-disabled='disabled'></div>
                 </div>
               </div>
           <div class="form-group">
