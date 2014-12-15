@@ -8,7 +8,7 @@ class database{
 
 private $db_host = "localhost:3306";
 private $db_user = "root";
-private $db_pass = "123456";
+private $db_pass = "";
 private $db_name = "qatarone";
 
 //require_once 'Config.php';

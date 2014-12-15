@@ -45,6 +45,11 @@ window.routes =
         templateUrl:'app/partials/postAd/postAdMain.html',
 		requireLogin: true
     },
+	"/review-ad/:id": {
+		controller:'controllers.advertismentAddController',
+        templateUrl:'app/partials/postAd/reviewAdMain.html',
+		requireLogin: true
+    },
 	'/login': {
 		templateUrl:'app/partials/login/loginMain.html',
 		requireLogin: false

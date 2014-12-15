@@ -1,4 +1,4 @@
-App.factory('advertismentFactory',function($resource){
+App.factory('advertismentFactory',function($resource, $location){
 	var advertisment = $resource('../../../api/advertisment/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
         get: { method: 'GET', params: { id: '@id' } },
@@ -21,7 +21,7 @@ App.factory('advertismentFactory',function($resource){
 	}
 	
 	
-	factory.saveAdvertisment = function($scope,ngProgress, $timeout){
+	factory.saveAdvertisment = function($scope, ngProgress, $timeout){
 		//alert($scope.imageList)			
 		return advertisment.save($scope.ad)
 		.$promise.catch(function(e){
@@ -48,6 +48,8 @@ App.factory('advertismentFactory',function($resource){
 					$scope.ad=''
 					$timeout(function(){
 						$scope.closeAlert();
+						console.log(e)
+						//$location.path('/review-ad/45')
 					}, 3000);
 				})	
 			}else{
@@ -121,15 +123,15 @@ App.factory('advertismentFactory',function($resource){
 			$scope.addAlert('success',"comment successfully added")
 			$scope.comments.body = '';
 			$timeout(function(){
-						$scope.closeAlert();
-					}, 3000);
+				$scope.closeAlert();
+			}, 3000);
 		});	
 	}
 	var maildeliver = $resource('../../../api/mail/:id', {}, {
          query: { method: 'POST', params: {}, isArray: false },
     });
 	factory.sendAdvertismentMail = function($scope){
-		console.log($scope.ad.advertisement_contactName);
+		//console.log($scope.ad.advertisement_contactName);
 		maildeliver.query({"fname":$scope.ad.advertisement_contactName, "to":$scope.ad.advertisement_contactEmail,"mailType":"advertismentAdd"});
 	}
 

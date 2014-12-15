@@ -1,0 +1,92 @@
+<section class="post-single-ad review">
+  <div class="container">
+    <div class="row top-breadcrumb">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Fill In Details</div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  active"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Check Your Ad</div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Confirmation</div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Review Your Ad Details</h3>
+          </div>
+          <div class="panel-body">
+          <form class="form-horizontal" name="adUpload" role="form">
+            <div class="form-group">
+              <label for="category" class="col-sm-2 control-label" >Category</label>
+              <div class="col-sm-10">
+               Car
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="title" class="col-sm-2 control-label">Ad Title</label>
+              <div class="col-sm-10">
+                Honda FIT
+              </div>
+            </div>
+            <ng-include src="templatePath"></ng-include>
+            <div class="form-group">
+              <label for="Description" class="col-sm-2 control-label">Description</label>
+              <div class="col-sm-10">
+              HONDA FIT GP5 HYBRID S-GRADE SPORT PACKAGE, 1500CC, COLOR PEARL WHITE, 05KM, 2014-NOVEMBER, AUCTION GRADE SAA, BRAND-NEW, PADDED STEERING, DUAL MULTIFUNCTION SWITCH WITH CRUISE CONTROL, TRACTION CONTROL, LED HEAD LIGHTS, DOOR VISORS, AUTO AC, SMART-KEY, IN-BUILT SECURITY SYSTEM, HALF LEATHER SEATS, BACK SEAT ARM REST & THREE HEAD RESTS, REAR WIPER, WINKER MIRRORS, FACTORY FITTED ALLOY WHEELS.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="price" class="col-sm-2 control-label">Price</label>
+              <div class="col-sm-10">                       
+                    QR 25000
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Description" class="col-sm-2 control-label">Images</label>
+              <div class="col-sm-10">
+                <img src="images/car1.jpg" width="200">
+                <img src="images/car2.jpg" width="200">
+                <img src="images/car3.jpg" width="200">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactName" class="col-sm-2 control-label">Contact Name</label>
+              <div class="col-sm-10">
+               Sam
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactNo" class="col-sm-2 control-label">Contact No</label>
+              <div class="col-sm-10">
+                11224488
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactNo" class="col-sm-2 control-label">Contact Email</label>
+              <div class="col-sm-10">
+                sam@gmail.com
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactNo" class="col-sm-2 control-label">Location</label>
+              <div class="col-sm-10">
+                Qatar
+              </div>
+            </div>
+      <div class="form-group">
+              <label for="contactNo" class="col-sm-2 control-label">Suburb</label>
+              <div class="col-sm-10">
+                Kandy
+              </div>
+            </div>            
+          </form>
+        </div>
+        <div class="panel-footer" style="overflow:hidden;text-align:right;">
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button  class="btn btn-success" ng-click="addAdvertisment()" ng-disabled="adUpload.$invalid">Publish Your Ad</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
