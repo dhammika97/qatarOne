@@ -201,6 +201,40 @@ function sendMail($content, $headers){
                             </html>';
              
              break;
+case 'contactUs':
+             $subject ='Qatar One - Thank you for contacting us';
+             $message = '
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'<br>
+                                </p>                                
+                                <p>
+                                Thank You for contacting team Qatar one, your message has being recived
+                                </p>
+                                <p>
+                                Best Regards!
+                                Team Qatar one
+                                </p>
+                            </body>
+                            </html>';
+             
+             break;
+             case 'contactUsTeamQatar':
+             $subject ='Qatar One - message from customer';
+             $message = '
+                            <html>
+                            <body>
+                                <p>
+                                Name :'.$content['fname'].'<br>
+                                </p>                                
+                                <p>
+                                '.$content['customerMessage'].'
+                                </p>
+                            </body>
+                            </html>';
+             
+             break;
 
 
      } 
