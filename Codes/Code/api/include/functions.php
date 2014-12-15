@@ -201,7 +201,7 @@ function sendMail($content, $headers){
                             </html>';
              
              break;
-case 'contactUs':
+             case 'contactUs':
              $subject ='Qatar One - Thank you for contacting us';
              $message = '
                             <html>
@@ -218,11 +218,8 @@ case 'contactUs':
                                 </p>
                             </body>
                             </html>';
-             
-             break;
-             case 'contactUsTeamQatar':
-             $subject ='Qatar One - message from customer';
-             $message = '
+             $subject2 ='Qatar One - message from customer';
+             $message2= '
                             <html>
                             <body>
                                 <p>
@@ -233,7 +230,7 @@ case 'contactUs':
                                 </p>
                             </body>
                             </html>';
-             
+             mail('info@qatarone.com', $subject2, $message2, $headers);
              break;
 
 
