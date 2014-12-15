@@ -108,7 +108,7 @@ header .top-nav ul li.active a { color: white; }
 .main-page .item.list-group-item img { float: left; width: 30%; }
 .main-page .item.list-group-item:after { clear: both; }
 .main-page .item.list-group-item .list-group-item-text { padding-top: 0; }
-.main-page .item.grid-group-item .thumbnail { padding: 0; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f2f2f2)); background: -webkit-linear-gradient(#fefefe, #f2f2f2); background: -moz-linear-gradient(#fefefe, #f2f2f2); background: -o-linear-gradient(#fefefe, #f2f2f2); background: linear-gradient(#fefefe, #f2f2f2); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; max-height: 350px; min-height: 350px; cursor: pointer; }
+.main-page .item.grid-group-item .thumbnail { padding: 0; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f2f2f2)); background: -webkit-linear-gradient(#fefefe, #f2f2f2); background: -moz-linear-gradient(#fefefe, #f2f2f2); background: -o-linear-gradient(#fefefe, #f2f2f2); background: linear-gradient(#fefefe, #f2f2f2); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; max-height: 323px; min-height: 323px; cursor: pointer; }
 .main-page .item.grid-group-item .thumbnail:hover { background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f1f1f1), color-stop(100%, #fefefe)); background: -webkit-linear-gradient(#f1f1f1, #fefefe); background: -moz-linear-gradient(#f1f1f1, #fefefe); background: -o-linear-gradient(#f1f1f1, #fefefe); background: linear-gradient(#f1f1f1, #fefefe); }
 .main-page .item.grid-group-item .thumbnail .list-group-item-heading { position: absolute; margin-top: 0; background: #747474; margin-top: -36px; margin-left: 0px; padding: 0px 10px; color: white; font-size: 14px; line-height: 26px; font-size: 1.4rem; line-height: 2.6rem; }
 .main-page .item.grid-group-item .thumbnail .caption { padding: 0; }
@@ -116,7 +116,8 @@ header .top-nav ul li.active a { color: white; }
 .main-page .item.grid-group-item .price span { display: block; padding: 0 5px 0 10px; }
 .main-page .item.grid-group-item .price span.comments { font-size: 9px; line-height: 14px; font-size: 0.9rem; line-height: 1.4rem; color: #a3a0a0; padding-bottom: 10px; }
 .main-page .item.grid-group-item .price span.price-tag { font-size: 22px; line-height: 34px; font-size: 2.2rem; line-height: 3.4rem; text-align: center; color: #a50344; padding-right: 10px; padding-top: 5px; }
-.main-page .item .list-group-item-text { margin: 0px; font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; color: #333333; padding: 10px; min-height: 102px; max-height: 102px; }
+.main-page .item.grid-group-item .list-group-item-text { min-height: 75px; max-height: 75px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.main-page .item .list-group-item-text { margin: 0px; font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; color: #333333; padding: 10px; }
 .main-page .item .list-group-item-text span { font-size: 11px; line-height: 12px; font-size: 1.1rem; line-height: 1.2rem; padding-bottom: 1rem; color: #a3a0a0; display: block; }
 .main-page .breadcrumb-bar { padding: 10px; background: #cccccc; font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; }
 .main-page .breadcrumb-bar ul { padding-left: 20px; }
@@ -129,8 +130,8 @@ header .top-nav ul li.active a { color: white; }
 .main-page .ad-title h2 { font-family: "Roboto", serif; font-weight: 300; font-size: 18px; line-height: 20px; font-size: 1.8rem; line-height: 2rem; }
 .main-page .ad-title span { font-weight: 300; font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; color: #a3a0a0; display: block; }
 .main-page .ad-detail .carousel { display: inline-block; }
-.main-page .ad-detail .carousel .carousel-control { margin-bottom: 80px; }
-.main-page .ad-detail .carousel .carousel-indicators { bottom: 80px; }
+.main-page .ad-detail .carousel .carousel-control { /*margin-bottom: 80px;*/ }
+.main-page .ad-detail .carousel .carousel-indicators { bottom: 25px; }
 .main-page .ad-detail ul.thumbnails-carousel { padding: 5px 0 0 0; margin: 0; list-style-type: none; text-align: center; }
 .main-page .ad-detail ul.thumbnails-carousel .center { display: inline-block; }
 .main-page .ad-detail ul.thumbnails-carousel li { margin-right: 5px; float: left; cursor: pointer; }
