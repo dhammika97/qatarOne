@@ -1764,7 +1764,25 @@ public function getSimilarItems($params){
 		$advertisment = $db->getJson();
 		return $advertisment;
 	}	
-	
+	public function approveAdvertisment($id){
+		$db = new database();
+		$table = 'advertisment';
+		$rows  = ['advertisement_status' => 1];
+		$where = 'advertisment_id = "'.$id.'"';
+		if($db-> update($table,$rows,$where))
+			return true;
+		else
+			return false;
+	}
+	public function deleteAdvertisment($id){
+		$db = new database();
+		$table = 'advertisment';
+		$where = 'advertisment_id = "'.$id.'"';
+		if($db-> delete($table,$where))
+			return true;
+		else
+			return false;
+	}	
 	
 		
 }

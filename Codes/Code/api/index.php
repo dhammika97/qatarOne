@@ -2148,6 +2148,37 @@ $app->get('/advertismentsAdmin', function()  {
 			echoRespnse(200, $response);
 		}
 });
+$app->put('/advertismentsAdmin/:id', function($id)  {
+		
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->approveAdvertisment($id);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["message"] = "Advertisement Approved";
+
+			echoRespnse(200, $response);
+		}
+});	
+$app->delete('/advertismentsAdmin/:id', function($id)  {
+		
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->deleteAdvertisment($id);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["message"] = "Advertisement Successfully Deleted";
+			echoRespnse(200, $response);
+		}
+});	
 		
 
 $app->run();
