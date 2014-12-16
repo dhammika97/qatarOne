@@ -1753,6 +1753,17 @@ public function getSimilarItems($params){
 	
 		return $subcategory[0];
 	}
+	public function getPendingAdvertisments(){
+		$db = new database();
+		$table = 'advertisment a, category_sub sc';
+		$rows =	'a.advertisement_title, a.advertisement_date, sc.category_sub_name,
+				 a.advertisement_contactEmail, date(a.advertisement_date), time(a.advertisement_date)';
+		$where = ' a.advertisement_subCategoryId = sc.category_sub_id 
+				   AND a.advertisement_status = 0';
+		$db->selectJson($table,$rows,$where,'','','');
+		$advertisment = $db->getJson();
+		return $advertisment;
+	}	
 	
 	
 		
