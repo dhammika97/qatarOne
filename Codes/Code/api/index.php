@@ -2072,7 +2072,7 @@ $app->get('/userActivation/:id', function($hash)  {
 				// * params -
 					
 				$app->get('/categoryuserwise','authenticate', function() {
-		
+					global $user_id;
 					$parameter='';
 					$response = array();
 					$DbHandler = new DbHandler();
