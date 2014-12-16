@@ -2175,7 +2175,7 @@ $app->delete('/advertismentsAdmin/:id', function($id)  {
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
-			$response["message"] = "Advertisement Successfully Deleted";
+			$response["message"] = "Advertisement Denied";
 			echoRespnse(200, $response);
 		}
 });	

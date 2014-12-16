@@ -10,6 +10,26 @@ App.factory('dashboadrFactory', function($resource){
 	factory.showAdds = function(){
 		return tld = showAdvertisments.query();
 	}
+	factory.approve = function(id,$scope){
+
+		return showAdvertisments.update({id:id})
+		.$promise.then(function(e){
+				alert(e.message)
+				$scope.advertisments = showAdvertisments.query()
+			}).catch(function(e){
+				alert(e.message)
+			})
+	}
+	factory.deny = function(id,$scope){
+
+		return showAdvertisments.delete({id:id})
+		.$promise.then(function(e){
+				alert(e.message)
+				$scope.advertisments = showAdvertisments.query()
+			}).catch(function(e){
+				alert(e.message)
+			})
+	}
 
 	return factory
 });
