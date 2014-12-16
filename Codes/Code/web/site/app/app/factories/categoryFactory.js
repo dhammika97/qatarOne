@@ -9,6 +9,7 @@ App.factory('categoryFactory',function($resource){
 	
 	var factory = {}
 	factory.getCategory = function(params){
+		console.log(params)
 		var parent_id
 		if(params == "jobs" ){
 			parent_id = 2;

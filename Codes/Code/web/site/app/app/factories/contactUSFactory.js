@@ -1,4 +1,4 @@
-App.factory('categoryFactory',function($resource){
+App.factory('contactFactory',function($resource){
 	var contactusMail = $resource('../../../api/mail/:id', {}, {
         query: { method: 'POST', params: {}, isArray: false },
     });

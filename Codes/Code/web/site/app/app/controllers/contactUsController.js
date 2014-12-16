@@ -1,7 +1,7 @@
-controllers.contactUsController = function($scope, categoryFactory){
+controllers.contactUsController = function($scope, contactFactory){
 		
 	$scope.sendContactMail = function(){
-		categoryFactory.sendContactMail($scope);
+		contactFactory.sendContactMail($scope);
 	}	
 	
 }
