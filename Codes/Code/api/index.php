@@ -2127,6 +2127,22 @@ $app->get('/userActivation/:id', function($hash)  {
 							echoRespnse(200, $response);
 						}
 					});
+$app->get('/advertismentsAdmin', function()  {
+		
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->getPendingAdvertisments();
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "User activation failed";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["advertisments"] = json_decode($result);
+
+			echoRespnse(200, $response);
+		}
+});
 		
 
 $app->run();
