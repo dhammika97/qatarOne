@@ -8,7 +8,7 @@ App.config(function($routeProvider, $httpProvider){
 	$routeProvider
 	.when('/',
 		{
-			//controller:'controllers.dashController',
+			controller:'controllers.dashboardController',
 			templateUrl:'app/partials/dashboard.html'
 		}
 	)

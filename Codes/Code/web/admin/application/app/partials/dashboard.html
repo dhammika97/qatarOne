@@ -3,7 +3,7 @@
   <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
   <li class="active"> Overview</li>
 </ol>
-<h3>Advertisments</h3>
+<h3>Advertisments</h3>	
 <ol class="breadcrumb">
   <li class="active"> Advertisments </li>
 </ol>
@@ -11,16 +11,22 @@
     <thead>
       <tr>
         <th>Advertisment Title</th>
-        <th>Advertisment category</th>
+        <th>Advertisment Date</th>
+        <th>Advertisment Subcategory</th>
+        <th>Advertisment Contact Email</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-   		<td>Title</td>
-        <td>Category</td>
+      <tr ng-repeat="adds in  advertisments.advertisments">
+   		<td>{{adds.advertisement_title}}</td>
+        <td>{{adds.advertisement_date}}</td>
+        <td>{{adds.category_sub_name}}</td>
+         <td>{{adds.advertisement_contactEmail}}</td>
         <td><a href="" class="btn btn-warning">Approve</a></td>
         <td><a href="" class="btn btn-danger">deny</a></td>
          <td><a href="" class="btn btn-success">View</a></td>
       </tr>
     </tbody>
 </table>
+
+
