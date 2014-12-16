@@ -2138,7 +2138,7 @@ $app->get('/advertismentsAdmin', function()  {
 		$result = $DbHandler->getPendingAdvertisments();
 		if (!$result) {
 			$response["error"] = TRUE;
-			$response["message"] = "User activation failed";
+			$response["message"] = "The requested resource doesn't exists";
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
