@@ -1753,11 +1753,22 @@ $app->get('/similarItems', function()  {
 			//print_r($cat);
 			$count = $DbHandler->advertiesmentCount($params);
 			$result = $DbHandler->advertiesmentsResults($params);
+			$tmpArr = json_decode($result,true);
+			$tt = array();
+			for($s=0; count($tmpArr)>$s; $s++){
+				$dd = json_decode($tmpArr[$s]['attributes'],true);
+				//print_r($dd['brand']);
+				if(isset($dd['brand']))
+				array_push ($tt,$dd['brand']);
+			}
+			//print_r(array_unique($tt));
 			if ($result != NULL) {
 				$response["error"] = false;
 				$response['advertisments'] = json_decode($result);
 				$response['category'] = json_decode($cat);
 				$response['count'] = $count;
+				if(count($tt)>0)
+				$response['brands'] = array_unique($tt);
 				echoRespnse(200	, $response);
 			} else {
 				$response["error"] = true;

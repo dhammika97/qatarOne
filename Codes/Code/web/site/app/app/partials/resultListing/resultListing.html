@@ -83,7 +83,17 @@
             </li>
           </ul>
           <div class="filter-heading"> <i class="fa fa-usd"></i> Price Range </div>
-          <div class="filter-content"></div>
+          <div class="filter-content">
+			<slider floor="10" ceiling="60" ng-model-low="position.minAge" ng-model-high="position.maxAge"></slider>
+          </div>
+          <div ng-if="resultList.brands">
+          <div class="filter-heading"> <i class="fa fa-usd"></i> Brand </div>
+			<ul>
+            	<li ng-repeat="brand in resultList.brands">
+            		<input type="checkbox" ng-model="brand" /> {{brand}}
+            	</li>
+          	</ul>
+          </div>
           <ng-include src="'app/partials/resultListing/subscribe.html'"></ng-include>
         </div>
         <div class="col-lg-9" >

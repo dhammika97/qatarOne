@@ -146,4 +146,12 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		//console.log(str)
 		$scope.go(str)
 	}
+	
+	
+	
+	$scope.position = {
+		name: 'Potato Master',
+		minAge: 25,
+		maxAge: 40
+	  };
 }

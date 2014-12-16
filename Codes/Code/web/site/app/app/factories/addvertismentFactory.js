@@ -48,8 +48,7 @@ App.factory('advertismentFactory',function($resource, $location){
 					$scope.ad=''
 					$timeout(function(){
 						$scope.closeAlert();
-						console.log(e)
-						//$location.path('/review-ad/45')
+						$location.path('/review-ad/'+e.insertedId)
 					}, 3000);
 				})	
 			}else{
@@ -58,6 +57,7 @@ App.factory('advertismentFactory',function($resource, $location){
 				ngProgress.complete()				
 				$timeout(function(){
 					$scope.closeAlert();
+					$location.path('/review-ad/'+e.insertedId)
 				}, 3000);
 			}
 		})
