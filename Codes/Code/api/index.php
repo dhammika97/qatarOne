@@ -2127,6 +2127,10 @@ $app->get('/userActivation/:id', function($hash)  {
 							echoRespnse(200, $response);
 						}
 					});
+// * list of pending advertisments
+// * url - /advertismentsAdmin
+// * method - get
+// * params -
 $app->get('/advertismentsAdmin', function()  {
 		
 		$DbHandler = new DbHandler();
