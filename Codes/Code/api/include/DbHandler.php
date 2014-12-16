@@ -62,7 +62,7 @@ class DbHandler {
 	public function GetUserDetail($user_id) {
 		$db = new database();
 		$table = 'user';
-		$rows = 'user_id,user_username,user_email, user_firstname,'.
+		$rows = 'user_username,user_email, user_firstname,'.
 				'user_lastname,user_address1,user_address2, user_city,user_contactNo,'.
 				'user_registeredDate,user_type,user_status, user_accessToken';
 		$where = 'user_id = "'.$user_id.'"';	

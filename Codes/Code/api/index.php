@@ -1820,13 +1820,13 @@ $app->get('/similarItems', function()  {
 			}
 		});
 
-	/**
+/**
  * User Profile
- * url - /userProfile/:id
- * method - POST
+ * url - /userProfile
+ * method - PUT
  * params - $user Profile object
  */
-$app->put('/userProfile/:id', function($id) use ($app) {
+$app->put('/userProfile','authenticate', function() use ($app) {
             
         $users  = array();
 		$response = array();
@@ -1835,13 +1835,14 @@ $app->put('/userProfile/:id', function($id) use ($app) {
 
 		$userProfile = $request->getBody();
 		//echo print_r($users);	
-		
-		if($DbHandler->updateUserProfile($id,$userProfile)){
+		global $user_id;
+		if($DbHandler->updateUserProfile($user_id,$userProfile)){
 					$response["error"] = false;
 					$response["message"] = "User Profile details updated suceesfully";
 					echoRespnse(200, $response);
 		}
 });
+
 $app->post('/mail', function() {
 			$request = \Slim\Slim::getInstance()->request();
 			$content = $request->getBody();
