@@ -1,22 +1,36 @@
 //CategoryFactry
 
 App.factory('commentFactory',function($resource){
-	var eventsList = $resource('../../../api/event/:id', {}, {
+	var comments = $resource('../../../api/CommentsAdmin/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
         get: { method: 'GET', params: { id: '@id' } },
         update: { method: 'PUT', params: { id: '@id' } },
-		save:{method: 'POST'},
 		delete:{method:'DELETE',params:{ id:'@id' }}
     });
 	
 	var factory = {}
-	factory.getEvents = function(){
-		
-		return tld = eventsList.query();
-		tld.$promise.catch(function(e){
-			alert(e.data.message)
-			//window.location.replace('#/dashboard')
-		})	
+	factory.showComments = function(){
+		return tld = comments.query();
+	}
+	factory.approve = function(id,$scope){
+
+		return comments.update({id:id})
+		.$promise.then(function(e){
+				alert(e.message)
+				$scope.advertisments = comments.query()
+			}).catch(function(e){
+				alert(e.message)
+			})
+	}
+	factory.deny = function(id,$scope){
+
+		return comments.delete({id:id})
+		.$promise.then(function(e){
+				alert(e.message)
+				$scope.advertisments = comments.query()
+			}).catch(function(e){
+				alert(e.message)
+			})
 	}
 
 	
