@@ -2129,6 +2129,24 @@ $app->get('/userActivation/:id', function($hash)  {
 							echoRespnse(200, $response);
 						}
 					});
+					
+$app->put('/publishAd/:id', function($id)  {
+		
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->confirmAdvertisment($id);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "Advertisemet publish failed!";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["message"] = "Advertisement added successfully. Your ad will be reviewed and publish in a while..  ";
+
+			echoRespnse(200, $response);
+		}
+});
+
 // * list of pending advertisments
 // * url - /advertismentsAdmin
 // * method - get

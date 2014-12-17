@@ -29,7 +29,8 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 
 	 	
 	 }
-		
+	
+	$scope.ratingMax = 5;
 
 	$scope.comments = advertismentFactory.getComments($routeParams.id);
 	//setTimeout(function(){ngProgress.complete()},500)
@@ -38,6 +39,9 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	}
 	
 	$scope.mapLoad = function(e){
+		$scope.rate = 3;
+		$scope.isReadonly = true;
+		
 		$scope.adversiment = e
 		$scope.attributes = e.advertisment[0].advertisement_attributes
 		$scope.latlang = $scope.adversiment['advertisment'][0].suburb_cordinates

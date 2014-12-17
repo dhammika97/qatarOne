@@ -46,7 +46,12 @@
           <h2>{{adversiment.advertisment[0].advertisement_title}}</h2>
           <span>Posted by {{adversiment.advertisment[0].advertisement_contactName}}, {{adversiment.advertisment[0].date}} 
           {{adversiment.advertisment[0].time}}, {{adversiment.advertisment[0].location_name}}</span> </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rating-bar text-right"> <span class="rating">######</span> <span class="comments">{{comments.comments.length}} Comments</span> </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rating-bar text-right"> 
+        	<span class="rating">
+            	<rating ng-model="rate" max="ratingMax" readonly="isReadonly" ></rating>
+            </span> 
+            <span class="comments" ng-if="comments.comments.length">{{comments.comments.length}} Comments</span> 
+        </div>
       </div>
       <!--addvertisment--> 
     </div>
@@ -57,7 +62,7 @@
         <div class="col-lg-6 col-md-6"> 
           <!-- bootstrap carousel -->
           <div class="carousel slide" > 
-            <carousel interval="3000" ng-if="adversiment.images.length > 0">
+            	<carousel interval="3000" ng-if="adversiment.images.length > 0">
                   <slide ng-repeat="slide in adversiment.images" active="slide.active">
                     <img ng-src="../../../api/uploads/advertisement/{{slide.advertisement_image}}" style="margin:auto;">
                     <div class="carousel-caption">
@@ -65,6 +70,7 @@
                     </div>
                   </slide>
                 </carousel>
+                <img ng-if="!adversiment.images" ng-src="images/no_image_large.jpg" style="margin:auto;">
           </div>
         </div>
         <div class="col-lg-6 col-md-6 ad-description">
@@ -73,16 +79,14 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ad-location text-right">Location<span> {{adversiment.advertisment[0].suburb_name}}, {{adversiment.advertisment[0].location_name}}</span></div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="Flexible-container">
-              	
               	<div id="map-canvas" style="height:100%; top:0; bottom:0; left:0; right:0; position:absolute" data-tap-disabled="true"></div>
-                <!--<iframe width="600" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Bern&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>--> 
               </div>
               <p>{{adversiment.advertisment[0].advertisement_description}}</p>
               <ul>
                 <li ng-repeat="(key, value) in attr">{{value}}</li>
               </ul>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 contact-no"> <i class="fa fa-phone fa-2x"></i> {{adversiment.advertisment[0].advertisement_contactNo}} </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 comments-btn text-right"><i class="fa fa-pencil-square-o fa-2x"></i> Comments &amp; Ratings</div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 comments-btn text-right"></div>
             </div>
           </div>
         </div>
@@ -91,9 +95,9 @@
   </div>
   <div class="ad-comments-viewer">
         <div class="container">
-      <div class="row">
+      <div class="row" ng-hide="">
            
-              <div class="col-lg-7 col-md-7 comments-box">
+              <div class="col-lg-7 col-md-7 comments-box" >
                 <h2>Comments</h2>         
                 <div class="detailBox">               
                      <div class="actionBox">
@@ -126,10 +130,12 @@
                 </div>
               </div>
               <div class="col-lg-5 col-md-5 comments-box">
-                <h2>Ratings &amp; Reviews</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dignissim mauris eu lectus sagittis, vel egestas nulla iaculis. Pellentesque vestibulum velit vitae tempor commodo</p>
-                <span class="rating">######</span>
-            <span class="comments">{{comments.comments.length}} Comments</span>
+                <h2>Rate This Ad</h2>
+                <span class="rating">
+                	<rating ng-model="rate" max="ratingMax"  ></rating>
+                </span>
+            	<span class="comments" ng-if="comments.comments.length">{{comments.comments.length}} Comments</span>
+                <span class="comments" ng-if="!comments.comments.length">No Comments Yet</span>
               </div>
             </div>
             <div class="viewer-btn"><i class="fa fa-angle-double-up fa-2x"></i></div>

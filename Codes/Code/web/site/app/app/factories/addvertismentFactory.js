@@ -10,6 +10,10 @@ App.factory('advertismentFactory',function($resource, $location){
         save:{method: 'POST'}
     });
 	
+	var adPublish = $resource('../../../api/publishAd/:id', {}, {
+        update: { method: 'PUT', params: { id: '@id' } },
+    });
+	
 	var factory = {}
 	
 	factory.getAdd = function(id, ngProgress, $scope){
@@ -18,6 +22,18 @@ App.factory('advertismentFactory',function($resource, $location){
 				$scope.mapLoad(e)
 			}
 		)
+	}
+	
+	factory.adReview = function(id, ngProgress, $scope){
+		return advertisment.get({'id':id}).$promise.then(function(e){
+			$scope.loadDetails(e)
+		})
+	}
+	
+	factory.confirmAd = function(id){
+		return adPublish.update({'id':id}).$promise.then(function(e){
+			console.log(e)
+		})
 	}
 	
 	

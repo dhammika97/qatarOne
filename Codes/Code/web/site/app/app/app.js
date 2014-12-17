@@ -3,11 +3,11 @@ var App = angular.module('QatartOneApp',[
 	'ngRoute',
 	'ngResource',
 	'angular.filter',
-	'ui.bootstrap',
 	'angularFileUpload',
 	'ngSanitize',
 	'uiSlider',
 	'checklist-model',
+	'ui.bootstrap',
 	'ngProgress']) 
 
 window.routes =
@@ -48,7 +48,7 @@ window.routes =
 		requireLogin: true
     },
 	"/review-ad/:id": {
-		controller:'controllers.advertismentAddController',
+		controller:'controllers.advertismentReviewController',
         templateUrl:'app/partials/postAd/reviewAdMain.html',
 		requireLogin: true
     },

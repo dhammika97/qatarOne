@@ -973,7 +973,7 @@ public function checkLogin($user_email, $user_password) {
 					  '".$user_contactNo."', 
 					  '".$date."', 
 					  '".$users['user_type']."',
-					  '1',
+					  '0',
 					  '".strtoupper(md5(uniqid(rand(), true)))."'";		
 					  
 		$rows   = "user_username, 
@@ -1060,11 +1060,20 @@ public function checkLogin($user_email, $user_password) {
 	public function advertismentDetail($id){
 		$db = new database();
 		$table = 'advertisment a , locations l, suburbs s, category_sub c';
-		$rows ='a.advertisement_title,a.advertisement_contactName,a.advertisement_price,a.advertisement_description,a.advertisement_attributes
-		,a.advertisement_contactNo,date(a.advertisement_date) as date,
-				time(a.advertisement_date) as time , 
-				l.location_name, 	
-				l.location_cordinates,s.suburb_name,s.suburb_cordinates, c.category_sub_name';
+		$rows ='a.advertisement_title, 
+				a.advertisement_contactName, 
+				a.advertisement_price, 
+				a.advertisement_description, 
+				a.advertisement_attributes, 
+				a.advertisement_contactEmail,
+				a.advertisement_contactNo, 
+				date(a.advertisement_date) as date, 
+				time(a.advertisement_date) as time, 
+				l.location_name, 
+				l.location_cordinates, 
+				s.suburb_name,
+				s.suburb_cordinates, 
+				c.category_sub_name';
 		$where = 'a.advertisement_location= l.location_id
 				 AND a.advertisement_suburb = s.suburb_id
 				 AND a.advertisement_subCategoryId	 = c.category_sub_id
@@ -1156,7 +1165,7 @@ public function checkLogin($user_email, $user_password) {
 				'".$adDetail['advertisement_location']."',
 				'".$adDetail['advertisement_suburb']."',
 				'6.934023, 79.845219',
-				'0',
+				'3',
 				'".$expire."',
 				'".$user_id."'";
 			$rows = "advertisement_categoryId,
@@ -1175,7 +1184,7 @@ public function checkLogin($user_email, $user_password) {
 				advertisement_expire,
 				advertisement_addedBy";
 			if($db->insert($table,$values,$rows) ){
-				$update=self::updatePackageAvailability(37,1);
+				$update=self::updatePackageAvailability($user_id,1);
 					
 				return $db->getInsertId();
 			}else{
@@ -1763,11 +1772,27 @@ public function getSimilarItems($params){
 		$db->selectJson($table,$rows,$where,'','','');
 		$advertisment = $db->getJson();
 		return $advertisment;
-	}	
+	}
+	
+	public function confirmAdvertisment($id){
+		$db = new database();
+		$status = array();
+		$status['advertisement_status'] = 0;
+		$table = 'advertisment';
+		$rows  = $status;
+		$where = 'advertisment_id = "'.$id.'"';
+		if($db-> update($table,$rows,$where))
+			return true;
+		else
+			return false;
+	}
+	
 	public function approveAdvertisment($id){
 		$db = new database();
+		$status = array();
+		$status['advertisement_status'] = 1;
 		$table = 'advertisment';
-		$rows  = ['advertisement_status' => 1];
+		$rows  = $status;
 		$where = 'advertisment_id = "'.$id.'"';
 		if($db-> update($table,$rows,$where))
 			return true;
