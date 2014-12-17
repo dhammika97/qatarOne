@@ -1783,7 +1783,16 @@ public function getSimilarItems($params){
 		else
 			return false;
 	}	
-	
+	public function getCommentsAdmin(){
+		$db = new database ();
+		$table = 'item_comments c, advertisment ad';
+		$rows = 'c.Comment, c.comment_Date, c.comment_Time, ad.advertisement_title';
+		$where = 'c.advertisment_Id = ad.advertisment_id AND c.comment_status = "0"';
+		$order_by = "c.comment_Id DESC";
+		$db->selectJson ( $table, $rows, $where, $order_by, '' );
+		$add = $db->getJson ();
+		return $add;
+	}
 		
 }
 ?>

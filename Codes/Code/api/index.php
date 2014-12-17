@@ -2180,6 +2180,20 @@ $app->delete('/advertismentsAdmin/:id', function($id)  {
 			echoRespnse(200, $response);
 		}
 });	
+$app->get('/getCommentsAdmin', function() {
+			$response = array();
+			$DbHandler = new DbHandler();
+			$result = $DbHandler->getCommentsAdmin();
+			if ($result != NULL) {
+				$response["error"] = false;
+				$response['comments'] = json_decode($result);
+				echoRespnse(200	, $response);
+			} else {
+				$response["error"] = true;
+				$response["message"] = "The requested resource doesn't exists";
+				echoRespnse(404, $response);
+			}
+		});
 		
 
 $app->run();
