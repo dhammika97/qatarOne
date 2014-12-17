@@ -1,5 +1,5 @@
 var params = new Array;
-controllers.resultsListingController = function($scope,resultsListingFactory, $routeParams){
+controllers.resultsListingController = function($scope,resultsListingFactory, $routeParams, $timeout){
 	$scope.itemsPerPage = 20
 	$scope.maxSize = 5;
 	var params = {}
@@ -16,6 +16,7 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	params['suburb'] = loc[1]
 	params['searchby'] = uri[1]
 	params['sortby'] = ''
+	params['filterby'] = ''
 	params['pricerangegreaterthan'] = ''
 	params['pricerangelessthan'] = ''
 	params['currentPage'] = page[1]
@@ -49,17 +50,9 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		$scope.error = data
 	}
 	$scope.pageChanged = function(){
-		//params['limitS'] = ($scope.currentPage-1)*$scope.itemsPerPage
-		//params['limitE'] = $scope.currentPage*$scope.itemsPerPage
-		//console.log(params['limitE'])
-		//console.log($scope.currentPage)
 		params['currentPage'] = $scope.currentPage
-		
 		$scope.getURL()
-		//console.log($scope.currentPage)
 	}
-	//$scope.bigTotalItems = 175;
-	//$scope.bigCurrentPage = 1;
 	
 	$scope.setParams = function(key,value){
 		//alert(key)
@@ -114,9 +107,7 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		
 		if(typeof tmp.title != 'undefined')
 		params['searchby'] = 'title='+tmp.title
-		
-		//resultsListingFactory.getResultList(params, $scope);
-		//console.log(params)
+
 		$scope.getURL()
 	}
 	
@@ -138,10 +129,13 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		if(typeof params['searchby'] != 'undefined')
 		str += '++filter_'+params['searchby']
 		
+		if(typeof params['searchby'] != 'undefined' && typeof params['filterby'] != 'undefined')
+		str += params['filterby']
+		else
+		str += '++filter_'+params['filterby']
+		
 		if(typeof params['currentPage'] != 'undefined')
 		str += '--page_'+params['currentPage']
-		
-		//console.log(params['limitS'])
 		
 		//console.log(str)
 		$scope.go(str)
@@ -153,5 +147,28 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		name: 'Potato Master',
 		minAge: 25,
 		maxAge: 40
-	  };
+	};
+	  
+	$scope.filter = {
+		//brands: ['apple']
+	};
+	
+	$scope.filterBrands = function(){
+		$timeout(function(){
+			var filterUrl = ''
+			var tmp = $scope.filter['brands']
+			for(i = 0; tmp.length>i; i++){
+				//console.log(tmp[i].trim())
+				filterUrl += 'brand='+tmp[i].trim()
+				if(i<tmp.length-1)
+				filterUrl += '&'
+			}
+			if(typeof params['searchby'] == 'undefined')
+			params['searchby'] = filterUrl
+			else
+			params['searchby'] += filterUrl
+			//console.log(params['searchby'])
+			$scope.getURL()
+		},100)
+	}
 }

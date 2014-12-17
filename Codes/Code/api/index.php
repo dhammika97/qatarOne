@@ -1710,6 +1710,7 @@ $app->get('/similarItems', function()  {
 		if ($result != NULL) {
 			$response["error"] = false;
 			$response['advertisments'] = json_decode($result);
+			
 			echoRespnse(200	, $response);
 		} else {
 			$response["error"] = true;

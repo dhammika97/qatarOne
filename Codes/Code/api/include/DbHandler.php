@@ -1721,8 +1721,8 @@ public function getSimilarItems($params){
 		$where_atri = '';
 		$ads=self::checkPackageAvailability($user_id,1);//check ads =1
 		$jobs=self::checkPackageAvailability($user_id,2);//check jobs =2
-	echo $ads;
-	echo $jobs;
+	//echo $ads;
+	//echo $jobs;
 	
 		if ($ads=='0') {
 			$where_atri =$where_atri. ' AND c.category_parentId != 1 ';

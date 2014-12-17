@@ -90,7 +90,7 @@
           <div class="filter-heading"> <i class="fa fa-usd"></i> Brand </div>
 			<ul>
             	<li ng-repeat="brand in resultList.brands">
-            		<input type="checkbox" ng-model="brand" /> {{brand}}
+            		<input type="checkbox" checklist-model="filter.brands" checklist-value="brand" ng-click="filterBrands()" /> {{brand | uppercase}}
             	</li>
           	</ul>
           </div>

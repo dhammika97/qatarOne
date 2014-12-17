@@ -32,7 +32,7 @@ App.factory('advertismentFactory',function($resource, $location){
 			}, 3000);
 		}).then(
 		function(e){
-			
+			var tmpId = e.insertedId
 			if($scope.imageList.length > 0){
 				return adImage.save($scope.imageList,e.insertedId)
 				.$promise.catch(function(e){
@@ -48,7 +48,7 @@ App.factory('advertismentFactory',function($resource, $location){
 					$scope.ad=''
 					$timeout(function(){
 						$scope.closeAlert();
-						$location.path('/review-ad/'+e.insertedId)
+						$location.path('/review-ad/'+tmpId)
 					}, 3000);
 				})	
 			}else{
