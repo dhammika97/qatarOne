@@ -2213,7 +2213,37 @@ $app->get('/getCommentsAdmin', function() {
 			}
 		});
 		
+$app->put('/CommentsAdmin/:id',  function($id)  {
+		
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->approveComments($id);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["message"] = "Comment Approved";
 
+			echoRespnse(200, $response);
+		}
+});	
+$app->delete('/CommentsAdmin/:id',  function($id)  {
+		
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->deleteComments($id);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["message"] = "Comment Denied";
+			echoRespnse(200, $response);
+		}
+});	
 $app->run();
 		
 		

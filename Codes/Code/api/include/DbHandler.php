@@ -1821,6 +1821,30 @@ public function getSimilarItems($params){
 		$add = $db->getJson ();
 		return $add;
 	}
+	public function approveComments($id){
+		$db = new database();
+		$status = array();
+		$status['comment_status'] = 1;
+		$table = 'item_comments';
+		$rows  = $status;
+		$where = 'comment_Id = "'.$id.'"';
+		if($db-> update($table,$rows,$where))
+			return true;
+		else
+			return false;
+	}
+	public function deleteComments($id){
+		$db = new database();
+		$status = array();
+		$status['comment_status'] = 2;
+		$table = 'item_comments';
+		$rows  = $status;
+		$where = 'comment_Id = "'.$id.'"';
+		if($db-> update($table,$rows,$where))
+			return true;
+		else
+			return false;
+	}
 		
 }
 ?>
