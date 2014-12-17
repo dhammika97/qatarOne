@@ -1801,9 +1801,12 @@ public function getSimilarItems($params){
 	}
 	public function deleteAdvertisment($id){
 		$db = new database();
+		$status = array();
+		$status['advertisement_status'] = 2;
 		$table = 'advertisment';
+		$rows  = $status;
 		$where = 'advertisment_id = "'.$id.'"';
-		if($db-> delete($table,$where))
+		if($db-> update($table,$rows,$where))
 			return true;
 		else
 			return false;

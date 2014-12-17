@@ -2167,7 +2167,7 @@ $app->get('/advertismentsAdmin', function()  {
 			echoRespnse(200, $response);
 		}
 });
-$app->put('/advertismentsAdmin/:id', function($id)  {
+$app->put('/advertismentsAdmin/:id', 'authenticate', function($id)  {
 		
 		$DbHandler = new DbHandler();
 		$response = array();
@@ -2183,7 +2183,7 @@ $app->put('/advertismentsAdmin/:id', function($id)  {
 			echoRespnse(200, $response);
 		}
 });	
-$app->delete('/advertismentsAdmin/:id', function($id)  {
+$app->delete('/advertismentsAdmin/:id', 'authenticate', function($id)  {
 		
 		$DbHandler = new DbHandler();
 		$response = array();
