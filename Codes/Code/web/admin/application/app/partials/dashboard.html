@@ -22,8 +22,8 @@
         <td>{{adds.advertisement_date}}</td>
         <td>{{adds.category_sub_name}}</td>
          <td>{{adds.advertisement_contactEmail}}</td>
-        <td><a href="" class="btn btn-warning">Approve</a></td>
-        <td><a href="" class="btn btn-danger">deny</a></td>
+        <td><a href="" ng-click = "approve(adds.advertisment_id)" class="btn btn-warning">Approve</a></td>
+        <td><a href="" ng-click = "deny(adds.advertisment_id)" class="btn btn-danger">deny</a></td>
          <td><a href="" class="btn btn-success">View</a></td>
       </tr>
     </tbody>
