@@ -29,6 +29,14 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	
 	resultsListingFactory.getResultList(params, $scope);
 	
+	$scope.loc = function(){
+		if(params['location'] == 'qatar'){
+			return true
+		}else{
+			return false
+		}
+	}
+	
 	$scope.resultLists = function(data){
 		$scope.resultList = data
 		$scope.totalItems = data.count;
@@ -170,5 +178,22 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 			//console.log(params['searchby'])
 			$scope.getURL()
 		},100)
+	}
+	
+	
+	$scope.resetParams = function(param){
+		switch(param){
+			case('subcategory'):
+				params['subcategory'] = undefined
+			break;
+			case('location'):
+				params['location'] = 'qatar'
+				params['suburb'] = undefined
+			break;
+			case('suburb'):
+				params['suburb'] = undefined
+			break;
+		}
+		$scope.getURL()
 	}
 }

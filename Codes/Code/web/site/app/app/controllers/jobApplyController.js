@@ -1,7 +1,7 @@
-controllers.jobApplyController = function($scope, jobApplyFactory){
+controllers.jobApplyController = function($scope, $routeParams, jobApplyFactory){
 		
 	$scope.applyJobMail = function(){
-		jobApplyFactory.applyjobAPICall($scope);
+		jobApplyFactory.applyjobAPICall($scope, $routeParams.id);
 	}	
 	
 }

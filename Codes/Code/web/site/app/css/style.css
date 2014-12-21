@@ -269,3 +269,11 @@ footer .footer-text a:hover { color: #333333; text-decoration: none; }
   .search-bar .location { padding-bottom: 20px; }
   .ad-description { padding-top: 20px; }
   .ad-description .contact-no, .ad-description .comments-btn { font-size: 10px; line-height: 20px; font-size: 1rem; line-height: 2rem; padding: 10px; } }
+
+.ta-editor {
+  min-height: 300px;
+  height: auto;
+  overflow: auto;
+  font-family: inherit;
+  font-size: 100%;
+}

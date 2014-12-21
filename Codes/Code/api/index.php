@@ -1512,6 +1512,16 @@ $app->get('/advertisment/:id', function($id) {
 		$response = array();
 		$DbHandler = new DbHandler();	
 		$result = $DbHandler->advertismentDetail($id);
+		$tmp = json_decode($result,true);
+		$parentId = $DbHandler->GetCategoryParentId($tmp[0]['catId']);
+		switch($parentId){
+			case('2'):
+				$response['job'] = true;
+				break;
+			case('1'):
+				$response['job'] = false;
+				break;
+		}
         if ($result != NULL) {
 			$images = $DbHandler->adImages($id);
 			$response["error"] = false;
@@ -2269,7 +2279,6 @@ $app->post('/applyjob', 'authenticate', function() use ($app) {
 				}else {
 					$response["error"] = false;
 					$response["message"] = "Job request sent successfully";
-					$response["insertedId"]=$adId;
 					echoRespnse(201, $response);
 				}
 					

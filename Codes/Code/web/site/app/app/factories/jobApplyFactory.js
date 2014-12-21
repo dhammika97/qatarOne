@@ -6,22 +6,21 @@ App.factory('jobApplyFactory',function($resource){
         
         var factory = {}
 
-        factory.applyjobAPICall = function($scope){
+        factory.applyjobAPICall = function($scope,id){
         	
-		alert('test data will be saved in DB');
-
-		return tld = applyJobMail.query({"advertisement_id":"30",
-			"employee_fname":"jbname",
-			"employee_email":"testjob@gmail.com",
-			"employee_phoneno":"123456", 
-			"employee_massage":"postjob",
-			"mailType" :"jobapply"});
-		
-	//	return tld = applyJobMail.query({"advertisement_id":$scope.employee.name,"employee_fname":$scope.employee.name,"employee_email":$scope.employee.email,"employee_phoneno":$scope.employee.number, "employee_massage":$scope.employee.message, "mailType" :"jobapply"});
-		tld.$promise.catch(function(e){
+		//alert('test data will be saved in DB');
+		//console.log($scope.employee)
+		return applyJobMail.query({"advertisement_id":id,
+			"employee_fname":$scope.employee.name,
+			"employee_email":'test@test.test',
+			"employee_phoneno":$scope.employee.telephone, 
+			"employee_massage":$scope.employee.message,
+			"mailType" :"jobapply"})
+		.$promise.catch(function(e){
 			
-		}).then(function(){
-			alert("done");
+		}).then(function(e){
+			alert(e.message);
+			$scope.employee=''
 		})
 	}
 	

@@ -7,6 +7,7 @@ var App = angular.module('QatartOneApp',[
 	'ngSanitize',
 	'uiSlider',
 	'checklist-model',
+	'textAngular',
 	'ui.bootstrap',
 	'ngProgress']) 
 

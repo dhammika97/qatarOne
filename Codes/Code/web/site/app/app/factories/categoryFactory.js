@@ -1,10 +1,7 @@
 App.factory('categoryFactory',function($resource){
 	var categoryList = $resource('../../../api/categoryWithCount/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
-        get: { method: 'GET', params: { id: '@id' } },
-        update: { method: 'PUT', params: { id: '@id' } },
-		save:{method: 'POST'},
-		delete:{method:'DELETE',params:{ id:'@id' }}
+        get: { method: 'GET', params: { id: '@id' } }
     });
 	
 	var factory = {}
@@ -17,7 +14,7 @@ App.factory('categoryFactory',function($resource){
 		}
 		
 		
-		return tld = categoryList.query({'category_parentId':parent_id, 'category_status':1 });
+		return tld = categoryList.query({'category_parentId':parent_id, 'category_status':1});
 		tld.$promise.catch(function(e){
 			$scope.addAlert('danger',e.data.message)
 			ngProgress.complete()

@@ -32,6 +32,7 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	
 	$scope.ratingMax = 5;
 
+//-------------------------------------------------------------------------//
 	$scope.comments = advertismentFactory.getComments($routeParams.id);
 	//setTimeout(function(){ngProgress.complete()},500)
 	$scope.addComment = function(){

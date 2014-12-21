@@ -81,7 +81,7 @@
               <div class="Flexible-container">
               	<div id="map-canvas" style="height:100%; top:0; bottom:0; left:0; right:0; position:absolute" data-tap-disabled="true"></div>
               </div>
-              <p>{{adversiment.advertisment[0].advertisement_description}}</p>
+              <p ng-bind-html="adversiment.advertisment[0].advertisement_description"></p>
               <ul>
                 <li ng-repeat="(key, value) in attr">{{value}}</li>
               </ul>
@@ -138,9 +138,10 @@
                 <span class="comments" ng-if="!comments.comments.length">No Comments Yet</span>
               </div>
             </div>
-            <div class="viewer-btn"><i class="fa fa-angle-double-up fa-2x"></i></div>
+            <!--<div class="viewer-btn"><i class="fa fa-angle-double-up fa-2x"></i></div>-->
           </div>          
         </div>
+        <div ng-if="adversiment.job && username" ng-include="'app/partials/detailsView/applyjobs.html'"></div>
   <div class="related-content">
     <div class="container">
       <div class="row">
@@ -217,8 +218,7 @@
           </div>
           <!--/carousel-inner--> 
         </div>
-        <!--/myCarousel--> 
-        
+        <!--/myCarousel-->
       </div>
     </div>
   </div>

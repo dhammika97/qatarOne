@@ -65,23 +65,24 @@
         <div class="col-lg-3 filter-side-bar">
           <div class="filter-heading"> <i class="fa fa-th-list"></i> Category </div>
           <ul >
-            <li ng-repeat="resultList in resultList.advertisments | unique:'category'">
-            	<a href="" ng-click='setParams("subcategory",resultList.scalias)'>{{resultList.category}}<span>20500</span></a>
+          	<li><a href="" ng-click="resetParams('subcategory')">All Categories</a></li>
+            <li ng-repeat="resultList in resultList.advertisments | unique:'category'" style="padding-left:15px;">
+            	<a href="" ng-click='setParams("subcategory",resultList.scalias)'>{{resultList.category}}<!--<span>20500</span>--></a>
             </li>
           </ul>
 
           <div class="filter-heading"> <i class="fa fa-map-marker"></i> Location </div>
           <ul>
-            <li ng-repeat="resultList in resultList.advertisments | unique:'location'">
-            	<a href="" ng-click='setParams("location",resultList.lalias)'>{{resultList.location}}<span>20500</span></a>
+          	<li><a href="" ng-click="resetParams('location')">All of Qatar</a></li>
+            <li ng-repeat="resultList in resultList.advertisments | unique:'location'" style="padding-left:15px;">
+            	<a href="" ng-click='setParams("location",resultList.lalias); resetParams("suburb")'>{{resultList.location}}<!--<span>20500</span>--></a>
+            </li>
+            <li ng-if="!loc()" ng-repeat="resultList in resultList.advertisments | unique:'suburbid'" style="padding-left:30px">
+                <a href="" ng-click='setParams("suburb",resultList.sub_alias)'>{{resultList.suberb}}<!--<span>20500</span>--></a>
             </li>
           </ul>
-          <div class="filter-heading"> <i class="fa fa-map-marker"></i> Suberb </div>
-          <ul>
-            <li ng-repeat="resultList in resultList.advertisments | unique:'suburbid'">
-            	<a href="" ng-click='setParams("suburb",resultList.sub_alias)'>{{resultList.suberb}}<span>20500</span></a>
-            </li>
-          </ul>
+          
+          
           <div class="filter-heading"> <i class="fa fa-usd"></i> Price Range </div>
           <div class="filter-content">
 			<slider floor="10" ceiling="60" ng-model-low="position.minAge" ng-model-high="position.maxAge"></slider>

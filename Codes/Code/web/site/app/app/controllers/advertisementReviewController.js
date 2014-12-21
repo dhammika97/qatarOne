@@ -9,6 +9,7 @@ controllers.advertismentReviewController = function($scope, advertismentFactory,
 	}
 	
 	$scope.publishAdvertisment = function(){
-		advertismentFactory.confirmAd($scope.adId)
+		ngProgress.start()
+		advertismentFactory.confirmAd($scope.adId, ngProgress, $scope, $timeout)
 	}
 }

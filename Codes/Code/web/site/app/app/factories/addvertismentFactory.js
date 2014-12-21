@@ -30,9 +30,14 @@ App.factory('advertismentFactory',function($resource, $location){
 		})
 	}
 	
-	factory.confirmAd = function(id){
+	factory.confirmAd = function(id, ngProgress, $scope, $timeout){
 		return adPublish.update({'id':id}).$promise.then(function(e){
-			console.log(e)
+			$scope.addAlert('success',e.message)
+			ngProgress.complete()
+			$timeout(function(){
+				$scope.closeAlert();
+				$scope.go('/portal/classified')
+			}, 3000);
 		})
 	}
 	
