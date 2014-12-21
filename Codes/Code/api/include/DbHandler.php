@@ -1845,6 +1845,99 @@ public function getSimilarItems($params){
 		else
 			return false;
 	}
+	
+	public function getEmployerEmailAddress($advertiesmentid){
+		try {
+			$db = new database ();
+			$table = 'advertisment ad, user us';
+			$rows = 'us.user_email, ad.advertisement_addedBy';
+			$where = 'ad.advertisement_addedBy=us.user_id and advertisment_id ='.$advertiesmentid;
+			$order_by = "";
+			$db->select ( $table, $rows, $where, $order_by, '' );
+			$resut = $db->getResults ();
+
+			return $resut;
+		} catch (Exception $e) {
+			$e.pr;
+			return '';
+		}
+		}
+		
+
+		public function processJobApply($jobApplyDetails) {
+		global $user_id;
+		$mode = 3; // Apply jobs package/feature
+		
+		$ads = self::checkPackageAvailability ( $user_id, $mode );
+		
+		if ($ads !== '0') {
+			
+			$employerInfo = self::getEmployerEmailAddress ( $jobApplyDetails ['advertisement_id'] );
+			
+			// Send Email to the customer
+			// self::sendMessageToEmployer($employerInfo[0],$jobApplyDetails);
+			
+			// Save in DB (if need can be validated saving with email send step)
+			$db = new database ();
+			$date = date ( 'y-m-d' );
+			$table = "jobapplydetails";
+			
+			$rows = "jobapplydetails_ad_id,
+			jobapplydetails_employee_email,
+			jobapplydetails_employee_phoneno,
+			jobapplydetails_employee_massage,
+			jobapplydetails_employee_userid,
+			jobapplydetails_employer_userid,
+			jobapplydetails_appliedon,
+			jobapplydetails_status";
+			
+			$values = "'" . $jobApplyDetails ['advertisement_id'] . "',
+				'" . $jobApplyDetails ['employee_email'] . "',
+				'" . $jobApplyDetails ['employee_phoneno'] . "',
+				'" . $jobApplyDetails ['employee_massage'] . "',
+				'" . $user_id . "',
+				'" . $employerInfo [1] . "',
+				'" . $date . "',
+				'0'";
+			
+			if ($db->insert ( $table, $values, $rows )) {
+				$update = self::updatePackageAvailability ( $user_id, $mode );
+				
+				return $db->getInsertId ();
+			} else {
+				return false;
+			}
+		} else {
+			return "No_inventory";
+		}
+	}
+		
+		public function sendMessageToEmployer($emailAddress,$jobApplyDetails) {
+			$headers  = 'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$headers .= 'From: qatarone <qatarq1@gmail.com>' . "\r\n";
+			$subject ='Qatar One - Job Applicant request';
+						$message = '
+			
+                            <html>
+                            <body>
+                                <p>
+                                Hi, 
+                                </p>
+                                <p>
+                                 '.$jobApplyDetails['employee_massage'].'
+                                </p>
+                                <p>
+                                    Best Regards!<br>
+   								'.$jobApplyDetails['employee_fname'].'                                   
+                                </p>
+			
+                            </body>
+                            </html>';
+						if(mail($emailAddress, $subject, $message, $headers)) return true; else return false;
+		}
+	
+	
 		
 }
 ?>

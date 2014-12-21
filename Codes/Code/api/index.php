@@ -2037,7 +2037,7 @@ $app->get('/userActivation/:id', function($hash)  {
 						
 					//echo '234';
 					$response["error"] = false;
-					$response['categorymatrix']="No free ads remaining with your current account";
+					$response['message']="No free ads remaining with your current account";
 						
 					echoRespnse(200, $response);
 				}else {
@@ -2244,6 +2244,42 @@ $app->delete('/CommentsAdmin/:id',  function($id)  {
 			echoRespnse(200, $response);
 		}
 });	
+
+
+		/** Apply job, service reciver.... 
+		  * Processing job apply massegae sending part and
+ 		  * Put an entry to the DB
+ 		  * */
+		
+$app->post('/applyjob', 'authenticate', function() use ($app) {
+			global $user_id;
+			$response = array();
+			$request = \Slim\Slim::getInstance()->request();
+			$jobApplyDetails = $request->getBody();
+			$db = new DbHandler();
+			global $user_id;
+			if($adId = $db->processJobApply($jobApplyDetails)){
+				if($adId=='No_inventory'){
+		
+					//echo '234';
+					$response["error"] = false;
+					$response['message']="No jobs apply attempts remaining with your current account";
+		
+					echoRespnse(200, $response);
+				}else {
+					$response["error"] = false;
+					$response["message"] = "Job request sent successfully";
+					$response["insertedId"]=$adId;
+					echoRespnse(201, $response);
+				}
+					
+			}else{
+				$response["error"] = true;
+				$response["message"] = "Failed to send Job request. Please try again";
+				echoRespnse(400, $response);
+			}
+});
+	
 $app->run();
 		
 		

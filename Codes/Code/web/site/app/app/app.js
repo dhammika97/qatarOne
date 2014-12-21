@@ -77,6 +77,10 @@ window.routes =
 		//controller:'controllers.settingController',
 		templateUrl:'app/partials/contact/contactus.html',
 		requireLogin: false
+	},'/appyjobs': {
+		controller:'controllers.jobApplyController',
+		templateUrl:'app/partials/detailsView/applyjobs.html',
+		requireLogin: false
 	}
 };
 

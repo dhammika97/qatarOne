@@ -544,6 +544,23 @@ CREATE TABLE IF NOT EXISTS `video` (
   PRIMARY KEY (`video_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Table to hold job apply information in system 
+--
+
+CREATE TABLE `jobapplydetails` (
+  `jobapplydetails_id` int(11) NOT NULL AUTO_INCREMENT,
+  `jobapplydetails_ad_id` int(11) NOT NULL,
+  `jobapplydetails_employee_email` varchar(100) NOT NULL DEFAULT '',
+  `jobapplydetails_employee_phoneno` varchar(20) NOT NULL DEFAULT '',
+  `jobapplydetails_employee_massage` longtext NOT NULL,
+  `jobapplydetails_employee_userid` int(11) NOT NULL,
+  `jobapplydetails_employer_userid` int(11) NOT NULL,
+  `jobapplydetails_appliedon` datetime NOT NULL,
+  `jobapplydetails_status` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`jobapplydetails_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci'
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
