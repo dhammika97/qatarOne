@@ -2,7 +2,7 @@ controllers.dashboardController = function($scope, dashboadrFactory){
 	$scope.advertisments = dashboadrFactory.showAdds();
 
 	$scope.approve = function(id){
-		alert(id)
+		
 		dashboadrFactory.approve(id, $scope);
 	}
 	$scope.deny = function(id){

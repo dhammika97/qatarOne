@@ -11,7 +11,7 @@ App.factory('dashboadrFactory', function($resource){
 		return tld = showAdvertisments.query();
 	}
 	factory.approve = function(id,$scope){
-
+            
 		return showAdvertisments.update({id:id})
 		.$promise.then(function(e){
 				alert(e.message)

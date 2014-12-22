@@ -5,7 +5,7 @@ require_once 'include/DbHandler.php';
 require_once 'include/PassHash.php';
 require_once 'include/functions.php';
 require 'libs/Slim/Slim.php';
- 
+//test 
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 $app->add(new \Slim\Middleware\ContentTypes());

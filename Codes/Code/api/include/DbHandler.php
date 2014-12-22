@@ -276,7 +276,7 @@ class DbHandler {
 		$db = new database ();
 		$table = 'category c, advertisment a';
 		$rows = 'c.* , count( a. advertisment_id) as addCount';
-		$where_query = 'a.advertisement_categoryId = c.category_id' . $where;
+		$where_query = 'a.advertisement_categoryId = c.category_id AND a.advertisement_status = "1" ' . $where;
 		$group_by = 'c.category_id';
 		$db->selectJson ( $table, $rows, $where_query, '', '', $group_by );
 		$category_list = $db->getJson ();
@@ -1766,7 +1766,7 @@ public function getSimilarItems($params){
 	public function getPendingAdvertisments(){
 		$db = new database();
 		$table = 'advertisment a, category_sub sc';
-		$rows =	'a.advertisement_title, a.advertisement_date, sc.category_sub_name,
+		$rows =	'a.advertisment_id, a.advertisement_title, a.advertisement_date, sc.category_sub_name,
 				 a.advertisement_contactEmail, date(a.advertisement_date), time(a.advertisement_date)';
 		$where = ' a.advertisement_subCategoryId = sc.category_sub_id 
 				   AND a.advertisement_status = 0';
