@@ -2208,7 +2208,7 @@ $app->delete('/advertismentsAdmin/:id', 'authenticate', function($id)  {
 			echoRespnse(200, $response);
 		}
 });	
-$app->get('/getCommentsAdmin', function() {
+$app->get('/CommentsAdmin', function() {
 			$response = array();
 			$DbHandler = new DbHandler();
 			$result = $DbHandler->getCommentsAdmin();

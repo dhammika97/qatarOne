@@ -17,7 +17,7 @@ App.factory('commentFactory',function($resource){
 		return comments.update({id:id})
 		.$promise.then(function(e){
 				alert(e.message)
-				$scope.advertisments = comments.query()
+				$scope.comments = comments.query()
 			}).catch(function(e){
 				alert(e.message)
 			})
@@ -27,7 +27,7 @@ App.factory('commentFactory',function($resource){
 		return comments.delete({id:id})
 		.$promise.then(function(e){
 				alert(e.message)
-				$scope.advertisments = comments.query()
+				$scope.comments = comments.query()
 			}).catch(function(e){
 				alert(e.message)
 			})

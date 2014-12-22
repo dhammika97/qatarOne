@@ -11,11 +11,24 @@
 // 				 commentsFactry.deny(id,$scope);
 // 			}
 // 		}
-		
+//		
 // 	}
-	
-// }
-controllers.commentsController = function($scope, dashboadrFactory){
 
-	alert("sfdgdfsg");
+// }
+controllers.commentsController = function ($scope, commentFactory) {
+
+    $scope.comments = commentFactory.showComments();
+    console.log($scope.comments)
+    $scope.approve = function (id) {
+        commentFactory.approve(id, $scope);
+    }
+    $scope.deny = function (id) {
+        if (id != '') {
+            var r = confirm("Do you want to deny this Comment");
+            if (r == true) {
+                commentFactory.deny(id, $scope);
+            }
+        }
+
+    }
 }

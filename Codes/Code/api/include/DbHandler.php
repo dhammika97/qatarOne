@@ -1815,7 +1815,7 @@ public function getSimilarItems($params){
 	public function getCommentsAdmin(){
 		$db = new database ();
 		$table = 'item_comments c, advertisment ad';
-		$rows = 'c.Comment, c.comment_Date, c.comment_Time, ad.advertisement_title';
+		$rows = 'c.comment_Id, c.Comment, c.comment_Date, c.comment_Time, ad.advertisement_title';
 		$where = 'c.advertisment_Id = ad.advertisment_id AND c.comment_status = "0"';
 		$order_by = "c.comment_Id DESC";
 		$db->selectJson ( $table, $rows, $where, $order_by, '' );
