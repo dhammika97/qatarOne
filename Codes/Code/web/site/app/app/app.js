@@ -82,6 +82,10 @@ window.routes =
 		controller:'controllers.jobApplyController',
 		templateUrl:'app/partials/detailsView/applyjobs.html',
 		requireLogin: false
+	},'/view-applyjobs': {
+		controller:'controllers.viewJobApplyController',
+		templateUrl:'app/partials/detailsView/jobApplyReport.html',
+		requireLogin: false
 	}
 };
 

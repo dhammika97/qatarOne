@@ -5,11 +5,9 @@ App.factory('jobApplyFactory',function($resource){
 	  });
         
         var factory = {}
-
+        
         factory.applyjobAPICall = function($scope,id){
-        	
-		//alert('test data will be saved in DB');
-		//console.log($scope.employee)
+
 		return applyJobMail.query({"advertisement_id":id,
 			"employee_fname":$scope.employee.name,
 			"employee_email":'test@test.test',
@@ -23,7 +21,13 @@ App.factory('jobApplyFactory',function($resource){
 			$scope.employee=''
 		})
 	}
-	
+        
+    	var applyjobsDetails = $resource('../../../api/applyjobsdetails', {}, {
+            query: { method: 'GET', params: {}, isArray: false }
+        });
+    	factory.getJobApplyDetails = function(){
+    		return tld = applyjobsDetails.query();
+    	}
 	
 	return factory
 })
