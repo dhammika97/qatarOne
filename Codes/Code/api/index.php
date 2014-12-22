@@ -2256,7 +2256,7 @@ $app->delete('/CommentsAdmin/:id',  function($id)  {
 });	
 
 
-		/** Apply job, service reciver.... 
+		/** Apply job, service receiver.... 
 		  * Processing job apply massegae sending part and
  		  * Put an entry to the DB
  		  * */
@@ -2288,6 +2288,30 @@ $app->post('/applyjob', 'authenticate', function() use ($app) {
 				echoRespnse(400, $response);
 			}
 });
+
+
+	/** View job applied information, service receiver....
+	 * 
+	 * Pull data from DB
+	 * */
+
+$app->get('/applyjobsdetails', 'authenticate', function()  {
+	global $user_id;
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->getJobsApplyInformation();
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["jobsinfo"] = json_decode($result);
+
+			echoRespnse(200, $response);
+		}
+});
+
 	
 $app->run();
 		
