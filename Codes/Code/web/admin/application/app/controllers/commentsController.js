@@ -16,7 +16,7 @@
 
 // }
 controllers.commentsController = function ($scope, commentFactory) {
-
+    
     $scope.comments = commentFactory.showComments();
     console.log($scope.comments)
     $scope.approve = function (id) {

@@ -137,12 +137,12 @@ App.factory('advertismentFactory',function($resource, $location){
         save:{method: 'POST'}
     });
 	factory.addComment = function($scope, id, $timeout){	
-		var comment = $scope.comments.body;
+		var comment = $scope.comments.bodyz;
 		return addComment.save({"id":id},comment)
 		.$promise.then(
 		function(e){
 			$scope.addAlert('success',"comment successfully added")
-			$scope.comments.body = '';
+			$scope.comments.bodyz = '';
 			$timeout(function(){
 				$scope.closeAlert();
 			}, 3000);

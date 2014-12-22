@@ -1503,7 +1503,7 @@ public function getSimilarItems($params){
 		$advertisment_Id = $id;
 		$comment_Date  =  date("Y-m-d"); 
 		$comment_Time  =  date("H:i:s");  
-		$comment_status = "1";
+		$comment_status = "0";
 		//$commentBody = $params;
 		$comment_addedBy = '33';
 
