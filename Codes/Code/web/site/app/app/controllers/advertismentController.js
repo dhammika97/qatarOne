@@ -9,6 +9,7 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	 // $scope.similarItems4 = advertismentFactory.getSimilarItems($routeParams.id); 
 	
 	 $scope.testfunction = function(data){
+		 console.log(data)
 	 	//$scope.similarItems = [{'items':data[0]},{'items':data[1]},{'items':data[2]},{'items':data[3]}]; 
 	 	//$scope.similarItems2 = [{'items':data[4]},{'items':data[5]},{'items':data[6]},{'items':data[7]}]; 
 	 //	$scope.similarItems = [{'items':data[0]},{'items':data[1]},{'items':data[2]},{'items':data[2]}]; 
