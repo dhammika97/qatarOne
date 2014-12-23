@@ -1348,7 +1348,7 @@ public function getSimilarItems($params){
 						
 						$like .= $lbl." like '%".$s[1]."%' ";
 						if($i != count($tmp)-1)
-						$like .= "and ";
+						$like .= "or ";
 					}
 					//echo $like;
 					$where_atri =$where_atri. " AND ". $like;
@@ -1378,8 +1378,29 @@ public function getSimilarItems($params){
 		//echo $where_atri;
 		
 		$db = new database ();
-		$table = 'advertisment a inner join locations l on l.location_id = a.advertisement_location inner join category c on c.category_id = a.advertisement_categoryId inner join category_sub sc on sc.category_sub_id = a.advertisement_subCategoryId inner join suburbs s on s.suburb_id = a.advertisement_suburb left join advertisement_images ai on ai.advertisement_id = a.advertisment_id';
-		$rows = 'a.advertisement_title, a.advertisment_id as aid, a.advertisement_price as price, a.advertisement_description, s.suburb_name as suberb, s.suburb_id as suburbid ,date(a.advertisement_date) as date, time(a.advertisement_date) as time, l.location_name as location, l.location_id as locationid, sc.category_sub_name as category, a.advertisement_categoryId as categoryid, sc.category_sub_alias as scalias, l.location_alias as lalias, s.suburb_alias as sub_alias, ai.advertisement_image as image, sc.category_sub_id as subCatId, a.advertisement_attributes as attributes';
+		$table = 'advertisment a inner join locations l on l.location_id = a.advertisement_location 
+				inner join category c on c.category_id = a.advertisement_categoryId 
+				inner join category_sub sc on sc.category_sub_id = a.advertisement_subCategoryId 
+				inner join suburbs s on s.suburb_id = a.advertisement_suburb 
+				left join advertisement_images ai on ai.advertisement_id = a.advertisment_id';
+		$rows = 'a.advertisement_title, 
+				a.advertisment_id as aid, 
+				a.advertisement_price as price, 
+				a.advertisement_description, 
+				s.suburb_name as suberb, 
+				s.suburb_id as suburbid,
+				date(a.advertisement_date) as date, 
+				time(a.advertisement_date) as time, 
+				l.location_name as location, 
+				l.location_id as locationid, 
+				sc.category_sub_name as category, 
+				a.advertisement_categoryId as categoryid, 
+				sc.category_sub_alias as scalias, 
+				l.location_alias as lalias, 
+				s.suburb_alias as sub_alias, 
+				ai.advertisement_image as image, 
+				sc.category_sub_id as subCatId, 
+				a.advertisement_attributes as attributes';
 		$where = 'advertisement_status = "1" ' . $where_atri;
 		//echo $where;
 		$db->selectJson ( $table, $rows, $where, '', $start.','.$end,'a.advertisment_id' );

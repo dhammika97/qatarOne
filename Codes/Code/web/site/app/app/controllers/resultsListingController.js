@@ -49,9 +49,23 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		
 		$scope.locationList = resultsListingFactory.getLocations()
 		if(typeof uri[1] != 'undefined')
-		$scope.searchproduct.title = uri[1].split('=')[1]
+		$scope.searchproduct.title = uri[1].split('&')[0].split('=')[1]
 		$scope.searchproduct.category = cat[1]
 		$scope.searchproduct.location = loc[0]
+		var brandArr = new Array
+		if(typeof params['searchby'] != 'undefined'){
+			var filterarr = params['searchby'].split('&')
+			for(i=0; filterarr.length > i; i++){
+				var tmpar = filterarr[i].split('=')
+				if(tmpar[0]=='brand'){
+					brandArr.push(tmpar[1])
+				}
+			}
+			$scope.filter = {
+				brands: brandArr
+			};
+			//console.log()
+		}
 	}
 	
 	$scope.validateMSG = function(data){
@@ -145,7 +159,6 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		if(typeof params['currentPage'] != 'undefined')
 		str += '--page_'+params['currentPage']
 		
-		//console.log(str)
 		$scope.go(str)
 	}
 	
@@ -158,7 +171,7 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	};
 	  
 	$scope.filter = {
-		//brands: ['apple']
+		//brands: ["apple","asus","dell","greentel"]
 	};
 	
 	$scope.filterBrands = function(){
@@ -171,13 +184,20 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 				if(i<tmp.length-1)
 				filterUrl += '&'
 			}
-			if(typeof params['searchby'] == 'undefined')
-			params['searchby'] = filterUrl
-			else
-			params['searchby'] += filterUrl
-			//console.log(params['searchby'])
+			if(typeof params['searchby'] == 'undefined'){
+				params['searchby'] = filterUrl
+			}else{
+				var filterArr = params['searchby'].split('&')
+				if(filterArr[0].indexOf('title')==-1){
+					params['searchby'] = filterUrl
+				}else{
+					params['searchby'] = filterArr[0]+'&'+filterUrl	
+				}
+				//params['searchby'] += '&'+filterUrl
+			}
+			
 			$scope.getURL()
-		},100)
+		},200)
 	}
 	
 	

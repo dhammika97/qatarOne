@@ -66,7 +66,7 @@
           <div class="filter-heading"> <i class="fa fa-th-list"></i> Category </div>
           <ul >
           	<li><a href="" ng-click="resetParams('subcategory')">All Categories</a></li>
-            <li ng-repeat="resultList in resultList.advertisments | unique:'category'" style="padding-left:15px;">
+            <li ng-repeat="resultList in resultList.advertisments | unique:'category' " style="padding-left:15px;">
             	<a href="" ng-click='setParams("subcategory",resultList.scalias)'>{{resultList.category}}<!--<span>20500</span>--></a>
             </li>
           </ul>
