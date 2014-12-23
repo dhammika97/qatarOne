@@ -18,7 +18,7 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	params['searchby'] = uri[1].split('-+price_')[0]
 	params['sortby'] = ''
 	params['filterby'] = ''
-	if(typeof uri[1] != 'undefined'){
+	if(typeof uri[1] != 'undefined' && uri[1] != ''){
 		params['pricerangegreaterthan'] = uri[1].split('-+price_')[1].split('&')[0].split('=')[1]
 		params['pricerangelessthan'] = uri[1].split('-+price_')[1].split('&')[1].split('=')[1]
 	}
@@ -47,15 +47,16 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		
   		//$scope.bigTotalItems = 175;
   		//$scope.bigCurrentPage = 1;
-		if(uri[1].split('-+price_')[1].split('&')[0].split('=')[1] != '')
-		$scope.price_less = parseInt(uri[1].split('-+price_')[1].split('&')[0].split('=')[1])
-		else
-		$scope.price_less = ''
-		if(uri[1].split('-+price_')[1].split('&')[1].split('=')[1] != '')
-		$scope.price_maxim = parseInt(uri[1].split('-+price_')[1].split('&')[1].split('=')[1])
-		else
-		$scope.price_maxim = ''
-		
+		if(typeof uri[1] != 'undefined' && uri[1] != ''){
+			if(uri[1].split('-+price_')[1].split('&')[0].split('=')[1] != '')
+			$scope.price_less = parseInt(uri[1].split('-+price_')[1].split('&')[0].split('=')[1])
+			else
+			$scope.price_less = ''
+			if(uri[1].split('-+price_')[1].split('&')[1].split('=')[1] != '')
+			$scope.price_maxim = parseInt(uri[1].split('-+price_')[1].split('&')[1].split('=')[1])
+			else
+			$scope.price_maxim = ''
+		}
 		$scope.catList = resultsListingFactory.getSubCategories({'category_sub_parentId':data.category[0].category_id})
 		
 		$scope.locationList = resultsListingFactory.getLocations()
