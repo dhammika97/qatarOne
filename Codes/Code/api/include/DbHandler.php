@@ -1988,11 +1988,51 @@ public function getJobsApplyInformation() {
 		}
 	}
 	
-	
-
-
-	public function insertRating($ratingDetails) {
+	public function updateRating($ratingDetails) {
 		global $user_id;
+	
+		$avail = self::checkRatingAvailable($user_id, $ratingDetails);
+	
+		if ($avail == '0') {
+			return	self::insertRating($user_id,$ratingDetails);
+	
+		}else{
+			return self::setRating($user_id, $ratingDetails);
+		}
+	}
+	
+	
+	public function setRating($user_id, $ratingDetails) {
+		$db = new database (); // $user_id,$modeuser_New_password
+		$query = 'update rating set rating_rate="' . $ratingDetails ['rate'] . '"
+				where rating_user_id='. $user_id .' and rating_ad_id='. $ratingDetails ['ad_id'].'';
+		if ($db->updatePreparedStatment ( $query )) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public function checkRatingAvailable($user_id, $ratingDetails) {
+		try {
+			$db = new database ();
+			$table = ' rating ';
+			$rows = 'count(*) as cnt';
+			$where = ' rating_user_id='. $user_id .' and rating_ad_id='.$ratingDetails ['ad_id'].'';
+			$order_by = "";
+			$db->select ( $table, $rows, $where, $order_by, '' );
+			$resut = $db->getResults ();
+			// echo $resut[0];
+			return $resut [0];
+		} catch ( Exception $e ) {
+			$e . pr;
+			return '';
+		}
+	}
+
+
+	public function insertRating($user_id, $ratingDetails) {
+		//global $user_id;
 		//print_r($ratingDetails);
 		$db = new database ();
 		$table = "rating";

@@ -2315,7 +2315,8 @@ $app->get('/applyjobsdetails', 'authenticate', function()  {
 });
 
 
-	/** update star rating, service receiver....
+	
+/** update star rating, service receiver....
 	 * update DB
 	 * */
 	
@@ -2325,7 +2326,7 @@ $app->get('/applyjobsdetails', 'authenticate', function()  {
 		$request = \Slim\Slim::getInstance()->request();
 		$ratingDetails = $request->getBody();
 		$db = new DbHandler();
-		if($adId = $db->insertRating($ratingDetails)){
+		if($adId = $db->updateRating($ratingDetails)){
 			$response["error"] = false;
 			$response["message"] = "Rating updated successfully";
 			echoRespnse(201, $response);
