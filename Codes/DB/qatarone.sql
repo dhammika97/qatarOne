@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2014 at 05:17 PM
+-- Generation Time: Dec 23, 2014 at 09:42 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `advertisement_images` (
   `advertisement_id` int(11) NOT NULL,
   `advertisement_image` varchar(255) NOT NULL,
   PRIMARY KEY (`advertisement_imageId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
 
 --
 -- Dumping data for table `advertisement_images`
@@ -60,7 +60,21 @@ INSERT INTO `advertisement_images` (`advertisement_imageId`, `advertisement_id`,
 (30, 46, '3CB2ECCF4B3CE5410AD8256AB41ED26DSmartphone.jpg'),
 (31, 47, 'BA763F86481CE1590A3321F6B0C32D0D233828365.jpg'),
 (32, 48, '29F753458C1D70B28724631513599E07images.jpg'),
-(33, 49, '4275E9BE2DA6A8198A8B136354FC8A1ASamsung-laptop.jpg');
+(33, 49, '4275E9BE2DA6A8198A8B136354FC8A1ASamsung-laptop.jpg'),
+(34, 51, '9CFCAF0E29EC7672218C84C28432ED97images.jpg'),
+(35, 52, '74BDFF02FFD4CA0D1BF991CE52BEB2B2Smartphone.jpg'),
+(36, 53, '845FDED06DE86EBEA22FE9E85AC0275CSamsung-laptop.jpg'),
+(37, 54, 'A6A03FDF30F2B30B37479E32EDE26661Smartphone.jpg'),
+(38, 55, '75D3B268197CBB031AF0FE68F6329288images.jpg'),
+(39, 56, 'D1C67E602F19698DAC217A1DF1D80748Nikon-D3200-Sigma-17-70-f2.8-4-side-view.JPG'),
+(40, 57, '7C99C0DF36F5EFE6356D42C67A83DB69Smartphone.jpg'),
+(41, 58, 'C2F08636BF4C9BA8C0556BB05270988ASmartphone.jpg'),
+(42, 59, 'A7C8CFB93ACE9D1393E7ED79950620DESmartphone.jpg'),
+(43, 60, 'AF0D2E862B3D1568F7945988F57D299A2008_Suzuki_Wagon_R_Stingray_02.JPG'),
+(44, 61, '233250782B88FD2F1F8EDE3880D6F75BSmartphone.jpg'),
+(45, 62, '5080A3B6D77B968AE59836E0F89AE023230405b.jpeg'),
+(46, 63, '55303EE502FA493339BFF5AC4544BD28Fuel-efficient-Quick-Sale-Cars.jpg'),
+(47, 65, '908F8BE6605943927D8B9A4205588552IMG_3734.JPG');
 
 -- --------------------------------------------------------
 
@@ -87,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
   `advertisement_expire` datetime NOT NULL,
   `advertisement_addedBy` int(11) NOT NULL,
   PRIMARY KEY (`advertisment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
 
 --
 -- Dumping data for table `advertisment`
@@ -97,14 +111,30 @@ INSERT INTO `advertisment` (`advertisment_id`, `advertisement_categoryId`, `adve
 (39, 3, 23, '""', 'asdasd', 'sdfsdf', '123', 'sdasda asd asd', '234234234', 'sdsdf@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-11 17:13:03', 1, '2015-03-11 00:00:00', 1),
 (40, 15, 26, '""', 'asdasd', 'sdsdfsdf', '234', 'sdasdas', '23434', 'ssd@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-11 17:13:09', 1, '2015-03-11 00:00:00', 1),
 (41, 17, 28, '""', 'asdasd asd asd', 'asda sdasd asd asd asd', '123', 'asdasd', '123456', 'asdas@sdfsdf', 2, 3, '6.934023, 79.845219', '2014-12-11 17:13:14', 1, '2015-03-11 00:00:00', 1),
-(42, 23, 29, '{"brand":"apple","touchscreen":true}', 'asdasd asdasd', 'asdasd asd ad', '234', 'asdas asdasd', '412563', 'asdas@sdfsdf', 2, 6, '6.934023, 79.845219', '2014-12-11 17:13:18', 1, '2015-03-11 00:00:00', 1),
+(42, 23, 29, '{"brand":"apple","touchscreen":"Touchscreen"}', 'Apple 1', 'asdasd asd ad', '234', 'asdas asdasd', '412563', 'asdas@sdfsdf', 2, 6, '6.934023, 79.845219', '2014-12-23 05:43:52', 1, '2015-03-11 00:00:00', 1),
 (43, 17, 28, '""', 'asd asd asd asd', 'asdasd asd asd', '1452', 'asdas asd', '123456', 'asd@sdf', 2, 4, '6.934023, 79.845219', '2014-12-11 17:13:22', 1, '2015-03-11 00:00:00', 1),
 (44, 17, 27, '""', 'cable ad', 'sdfsdf d asd', '123', 'sdfsd fsdfs', '234234', 'sdas@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-12 05:07:28', 1, '2015-03-12 00:00:00', 31),
 (45, 3, 23, '""', 'asdasd', 'sdfsdf', '234', 'ssdf sf sdf', '234234234', 'ssdf@sdfsdf', 1, 7, '6.934023, 79.845219', '2014-12-13 04:48:56', 1, '2015-03-13 00:00:00', 31),
-(46, 23, 29, '{"brand":"apple","touchscreen":true}', 'Apple iPhone 5s', 'iPhone 5s for sale. \nPrice negotiable', '100000', 'Dhammika Gunaratne', '123456789', 'dhammika97@gmail.com', 2, 6, '6.934023, 79.845219', '2014-12-13 04:48:59', 1, '2015-03-13 00:00:00', 31),
+(46, 23, 29, '{"brand":"apple","touchscreen":"Touchscreen"}', 'Apple iPhone 5s', 'iPhone 5s for sale. \nPrice negotiable', '100000', 'Dhammika Gunaratne', '123456789', 'dhammika97@gmail.com', 2, 6, '6.934023, 79.845219', '2014-12-17 06:42:25', 1, '2015-03-13 00:00:00', 31),
 (47, 17, 28, '""', 'test ad', 'mkasdj alsdl adlajsdlajsldaj dia djad asj d ajsd jasd jjlaj sdljalsd jlkasjdjajsd lkaj sdlajsdl ajjd laks dasdj aljs dad laks jdlajsldj lask dja sd asd', '54100', 'Dhammika', '789456123', 'test@test.test', 6, 5, '6.934023, 79.845219', '2014-12-13 18:00:50', 1, '2015-03-13 00:00:00', 1),
 (48, 17, 28, '""', 'asdasd asd asdas d', 'sdfs fsdf sldf sf   jsfjsdf lsf jsldfj sdf sdhfsdfh s fshdf sod foshfo s oishf oshdfh sodfhos dfoh sohdfoh sf', '123456', 'test name', '874512369', 'test@sdfsdf', 6, 1, '6.934023, 79.845219', '2014-12-13 18:00:47', 1, '2015-03-13 00:00:00', 1),
-(49, 17, 28, '""', 'asdasdd asd asd asd asd', 'sdfs dfsdfn lsdf sf s df s sld fls fs fso f', '8745', 'test ssdf', '987654', 'test@sdfsdf', 6, 6, '6.934023, 79.845219', '2014-12-13 18:00:45', 1, '2015-03-13 00:00:00', 1);
+(49, 17, 28, '""', 'asdasdd asd asd asd asd', 'sdfs dfsdfn lsdf sf s df s sld fls fs fso f', '8745', 'test ssdf', '987654', 'test@sdfsdf', 6, 6, '6.934023, 79.845219', '2014-12-13 18:00:45', 1, '2015-03-13 00:00:00', 1),
+(50, 15, 26, '""', 'Nikon d3200', 'sfsd sdf slf lsd jsf sdj fo sdof osof osd hfi isd fj jps pjf spjd f', '12333', 'test', '123456', 'test@123', 6, 6, '6.934023, 79.845219', '2014-12-14 17:43:11', 1, '2015-03-14 00:00:00', 31),
+(51, 3, 24, '""', 'test testte', 'test test test test etst set set set', '123', 'test test', '234234', 'test@test.test', 6, 3, '6.934023, 79.845219', '2014-12-14 17:50:17', 1, '2015-03-14 00:00:00', 31),
+(52, 15, 25, '""', 'asd asd', 'sdfsdf sdf sdf', '123', 'wewer', '123', 'sdf@sdf', 6, 1, '6.934023, 79.845219', '2014-12-15 09:19:43', 1, '2015-03-15 00:00:00', 31),
+(53, 17, 28, '""', 'asdasd asd asd', 'dsdfsdfsdf', '234', 'asdasddasd', '12312', 'sdfsd@sdfsd', 6, 5, '6.934023, 79.845219', '2014-12-15 09:19:46', 1, '2015-03-15 00:00:00', 31),
+(54, 23, 29, '{"brand":"apple","touchscreen":"Touchscreen"}', 'Apple 2', 'sdsd sd ad asd asd', '23', 'asdasdasd', '344234', 'sdsdfs@sdfsdf', 6, 1, '6.934023, 79.845219', '2014-12-23 05:44:03', 1, '2015-03-15 00:00:00', 31),
+(55, 17, 28, '""', 'test test', 'test description test description test description test description', '12500', 'test name', '987654321', 'test@test', 6, 4, '6.934023, 79.845219', '2014-12-15 16:25:08', 1, '2015-03-15 00:00:00', 31),
+(56, 17, 28, '""', 'ssfdfsdf', 'sdfsdfsdfsdf sdfsdf', '123', 'sfsdfsdf', '123123123', 'sdf@sdf', 6, 4, '6.934023, 79.845219', '2014-12-16 15:49:35', 1, '2015-03-15 00:00:00', 31),
+(57, 23, 29, '{"brand":"samsung","touchscreen":"Touchscreen"}', 'Samsung 1', 'awesome phone, test test', '1234', 'test name', '987654321', 'test@test.com', 6, 1, '6.934023, 79.845219', '2014-12-23 05:44:13', 1, '2015-03-16 00:00:00', 31),
+(58, 23, 29, '{"brand":"sony","touchscreen":"Touchscreen"}', 'Sony', 'sdfsdf sdf sdf sdf sdf', '123', 'estset setset', '23423', 'tesst@sdfsdf', 6, 4, '6.934023, 79.845219', '2014-12-23 05:44:21', 1, '2015-03-16 00:00:00', 31),
+(59, 23, 29, '{"brand":"lg","touchscreen":"Touchscreen"}', 'LG', 'asdasdasd asdasdasd', '456123', 'asdasd asd asd', 'ssdcsdf sdf', 'tesd@sdfsdf', 6, 5, '6.934023, 79.845219', '2014-12-23 05:44:32', 1, '2015-03-16 00:00:00', 31),
+(60, 28, 33, '{"brand":"suzuki","model":"Wagon R","year":"2004","bodyType":"SUV","condition":"Recondition","transmission":"Manual","fuelType":"Patrol"}', 'test car advertisement', 'A/C, Power steering, Power shutters, Rivers Camera, TV/ DVD Mint Condition', '120000', 'Dhammika Gunaratne', '777339803', 'dhammika9@gmail.com', 6, 1, '6.934023, 79.845219', '2014-12-17 06:48:46', 1, '2015-03-17 00:00:00', 31),
+(61, 29, 34, '{"applyEmail":"dhammika97@gmail.com","companyName":"company name","jobType":"Full time","salary":"20000"}', 'test advertisement', 'test description', '123456', 'test name', '789456', 'test@test.test', 6, 1, '6.934023, 79.845219', '2014-12-17 19:15:46', 1, '2015-03-17 00:00:00', 31),
+(62, 28, 33, '{"brand":"tata","model":"Corolla","year":"2000","bodyType":"Station wagon","condition":"Recondition","transmission":"Manual","fuelType":"Patrol"}', 'AE 110', 'this is test description', '150000', 'test nm', '987654', 'test@test', 6, 5, '6.934023, 79.845219', '2014-12-17 19:15:41', 1, '2015-03-17 00:00:00', 31),
+(63, 28, 33, '{"brand":"toyota","model":"test","year":"1234","bodyType":"Station wagon","condition":"Recondition","transmission":"Automatic","fuelType":"Diesel"}', 'test test tteste', 'ssdf sdf sdf sdfs f\ns dfsdf \ns dfsf\ns dfs df\n sf sdf\n sdf', '123456', '123', '123', 'sdfsd@sdf', 6, 3, '6.934023, 79.845219', '2014-12-17 20:19:43', 1, '2015-03-17 00:00:00', 31),
+(64, 29, 34, '{"jobType":"Full time","companyName":"test test test","applyEmail":"dsdf@sdfsdf","salary":"123456"}', 'test', 'test description, test description 2<div>test new line</div><div><br></div><div>est new line after new line</div><div><br></div><div><br></div><div>test test test</div>', '123', 'ssdfsd sdfsdf', '234234', 'sdfsd@ssfsdf', 6, 3, '6.934023, 79.845219', '2014-12-17 20:19:47', 1, '2015-03-17 00:00:00', 31),
+(65, 23, 30, '""', 'test accessory item', 'Test Accessory Item will be going here', '123', 'test contact', '123456', 'test@test.test', 6, 5, '6.934023, 79.845219', '2014-12-21 14:20:57', 1, '2015-03-21 00:00:00', 31);
 
 -- --------------------------------------------------------
 
@@ -193,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
   `category_sub_parentId` int(4) NOT NULL,
   PRIMARY KEY (`category_sub_id`),
   KEY `category_sub_id` (`category_sub_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `category_sub`
@@ -206,10 +236,13 @@ INSERT INTO `category_sub` (`category_sub_id`, `category_sub_name`, `category_su
 (26, 'Camera & photo Accessories', 'camera-photo-accessories', 'General', '2014-12-11 09:30:39', 1, 0, 15),
 (27, 'Cables & Connectors', 'cables-connectors', 'General', '2014-12-11 12:12:41', 1, 0, 17),
 (28, 'Desktops', 'desktops', 'General', '2014-12-11 12:13:41', 1, 0, 17),
-(29, 'Mobile Phones', '', 'Mobile', '2014-12-11 12:15:17', 1, 0, 23),
-(30, 'Mobile Phone Accessories', '', 'General', '2014-12-11 12:15:47', 1, 0, 23),
+(29, 'Mobile Phones', 'mobile-phones', 'Mobile', '2014-12-11 12:15:17', 1, 0, 23),
+(30, 'Mobile Phone Accessories', 'mobile-phone-accessories', 'General', '2014-12-11 12:15:47', 1, 0, 23),
 (31, 'Test Category', 'test-category', 'General', '2014-12-14 10:40:15', 1, 0, 17),
-(32, 'Test2 Category', 'test2-category', 'General', '2014-12-14 10:40:49', 1, 0, 17);
+(32, 'Test2 Category', 'test2-category', 'General', '2014-12-14 10:40:49', 1, 0, 17),
+(33, 'Cars', 'cars', 'Car', '2014-12-17 06:43:53', 1, 0, 28),
+(34, 'Audit & Taxation Jobs', 'audit-taxation-jobs', 'Job', '2014-12-17 15:57:31', 1, 0, 29),
+(35, 'Banking/ Financial Jobs', 'banking-financial-jobs', 'Job', '2014-12-17 15:58:13', 1, 0, 29);
 
 -- --------------------------------------------------------
 
@@ -282,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `item_comments` (
   `comment_addedBy` int(11) NOT NULL,
   `Comment` varchar(255) NOT NULL,
   PRIMARY KEY (`comment_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `item_comments`
@@ -290,7 +323,40 @@ CREATE TABLE IF NOT EXISTS `item_comments` (
 
 INSERT INTO `item_comments` (`comment_Id`, `advertisment_Id`, `comment_Date`, `comment_Time`, `comment_status`, `comment_addedBy`, `Comment`) VALUES
 (1, 46, '2014-12-13', '05:58:13', 1, 33, 'woww....'),
-(2, 46, '2014-12-13', '05:58:28', 1, 33, 'woww....');
+(2, 46, '2014-12-13', '05:58:28', 1, 33, 'woww....'),
+(3, 60, '2014-12-17', '21:25:08', 1, 33, 'jjshfks dfskdhfs df sd fh sdf'),
+(4, 46, '2014-12-17', '21:27:41', 1, 33, 'sksj dfhsoh fo sho sodhf osdf'),
+(5, 60, '2014-12-17', '21:32:28', 1, 33, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobapplydetails`
+--
+
+CREATE TABLE IF NOT EXISTS `jobapplydetails` (
+  `jobapplydetails_id` int(11) NOT NULL AUTO_INCREMENT,
+  `jobapplydetails_ad_id` int(11) NOT NULL,
+  `jobapplydetails_employee_email` varchar(100) NOT NULL DEFAULT '',
+  `jobapplydetails_employee_phoneno` varchar(20) NOT NULL DEFAULT '',
+  `jobapplydetails_employee_massage` longtext NOT NULL,
+  `jobapplydetails_employee_userid` int(11) NOT NULL,
+  `jobapplydetails_employer_userid` int(11) NOT NULL,
+  `jobapplydetails_appliedon` datetime NOT NULL,
+  `jobapplydetails_status` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`jobapplydetails_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci' AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `jobapplydetails`
+--
+
+INSERT INTO `jobapplydetails` (`jobapplydetails_id`, `jobapplydetails_ad_id`, `jobapplydetails_employee_email`, `jobapplydetails_employee_phoneno`, `jobapplydetails_employee_massage`, `jobapplydetails_employee_userid`, `jobapplydetails_employer_userid`, `jobapplydetails_appliedon`, `jobapplydetails_status`) VALUES
+(1, 61, 'test@test.test', 'sdfdf', 'sdddfb', 31, 31, '2014-12-21 00:00:00', 0),
+(2, 61, 'test@test.test', 'sdfdf', 'sdddfb', 31, 31, '2014-12-21 00:00:00', 0),
+(3, 61, 'test@test.test', 'sdfsdf', 'sdfsdf', 31, 31, '2014-12-21 00:00:00', 0),
+(4, 61, 'test@test.test', 'dfgdf', 'sfsdfsdf', 31, 31, '2014-12-21 00:00:00', 0),
+(5, 64, 'test@test.test', 'sdfsdf', 'sdfsdf', 31, 31, '2014-12-21 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -359,16 +425,17 @@ CREATE TABLE IF NOT EXISTS `packagetypes` (
   `package_status` int(1) NOT NULL,
   `package_mode` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`package_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
+--
+-- Dumping data for table `packagetypes`
+--
 
-
-insert into packagetypes values
-	(9,1,'ssdf','sdfsf asdasdas dasdas',123,123,1,1,1),
-	(7,0,'test first','test description',21540,15,1,1,2),
-	(3,0,'test package 3','test',2500,300,1,0,1),
-	(1,0,'test package','test description',2500,3,1,0,3)
-;
+INSERT INTO `packagetypes` (`package_id`, `packageType`, `package_name`, `package_Description`, `package_price`, `package_adLimit`, `package_addedBy`, `package_status`, `package_mode`) VALUES
+(1, 0, 'test package', 'test description', '2500', 3, 1, 0, 3),
+(3, 0, 'test package 3', 'test', '2500', 300, 1, 0, 1),
+(7, 0, 'test first', 'test description', '21540', 15, 1, 1, 2),
+(9, 1, 'ssdf', 'sdfsf asdasdas dasdas', '123', 123, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -383,17 +450,32 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `page_status` int(1) NOT NULL,
   `page_addedBy` int(2) NOT NULL,
   PRIMARY KEY (`page_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `pages`
 --
 
 INSERT INTO `pages` (`page_id`, `page_title`, `page_content`, `page_status`, `page_addedBy`) VALUES
-(1, 'Terms & Coditions', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac dolor sit amet mi laoreet finibus at et nisl. Phasellus sodales ex et bibendum accumsan. Sed hendrerit mauris non vehicula consectetur. Nullam pulvinar sit amet turpis venenatis euismod. Curabitur lobortis fermentum maximus. Sed commodo orci nec malesuada euismod. Maecenas posuere dictum felis. Integer justo velit, feugiat maximus ligula id, cursus pharetra nisi. Mauris porttitor malesuada purus, et auctor nulla ultricies ut.\n\nNulla a quam iaculis, iaculis turpis vitae, dignissim purus. Pellentesque sodales pellentesque magna sit amet maximus. Etiam in leo at arcu eleifend gravida. Phasellus consequat porttitor lectus, eu vestibulum ipsum ultrices sed. In ornare vehicula justo, nec semper ipsum aliquet et. Quisque sagittis diam eget ex maximus, et pharetra arcu pulvinar. Pellentesque ornare risus quis imperdiet hendrerit. Vivamus lorem quam, pulvinar at tortor vitae, vehicula pretium augue. Donec ornare elementum nunc non efficitur. Cras euismod tellus venenatis mauris aliquam gravida. Nullam in fermentum quam. Praesent condimentum fermentum pharetra. Proin gravida erat vitae porttitor faucibus. Morbi nec sem lectus. Sed in leo tristique, rutrum justo et, laoreet velit.\n\nSuspendisse potenti. Nam lectus purus, pretium in tellus ac, venenatis fermentum nunc. Curabitur eget viverra dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent sit amet venenatis leo. Aenean est dui, cursus nec efficitur ac, tristique ac eros. Duis at consectetur nisl. Suspendisse iaculis, tortor sit amet faucibus semper, tortor mi pulvinar lorem, in cursus urna metus eu velit. Duis pretium ultrices metus, eu dapibus erat malesuada sit amet. Etiam quis vulputate augue. Vestibulum diam nisl, porttitor ullamcorper dui quis, varius tristique arcu. Nulla sit amet euismod neque, sed cursus arcu.\n\nPhasellus faucibus nulla et massa imperdiet ornare. Cras at velit quis dolor volutpat condimentum. In vel libero vestibulum, sagittis tellus vel, porttitor arcu. In nec leo euismod, pulvinar leo vel, aliquam purus. Quisque dictum tincidunt nulla ut egestas. Sed non dictum eros. Sed sollicitudin pulvinar dui, ac efficitur sapien dapibus sit amet. Integer dictum et libero at suscipit. Mauris at diam vitae nunc accumsan commodo. Sed ut sapien vitae nulla iaculis aliquam. Nam lobortis sem nec dui accumsan accumsan. Sed scelerisque massa id justo imperdiet fringilla. Vestibulum ante augue, dictum ut rutrum eleifend, iaculis a mi. Phasellus rutrum egestas elit malesuada convallis. Vivamus iaculis scelerisque mollis. Vestibulum sodales ultricies dictum.\n\nNam faucibus v', 0, 1),
-(2, 'About Us', '<script>alert(''ayyoo salli'')</script>', 0, 1),
-(3, 'Yet Another Page', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac dolor sit amet mi laoreet finibus at et nisl. Phasellus sodales ex et bibendum accumsan. Sed hendrerit mauris non vehicula consectetur. Nullam pulvinar sit amet turpis venenatis euismod. Curabitur lobortis fermentum maximus. Sed commodo orci nec malesuada euismod. Maecenas posuere dictum felis. Integer justo velit, feugiat maximus ligula id, cursus pharetra nisi. Mauris porttitor malesuada purus, et auctor nulla ultricies ut.\n\nNulla a quam iaculis, iaculis turpis vitae, dignissim purus. Pellentesque sodales pellentesque magna sit amet maximus. Etiam in leo at arcu eleifend gravida. Phasellus consequat porttitor lectus, eu vestibulum ipsum ultrices sed. In ornare vehicula justo, nec semper ipsum aliquet et. Quisque sagittis diam eget ex maximus, et pharetra arcu pulvinar. Pellentesque ornare risus quis imperdiet hendrerit. Vivamus lorem quam, pulvinar at tortor vitae, vehicula pretium augue. Donec ornare elementum nunc non efficitur. Cras euismod tellus venenatis mauris aliquam gravida. Nullam in fermentum quam. Praesent condimentum fermentum pharetra. Proin gravida erat vitae porttitor faucibus. Morbi nec sem lectus. Sed in leo tristique, rutrum justo et, laoreet velit.\n\nSuspendisse potenti. Nam lectus purus, pretium in tellus ac, venenatis fermentum nunc. Curabitur eget viverra dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent sit amet venenatis leo. Aenean est dui, cursus nec efficitur ac, tristique ac eros. Duis at consectetur nisl. Suspendisse iaculis, tortor sit amet faucibus semper, tortor mi pulvinar lorem, in cursus urna metus eu velit. Duis pretium ultrices metus, eu dapibus erat malesuada sit amet. Etiam quis vulputate augue. Vestibulum diam nisl, porttitor ullamcorper dui quis, varius tristique arcu. Nulla sit amet euismod neque, sed cursus arcu.\n\nPhasellus faucibus nulla et massa imperdiet ornare. Cras at velit quis dolor volutpat condimentum. In vel libero vestibulum, sagittis tellus vel, porttitor arcu. In nec leo euismod, pulvinar leo vel, aliquam purus. Quisque dictum tincidunt nulla ut egestas. Sed non dictum eros. Sed sollicitudin pulvinar dui, ac efficitur sapien dapibus sit amet. Integer dictum et libero at suscipit. Mauris at diam vitae nunc accumsan commodo. Sed ut sapien vitae nulla iaculis aliquam. Nam lobortis sem nec dui accumsan accumsan. Sed scelerisque massa id justo imperdiet fringilla. Vestibulum ante augue, dictum ut rutrum eleifend, iaculis a mi. Phasellus rutrum egestas elit malesuada convallis. Vivamus iaculis scelerisque mollis. Vestibulum sodales ultricies dictum.\n\nNam faucibus v', 0, 1),
-(4, 'Sample Page', 'Sample Content', 0, 31);
+(1, 'About Us', '<p><b>Qatar One is the fast and easy way to buy and sell your</b> &nbsp;in more than 30 different categories. It can be your car, job vacancy, real estate, and everything else. Also find what you''re looking for or create your own <b>Itâ€™s free</b>.</p><ul><li>Within seconds you can list an item for sale.</li><li>Within minutes your item will appear on Qatar One</li><li>Within hours youâ€™ll hear from interested buyers</li><li>Within days youâ€™ll meet up with buyers and trade your stuff for cash</li><li>Within weeks you will have simplified and improved your life</li></ul><div><br></div><div><br></div><p>Sell your used phone sitting in your drawer.<br></p><p>Sell the guitar you never really play.<br></p><p>Sell your sisterâ€™s baby stroller thatâ€™s hiding in her closet.<br></p><p>Sell your motorcycle and upgrade to a newer one.<br></p><p>Sell those shoes that donâ€™t quite fit.<br></p><p><br></p><p>On Qatar One, there are buyers for almost anything you have to sell.</p><p>Millions have already sold their stuff Qatar One. You can too.</p><p>Donâ€™t just let it sit there. START SELLING YOUR STUFF that you don''t need</p><p><br></p><p>We invest a great deal of time and effort in monitoring and filtering the content posted to the website, so you can be confident that you''ll find only quality, relevant listings. We also carefully review all ads that are being published, to make sure the quality is up to our standards.<br></p>', 0, 1),
+(2, 'Site Map', '<p>Site map content will goes here</p>', 0, 1),
+(3, 'Terms of Use', '<p>Qatar One is a service provided by Black Shadow Group (subject to your compliance with the Terms and Conditions set forth below). Please read these Terms and Conditions before using this Web Site.<br></p><p>General: Advertisers and users are responsible for ensuring that advertising content, text, images, graphics, video (''Content'') uploaded for inclusion on Qatar One complies with all applicable laws. Qatar One assumes no responsibility for any illegality or any inaccuracy of the Content.<br></p><p>The advertisers and user guarantees that his or her Content do not violate any copyright, intellectual property rights or other rights of any person or entity, and agrees to release Qatar One and Black Shadow Group from all obligations, liabilities and claims arising in connection with the use of (or the inability to use) the service.<br></p><p>Advertisers agree that their Content can may be presented through Qatar Oneâ€™s partner sites under the same terms and conditions as on Qatar One.&nbsp;<br></p><p>Copyright: Advertisers grant Qatar One and Black Shadow Group a perpetual, royalty-free, irrevocable, non-exclusive right and license to use, reproduce, modify, adapt, publish, translate, create derivative works from and distribute such Content or incorporate such Content into any form, medium, or technology now known or later developed.<br></p><p>The material (including the Content, and any other content, software or services) contained on Qatar One are the property of Black Shadow Group, its subsidiaries, affiliates and/or third party licensors. Any intellectual property rights, such as copyright, trademarks, service marks, trade names and other distinguishing brands on the Web Site are the property of Black Shadow Group. To be clear: No material on this site may be copied, reproduced, republished, installed, posted, transmitted, stored or distributed without written permission from Black Shadow Group.<br></p><p>Watermarks: All images on Qatar One are watermarked, which prevents the images to be used for other purposes, without the consent of the advertiser.<br></p><p>Safety and images: Qatar One and Black Shadow Group reserves the right to change the title of the Content, for editorial purposes. Qatar One and Black Shadow Group reserves the right not to publish images that are irrelevant or images that violate Qatar One''s rules.<br></p><p>Personal: Qatar One and Black Shadow Group has the right to cooperate with authorities in the case any Content violates the law. The identity of advertisers, users or buyers may be determined, for example by an ISP. IP addresses may also be registered in order to ensure compliance with the terms and conditions.<br></p><p>Privacy: Qatar One and Black Shadow Group will collect information from Users and Advertisers. It is a condition of use of the Qatar One that each User and advertiser consents and authorises Qatar One and Black Shadow Group to collect and use this information. Qatar One and Black Shadow Group also reserves the right to disclose it to Company Affiliates and any other person for the purposes of administering, supporting and maintaining Qatar One, as well as for improving Qatar One, for example by using the information for research, marketing, product development and planning.<br></p><p>Cookies: This site uses cookies, which means that you must have cookies enabled on your computer in order for all functionality on this site to work properly. A cookie is a small data file that is written to your hard drive when you visit certain Web sites. Cookie files contain certain information, such as a random number user ID that the site assigns to a visitor to track the pages visited. A cookie cannot read data off your hard disk or read cookie files created by other sites. Cookies, by themselves, cannot be used to find out the identity of any user.<br></p><p>Email Address of Users: Users are required to submit a valid email address, before they are allowed to post advertisements. The email address of the User shall not be publicly displayed and other users are permitted to send email to the User through Qatar One.<br></p><p>Site availability: Qatar One and Black Shadow Group does not guarantee continuous or secure access to the Web Site. The Web Site is provided ''as is'' and as and when available.<br></p><p>Links to third party websites: Qatar One may contain links or references to other websites (''Third Party Websites''). Qatar One or Black Shadow Group shall not be responsible for the contents in Third Party Websites. Third Party Websites are not investigated or monitored. In the event the user decides to leave Qatar One and access Third Party Sites, the user does so at his/her own risk.<br></p><p>Paid content: Advertisers and Users wishing to post content on Qatar One that requires payment (''Paid Content''), may be required to transmit information through a third-party service provider, which may be governed by its own terms of use. Linking to any third party service providers is at the Users'' and Advertisers'' own risk and Qatar One disclaims all liability related thereto. Under no circumstances shall Qatar One be obliged to refund any payments made in respect of Paid Content.<br></p><p>In the event that Paid Content violates any aspect of these Terms &amp; Conditions, Qatar One may, in its sole discretion and without refund, remove the Paid Content from Qatar One. Users and Advertisers may delete any Paid Content prior to the end of the paid-for period, and Qatar One shall have no further responsibility to display the deleted content. Qatar One is neither responsible nor liable for the perceived success or failure of any Paid Content posted on Qatar One.<br></p><p>Disclaimer: Qatar One and Black Shadow Group assume no responsibility what so ever for the use of Qatar One and disclaims all responsibility for any injury, claim, liability, or damage of any kind resulting from or arising out of or any way related to (a) any errors on Qatar One or the Content, including but not limited to technical errors and typographical errors, (b) any third party web sites or content directly or indirectly accessed through links in Qatar One, (c) the unavailability of Qatar One, (d) your use of Qatar One or the Content, or (e) your use of any equipment (or software) in connection with Qatar One<br></p><p>Indemnification: Advertisers and users agree to indemnify Qatar One &amp; Black Shadow Group as well as its officers, directors, employees, agents, from and against all losses, expenses, damages and costs, including attorneyâ€™s fees, resulting from any violation of this Terms and Conditions (including negligent or wrongful conduct).<br></p><p>Modifications: Qatar One &amp; Black Shadow Group reserves the right to modify these Terms and Conditions. Such modifications shall be effective immediately upon posting on Qatar One. You are responsible for the reviewing of such modifications. Your continued access or use of Qatar One shall be deemed your acceptance of the modified terms and conditions.<br></p><p>Governing Law: Qatar One is operated under the laws and regulations of Sweden. Advertisers and users agree that Swedish courts, with the district court of Gothenburg as the court of first instance, will have jurisdiction over any dispute or claim relating to the use of Qatar One.<br></p><p><br></p>', 0, 1),
+(4, 'Privacy Policy', '<p>This policy details how data about you is collected/used/disclosed when you visit our websites and services (together, ''Qatar One'') or otherwise interact with us. If we update it, we will revise the date, place notices on Qatar One if a change is material, and/or obtain your consent as required by law.<br></p><p></p><ol><li>Protecting your privacy<br></li></ol><ul><li>We take precautions to prevent unauthorized access to or misuse of data about you.<br></li><li>We do not run ads, other than classified ads posted by our users.<br></li><li>We do not share your data with third parties for marketing purposes.<br></li><li>We do not engage in cross-marketing or link-referral programs with other sites.<br></li><li>We do not employ tracking devices for marketing purposes.<br></li><li>We do not send you unsolicited communications for marketing purposes.<br></li><li>We do not engage in affiliate marketing (and prohibit it on Qatar One).<br></li><li>We do provide email proxy &amp; relay to reduce unwanted mail.<br></li><li>Qatar One links to third party sites - please review their privacy policies.</li></ul><p></p>', 0, 31),
+(5, 'FAQ', 'FAQs will be going here...', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating`
+--
+
+CREATE TABLE IF NOT EXISTS `rating` (
+  `rating_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rating_ad_id` int(11) NOT NULL,
+  `rating_user_id` int(11) NOT NULL,
+  `rating_rate` int(2) NOT NULL,
+  PRIMARY KEY (`rating_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -468,7 +550,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_status` int(1) NOT NULL,
   `user_accessToken` text NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `user`
@@ -476,8 +558,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `user_firstname`, `user_lastname`, `user_address1`, `user_address2`, `user_city`, `user_contactNo`, `user_registeredDate`, `user_type`, `user_status`, `user_accessToken`) VALUES
 (1, 'dhammika97', '202cb962ac59075b964b07152d234b70', 'dhammika97@gmail.com', 'dhammika', 'gunaratne', '176/4, walatenna', 'gallellagama', 'kandy', '777339803', '2014-11-20 00:00:00', 0, 1, 'kjsjjdfshdfhsdbfjhsbdfsdfsf'),
-(31, '', '202cb962ac59075b964b07152d234b70', 'dhammika9@gmail.com', 'test', '', '', '', '', '', '2014-12-06 00:00:00', 3, 1, '1C078C9F93582F9D780C55507BB274B6'),
-(32, '', '202cb962ac59075b964b07152d234b70', 'damn@123.com', '123', '123', '', '', '', '', '2014-12-09 00:00:00', 3, 1, 'BD9EC52A01EF7DD33EFE5AB92EC7D99F');
+(31, '', '202cb962ac59075b964b07152d234b70', 'dhammika9@gmail.com', 'Dumi', 'gunaratne', '', '', '', '', '2014-12-06 00:00:00', 3, 1, '1C078C9F93582F9D780C55507BB274B6'),
+(32, '', '202cb962ac59075b964b07152d234b70', 'damn@123.com', '123', '123', '', '', '', '', '2014-12-09 00:00:00', 3, 1, 'BD9EC52A01EF7DD33EFE5AB92EC7D99F'),
+(33, '', '202cb962ac59075b964b07152d234b70', 'dumi@gmail.com', 'dumi', 'lastname', '', '', '', '', '2014-12-14 00:00:00', 3, 1, 'B64060E5C17D421C572B92A4E3B9CFB0');
 
 -- --------------------------------------------------------
 
@@ -493,21 +576,25 @@ CREATE TABLE IF NOT EXISTS `userpackge` (
   `userpkg_expirey` date NOT NULL,
   `userpkg_status` int(1) NOT NULL,
   PRIMARY KEY (`userpkg_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `userpackge`
 --
 
 INSERT INTO `userpackge` (`userpkg_id`, `userpkg_userId`, `userpkg_pkgId`, `userpkg_remainAds`, `userpkg_expirey`, `userpkg_status`) VALUES
-(1, 31, 1, 3, '0000-00-00', 1),
+(1, 31, 1, 1, '0000-00-00', 1),
 (2, 31, 3, 300, '0000-00-00', 1),
 (3, 31, 7, 15, '0000-00-00', 1),
 (4, 31, 9, 123, '0000-00-00', 1),
 (5, 32, 1, 3, '0000-00-00', 1),
 (6, 32, 3, 300, '0000-00-00', 1),
 (7, 32, 7, 15, '0000-00-00', 1),
-(8, 32, 9, 123, '0000-00-00', 1);
+(8, 32, 9, 123, '0000-00-00', 1),
+(9, 33, 1, 3, '0000-00-00', 1),
+(10, 33, 3, 300, '0000-00-00', 1),
+(11, 33, 7, 15, '0000-00-00', 1),
+(12, 33, 9, 123, '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -520,14 +607,15 @@ CREATE TABLE IF NOT EXISTS `usersubscription` (
   `subscription_email` varchar(50) NOT NULL,
   `subscription_status` int(11) NOT NULL,
   PRIMARY KEY (`subscription_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `usersubscription`
 --
 
 INSERT INTO `usersubscription` (`subscription_id`, `subscription_email`, `subscription_status`) VALUES
-(1, 'dhammika97@gmail.com', 1);
+(1, 'dhammika97@gmail.com', 1),
+(2, 'dfgdfg', 1);
 
 -- --------------------------------------------------------
 
@@ -543,23 +631,6 @@ CREATE TABLE IF NOT EXISTS `video` (
   `video_url` varchar(255) NOT NULL,
   PRIMARY KEY (`video_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Table to hold job apply information in system 
---
-
-CREATE TABLE `jobapplydetails` (
-  `jobapplydetails_id` int(11) NOT NULL AUTO_INCREMENT,
-  `jobapplydetails_ad_id` int(11) NOT NULL,
-  `jobapplydetails_employee_email` varchar(100) NOT NULL DEFAULT '',
-  `jobapplydetails_employee_phoneno` varchar(20) NOT NULL DEFAULT '',
-  `jobapplydetails_employee_massage` longtext NOT NULL,
-  `jobapplydetails_employee_userid` int(11) NOT NULL,
-  `jobapplydetails_employer_userid` int(11) NOT NULL,
-  `jobapplydetails_appliedon` datetime NOT NULL,
-  `jobapplydetails_status` int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`jobapplydetails_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci'
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
