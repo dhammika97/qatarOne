@@ -1,0 +1,35 @@
+    <section class="contact">
+        <h1> Jobs applicant list</h1>
+<ol class="breadcrumb">
+  <li class="active"> <a href="#/view-applyjobs"> Back</a></li>
+</ol>
+      <div class="container">
+        <div class="row">
+        <table class="table table-hover tablesorter">
+    <thead>
+      <tr>
+      	<th>Ad Title</th>
+      	<th>Applicant Name</th>
+      	<th>message</th>
+        <th>Contact No</th>
+        <th>Email</th>
+        <th>applied on</th>
+        <th> </th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr ng-repeat="jobsinfo in jobsinfo.jobsinfo">
+        <td><a href="#/details-view/{{jobsinfo.ad_id}}">{{jobsinfo.title}}</a></td>
+        <td>{{jobsinfo.name}}</td>
+        <td>{{jobsinfo.message}}</td>
+        <td>{{jobsinfo.contactnum}}</td>
+         <td>{{jobsinfo.email}}</td>
+         <td>{{jobsinfo.applydate}}</td>
+       <td><a href="#/contact-applicant/{{jobsinfo.epmloyeeuserid}}" class="btn btn-warning"> Contact Applicant</a></td>
+       
+      </tr>
+    </tbody>
+</table></div>
+      </div>
+    </section>

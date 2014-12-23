@@ -232,7 +232,30 @@ function sendMail($content, $headers){
                             </html>';
              mail('info@qatarone.com', $subject2, $message2, $headers);
              break;
-
+             case 'contactApplicant':
+             	$DbHandler = new DbHandler();
+             	$emailAdd = $DbHandler->getApplicantEmail($content['epmluserid']);
+             	$content['to'] =$emailAdd[0];
+             	//$content['to'] ='kolin.wj@gmail.com';
+             	$subject ='Qatar One - Job Notification';
+             	$message = '
+                            <html>
+                            <body>
+                                <p>
+                                Hi, <br>
+                                </p>
+                                '.$content['customerMessage'].'<br>
+                                Thank you</br>
+                                <p>
+                                Best Regards!<br>
+                                '.$content['name'].'<br>
+                                '.$content['telephone'].'
+                                </p>
+       
+                            </body>
+                            </html>';
+             	 
+             	break;
 
      } 
 

@@ -1938,17 +1938,33 @@ public function getSimilarItems($params){
 						if(mail($emailAddress, $subject, $message, $headers)) return true; else return false;
 		}
 	
-	public function getJobsApplyInformation() {
+public function getJobsApplyInformation() {
 		$db = new database();
 		$table = ' advertisment a, jobapplydetails j, user u ';
 		$rows =	' j.jobapplydetails_ad_id as ad_id, a.advertisement_title as title,u.user_firstname as name, j.jobapplydetails_employee_email as email, j.jobapplydetails_employee_phoneno contactnum, 
-		j.jobapplydetails_employee_massage message, j.jobapplydetails_appliedon applydate ';
+		j.jobapplydetails_employee_massage message, j.jobapplydetails_appliedon applydate, j.jobapplydetails_employee_userid as epmloyeeuserid ';
 		$where = ' a.advertisment_id=j.jobapplydetails_ad_id
 		AND u.user_id=j.jobapplydetails_employee_userid
 		AND jobapplydetails_status = 0';
 		$db->selectJson($table,$rows,$where,'','','');
 		$advertisment = $db->getJson();
 		return $advertisment;
+	}
+	public function getApplicantEmail($userid){
+		try {
+			$db = new database ();
+			$table = ' user ';
+			$rows = 'user_email';
+			$where = ' user_id ='.$userid;
+			$order_by = "";
+			$db->select ( $table, $rows, $where, $order_by, '' );
+			$resut = $db->getResults ();
+	
+			return $resut;
+		} catch (Exception $e) {
+			$e.pr;
+			return '';
+		}
 	}
 		
 }

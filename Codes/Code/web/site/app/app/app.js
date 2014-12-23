@@ -86,6 +86,10 @@ window.routes =
 		controller:'controllers.viewJobApplyController',
 		templateUrl:'app/partials/detailsView/jobApplyReport.html',
 		requireLogin: false
+	},'/contact-applicant/:id': {
+		controller:'controllers.contactApplicantController',
+		templateUrl:'app/partials/detailsView/contactJobApplicant.html',
+		requireLogin: false
 	}
 };
 
