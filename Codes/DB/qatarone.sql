@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2014 at 09:42 AM
+-- Generation Time: Dec 23, 2014 at 08:04 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -315,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `item_comments` (
   `comment_addedBy` int(11) NOT NULL,
   `Comment` varchar(255) NOT NULL,
   PRIMARY KEY (`comment_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `item_comments`
@@ -326,7 +326,8 @@ INSERT INTO `item_comments` (`comment_Id`, `advertisment_Id`, `comment_Date`, `c
 (2, 46, '2014-12-13', '05:58:28', 1, 33, 'woww....'),
 (3, 60, '2014-12-17', '21:25:08', 1, 33, 'jjshfks dfskdhfs df sd fh sdf'),
 (4, 46, '2014-12-17', '21:27:41', 1, 33, 'sksj dfhsoh fo sho sodhf osdf'),
-(5, 60, '2014-12-17', '21:32:28', 1, 33, '');
+(5, 60, '2014-12-17', '21:32:28', 1, 33, ''),
+(6, 48, '2014-12-23', '19:01:14', 1, 33, 'wow. ilove this ad');
 
 -- --------------------------------------------------------
 
@@ -458,7 +459,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
 
 INSERT INTO `pages` (`page_id`, `page_title`, `page_content`, `page_status`, `page_addedBy`) VALUES
 (1, 'About Us', '<p><b>Qatar One is the fast and easy way to buy and sell your</b> &nbsp;in more than 30 different categories. It can be your car, job vacancy, real estate, and everything else. Also find what you''re looking for or create your own <b>Itâ€™s free</b>.</p><ul><li>Within seconds you can list an item for sale.</li><li>Within minutes your item will appear on Qatar One</li><li>Within hours youâ€™ll hear from interested buyers</li><li>Within days youâ€™ll meet up with buyers and trade your stuff for cash</li><li>Within weeks you will have simplified and improved your life</li></ul><div><br></div><div><br></div><p>Sell your used phone sitting in your drawer.<br></p><p>Sell the guitar you never really play.<br></p><p>Sell your sisterâ€™s baby stroller thatâ€™s hiding in her closet.<br></p><p>Sell your motorcycle and upgrade to a newer one.<br></p><p>Sell those shoes that donâ€™t quite fit.<br></p><p><br></p><p>On Qatar One, there are buyers for almost anything you have to sell.</p><p>Millions have already sold their stuff Qatar One. You can too.</p><p>Donâ€™t just let it sit there. START SELLING YOUR STUFF that you don''t need</p><p><br></p><p>We invest a great deal of time and effort in monitoring and filtering the content posted to the website, so you can be confident that you''ll find only quality, relevant listings. We also carefully review all ads that are being published, to make sure the quality is up to our standards.<br></p>', 0, 1),
-(2, 'Site Map', '<p>Site map content will goes here</p>', 0, 1),
+(2, 'Site Map', '<ul type=''disc''>\n    <li><a href=''/qatarone/web/site/''>Home</a></li>\n    <li><a href=''/qatarone/web/site/app/#/login''>Login</a></li>\n <li><a href=''/qatarone/web/site/app/#/settings''>User Profile</a></li>\n    <li><a href=''/qatarone/web/site/app/#/portal/classified''>Classified</a></li>\n    <li><a href=''/qatarone/web/site/app/#/portal/jobs''>Jobs</a></li>\n    <li><a href=''/qatarone/web/site/app/#/packages-view''>Packages</a></li>    \n    <li><a href=''/qatarone/web/site/app/#/post-ad''>Post Advertisment</a></li>\n    <li><a href=''/qatarone/web/site/app/#/pages/AboutUs''>About Us</a></li>\n    <li><a href=''/qatarone/web/site/app/#/pages/SiteMap''>Sitemap</a></li>        <li><a href=''/qatarone/web/site/app/#/pages/TermsOfUse''>Terms Of Use</a></li>\n    <li><a href=''/qatarone/web/site/app/#/pages/PrivacyPolicy''>Privacy Policy</a></li>\n<li><a href=''/qatarone/web/site/app/#/pages/FAQ''>FAQ</a></li>\n<li><a href=''/qatarone/web/site/app/#/contact-us''>Contact Us</a></li>\n</ul>', 0, 1),
 (3, 'Terms of Use', '<p>Qatar One is a service provided by Black Shadow Group (subject to your compliance with the Terms and Conditions set forth below). Please read these Terms and Conditions before using this Web Site.<br></p><p>General: Advertisers and users are responsible for ensuring that advertising content, text, images, graphics, video (''Content'') uploaded for inclusion on Qatar One complies with all applicable laws. Qatar One assumes no responsibility for any illegality or any inaccuracy of the Content.<br></p><p>The advertisers and user guarantees that his or her Content do not violate any copyright, intellectual property rights or other rights of any person or entity, and agrees to release Qatar One and Black Shadow Group from all obligations, liabilities and claims arising in connection with the use of (or the inability to use) the service.<br></p><p>Advertisers agree that their Content can may be presented through Qatar Oneâ€™s partner sites under the same terms and conditions as on Qatar One.&nbsp;<br></p><p>Copyright: Advertisers grant Qatar One and Black Shadow Group a perpetual, royalty-free, irrevocable, non-exclusive right and license to use, reproduce, modify, adapt, publish, translate, create derivative works from and distribute such Content or incorporate such Content into any form, medium, or technology now known or later developed.<br></p><p>The material (including the Content, and any other content, software or services) contained on Qatar One are the property of Black Shadow Group, its subsidiaries, affiliates and/or third party licensors. Any intellectual property rights, such as copyright, trademarks, service marks, trade names and other distinguishing brands on the Web Site are the property of Black Shadow Group. To be clear: No material on this site may be copied, reproduced, republished, installed, posted, transmitted, stored or distributed without written permission from Black Shadow Group.<br></p><p>Watermarks: All images on Qatar One are watermarked, which prevents the images to be used for other purposes, without the consent of the advertiser.<br></p><p>Safety and images: Qatar One and Black Shadow Group reserves the right to change the title of the Content, for editorial purposes. Qatar One and Black Shadow Group reserves the right not to publish images that are irrelevant or images that violate Qatar One''s rules.<br></p><p>Personal: Qatar One and Black Shadow Group has the right to cooperate with authorities in the case any Content violates the law. The identity of advertisers, users or buyers may be determined, for example by an ISP. IP addresses may also be registered in order to ensure compliance with the terms and conditions.<br></p><p>Privacy: Qatar One and Black Shadow Group will collect information from Users and Advertisers. It is a condition of use of the Qatar One that each User and advertiser consents and authorises Qatar One and Black Shadow Group to collect and use this information. Qatar One and Black Shadow Group also reserves the right to disclose it to Company Affiliates and any other person for the purposes of administering, supporting and maintaining Qatar One, as well as for improving Qatar One, for example by using the information for research, marketing, product development and planning.<br></p><p>Cookies: This site uses cookies, which means that you must have cookies enabled on your computer in order for all functionality on this site to work properly. A cookie is a small data file that is written to your hard drive when you visit certain Web sites. Cookie files contain certain information, such as a random number user ID that the site assigns to a visitor to track the pages visited. A cookie cannot read data off your hard disk or read cookie files created by other sites. Cookies, by themselves, cannot be used to find out the identity of any user.<br></p><p>Email Address of Users: Users are required to submit a valid email address, before they are allowed to post advertisements. The email address of the User shall not be publicly displayed and other users are permitted to send email to the User through Qatar One.<br></p><p>Site availability: Qatar One and Black Shadow Group does not guarantee continuous or secure access to the Web Site. The Web Site is provided ''as is'' and as and when available.<br></p><p>Links to third party websites: Qatar One may contain links or references to other websites (''Third Party Websites''). Qatar One or Black Shadow Group shall not be responsible for the contents in Third Party Websites. Third Party Websites are not investigated or monitored. In the event the user decides to leave Qatar One and access Third Party Sites, the user does so at his/her own risk.<br></p><p>Paid content: Advertisers and Users wishing to post content on Qatar One that requires payment (''Paid Content''), may be required to transmit information through a third-party service provider, which may be governed by its own terms of use. Linking to any third party service providers is at the Users'' and Advertisers'' own risk and Qatar One disclaims all liability related thereto. Under no circumstances shall Qatar One be obliged to refund any payments made in respect of Paid Content.<br></p><p>In the event that Paid Content violates any aspect of these Terms &amp; Conditions, Qatar One may, in its sole discretion and without refund, remove the Paid Content from Qatar One. Users and Advertisers may delete any Paid Content prior to the end of the paid-for period, and Qatar One shall have no further responsibility to display the deleted content. Qatar One is neither responsible nor liable for the perceived success or failure of any Paid Content posted on Qatar One.<br></p><p>Disclaimer: Qatar One and Black Shadow Group assume no responsibility what so ever for the use of Qatar One and disclaims all responsibility for any injury, claim, liability, or damage of any kind resulting from or arising out of or any way related to (a) any errors on Qatar One or the Content, including but not limited to technical errors and typographical errors, (b) any third party web sites or content directly or indirectly accessed through links in Qatar One, (c) the unavailability of Qatar One, (d) your use of Qatar One or the Content, or (e) your use of any equipment (or software) in connection with Qatar One<br></p><p>Indemnification: Advertisers and users agree to indemnify Qatar One &amp; Black Shadow Group as well as its officers, directors, employees, agents, from and against all losses, expenses, damages and costs, including attorneyâ€™s fees, resulting from any violation of this Terms and Conditions (including negligent or wrongful conduct).<br></p><p>Modifications: Qatar One &amp; Black Shadow Group reserves the right to modify these Terms and Conditions. Such modifications shall be effective immediately upon posting on Qatar One. You are responsible for the reviewing of such modifications. Your continued access or use of Qatar One shall be deemed your acceptance of the modified terms and conditions.<br></p><p>Governing Law: Qatar One is operated under the laws and regulations of Sweden. Advertisers and users agree that Swedish courts, with the district court of Gothenburg as the court of first instance, will have jurisdiction over any dispute or claim relating to the use of Qatar One.<br></p><p><br></p>', 0, 1),
 (4, 'Privacy Policy', '<p>This policy details how data about you is collected/used/disclosed when you visit our websites and services (together, ''Qatar One'') or otherwise interact with us. If we update it, we will revise the date, place notices on Qatar One if a change is material, and/or obtain your consent as required by law.<br></p><p></p><ol><li>Protecting your privacy<br></li></ol><ul><li>We take precautions to prevent unauthorized access to or misuse of data about you.<br></li><li>We do not run ads, other than classified ads posted by our users.<br></li><li>We do not share your data with third parties for marketing purposes.<br></li><li>We do not engage in cross-marketing or link-referral programs with other sites.<br></li><li>We do not employ tracking devices for marketing purposes.<br></li><li>We do not send you unsolicited communications for marketing purposes.<br></li><li>We do not engage in affiliate marketing (and prohibit it on Qatar One).<br></li><li>We do provide email proxy &amp; relay to reduce unwanted mail.<br></li><li>Qatar One links to third party sites - please review their privacy policies.</li></ul><p></p>', 0, 31),
 (5, 'FAQ', 'FAQs will be going here...', 0, 1);
@@ -475,7 +476,23 @@ CREATE TABLE IF NOT EXISTS `rating` (
   `rating_user_id` int(11) NOT NULL,
   `rating_rate` int(2) NOT NULL,
   PRIMARY KEY (`rating_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`rating_id`, `rating_ad_id`, `rating_user_id`, `rating_rate`) VALUES
+(1, 43, 31, 2),
+(2, 43, 31, 4),
+(3, 42, 31, 3),
+(4, 48, 31, 5),
+(5, 48, 31, 2),
+(6, 48, 31, 1),
+(7, 46, 31, 2),
+(8, 46, 31, 3),
+(9, 54, 31, 2),
+(10, 45, 31, 3);
 
 -- --------------------------------------------------------
 
@@ -607,7 +624,7 @@ CREATE TABLE IF NOT EXISTS `usersubscription` (
   `subscription_email` varchar(50) NOT NULL,
   `subscription_status` int(11) NOT NULL,
   PRIMARY KEY (`subscription_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `usersubscription`
@@ -615,7 +632,8 @@ CREATE TABLE IF NOT EXISTS `usersubscription` (
 
 INSERT INTO `usersubscription` (`subscription_id`, `subscription_email`, `subscription_status`) VALUES
 (1, 'dhammika97@gmail.com', 1),
-(2, 'dfgdfg', 1);
+(2, 'dfgdfg', 1),
+(3, 'test', 1);
 
 -- --------------------------------------------------------
 
