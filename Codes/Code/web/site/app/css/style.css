@@ -222,6 +222,8 @@ header .top-nav ul li.active a { color: white; }
 .login-page .login-form .btn:hover, .login-page .registration-form .btn:hover { color: white; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; }
 .login-page .login-form .upgrade, .login-page .registration-form .upgrade { font-size: 16px; line-height: 20px; font-size: 1.6rem; line-height: 2rem; padding: 10px 70px; height: auto; }
 .login-page .login-form .forgot-pass, .login-page .registration-form .forgot-pass { font-size: 9px; line-height: 14px; font-size: 0.9rem; line-height: 1.4rem; color: #a3a0a0; }
+.login-page .settings-heading .heading-tab { background: #a50344; border-right: 1px solid white; font-size: 12px; line-height: 20px; font-size: 1.2rem; line-height: 2rem; height: 40px; padding: 5px; color: white; text-align: center; }
+.login-page .settings-heading .heading-tab.active { background: #747474; }
 .login-page .settings-tab { padding-top: 30px; font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; }
 .login-page .settings-tab .user-details { padding-bottom: 20px; }
 .login-page .settings-tab .registration-form { overflow: hidden; *zoom: 1; }
