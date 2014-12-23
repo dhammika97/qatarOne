@@ -90,6 +90,8 @@ header .top-nav ul li.active a { color: white; }
 .main-page .cateogry-listing ul li a:hover { color: #a3a0a0; text-decoration: none; }
 .main-page .cateogry-listing .filter-content { padding: 2rem 0; }
 .main-page .cateogry-listing .filter-content .btn { background: #a50344; color: white; }
+.main-page .cateogry-listing .filter-content.price-range-selector input { padding: 5px; float: left; width: 40%; }
+.main-page .cateogry-listing .filter-content.price-range-selector input.price-min { margin-right: 5px; }
 .main-page .list-group { margin-bottom: 0; }
 .main-page .item.list-group-item { float: none; width: 100%; background-color: #fff; margin-bottom: 10px; padding: 0; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; }
 .main-page .item.list-group-item .list-group-item-heading { font-size: 18px; line-height: 26px; font-size: 1.8rem; line-height: 2.6rem; color: #a50344; padding: 10px 10px 0 10px; margin-bottom: 0; }
@@ -262,6 +264,8 @@ footer .footer-text { padding: 5px 10px 50px; color: #a3a0a0; font-size: 12px; l
 footer .footer-text a { color: #a3a0a0; }
 footer .footer-text a:hover { color: #333333; text-decoration: none; }
 
+.ta-editor { min-height: 300px; height: auto; overflow: auto; font-family: inherit; font-size: 100%; }
+
 @media only screen and (max-width: 1199px) { .contact-no, .comments-btn { font-size: 12px; line-height: 20px; font-size: 1.2rem; line-height: 2rem; padding: 10px; } }
 @media only screen and (max-width: 991px) { html { font-size: 87.5%; }
   .home-bg { background-size: cover; }
@@ -269,11 +273,3 @@ footer .footer-text a:hover { color: #333333; text-decoration: none; }
   .search-bar .location { padding-bottom: 20px; }
   .ad-description { padding-top: 20px; }
   .ad-description .contact-no, .ad-description .comments-btn { font-size: 10px; line-height: 20px; font-size: 1rem; line-height: 2rem; padding: 10px; } }
-
-.ta-editor {
-  min-height: 300px;
-  height: auto;
-  overflow: auto;
-  font-family: inherit;
-  font-size: 100%;
-}

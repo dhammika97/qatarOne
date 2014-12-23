@@ -84,8 +84,8 @@
           
           
           <div class="filter-heading"> <i class="fa fa-usd"></i> Price Range </div>
-          <div class="filter-content">
-			<input type="number" class="form-control" ng-model="price.min"> - <input type="number" class="form-control" ng-model="price.max">
+          <div class="filter-content price-range-selector">
+			<input type="number" class="form-control price-min" ng-model="price.min" placeholder="Min"><input type="number" class="form-control" ng-model="price.max" placeholder="Max">
             <button class="btn btn-default" type="button" ng-click="setPriceParams()" ><i class="fa fa-arrow-circle-right fa-lg"></i></button>
           </div>
           <div ng-if="resultList.brands">
