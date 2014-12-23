@@ -40,7 +40,7 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	}
 	
 	$scope.mapLoad = function(e){
-		$scope.rate = 3;
+		$scope.rate = e.rating;
 		$scope.isReadonly = true;
 		
 		$scope.adversiment = e
@@ -60,6 +60,13 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 			animation: google.maps.Animation.DROP
 		});
 		$scope.attr = JSON.parse(e.advertisment[0].advertisement_attributes)
+	}
+	
+	$scope.Addrate = function(){
+		if(typeof $scope.rateAdd != 'undefined')
+		ngProgress.start()
+		advertismentFactory.saveRating($routeParams.id, ngProgress, $scope, $timeout)
+		//console.log($scope.rateAdd)	
 	}
 	
 }

@@ -1511,6 +1511,7 @@ $app->post('/subscription',  function() use ($app) {
 $app->get('/advertisment/:id', function($id) {
 		$response = array();
 		$DbHandler = new DbHandler();	
+		$rating = $DbHandler->getRating($id);
 		$result = $DbHandler->advertismentDetail($id);
 		$tmp = json_decode($result,true);
 		$parentId = $DbHandler->GetCategoryParentId($tmp[0]['catId']);
@@ -1527,6 +1528,7 @@ $app->get('/advertisment/:id', function($id) {
 			$response["error"] = false;
 			$response["images"] = json_decode($images);
 			$response['advertisment'] = json_decode($result);
+			$response['rating'] = $rating;
 			echoRespnse(200	, $response);
         } else {
 			$response["error"] = true;

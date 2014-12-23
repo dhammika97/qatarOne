@@ -133,9 +133,10 @@
                 <h2>Rate This Ad</h2>
                 <span class="rating">
                 	<rating ng-model="rateAdd" max="ratingMax" ></rating>
+                    <br/><button class="btn" ng-click="Addrate()">Rate now</button>
                 </span>
-            	<span class="comments" ng-if="comments.comments.length">{{comments.comments.length}} Comments</span>
-                <span class="comments" ng-if="!comments.comments.length">No Comments Yet</span>
+<!--            	<span class="comments" ng-if="comments.comments.length">{{comments.comments.length}} Comments</span>
+                <span class="comments" ng-if="!comments.comments.length">No Comments Yet</span>-->
               </div>
             </div>
             <!--<div class="viewer-btn"><i class="fa fa-angle-double-up fa-2x"></i></div>-->

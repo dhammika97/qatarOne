@@ -2,7 +2,7 @@ App.factory('advertismentFactory',function($resource, $location){
 	var advertisment = $resource('../../../api/advertisment/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
         get: { method: 'GET', params: { id: '@id' } },
-        save:{method: 'POST'}
+        save: {method: 'POST'}
     });
 
 	var adImage = $resource('../../../api/postAdImage/:id', {}, {
@@ -14,7 +14,26 @@ App.factory('advertismentFactory',function($resource, $location){
         update: { method: 'PUT', params: { id: '@id' } },
     });
 	
+	var adPublish = $resource('../../../api/publishAd/:id', {}, {
+        update: { method: 'PUT', params: { id: '@id' } },
+    });
+	
+	var rating = $resource('../../../api/rating/:id',{},{
+			save: {method: 'POST'},
+			get: { method: 'GET', params: { id: '@id' } }
+		})
+	
 	var factory = {}
+	
+	factory.saveRating = function(id, ngProgress, $scope, $timeout){
+		return rating.save({'ad_id':id,'rate':$scope.rateAdd}).$promise.then(function(e){
+			$scope.addAlert('success',e.message)
+			ngProgress.complete()
+			$timeout(function(){
+				$scope.closeAlert();
+			}, 3000);
+		})
+	}
 	
 	factory.getAdd = function(id, ngProgress, $scope){
 		return advertisment.get({'id':id}).$promise.then(
