@@ -85,9 +85,10 @@
           
           <div class="filter-heading"> <i class="fa fa-usd"></i> Price Range </div>
           <div class="filter-content price-range-selector">
-			<input type="number" class="form-control price-min" ng-model="price.min" placeholder="Min"><input type="number" class="form-control" ng-model="price.max" placeholder="Max">
-            <button class="btn btn-default" type="button" ng-click="setPriceParams()" ><i class="fa fa-arrow-circle-right fa-lg"></i></button>
-          </div>
+			<input type="number" class="form-control price-min" ng-value="price_less" ng-model="price_less" placeholder="Min"> 
+            <input type="number" class="form-control" min="{{price_less+1}}" ng-model="price_maxim" placeholder="Max">
+            <button class="btn btn-default" type="button" ng-click="setPriceParams(price_less, price_maxim)" ><i class="fa fa-arrow-circle-right fa-lg"></i></button>
+		  </div>
           <div ng-if="resultList.brands">
           <div class="filter-heading"> <i class="fa fa-usd"></i> Brand </div>
 			<ul>
