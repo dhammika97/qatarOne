@@ -1987,6 +1987,47 @@ public function getJobsApplyInformation() {
 			return '';
 		}
 	}
+	
+	
+
+
+	public function insertRating($ratingDetails) {
+		global $user_id;
+	
+		$db = new database ();
+		$table = "rating";
+		$rows = "rating_ad_id,
+			rating_user_id,
+			rating_rate";
+		$values = "'" . $ratingDetails ['ad_id'] . "',
+				'" . $user_id. "',
+				'" . $ratingDetails ['rate'] . "'";
+			
+		if ($db->insert ( $table, $values, $rows )) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	public function getRating($adid){
+		try {
+			$db = new database ();
+			$table = ' rating ';
+			$rows = 'round(sum(rating_rate)/count(*)) as starrate';
+			$where = ' rating_ad_id='.$adid;
+			$order_by = "";
+			$db->select ( $table, $rows, $where, $order_by, '' );
+			$resut = $db->getResults ();
+	
+			return $resut[0];
+		} catch (Exception $e) {
+			$e.pr;
+			return '';
+		}
+	}
+	
 		
 }
 ?>

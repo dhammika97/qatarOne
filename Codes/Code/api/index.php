@@ -2312,6 +2312,48 @@ $app->get('/applyjobsdetails', 'authenticate', function()  {
 		}
 });
 
+
+	/** update star rating, service receiver....
+	 * update DB
+	 * */
+	
+	$app->post('/rating', 'authenticate', function() use ($app) {
+		global $user_id;
+		$response = array();
+		$request = \Slim\Slim::getInstance()->request();
+		$ratingDetails = $request->getBody();
+		$db = new DbHandler();
+		if($adId = $db->insertRating($ratingDetails)){
+			$response["error"] = false;
+			$response["message"] = "Rating updated successfully";
+			echoRespnse(201, $response);
+		}else{
+			$response["error"] = true;
+			$response["message"] = "Rating update... failed";
+			echoRespnse(400, $response);
+		}
+	});
+	
+		/** get calculated star rating, service receiver....
+		 * Pull data from DB
+		* */
+		$app->get('/rating/:id', function($adId)  {
+				
+			$DbHandler = new DbHandler();
+			$response = array();
+			$result = $DbHandler->getRating($adId);
+			if (!$result) {
+				$response["error"] = TRUE;
+				$response["message"] = "The requested resource doesn't exists";
+				echoRespnse(404, $response);
+			} else {
+				$response["error"] = false;
+				$response["ratingvalue"] = $result;
+	
+				echoRespnse(200, $response);
+			}
+		});
+	
 	
 $app->run();
 		
