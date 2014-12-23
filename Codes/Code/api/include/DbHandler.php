@@ -1993,7 +1993,7 @@ public function getJobsApplyInformation() {
 
 	public function insertRating($ratingDetails) {
 		global $user_id;
-	
+		//print_r($ratingDetails);
 		$db = new database ();
 		$table = "rating";
 		$rows = "rating_ad_id,

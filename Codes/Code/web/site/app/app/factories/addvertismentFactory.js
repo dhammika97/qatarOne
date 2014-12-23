@@ -25,8 +25,9 @@ App.factory('advertismentFactory',function($resource, $location){
 	
 	var factory = {}
 	
-	factory.saveRating = function(id, ngProgress, $scope, $timeout){
-		return rating.save({'ad_id':id,'rate':$scope.rateAdd}).$promise.then(function(e){
+	factory.saveRating = function(id, rate, ngProgress, $scope, $timeout){
+		console.log(rate)
+		return rating.save({'ad_id':id,'rate':rate}).$promise.then(function(e){
 			$scope.addAlert('success',e.message)
 			ngProgress.complete()
 			$timeout(function(){
