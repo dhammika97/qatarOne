@@ -109,6 +109,13 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		//console.log(params['suburb'])
 		$scope.getURL()
 	}
+	$scope.setPriceParams = function(){
+		params['pricerangegreaterthan'] = $scope.price.min
+		params['pricerangelessthan'] = $scope.price.max
+		//console.log(params)
+		$scope.getURL()
+	}
+	
 	$scope.isList = true
 	
 	$scope.changeView = function(param){
@@ -155,6 +162,12 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		str += params['filterby']
 		else
 		str += '++filter_'+params['filterby']
+		
+		if(typeof params['pricerangegreaterthan'] != 'undefined')
+		str += '-+price_min'+params['pricerangegreaterthan']
+		
+		if(typeof params['pricerangelessthan'] != 'undefined')
+		str += '-+price_max'+params['pricerangelessthan']
 		
 		if(typeof params['currentPage'] != 'undefined')
 		str += '--page_'+params['currentPage']

@@ -1488,7 +1488,7 @@ public function getSimilarItems($params){
 						
 						$like .= $lbl." like '%".$s[1]."%' ";
 						if($i != count($tmp)-1)
-						$like .= "and ";
+						$like .= "or ";
 					}
 					//echo $like;
 					$where_atri =$where_atri. " AND ". $like;

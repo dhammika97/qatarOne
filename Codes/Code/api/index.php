@@ -1764,31 +1764,22 @@ $app->get('/similarItems', function()  {
 			//print_r($params['subcategory']);
 			$count = $DbHandler->advertiesmentCount($params);
 			$result = $DbHandler->advertiesmentsResults($params);
-			$tmpArr = json_decode($result,true);
-			$tt = array();
+			$brands = array();
 			if(isset($params['subcategory']) && trim($params['subcategory']) == 'mobile-phones'){
-				$tt = array('acer','ag-tel',
+				$brands = array('acer','ag-tel',
 							'alcatel', 'apple', 'asus', 'benq', 'blackberry', 'china-mobile','dell','e-tel','greentel','google-nexus','hp','htc','huawei','i-mate','ipro','lg','mega-gate','micromax','motorola','nokia','palm','philips','q-mobile','samsung','sky','sony','sony-ericsson','zigo','zte');
 			}else if(isset($params['subcategory']) && trim($params['subcategory']) == 'cars'){
-				$tt = array('alfa-romeo','aston-martin','audi','austin','bmw','buick','cadillac','changan','chery','chevrolet','chrysler','citroen','daewoo','daihatsu','datsun','dodge','ferrari','fiat','ford','geely','gmc','hino','honda','hummer','hyundai','isuzu','jaguar','jeep','kia','lamborghini','land-rover','lexus','lincoln','mahindra','maruti','mazda','mercedes-benz','mg','micro','mini','mitsubishi','morris','moto-guzzi','nissan','oldsmobile','opel','perodua','peugeot','plymoth','pontiac','porsche','proton','renault','rover','royal-enfield','saab','scion','seat','skoda','smart','ssang-yong','subaru','suzuki','tata','toyota','vauxhall','volkswagen','volvo','zoyte');
+				$brands = array('alfa-romeo','aston-martin','audi','austin','bmw','buick','cadillac','changan','chery','chevrolet','chrysler','citroen','daewoo','daihatsu','datsun','dodge','ferrari','fiat','ford','geely','gmc','hino','honda','hummer','hyundai','isuzu','jaguar','jeep','kia','lamborghini','land-rover','lexus','lincoln','mahindra','maruti','mazda','mercedes-benz','mg','micro','mini','mitsubishi','morris','moto-guzzi','nissan','oldsmobile','opel','perodua','peugeot','plymoth','pontiac','porsche','proton','renault','rover','royal-enfield','saab','scion','seat','skoda','smart','ssang-yong','subaru','suzuki','tata','toyota','vauxhall','volkswagen','volvo','zoyte');
 			}else{
-				$tt = array();	
+				$brands = array();	
 			}
-			//$tt = array();
-			//for($s=0; count($tmpArr)>$s; $s++){
-			//	$dd = json_decode($tmpArr[$s]['attributes'],true);
-				//print_r($dd['brand']);
-				//if(isset($dd['brand']))
-				//array_push ($tt,$dd['brand']);
-			//}
-			//print_r(array_unique($tt));
 			if ($result != NULL) {
 				$response["error"] = false;
 				$response['advertisments'] = json_decode($result);
 				$response['category'] = json_decode($cat);
 				$response['count'] = $count;
-				if(count($tt)>0)
-				$response['brands'] = $tt;
+				if(count($brands)>0)
+				$response['brands'] = $brands;
 				echoRespnse(200	, $response);
 			} else {
 				$response["error"] = true;

@@ -85,13 +85,14 @@
           
           <div class="filter-heading"> <i class="fa fa-usd"></i> Price Range </div>
           <div class="filter-content">
-			<slider floor="10" ceiling="60" ng-model-low="position.minAge" ng-model-high="position.maxAge"></slider>
+			<input type="number" class="form-control" ng-model="price.min"> - <input type="number" class="form-control" ng-model="price.max">
+            <button class="btn btn-default" type="button" ng-click="setPriceParams()" ><i class="fa fa-arrow-circle-right fa-lg"></i></button>
           </div>
           <div ng-if="resultList.brands">
           <div class="filter-heading"> <i class="fa fa-usd"></i> Brand </div>
 			<ul>
             	<li ng-repeat="brand in resultList.brands">
-            		<input type="checkbox" checklist-model="filter.brands" checklist-value="brand" ng-click="filterBrands()" /> {{brand | uppercase}}
+            		<input type="checkbox" checklist-model="filter.brands" checklist-value="brand" ng-click="filterBrands()" /> {{brand}}
             	</li>
           	</ul>
           </div>
