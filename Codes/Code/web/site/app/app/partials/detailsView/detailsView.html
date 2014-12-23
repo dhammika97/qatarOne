@@ -48,7 +48,7 @@
           {{adversiment.advertisment[0].time}}, {{adversiment.advertisment[0].location_name}}</span> </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rating-bar text-right"> 
         	<span class="rating">
-            	<rating ng-model="rate" max="ratingMax" readonly="isReadonly" ></rating>
+            	<rating ng-model="rate" readonly="isReadonly" ></rating>
             </span> 
             <span class="comments" ng-if="comments.comments.length">{{comments.comments.length}} Comments</span> 
         </div>
@@ -132,7 +132,7 @@
               <div class="col-lg-5 col-md-5 comments-box">
                 <h2>Rate This Ad</h2>
                 <span class="rating">
-                	<rating ng-model="rate" max="ratingMax"  ></rating>
+                	<rating ng-model="rateAdd" max="ratingMax" ></rating>
                 </span>
             	<span class="comments" ng-if="comments.comments.length">{{comments.comments.length}} Comments</span>
                 <span class="comments" ng-if="!comments.comments.length">No Comments Yet</span>

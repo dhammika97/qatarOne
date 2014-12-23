@@ -29,9 +29,9 @@
             <div class="logo pull-left"><a href="/qatarone/web/site"><img src="images/logo.png"></a></div>
             <div class="pull-right">
               <ul>
-                <li ng-class="{active:isActive('/login'), active:isActive('/settings')}" >
+                <li ng-class="{active:isActive('/login'), active:isActive('/my-profile')}" >
                 	<a href="#/login" ng-if="!username"><i class="fa fa-user fa-lg"></i>Login</a>
-                	<a href="#/settings" ng-if="username"><i class="fa fa-user fa-lg"></i>{{username}}</a>
+                	<a href="#/my-profile" ng-if="username"><i class="fa fa-user fa-lg"></i>{{username}}</a>
                 </li>
                 <li ng-class="{ active: isActive('/post-ad')}"><a href="#/post-ad"><i class="fa fa-pencil-square-o fa-lg"></i>Post Your Ad</a></li>
               </ul>

@@ -69,13 +69,20 @@ window.routes =
 		templateUrl:'app/partials/payment/paymentMain.html',
 		requireLogin: false
 	},
-	'/settings': {
+	'/my-profile': {
 		controller:'controllers.settingController',
 		templateUrl:'app/partials/settings/settingsMain.html',
 		requireLogin: true
 	},
+	'/change-password': {
+		templateUrl:'app/partials/settings/passwordChange.html',
+		requireLogin: true
+	},
+	'/my-ads': {
+		templateUrl:'app/partials/settings/my-ads.html',
+		requireLogin: true
+	},
 	'/contact-us': {
-		//controller:'controllers.settingController',
 		templateUrl:'app/partials/contact/contactus.html',
 		requireLogin: false
 	},'/appyjobs': {
