@@ -2027,6 +2027,48 @@ public function getJobsApplyInformation() {
 			return '';
 		}
 	}
+	public function updateUserDetails($user_id, $userProfile) {
+		$avail = self::validateExistingPassword ( $user_id, $userProfile );
+		$res = 'Current PassWord incorrect..!';
+		
+		if ($avail == '1') {
+			
+			if ($userProfile ["user_New_password"] == $userProfile ["user_confirmPassword"]) {
+				
+				self::updatePassWord ( $user_id, $userProfile );
+				$res = 'true';
+			} else {
+				$res = 'Confirm PassWord incorrect..!';
+			}
+		}
+		return $res;
+	}
+	public function validateExistingPassword($user_id, $userProfile) {
+		try {
+			$db = new database ();
+			$table = ' user ';
+			$rows = 'count(*) as cnt';
+			$where = ' user_id=' . $user_id . ' and user_password="' . md5 ( $userProfile ["user_password"] ) . '"';
+			$order_by = "";
+			$db->select ( $table, $rows, $where, $order_by, '' );
+			$resut = $db->getResults ();
+			// echo $resut[0];
+			return $resut [0];
+		} catch ( Exception $e ) {
+			$e . pr;
+			return '';
+		}
+	}
+	public function updatePassWord($user_id, $userProfile) {
+		$db = new database (); // $user_id,$modeuser_New_password
+		$query = 'update user set user_password="' . md5 ( $userProfile ["user_New_password"] ) . '"
+				where user_id=' . $user_id . '';
+		if ($db->updatePreparedStatment ( $query )) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 		
 }

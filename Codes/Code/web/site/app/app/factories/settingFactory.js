@@ -50,6 +50,52 @@ App.factory('settingFactory',function($resource){
 		// 	}, 3000);
 		// }
 	}
+	
+
+	factory.updateUserNameInfo = function($scope,id,ngProgress,$timeout){
+
+		return userProfile.update({id:id},$scope.userSetting.user[0])
+			.$promise.catch(function(e){	
+				$scope.addAlert('danger',e.data.message)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert();
+				}, 3000);
+			}).then(
+			function(value){
+				$scope.addAlert('success',value.message)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert();					
+				}, 2000);
+			})	
+	}
+	
+	var userProfileUpdate = $resource('../../../api/userProfileUpdate/:id', {}, {
+		 update: { method: 'PUT', params: { id: '@id' } }
+   });
+	
+	
+	factory.updatePassWordInfo = function($scope,id,ngProgress,$timeout){
+		
+		return userProfileUpdate.update({id:id},$scope.userSetting.user[0])
+					.$promise.catch(function(e){	
+						$scope.addAlert('danger',e.data.message)
+						ngProgress.complete()
+						$timeout(function(){
+							$scope.closeAlert();
+						}, 3000);
+					}).then(
+					function(value){
+						$scope.addAlert('success',value.message)
+						ngProgress.complete()
+						$timeout(function(){
+							$scope.closeAlert();					
+						}, 2000);
+					})	
+			}
+	
+	
 	return factory
 })
 

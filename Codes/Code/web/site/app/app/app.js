@@ -75,6 +75,7 @@ window.routes =
 		requireLogin: true
 	},
 	'/change-password': {
+		controller:'controllers.settingController',
 		templateUrl:'app/partials/settings/passwordChange.html',
 		requireLogin: true
 	},

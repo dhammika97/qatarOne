@@ -2355,8 +2355,66 @@ $app->get('/applyjobsdetails', 'authenticate', function()  {
 				echoRespnse(200, $response);
 			}
 		});
+
+/**
+ * User Profile update
+ * url - /userProfileUpdate
+ * method - PUT
+ * params - $user Profile object
+ */
+$app->put ( '/userProfileUpdate', 'authenticate', function () use($app) {
 	
+	$users = array ();
+	$response = array ();
+	$request = $app->request ();
+	$DbHandler = new DbHandler ();
 	
+	$userProfile = $request->getBody ();
+	// echo print_r($users);
+	global $user_id;
+	$results = $DbHandler->updateUserDetails ( $user_id, $userProfile );
+	
+	if ($results != 'true') {
+		$response ["error"] = true;
+		$response ["message"] = $results;
+		echoRespnse ( 200, $response );
+	} else {
+		$response ["error"] = false;
+		$response ["message"] = "User Profile details updated suceesfully";
+		echoRespnse ( 200, $response );
+	}
+} );
+
+/**
+ *  userProfileUpdate
+ * url - /userProfileUpdate
+ * method - PUT
+ * params - $user Profile object
+ */
+$app->put ( '/userProfileUpdate', 'authenticate', function () use($app) {
+	
+	$users = array ();
+	$response = array ();
+	$request = $app->request ();
+	$DbHandler = new DbHandler ();
+	
+	$userProfile = $request->getBody ();
+	// echo print_r($users);
+	global $user_id;
+	$results = $DbHandler->updateUserDetails ( $user_id, $userProfile );
+	
+	if ($results != 'true') {
+		$response ["error"] = true;
+		$response ["message"] = $results;
+		echoRespnse ( 200, $response );
+	} else {
+		$response ["error"] = false;
+		$response ["message"] = "User Profile details updated suceesfully";
+		echoRespnse ( 200, $response );
+	}
+} );
+
+
 $app->run();
 		
 		

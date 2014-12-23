@@ -3,8 +3,15 @@ controllers.settingController = function($scope, settingFactory, ngProgress, $ti
 
 
 	$scope.updateUserSetting=function(id){
-		//alert($scope.user_id);
-		settingFactory.saveUserSetting($scope, id,ngProgress,$timeout);
+	settingFactory.saveUserSetting($scope, id,ngProgress,$timeout);
+	}
+	
+	$scope.updateUserName=function(id){
+		settingFactory.updateUserNameInfo($scope, id,ngProgress,$timeout);
+	}
+	
+	$scope.updateUserPw=function(id){
+		settingFactory.updatePassWordInfo($scope, id,ngProgress,$timeout);
 	}
 }
 App.controller(controllers)
