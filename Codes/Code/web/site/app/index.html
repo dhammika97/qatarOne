@@ -34,6 +34,7 @@
                 	<a href="#/my-profile" ng-if="username"><i class="fa fa-user fa-lg"></i>{{username}}</a>
                 </li>
                 <li ng-class="{ active: isActive('/post-ad')}"><a href="#/post-ad"><i class="fa fa-pencil-square-o fa-lg"></i>Post Your Ad</a></li>
+                <li><a href="" ng-if="username" ng-click="logout()"><i class="fa fa-power-off fa-lg"></i>Logout</a></li>
               </ul>
             </div>
           </div>

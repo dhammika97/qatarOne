@@ -31,6 +31,13 @@ controllers.masterController = function($scope, $location, ngProgress, $timeout)
 	$scope.$on('$viewContentLoaded', function(){
 		ngProgress.complete()//Here your view content is fully loaded !!
 	});
+	
+	$scope.logout = function(){
+		sessionStorage.removeItem('username')
+		sessionStorage.removeItem('accessKey')
+		$scope.username = ''
+		$scope.go('/login')
+	}
 }
 
 controllers.dashController = function($scope, dashFactory){
