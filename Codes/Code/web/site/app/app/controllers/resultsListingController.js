@@ -18,9 +18,21 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	params['searchby'] = uri[1].split('-+price_')[0]
 	params['sortby'] = ''
 	params['filterby'] = ''
+	var priceMin = ''
+	var priceMax = ''
 	if(typeof uri[1] != 'undefined' && uri[1] != ''){
-		params['pricerangegreaterthan'] = uri[1].split('-+price_')[1].split('&')[0].split('=')[1]
-		params['pricerangelessthan'] = uri[1].split('-+price_')[1].split('&')[1].split('=')[1]
+		var a = uri[1].split('-+price_')
+		if(typeof a[1] != 'undefined' && a[1] != ''){
+			var b = a[1].split('&')
+			if(typeof b[0] != 'undefined' && b[0] != ''){
+				var c = b[0].split('=')
+				priceMin = params['pricerangegreaterthan'] = c[1]
+			}
+			if(typeof b[1] != 'undefined' && b[0] != ''){
+				var d = b[1].split('=')
+				priceMax = params['pricerangelessthan'] = d[1]
+			}
+		}
 	}
 	params['currentPage'] = page[1]
 	if(typeof page[1] != 'undefined'){
@@ -45,15 +57,13 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		$scope.totalItems = data.count;
 		$scope.currentPage = page[1];
 		
-  		//$scope.bigTotalItems = 175;
-  		//$scope.bigCurrentPage = 1;
 		if(typeof uri[1] != 'undefined' && uri[1] != ''){
-			if(uri[1].split('-+price_')[1].split('&')[0].split('=')[1] != '')
-			$scope.price_less = parseInt(uri[1].split('-+price_')[1].split('&')[0].split('=')[1])
+			if(priceMin != '')
+			$scope.price_less = parseInt(priceMin)
 			else
 			$scope.price_less = ''
-			if(uri[1].split('-+price_')[1].split('&')[1].split('=')[1] != '')
-			$scope.price_maxim = parseInt(uri[1].split('-+price_')[1].split('&')[1].split('=')[1])
+			if(priceMax != '')
+			$scope.price_maxim = parseInt(priceMax)
 			else
 			$scope.price_maxim = ''
 		}
@@ -61,7 +71,7 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		
 		$scope.locationList = resultsListingFactory.getLocations()
 		if(typeof uri[1] != 'undefined')
-		$scope.searchproduct.title = uri[1].split('&')[0].split('=')[1]
+		$scope.searchproduct.title = uri[1].split('-+price_')[0].split('&')[0].split('=')[1]
 		$scope.searchproduct.category = cat[1]
 		$scope.searchproduct.location = loc[0]
 		var brandArr = new Array
@@ -76,7 +86,6 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 			$scope.filter = {
 				brands: brandArr
 			};
-			//console.log()
 		}
 	}
 	
@@ -89,7 +98,6 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 	}
 	
 	$scope.setParams = function(key,value){
-		//alert(key)
 		switch(key) {
 			case 'category':
 				params['category'] = value
@@ -191,14 +199,6 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 		str += '--page_'+params['currentPage']
 		$scope.go(str)
 	}
-	
-	
-	
-	$scope.position = {
-		name: 'Potato Master',
-		minAge: 25,
-		maxAge: 40
-	};
 	  
 	$scope.filter = {
 		//brands: ["apple","asus","dell","greentel"]
@@ -209,7 +209,6 @@ controllers.resultsListingController = function($scope,resultsListingFactory, $r
 			var filterUrl = ''
 			var tmp = $scope.filter['brands']
 			for(i = 0; tmp.length>i; i++){
-				//console.log(tmp[i].trim())
 				filterUrl += 'brand='+tmp[i].trim()
 				if(i<tmp.length-1)
 				filterUrl += '&'
