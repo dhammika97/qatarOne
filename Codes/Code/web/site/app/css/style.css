@@ -197,7 +197,7 @@ header .top-nav ul li.active a { color: white; }
 .post-ads .post-ad-btn:hover { text-decoration: none; background: #444444; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; color: white; }
 
 .post-single-ad { padding: 50px 0 50px 0; }
-.post-single-ad h3 { text-align: center; }
+.post-single-ad h3.message { text-align: center; background: #c8f0d5; border: 1px solid #a1d3b2; padding: 15px; }
 .post-single-ad .top-breadcrumb { background: #a50344; color: white; text-align: center; margin-bottom: 15px; }
 .post-single-ad .top-breadcrumb div { padding: 15px; }
 .post-single-ad .top-breadcrumb div.active { background: #747474; }
@@ -251,6 +251,11 @@ header .top-nav ul li.active a { color: white; }
 .login-page .settings-tab .password-update form { width: 40%; }
 .login-page .settings-tab p { padding-bottom: 10px; font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; }
 .login-page .settings-tab table tr td { padding: 5px 10px; vertical-align: top; }
+.login-page.job-applicant { padding-top: 30px; font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; }
+.login-page.job-applicant table { margin-top: 30px; }
+.login-page.job-applicant table tr th { font-weight: 700; background: #cccccc; }
+.login-page.job-applicant .btn { font-size: 12px; line-height: 14px; font-size: 1.2rem; line-height: 1.4rem; height: 35px; }
+.login-page.job-applicant a { color: #a3a0a0; }
 
 .packages { padding: 30px 0; }
 .packages h1 { font-size: 22px; line-height: 24px; font-size: 2.2rem; line-height: 2.4rem; font-family: "Roboto", serif; padding: 20px 0; }
