@@ -85,17 +85,18 @@ header .top-nav ul li.active a { color: white; }
 .main-page .cateogry-listing .filter-side-bar .filter-heading { background: #a50344; text-transform: uppercase; color: white; }
 .main-page .cateogry-listing .filter-side-bar .filter-heading i { padding: 10px; min-width: 40px; text-align: center; background: #747474; color: white; margin-right: 10px; }
 .main-page .cateogry-listing ul { padding: 15px; }
-.main-page .cateogry-listing ul li a { color: #333333; font-size: 12px; line-height: 26px; font-size: 1.2rem; line-height: 2.6rem; }
+.main-page .cateogry-listing ul li a { color: #333333; font-size: 10px; line-height: 24px; font-size: 1rem; line-height: 2.4rem; }
 .main-page .cateogry-listing ul li a span { color: #a3a0a0; padding-left: 1rem; }
 .main-page .cateogry-listing ul li a:hover { color: #a3a0a0; text-decoration: none; }
 .main-page .cateogry-listing .filter-content { padding: 2rem 0; }
 .main-page .cateogry-listing .filter-content .btn { background: #a50344; color: white; }
 .main-page .cateogry-listing .filter-content.price-range-selector input { padding: 5px; float: left; width: 40%; }
 .main-page .cateogry-listing .filter-content.price-range-selector input.price-min { margin-right: 5px; }
-.main-page .cateogry-listing .filter-content ul li { font-size: 11px; line-height: 24px; font-size: 1.1rem; line-height: 2.4rem; }
+.main-page .cateogry-listing .filter-content ul li { font-size: 10px; line-height: 24px; font-size: 1rem; line-height: 2.4rem; text-transform: capitalize; }
 .main-page .cateogry-listing .filter-content ul li input { vertical-align: text-top; }
 .main-page .cateogry-listing .filter-content ul.brands-list { height: 252px; overflow: hidden; }
 .main-page .cateogry-listing .filter-content ul.show { overflow: visible; height: auto; }
+.main-page .cateogry-listing .filter-content ul.show + .show-more { display: none; }
 .main-page .cateogry-listing .filter-content .show-more { color: #a3a0a0; font-size: 10px; line-height: 24px; font-size: 1rem; line-height: 2.4rem; cursor: pointer; margin-left: 15px; }
 .main-page .cateogry-listing .filter-content .show-more:hover { color: #333333; }
 .main-page .list-group { margin-bottom: 0; }
