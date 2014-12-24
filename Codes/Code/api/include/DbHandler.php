@@ -1185,7 +1185,7 @@ public function checkLogin($user_email, $user_password) {
 				advertisement_expire,
 				advertisement_addedBy";
 			if($db->insert($table,$values,$rows) ){
-				$update=self::updatePackageAvailability($user_id,1);
+				$update=self::updatePackageAvailability($user_id,$mode);
 					
 				return $db->getInsertId();
 			}else{
