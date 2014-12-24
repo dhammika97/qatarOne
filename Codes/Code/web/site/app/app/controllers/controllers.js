@@ -25,7 +25,7 @@ controllers.masterController = function($scope, $location, ngProgress, $timeout)
 	}
 	
 	$scope.setUser = function(data){
-		$scope.username = data	
+		$scope.username = data.username
 	}
 	
 	$scope.$on('$viewContentLoaded', function(){

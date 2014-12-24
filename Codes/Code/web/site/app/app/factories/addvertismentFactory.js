@@ -33,6 +33,12 @@ App.factory('advertismentFactory',function($resource, $location){
 			$timeout(function(){
 				$scope.closeAlert();
 			}, 3000);
+		}).catch(function(){
+			$scope.addAlert('danger','Pelease login to rate this ad..')
+			ngProgress.complete()
+			$timeout(function(){
+				$scope.closeAlert();
+			}, 3000);
 		})
 	}
 	

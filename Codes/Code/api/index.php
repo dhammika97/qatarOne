@@ -23,7 +23,7 @@ function authenticate(\Slim\Route $route) {
     $headers = apache_request_headers();
     $response = array();
     $app = \Slim\Slim::getInstance();
-	echo $headers['Authorization'];
+	//echo $headers['Authorization'];
     // Verifying Authorization Header
     if (isset($headers['Authorization'])) {
         $db = new DbHandler();

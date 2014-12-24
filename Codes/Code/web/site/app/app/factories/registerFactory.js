@@ -65,9 +65,11 @@ App.factory('loginFactory',function($resource){
 					sessionStorage.setItem("accessKey", data.accessToken);
 					sessionStorage.setItem("username", data.username)
 					//$scope.$parent.username = data.username;
-					$scope.setUser(data.username);
+					$scope.setUser(data);
 					$scope.closeAlert();
-					$scope.go('/classifieds')
+					//$scope.go('/classifieds')
+					window.location.replace('#/classifieds')
+					location.reload()
 				}, 2000);
 				
 				
