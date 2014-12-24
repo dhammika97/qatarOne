@@ -2127,6 +2127,18 @@ public function getJobsApplyInformation() {
 			return '';
 		}
 	}
+	
+	public function myAdvertisments($user_id) {
+		//global  $userid;
+	
+		$db = new database ();
+		$table = 'advertisment ';
+		$rows = ' * ';
+		$where = ' advertisement_addedBy='.$user_id.' and advertisement_expire>=current_date'; 
+		$db->selectJson ( $table, $rows, $where, '', '' );
+		$add = $db->getJson ();
+		return $add;
+	}
 		
 }
 ?>
