@@ -2112,7 +2112,7 @@ public function getJobsApplyInformation() {
 	
 	public function getUserEmailAddress($userid){
 		try {
-			echo $userid;
+			//echo $userid;
 			$db = new database ();
 			$table = 'user ';
 			$rows = 'user_email ';
