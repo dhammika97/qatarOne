@@ -106,7 +106,7 @@
                                 <input class="form-control" type="text" ng-model="comments.bodyz" placeholder="Your comments" />
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-default" ng-if="comments.bodyz" ng-click="addComment()">Add</button>
+                                <button class="btn btn-default" ng-disabled="!comments.bodyz" ng-click="addComment()">Add</button>
                             </div>
                         </form>
                         <ul class="commentList" ng-if="comments.comments.length > 0" ng-repeat="comment in comments.comments">
