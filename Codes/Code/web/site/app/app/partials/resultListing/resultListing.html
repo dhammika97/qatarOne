@@ -89,13 +89,14 @@
             <input type="number" class="form-control" min="{{price_less+1}}" ng-model="price_maxim" placeholder="Max">
             <button class="btn btn-default" type="button" ng-click="setPriceParams(price_less, price_maxim)" ><i class="fa fa-arrow-circle-right fa-lg"></i></button>
 		  </div>
-          <div ng-if="resultList.brands">
+          <div class="filter-content " ng-if="resultList.brands" >
           <div class="filter-heading"> <i class="fa fa-usd"></i> Brand </div>
-			<ul>
+			<ul class="brands-list" ng-class="{show: show}">
             	<li ng-repeat="brand in resultList.brands">
             		<input type="checkbox" checklist-model="filter.brands" checklist-value="brand" ng-click="filterBrands()" /> {{brand}}
             	</li>
           	</ul>
+            <div class="show-more" ng-click="show = true">+ See More</div>
           </div>
           <ng-include src="'app/partials/resultListing/subscribe.html'"></ng-include>
         </div>

@@ -92,6 +92,12 @@ header .top-nav ul li.active a { color: white; }
 .main-page .cateogry-listing .filter-content .btn { background: #a50344; color: white; }
 .main-page .cateogry-listing .filter-content.price-range-selector input { padding: 5px; float: left; width: 40%; }
 .main-page .cateogry-listing .filter-content.price-range-selector input.price-min { margin-right: 5px; }
+.main-page .cateogry-listing .filter-content ul li { font-size: 11px; line-height: 24px; font-size: 1.1rem; line-height: 2.4rem; }
+.main-page .cateogry-listing .filter-content ul li input { vertical-align: text-top; }
+.main-page .cateogry-listing .filter-content ul.brands-list { height: 252px; overflow: hidden; }
+.main-page .cateogry-listing .filter-content ul.show { overflow: visible; height: auto; }
+.main-page .cateogry-listing .filter-content .show-more { color: #a3a0a0; font-size: 10px; line-height: 24px; font-size: 1rem; line-height: 2.4rem; cursor: pointer; margin-left: 15px; }
+.main-page .cateogry-listing .filter-content .show-more:hover { color: #333333; }
 .main-page .list-group { margin-bottom: 0; }
 .main-page .item.list-group-item { float: none; width: 100%; background-color: #fff; margin-bottom: 10px; padding: 0; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; }
 .main-page .item.list-group-item .list-group-item-heading { font-size: 18px; line-height: 26px; font-size: 1.8rem; line-height: 2.6rem; color: #a50344; padding: 10px 10px 0 10px; margin-bottom: 0; }
@@ -190,7 +196,8 @@ header .top-nav ul li.active a { color: white; }
 .post-ads .post-ad-btn:hover { text-decoration: none; background: #444444; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; color: white; }
 
 .post-single-ad { padding: 50px 0 50px 0; }
-.post-single-ad .top-breadcrumb { background: #a50344; color: white; text-align: center; }
+.post-single-ad h3 { text-align: center; }
+.post-single-ad .top-breadcrumb { background: #a50344; color: white; text-align: center; margin-bottom: 15px; }
 .post-single-ad .top-breadcrumb div { padding: 15px; }
 .post-single-ad .top-breadcrumb div.active { background: #747474; }
 .post-single-ad .panel-default { margin: 40px 0; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; }
