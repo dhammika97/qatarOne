@@ -1,5 +1,5 @@
 App.factory('contactApplicantFactory',function($resource){
-	var contactApplicantMail = $resource('../../../api/mail/:id', {}, {
+	var contactApplicantMail = $resource('../../../api/contactApplicantEmail/:id', {}, {
         query: { method: 'POST', params: {}, isArray: false },
     });
 

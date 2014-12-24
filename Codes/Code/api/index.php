@@ -2386,35 +2386,33 @@ $app->put ( '/userProfileUpdate', 'authenticate', function () use($app) {
 	}
 } );
 
-/**
- *  userProfileUpdate
- * url - /userProfileUpdate
- * method - PUT
- * params - $user Profile object
- */
-$app->put ( '/userProfileUpdate', 'authenticate', function () use($app) {
-	
-	$users = array ();
-	$response = array ();
-	$request = $app->request ();
-	$DbHandler = new DbHandler ();
-	
-	$userProfile = $request->getBody ();
-	// echo print_r($users);
-	global $user_id;
-	$results = $DbHandler->updateUserDetails ( $user_id, $userProfile );
-	
-	if ($results != 'true') {
-		$response ["error"] = true;
-		$response ["message"] = $results;
-		echoRespnse ( 200, $response );
-	} else {
-		$response ["error"] = false;
-		$response ["message"] = "User Profile details updated suceesfully";
-		echoRespnse ( 200, $response );
-	}
-} );
+	/**
+	 * contact applicant email
+	 */
 
+	$app->post('/contactApplicantEmail','authenticate', function() {
+		global $user_id;
+		
+		$request = \Slim\Slim::getInstance()->request();
+		$content = $request->getBody();
+		$response = array();
+		$DbHandler = new DbHandler ();
+		
+		$fromAddr = $DbHandler->getUserEmailAddress($user_id);
+		
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$headers .= 'From: '.$fromAddr.'' . "\r\n";
+		if (sendMail($content, $headers)) {
+			$response["error"] = false;
+			$response["message"] = "Mail successfully sent";
+			echoRespnse(200	, $response);
+		} else {
+			$response["error"] = true;
+			$response["message"] = "Something wrong, mail not sent";
+			echoRespnse(404, $response);
+		}
+	});
 
 $app->run();
 		

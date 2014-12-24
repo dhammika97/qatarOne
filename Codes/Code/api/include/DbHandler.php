@@ -2110,6 +2110,23 @@ public function getJobsApplyInformation() {
 		}
 	}
 	
+	public function getUserEmailAddress($userid){
+		try {
+			echo $userid;
+			$db = new database ();
+			$table = 'user ';
+			$rows = 'user_email ';
+			$where = ' user_id ='.$userid;
+			$order_by = "";
+			$db->select ( $table, $rows, $where, $order_by, '' );
+			$resut = $db->getResults ();
+	
+			return $resut[0];
+		} catch (Exception $e) {
+			$e.pr;
+			return '';
+		}
+	}
 		
 }
 ?>
