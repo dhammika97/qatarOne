@@ -2279,9 +2279,19 @@ $app->post('/applyjob', 'authenticate', function() use ($app) {
 		
 					echoRespnse(200, $response);
 				}else {
+					$headers  = 'MIME-Version: 1.0' . "\r\n";
+					$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+					$headers .= 'From: qatarone <qatarq1@gmail.com>' . "\r\n";
+					if (sendMail($jobApplyDetails, $headers)) {
 					$response["error"] = false;
 					$response["message"] = "Job request sent successfully";
 					echoRespnse(201, $response);
+					} else {
+						$response["error"] = true;
+						$response["message"] = "Something wrong, mail not sent";
+						echoRespnse(404, $response);
+					}
+					
 				}
 					
 			}else{

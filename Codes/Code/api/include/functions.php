@@ -256,10 +256,36 @@ function sendMail($content, $headers){
                             </html>';
              	 
              	break;
-
+             	case 'jobapply':
+             		global $userid;
+             		$DbHandler = new DbHandler();
+             		$employerInfo = $DbHandler->getEmployerEmailAddress( $content ['advertisement_id'] );	
+             	//	$emailAdd = $DbHandler->getApplicantEmail($userid);
+             		$content['to'] =$employerInfo[0];
+             		//$content['to'] ='kolin.wj@gmail.com';
+             		$subject ='Qatar One - Job Apply request';
+             		$message = '
+		
+                            <html>
+                            <body>
+                                <p>
+                                Hi,
+                                </p>
+                                <p>
+                                 '.$content['employee_massage'].'
+                                </p>
+                                <p>
+                                    Best Regards!<br>
+   								'.$content['employee_fname'].'
+                                </p>
+		
+                            </body>
+                            </html>';
+             	break;
      } 
 
     if(mail($content['to'], $subject, $message, $headers)) return true; else return false;
 }
+
 
 ?>
