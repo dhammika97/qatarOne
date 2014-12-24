@@ -13,14 +13,22 @@ App.factory('subscriberFactory',function($resource){
 		return subscriber.query()
 	}
 
-	factory.saveSubscriber = function($scope){
+	factory.saveSubscriber = function($scope,ngProgress, $timeout){		
 		return subscriber.save($scope.subscriber)
 			.$promise.catch(function(e){
-				alert(e.data.message)
+				$scope.addAlert('danger',e.data.message)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert();
+				}, 3000);
 			}).then(function(value){
-				$scope.sendSubscribConfirmaton();
-				alert(value.message)
-				//$scope.subscriber=''
+				$scope.addAlert('success',value.message)
+				ngProgress.complete()
+				$timeout(function(){					
+					$scope.closeAlert();
+					$scope.subscriber.subscription_email=''
+				}, 2000);
+				
 			})
 		}
 	var mail = $resource('../../../api/mail/:id', {}, {

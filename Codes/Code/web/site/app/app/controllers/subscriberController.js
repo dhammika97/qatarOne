@@ -1,6 +1,6 @@
-controllers.subscriberController = function($scope, subscriberFactory){
+controllers.subscriberController = function($scope, subscriberFactory,ngProgress, $timeout){
 	$scope.addSubscriber = function(){
-		subscriberFactory.saveSubscriber($scope)
+		subscriberFactory.saveSubscriber($scope,ngProgress, $timeout)
 	}
 	$scope.sendSubscribConfirmaton = function(){
 		subscriberFactory.sendMail($scope);	
