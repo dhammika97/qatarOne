@@ -37,6 +37,12 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	$scope.comments = advertismentFactory.getComments($routeParams.id);
 	//setTimeout(function(){ngProgress.complete()},500)
 	$scope.addComment = function(){
+               // console.log($scope.comments);
+//                var comment = $scope.comments.bodyz
+//                 console.log($scope.comments.bodyz);
+//                if (comment == ''){
+//                    alert("please enter a comment before submit");
+//                }
 		advertismentFactory.addComment($scope, $routeParams.id, $timeout);
 	}
 	
