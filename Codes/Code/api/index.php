@@ -1693,7 +1693,7 @@ $app->get('/similarItems', function()  {
 		$DbHandler = new DbHandler();
 		$response = array();
 		$result = $DbHandler->getSimilarItems($params);	
-		
+		//print_r($result);
 	if (!$result) {
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";

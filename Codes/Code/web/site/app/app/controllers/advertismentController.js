@@ -3,16 +3,8 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	advertismentFactory.getAdd($routeParams.id, ngProgress, $scope);
 	
 	advertismentFactory.getSimilarItems($scope,$routeParams.id); 
-
-	 // $scope.similarItems2 = advertismentFactory.getSimilarItems($routeParams.id); 
-	 // $scope.similarItems3 = advertismentFactory.getSimilarItems($routeParams.id); 
-	 // $scope.similarItems4 = advertismentFactory.getSimilarItems($routeParams.id); 
 	
-	 $scope.testfunction = function(data){
-		 //console.log(data)
-	 	//$scope.similarItems = [{'items':data[0]},{'items':data[1]},{'items':data[2]},{'items':data[3]}]; 
-	 	//$scope.similarItems2 = [{'items':data[4]},{'items':data[5]},{'items':data[6]},{'items':data[7]}]; 
-	 //	$scope.similarItems = [{'items':data[0]},{'items':data[1]},{'items':data[2]},{'items':data[2]}]; 
+	$scope.testfunction = function(data){
 	 	
 	 	//console.log(data);
 	 	$scope.item1	= data[0];
@@ -28,7 +20,12 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	 	$scope.item11	= data[10];
 	 	$scope.item12	= data[11];
 
-	 	
+/*	 	var i,j,temparray,chunk = 4;
+		for (i=0,j=data.length; i<j; i+=chunk) {
+			temparray = data.slice(i,i+chunk);
+			console.log(temparray)// do whatever
+		}
+*/		
 	 }
 	
 	$scope.ratingMax = 5;

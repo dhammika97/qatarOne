@@ -148,9 +148,9 @@ App.factory('advertismentFactory', function ($resource, $location) {
     factory.getSimilarItems = function ($scope, id) {
 
         return similarItems.query({"advertistment": id})
-                .$promise.then(function (e) {
-                    $scope.testfunction(e.items)
-                });
+		.$promise.then(function (e) {
+			$scope.testfunction(e.items)
+		});
     }
     var getComments = $resource('../../../api/getComments/:id', {}, {
         query: {method: 'GET', params: {}, isArray: false}
