@@ -8,8 +8,9 @@ if ( !empty( $_FILES ) ) {
 		$image = new SimpleImage();
 		$image->load($_FILES['news_image']['tmp_name']);
 		$image->resizeToWidth(466);
-		$image->save($dir.$unique.$_FILES['news_image']['name']);
-		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.$_FILES['news_image']['name']);
+		$ext = pathinfo($_FILES['news_image']['name'],PATHINFO_EXTENSION);
+		$image->save($dir.$unique.'.'.$ext);
+		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.'.'.$ext);
 		$json = json_encode($response);
 		echo $json;
 	}elseif(isset($_FILES['slider_image']['name']) !=''){
@@ -18,8 +19,9 @@ if ( !empty( $_FILES ) ) {
 		$image = new SimpleImage();
 		$image->load($_FILES['slider_image']['tmp_name']);
 		$image->resize(1899,570);
-		$image->save($dir.$unique.$_FILES['slider_image']['name']);
-		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.$_FILES['slider_image']['name']);
+		$ext = pathinfo($_FILES['slider_image']['name'],PATHINFO_EXTENSION);
+		$image->save($dir.$unique.'.'.$ext);
+		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.'.'.$ext);
 		$json = json_encode($response);
 		echo $json;
 	}elseif(isset($_FILES['event_image']['name']) !=''){
@@ -28,8 +30,9 @@ if ( !empty( $_FILES ) ) {
 		$image = new SimpleImage();
 		$image->load($_FILES['event_image']['tmp_name']);
 		$image->resize(360,360);
-		$image->save($dir.$unique.$_FILES['event_image']['name']);
-		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.$_FILES['event_image']['name']);
+		$ext = pathinfo($_FILES['event_image']['name'],PATHINFO_EXTENSION);
+		$image->save($dir.$unique.'.'.$ext);
+		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.'.'.$ext);
 		$json = json_encode($response);
 		echo $json;
 	}elseif(isset($_FILES['fixedads_image']['name']) !=''){
@@ -38,8 +41,9 @@ if ( !empty( $_FILES ) ) {
 		$image = new SimpleImage();
 		$image->load($_FILES['fixedads_image']['tmp_name']);
 		//$image->resizeToWidth(466);
-		$image->save($dir.$unique.$_FILES['fixedads_image']['name']);
-		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.$_FILES['fixedads_image']['name']);
+		$ext = pathinfo($_FILES['fixedads_image']['name'],PATHINFO_EXTENSION);
+		$image->save($dir.$unique.'.'.$ext);
+		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.'.'.$ext);
 		$json = json_encode($response);
 		echo $json;
 	}elseif(isset($_FILES['advertismentImage']['name']) !=''){
@@ -47,9 +51,12 @@ if ( !empty( $_FILES ) ) {
 		$unique = strtoupper(md5(uniqid(rand(), true)));	
 		$image = new SimpleImage();
 		$image->load($_FILES['advertismentImage']['tmp_name']);
+		$ext = pathinfo($_FILES['advertismentImage']['name'],PATHINFO_EXTENSION);
 		$image->resize(555,415);
-		$image->save($dir.$unique.$_FILES['advertismentImage']['name']);
-		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.$_FILES['advertismentImage']['name']);
+		$image->save($dir.$unique.'.'.$ext);
+		$image->resize(260,194);
+		$image->save($dir.'thumb/'.$unique.'.'.$ext);
+		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.'.'.$ext);
 		$json = json_encode($response);
 		echo $json;
 	}elseif(isset($_FILES['video_id']['name']) != ''){		
