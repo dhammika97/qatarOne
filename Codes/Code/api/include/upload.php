@@ -1,5 +1,8 @@
 <?php
 require_once 'SimpleImage.php';
+require_once 'GifFrameExtractor.php';
+require_once 'GifCreator.php';
+
 if ( !empty( $_FILES ) ) {
 	
 	if(isset($_FILES['news_image']['name']) != ""){
@@ -36,16 +39,35 @@ if ( !empty( $_FILES ) ) {
 		$json = json_encode($response);
 		echo $json;
 	}elseif(isset($_FILES['fixedads_image']['name']) !=''){
-		$dir = '../uploads/bannerAds/';
-		$unique = strtoupper(md5(uniqid(rand(), true)));	
-		$image = new SimpleImage();
-		$image->load($_FILES['fixedads_image']['tmp_name']);
-		//$image->resizeToWidth(466);
-		$ext = pathinfo($_FILES['fixedads_image']['name'],PATHINFO_EXTENSION);
-		$image->save($dir.$unique.'.'.$ext);
-		$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.'.'.$ext);
-		$json = json_encode($response);
-		echo $json;
+		$gifPath = $_FILES['fixedads_image']['tmp_name'];
+		$tmp = new GifFrameExtractor();
+		if ($tmp::isAnimatedGif($gifPath)) {     
+			$gfe = new GifFrameExtractor();
+			$frames = $gfe->extract($gifPath);
+			$frameImages = $gfe->getFrameImages();
+			$frameDurations = $gfe->getFrameDurations();
+			
+			$gc = new GifCreator();
+			$gc->create($frameImages, $frameDurations, 0);
+			$gifBinary = $gc->getGif();
+			$unique = strtoupper(md5(uniqid(rand(), true)));
+			file_put_contents('../uploads/bannerAds/'.$unique.'.gif', $gifBinary);
+			$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.'.gif');
+			$json = json_encode($response);
+			echo $json;
+		}else{
+			$dir = '../uploads/bannerAds/';
+			$unique = strtoupper(md5(uniqid(rand(), true)));	
+			$image = new SimpleImage();
+			$image->load($_FILES['fixedads_image']['tmp_name']);
+			//$image->resizeToWidth(466);
+			$ext = pathinfo($_FILES['fixedads_image']['name'],PATHINFO_EXTENSION);
+			$image->save($dir.$unique.'.'.$ext);
+			$response = array('error' => false, 'message'=>'File transfered completed!','image' =>$unique.'.'.$ext);
+			$json = json_encode($response);
+			echo $json;
+		}
+		
 	}elseif(isset($_FILES['advertismentImage']['name']) !=''){
 		$dir = '../uploads/advertisement/';
 		$unique = strtoupper(md5(uniqid(rand(), true)));	

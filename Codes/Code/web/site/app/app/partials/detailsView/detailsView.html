@@ -4,10 +4,11 @@
     <div class="container">
       <div class="row">
         <ul class="pull-left">
-          <li><a href="#/portal/classified">All Ads</a></li>
+          <li ng-if="adversiment.job"><a href="#/portal/jobs">All Jobs</a></li>
+          <li ng-if="!adversiment.job"><a href="#/portal/classified">All Classifieds</a></li>
           <li><a href="javascript:history.go(-1)">{{adversiment.advertisment[0].category_sub_name}}</a></li>
         </ul>
-        <a class="pull-right back-link">Back to categories</a> </div>
+      </div>
     </div>
   </div>
   <div class="ad-title">
@@ -46,7 +47,7 @@
         </div>
         <div class="col-lg-6 col-md-6 ad-description">
           <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ad-price">{{adversiment.advertisment[0].advertisement_price}}</div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ad-price">{{adversiment.advertisment[0].currency}} {{adversiment.advertisment[0].advertisement_price}}</div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ad-location text-right">Location<span> {{adversiment.advertisment[0].suburb_name}}, {{adversiment.advertisment[0].location_name}}</span></div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="Flexible-container">

@@ -1061,7 +1061,8 @@ public function checkLogin($user_email, $user_password) {
 		$db = new database();
 		$table = 'advertisment a , locations l, suburbs s, category_sub c';
 		$rows ='a.advertisement_title, 
-				a.advertisement_contactName, 
+				a.advertisement_contactName,
+				a.advertisement_currency as currency, 
 				a.advertisement_price, 
 				a.advertisement_description, 
 				a.advertisement_attributes, 
@@ -1387,6 +1388,7 @@ public function getSimilarItems($params){
 				left join advertisement_images ai on ai.advertisement_id = a.advertisment_id';
 		$rows = 'a.advertisement_title, 
 				a.advertisment_id as aid, 
+				a.advertisement_currency as currency,
 				a.advertisement_price as price, 
 				a.advertisement_description, 
 				s.suburb_name as suberb, 

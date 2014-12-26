@@ -28,7 +28,8 @@
     <div class="container">
       <div class="row">
         <ul class="pull-left">
-          <li><a href="javascript:history.go(-1)">All Ads</a></li>
+          <li ng-if="resultList.category[0].category_parentId == 1"><a href="#/portal/classified">All Classifieds</a></li>
+          <li ng-if="resultList.category[0].category_parentId == 2"><a href="#/portal/jobs">All Jobs</a></li>
           <li><a href="">{{resultList.category[0].category_name}}</a></li>
         </ul>
         <!--<a class="pull-right back-link">Back to categories</a> --></div>
@@ -108,14 +109,14 @@
                 <div class="caption">
                   <div class="details">
                     <h4 class="group inner list-group-item-heading"> {{resultList.advertisement_title}}</h4>
-                    <p class="group inner list-group-item-text"> <span class="datestamp"> {{resultList.date}} {{resultList.time}}</span>									
-                    	{{resultList.advertisement_description}}
+                    <p class="group inner list-group-item-text"> <span class="datestamp"> {{resultList.date}} </span>									
+						<span>{{resultList.suberb}}, {{resultList.location}}</span>
                     </p>
                   </div>
                   <div class="price">
                     <div class="row">
-                      <div class="col-xs-12 col-sm-6 col-md-6"> <!--<span class="rating">######</span> --><!--<span class="comments">5 Comments</span>--> </div>
-                      <div class="col-xs-12 col-sm-6 col-md-6"> <span class="price-tag"> {{resultList.price}}</span> </div>
+                      <!--<div class="col-xs-12 col-sm-6 col-md-6"> <span class="rating">######</span> <span class="comments">5 Comments</span> </div>-->
+                      <div class="col-xs-12 col-sm-12 col-md-12"> <span class="price-tag">{{resultList.currency}} {{resultList.price}}</span> </div>
                     </div>
                   </div>
                 </div>

@@ -27,6 +27,7 @@ controllers.fixedAdvertismentAddController = function($scope, fixedAdvertismentF
 			uploader.onCompleteItem = function(fileItem, response, status, headers) {	
 				if(response.error==false){
 					$scope.fixedAd.fixedads_image = response.image
+					console.log($scope.fixedAd.fixedads_image)
 					fixedAdvertismentFactory.savefixedAdvertisment($scope)
 				}else{
 					alert('image upload failed!')
