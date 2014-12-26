@@ -2431,19 +2431,19 @@ $app->put ( '/userProfileUpdate', 'authenticate', function () use($app) {
  */
 $app->get ( '/myAdvertisments','authenticate', function () {
 	global $user_id;
-	$request = \Slim\Slim::getInstance ()->request ();
-	$params = $request->params ();
+	$request = \Slim\Slim::getInstance()->request();
+	$params = $request->params();
 	$response = array ();
-	$DbHandler = new DbHandler ();
-	$result = $DbHandler->myAdvertisments ($user_id);
+	$DbHandler = new DbHandler();
+	$result = $DbHandler->myAdvertisments($user_id);
 	if ($result != NULL) {
 		$response ["error"] = false;
-		$response ['myadvertisments'] = json_decode ( $result );
-		echoRespnse ( 200, $response );
+		$response ['myadvertisments'] = json_decode( $result );
+		echoRespnse( 200, $response );
 	} else {
 		$response ["error"] = true;
 		$response ["message"] = "The requested resource doesn't exists";
-		echoRespnse ( 404, $response );
+		echoRespnse( 404, $response );
 	}
 } );
 		

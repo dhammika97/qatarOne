@@ -99,3 +99,19 @@ App.factory('settingFactory',function($resource){
 	return factory
 })
 
+App.factory('myAdsFactory',function($resource){
+	var myAds = $resource('../../../api/myAdvertisments', {}, {
+		get: {method: 'GET', params: {}, isArray: false}	
+    });
+	var factory = {}
+	
+	factory.getMyAds = function($scope){
+		return myAds.get().$promise.catch(function(e){
+			alert(e.message)	
+		}).then(function(e){
+			$scope.myAds(e)
+		})
+	}
+	
+	return factory
+})

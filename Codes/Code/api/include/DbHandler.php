@@ -2137,7 +2137,7 @@ public function getJobsApplyInformation() {
 	
 		$db = new database ();
 		$table = 'advertisment ';
-		$rows = ' * ';
+		$rows = 'advertisment_id, advertisement_title, advertisement_expire, advertisement_date';
 		$where = ' advertisement_addedBy='.$user_id.' and advertisement_expire>=current_date'; 
 		$db->selectJson ( $table, $rows, $where, '', '' );
 		$add = $db->getJson ();

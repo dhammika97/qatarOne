@@ -80,6 +80,7 @@ window.routes =
 		requireLogin: true
 	},
 	'/my-ads': {
+		controller:'controllers.myAdsController',
 		templateUrl:'app/partials/settings/my-ads.html',
 		requireLogin: true
 	},

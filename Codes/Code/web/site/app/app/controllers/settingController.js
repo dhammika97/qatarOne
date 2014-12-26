@@ -14,4 +14,13 @@ controllers.settingController = function($scope, settingFactory, ngProgress, $ti
 		settingFactory.updatePassWordInfo($scope, id,ngProgress,$timeout);
 	}
 }
+
+controllers.myAdsController = function($scope, myAdsFactory){
+	myAdsFactory.getMyAds($scope)
+	
+	$scope.myAds = function(data){
+		$scope.advertisments = data;
+	}
+}
+
 App.controller(controllers)

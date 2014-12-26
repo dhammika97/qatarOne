@@ -18,11 +18,7 @@
             <div class="tab-content">          
                 
               <div class="list-group">
-                    <a href="#" class="list-group-item"><span class="badge">#3414</span>Cras justo odio</a>
-                    <a href="#" class="list-group-item"><span class="badge">#14</span>Dapibus ac facilisis in</a>
-                    <a href="#" class="list-group-item"><span class="badge">#1544</span>Morbi leo risus</a>
-                    <a href="#" class="list-group-item"><span class="badge">#156</span>Porta ac consectetur ac</a>
-                    <a href="#" class="list-group-item"><span class="badge">#14456</span>Vestibulum at eros</a>                   
+                    <a href="#/details-view/{{advertisment.advertisment_id}}" class="list-group-item" ng-repeat="advertisment in advertisments.myadvertisments" ><span class="badge">#{{advertisment.advertisment_id}}</span>{{advertisment.advertisement_title}} ::  <span style="color:#999">Added on : {{advertisment.advertisement_date}}</span> :: <span style="color:#999">Expiry : {{advertisment.advertisement_expire}}</span></a>
               </div>          
             </div>
 
