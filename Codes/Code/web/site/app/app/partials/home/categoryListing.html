@@ -1,7 +1,19 @@
 <div class="categories" ng-controller="categoryController">
     <h1><i class="fa fa-th fa-lg"></i> Categories</h1>    
     
-    <div class="col-lg-3 col-md-6 col-sm-6 category-item ng-repeat" ng-repeat="category in categories.categories">       
+    <!--<div class="col-lg-3 col-md-6 col-sm-6 category-item" ng-repeat="category in categories.categories">       
       <div class="category-heading"><a href="#/show-list/{{category.category_alias}}-in-qatar">{{category.category_name}}</a><span class="category-icon"><i class="fa fa-bicycle"></i></span><span class="category-count"> {{category.addCount}} </span></div>
     </div>
+    -->
+    <div ng-repeat="category in categories.categories" class="flip-container col-lg-3 col-md-6 col-sm-6 category-item" ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+            <div class="front">
+                <div class="category-heading"><a href="#/show-list/{{category.category_alias}}-in-qatar">{{category.category_name}}</a><span class="category-icon"><i class="fa fa-bicycle"></i></span><span class="category-count"> {{category.addCount}} </span></div>
+            </div>
+            <div class="back">
+                <div class="category-heading"><a href="#/show-list/{{category.category_alias}}-in-qatar">{{category.category_name}}</a><span class="category-icon"><i class="fa fa-bicycle"></i></span><span class="category-count"> {{category.addCount}} </span></div>
+            </div>
+        </div>
+    </div>
+    
 </div>
