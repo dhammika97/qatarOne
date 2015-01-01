@@ -1,6 +1,7 @@
-controllers.dashboardController = function($scope, dashboadrFactory){
+controllers.dashboardController = function($scope, dashboadrFactory, $routeParams){
 	$scope.advertisments = dashboadrFactory.showAdds();
-
+        $scope.advertismentDetails = dashboadrFactory.showAddDetails($routeParams.id);
+        //console.log($scope.advertismentDetails.a);
 	$scope.approve = function(id){
 		
 		dashboadrFactory.approve(id, $scope);

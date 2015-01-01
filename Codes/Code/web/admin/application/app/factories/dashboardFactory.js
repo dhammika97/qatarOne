@@ -30,7 +30,9 @@ App.factory('dashboadrFactory', function($resource){
 				alert(e.message)
 			})
 	}
-        
+        factory.showAddDetails = function(id){
+            return tld = showAdvertisments.get({id:id});
+        }
 
 	return factory
 });

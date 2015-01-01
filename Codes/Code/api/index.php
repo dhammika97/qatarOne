@@ -2446,7 +2446,26 @@ $app->get ( '/myAdvertisments','authenticate', function () {
 		echoRespnse( 404, $response );
 	}
 } );
+// * Detail View of pending advertisments
+// * url - /advertismentsAdmin/:id
+// * method - get
+// * params -id
+$app->get('/advertismentsAdmin/:id', function($id)  {
 		
+		$DbHandler = new DbHandler();
+		$response = array();
+		$result = $DbHandler->getPendingAdvertismentDetail($id);
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "The requested resource doesn't exists";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["advertisment"] = json_decode($result);
+
+			echoRespnse(200, $response);
+		}
+});		
 
 $app->run();
 		
