@@ -30,6 +30,7 @@ App.factory('dashboadrFactory', function($resource){
 				alert(e.message)
 			})
 	}
+        
 
 	return factory
 });

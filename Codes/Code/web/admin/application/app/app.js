@@ -250,7 +250,7 @@ App.config(function ($routeProvider, $httpProvider) {
                         templateUrl: 'app/partials/video/editVideo.html'
                     }
             )
-            .when('/viewAdd',
+            .when('/viewAdd/:id',
                     {
                         controller: 'controllers.dashboardController',
                         templateUrl: 'app/partials/adds/viewAdd.html'
