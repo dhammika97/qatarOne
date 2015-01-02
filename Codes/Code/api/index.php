@@ -1472,6 +1472,11 @@ $app->post('/register', function() use ($app) {
 				for($i=0; $i<count($defaultPackageList);$i++){
 					$DbHandler->CreateUserPackages($userId,$defaultPackageList[$i]['package_id'],$defaultPackageList[$i]['package_adLimit']);
 				}
+                                $headers  = 'MIME-Version: 1.0' . "\r\n";
+                                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                                $headers .= 'From: dhammika <dhammika97@gmail.com>' . "\r\n";
+                                $content
+                                sendMail($content, $headers);
 				$response["error"] = false;
 				$response["message"] = "Congradulations! We have sent an activation email to ".$users['user_email']." Please activate your account first";
 				$response["user_id"] = $userId;
