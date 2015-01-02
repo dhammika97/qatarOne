@@ -2315,7 +2315,7 @@ $app->get('/applyjobsdetails', 'authenticate', function()  {
 	global $user_id;
 		$DbHandler = new DbHandler();
 		$response = array();
-		$result = $DbHandler->getJobsApplyInformation();
+		$result = $DbHandler->getJobsApplyInformation($user_id);
 		if (!$result) {
 			$response["error"] = TRUE;
 			$response["message"] = "The requested resource doesn't exists";
@@ -2327,6 +2327,7 @@ $app->get('/applyjobsdetails', 'authenticate', function()  {
 			echoRespnse(200, $response);
 		}
 });
+
 
 
 	
