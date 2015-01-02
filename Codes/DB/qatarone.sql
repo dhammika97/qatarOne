@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2014 at 08:04 PM
+-- Generation Time: Jan 02, 2015 at 07:51 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `advertisement_images` (
   `advertisement_id` int(11) NOT NULL,
   `advertisement_image` varchar(255) NOT NULL,
   PRIMARY KEY (`advertisement_imageId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
 
 --
 -- Dumping data for table `advertisement_images`
@@ -74,7 +74,9 @@ INSERT INTO `advertisement_images` (`advertisement_imageId`, `advertisement_id`,
 (44, 61, '233250782B88FD2F1F8EDE3880D6F75BSmartphone.jpg'),
 (45, 62, '5080A3B6D77B968AE59836E0F89AE023230405b.jpeg'),
 (46, 63, '55303EE502FA493339BFF5AC4544BD28Fuel-efficient-Quick-Sale-Cars.jpg'),
-(47, 65, '908F8BE6605943927D8B9A4205588552IMG_3734.JPG');
+(47, 65, '908F8BE6605943927D8B9A4205588552IMG_3734.JPG'),
+(48, 66, 'F0CC162D41ABD8A92140ABCB44F7442B.JPG'),
+(49, 67, '8F02547533EB7AC77138018A83409AAE.png');
 
 -- --------------------------------------------------------
 
@@ -89,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
   `advertisement_attributes` longtext NOT NULL,
   `advertisement_title` varchar(255) NOT NULL,
   `advertisement_description` longtext NOT NULL,
+  `advertisement_currency` varchar(5) NOT NULL,
   `advertisement_price` decimal(10,0) NOT NULL,
   `advertisement_contactName` varchar(255) NOT NULL,
   `advertisement_contactNo` varchar(20) NOT NULL,
@@ -101,40 +104,42 @@ CREATE TABLE IF NOT EXISTS `advertisment` (
   `advertisement_expire` datetime NOT NULL,
   `advertisement_addedBy` int(11) NOT NULL,
   PRIMARY KEY (`advertisment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
 
 --
 -- Dumping data for table `advertisment`
 --
 
-INSERT INTO `advertisment` (`advertisment_id`, `advertisement_categoryId`, `advertisement_subCategoryId`, `advertisement_attributes`, `advertisement_title`, `advertisement_description`, `advertisement_price`, `advertisement_contactName`, `advertisement_contactNo`, `advertisement_contactEmail`, `advertisement_location`, `advertisement_suburb`, `advertisement_googleCodes`, `advertisement_date`, `advertisement_status`, `advertisement_expire`, `advertisement_addedBy`) VALUES
-(39, 3, 23, '""', 'asdasd', 'sdfsdf', '123', 'sdasda asd asd', '234234234', 'sdsdf@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-11 17:13:03', 1, '2015-03-11 00:00:00', 1),
-(40, 15, 26, '""', 'asdasd', 'sdsdfsdf', '234', 'sdasdas', '23434', 'ssd@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-11 17:13:09', 1, '2015-03-11 00:00:00', 1),
-(41, 17, 28, '""', 'asdasd asd asd', 'asda sdasd asd asd asd', '123', 'asdasd', '123456', 'asdas@sdfsdf', 2, 3, '6.934023, 79.845219', '2014-12-11 17:13:14', 1, '2015-03-11 00:00:00', 1),
-(42, 23, 29, '{"brand":"apple","touchscreen":"Touchscreen"}', 'Apple 1', 'asdasd asd ad', '234', 'asdas asdasd', '412563', 'asdas@sdfsdf', 2, 6, '6.934023, 79.845219', '2014-12-23 05:43:52', 1, '2015-03-11 00:00:00', 1),
-(43, 17, 28, '""', 'asd asd asd asd', 'asdasd asd asd', '1452', 'asdas asd', '123456', 'asd@sdf', 2, 4, '6.934023, 79.845219', '2014-12-11 17:13:22', 1, '2015-03-11 00:00:00', 1),
-(44, 17, 27, '""', 'cable ad', 'sdfsdf d asd', '123', 'sdfsd fsdfs', '234234', 'sdas@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-12 05:07:28', 1, '2015-03-12 00:00:00', 31),
-(45, 3, 23, '""', 'asdasd', 'sdfsdf', '234', 'ssdf sf sdf', '234234234', 'ssdf@sdfsdf', 1, 7, '6.934023, 79.845219', '2014-12-13 04:48:56', 1, '2015-03-13 00:00:00', 31),
-(46, 23, 29, '{"brand":"apple","touchscreen":"Touchscreen"}', 'Apple iPhone 5s', 'iPhone 5s for sale. \nPrice negotiable', '100000', 'Dhammika Gunaratne', '123456789', 'dhammika97@gmail.com', 2, 6, '6.934023, 79.845219', '2014-12-17 06:42:25', 1, '2015-03-13 00:00:00', 31),
-(47, 17, 28, '""', 'test ad', 'mkasdj alsdl adlajsdlajsldaj dia djad asj d ajsd jasd jjlaj sdljalsd jlkasjdjajsd lkaj sdlajsdl ajjd laks dasdj aljs dad laks jdlajsldj lask dja sd asd', '54100', 'Dhammika', '789456123', 'test@test.test', 6, 5, '6.934023, 79.845219', '2014-12-13 18:00:50', 1, '2015-03-13 00:00:00', 1),
-(48, 17, 28, '""', 'asdasd asd asdas d', 'sdfs fsdf sldf sf   jsfjsdf lsf jsldfj sdf sdhfsdfh s fshdf sod foshfo s oishf oshdfh sodfhos dfoh sohdfoh sf', '123456', 'test name', '874512369', 'test@sdfsdf', 6, 1, '6.934023, 79.845219', '2014-12-13 18:00:47', 1, '2015-03-13 00:00:00', 1),
-(49, 17, 28, '""', 'asdasdd asd asd asd asd', 'sdfs dfsdfn lsdf sf s df s sld fls fs fso f', '8745', 'test ssdf', '987654', 'test@sdfsdf', 6, 6, '6.934023, 79.845219', '2014-12-13 18:00:45', 1, '2015-03-13 00:00:00', 1),
-(50, 15, 26, '""', 'Nikon d3200', 'sfsd sdf slf lsd jsf sdj fo sdof osof osd hfi isd fj jps pjf spjd f', '12333', 'test', '123456', 'test@123', 6, 6, '6.934023, 79.845219', '2014-12-14 17:43:11', 1, '2015-03-14 00:00:00', 31),
-(51, 3, 24, '""', 'test testte', 'test test test test etst set set set', '123', 'test test', '234234', 'test@test.test', 6, 3, '6.934023, 79.845219', '2014-12-14 17:50:17', 1, '2015-03-14 00:00:00', 31),
-(52, 15, 25, '""', 'asd asd', 'sdfsdf sdf sdf', '123', 'wewer', '123', 'sdf@sdf', 6, 1, '6.934023, 79.845219', '2014-12-15 09:19:43', 1, '2015-03-15 00:00:00', 31),
-(53, 17, 28, '""', 'asdasd asd asd', 'dsdfsdfsdf', '234', 'asdasddasd', '12312', 'sdfsd@sdfsd', 6, 5, '6.934023, 79.845219', '2014-12-15 09:19:46', 1, '2015-03-15 00:00:00', 31),
-(54, 23, 29, '{"brand":"apple","touchscreen":"Touchscreen"}', 'Apple 2', 'sdsd sd ad asd asd', '23', 'asdasdasd', '344234', 'sdsdfs@sdfsdf', 6, 1, '6.934023, 79.845219', '2014-12-23 05:44:03', 1, '2015-03-15 00:00:00', 31),
-(55, 17, 28, '""', 'test test', 'test description test description test description test description', '12500', 'test name', '987654321', 'test@test', 6, 4, '6.934023, 79.845219', '2014-12-15 16:25:08', 1, '2015-03-15 00:00:00', 31),
-(56, 17, 28, '""', 'ssfdfsdf', 'sdfsdfsdfsdf sdfsdf', '123', 'sfsdfsdf', '123123123', 'sdf@sdf', 6, 4, '6.934023, 79.845219', '2014-12-16 15:49:35', 1, '2015-03-15 00:00:00', 31),
-(57, 23, 29, '{"brand":"samsung","touchscreen":"Touchscreen"}', 'Samsung 1', 'awesome phone, test test', '1234', 'test name', '987654321', 'test@test.com', 6, 1, '6.934023, 79.845219', '2014-12-23 05:44:13', 1, '2015-03-16 00:00:00', 31),
-(58, 23, 29, '{"brand":"sony","touchscreen":"Touchscreen"}', 'Sony', 'sdfsdf sdf sdf sdf sdf', '123', 'estset setset', '23423', 'tesst@sdfsdf', 6, 4, '6.934023, 79.845219', '2014-12-23 05:44:21', 1, '2015-03-16 00:00:00', 31),
-(59, 23, 29, '{"brand":"lg","touchscreen":"Touchscreen"}', 'LG', 'asdasdasd asdasdasd', '456123', 'asdasd asd asd', 'ssdcsdf sdf', 'tesd@sdfsdf', 6, 5, '6.934023, 79.845219', '2014-12-23 05:44:32', 1, '2015-03-16 00:00:00', 31),
-(60, 28, 33, '{"brand":"suzuki","model":"Wagon R","year":"2004","bodyType":"SUV","condition":"Recondition","transmission":"Manual","fuelType":"Patrol"}', 'test car advertisement', 'A/C, Power steering, Power shutters, Rivers Camera, TV/ DVD Mint Condition', '120000', 'Dhammika Gunaratne', '777339803', 'dhammika9@gmail.com', 6, 1, '6.934023, 79.845219', '2014-12-17 06:48:46', 1, '2015-03-17 00:00:00', 31),
-(61, 29, 34, '{"applyEmail":"dhammika97@gmail.com","companyName":"company name","jobType":"Full time","salary":"20000"}', 'test advertisement', 'test description', '123456', 'test name', '789456', 'test@test.test', 6, 1, '6.934023, 79.845219', '2014-12-17 19:15:46', 1, '2015-03-17 00:00:00', 31),
-(62, 28, 33, '{"brand":"tata","model":"Corolla","year":"2000","bodyType":"Station wagon","condition":"Recondition","transmission":"Manual","fuelType":"Patrol"}', 'AE 110', 'this is test description', '150000', 'test nm', '987654', 'test@test', 6, 5, '6.934023, 79.845219', '2014-12-17 19:15:41', 1, '2015-03-17 00:00:00', 31),
-(63, 28, 33, '{"brand":"toyota","model":"test","year":"1234","bodyType":"Station wagon","condition":"Recondition","transmission":"Automatic","fuelType":"Diesel"}', 'test test tteste', 'ssdf sdf sdf sdfs f\ns dfsdf \ns dfsf\ns dfs df\n sf sdf\n sdf', '123456', '123', '123', 'sdfsd@sdf', 6, 3, '6.934023, 79.845219', '2014-12-17 20:19:43', 1, '2015-03-17 00:00:00', 31),
-(64, 29, 34, '{"jobType":"Full time","companyName":"test test test","applyEmail":"dsdf@sdfsdf","salary":"123456"}', 'test', 'test description, test description 2<div>test new line</div><div><br></div><div>est new line after new line</div><div><br></div><div><br></div><div>test test test</div>', '123', 'ssdfsd sdfsdf', '234234', 'sdfsd@ssfsdf', 6, 3, '6.934023, 79.845219', '2014-12-17 20:19:47', 1, '2015-03-17 00:00:00', 31),
-(65, 23, 30, '""', 'test accessory item', 'Test Accessory Item will be going here', '123', 'test contact', '123456', 'test@test.test', 6, 5, '6.934023, 79.845219', '2014-12-21 14:20:57', 1, '2015-03-21 00:00:00', 31);
+INSERT INTO `advertisment` (`advertisment_id`, `advertisement_categoryId`, `advertisement_subCategoryId`, `advertisement_attributes`, `advertisement_title`, `advertisement_description`, `advertisement_currency`, `advertisement_price`, `advertisement_contactName`, `advertisement_contactNo`, `advertisement_contactEmail`, `advertisement_location`, `advertisement_suburb`, `advertisement_googleCodes`, `advertisement_date`, `advertisement_status`, `advertisement_expire`, `advertisement_addedBy`) VALUES
+(39, 3, 23, '""', 'asdasd', 'sdfsdf', 'QR', '123', 'sdasda asd asd', '234234234', 'sdsdf@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-24 11:07:41', 1, '2015-03-11 00:00:00', 1),
+(40, 15, 26, '""', 'asdasd', 'sdsdfsdf', 'QR', '234', 'sdasdas', '23434', 'ssd@sdfsd', 1, 1, '6.934023, 79.845219', '2014-12-24 11:07:45', 1, '2015-03-11 00:00:00', 1),
+(41, 17, 28, '""', 'asdasd asd asd', 'asda sdasd asd asd asd', 'QR', '123', 'asdasd', '123456', 'asdas@sdfsdf', 2, 3, '6.934023, 79.845219', '2014-12-24 11:07:49', 1, '2015-03-11 00:00:00', 1),
+(42, 23, 29, '{"brand":"apple","touchscreen":"Touchscreen"}', 'Apple 1', 'asdasd asd ad', 'QR', '234', 'asdas asdasd', '412563', 'asdas@sdfsdf', 2, 6, '6.934023, 79.845219', '2014-12-24 11:07:52', 1, '2015-03-11 00:00:00', 1),
+(43, 17, 28, '""', 'asd asd asd asd', 'asdasd asd asd', 'QR', '1452', 'asdas asd', '123456', 'asd@sdf', 2, 4, '6.934023, 79.845219', '2014-12-24 11:07:55', 1, '2015-03-11 00:00:00', 1),
+(44, 17, 27, '""', 'cable ad', 'sdfsdf d asd', 'QR', '123', 'sdfsd fsdfs', '234234', 'sdas@sdfsd', 1, 1, '6.934023, 79.845219', '2015-01-02 18:48:25', 1, '2015-03-12 00:00:00', 31),
+(45, 3, 23, '""', 'asdasd', 'sdfsdf', 'QR', '234', 'ssdf sf sdf', '234234234', 'ssdf@sdfsdf', 1, 7, '6.934023, 79.845219', '2015-01-02 18:48:28', 1, '2015-03-13 00:00:00', 31),
+(46, 23, 29, '{"brand":"apple","touchscreen":"Touchscreen"}', 'Apple iPhone 5s', 'iPhone 5s for sale. \nPrice negotiable', 'USD', '100000', 'Dhammika Gunaratne', '123456789', 'dhammika97@gmail.com', 2, 6, '6.934023, 79.845219', '2015-01-02 18:48:32', 1, '2015-03-13 00:00:00', 31),
+(47, 17, 28, '""', 'test ad', 'mkasdj alsdl adlajsdlajsldaj dia djad asj d ajsd jasd jjlaj sdljalsd jlkasjdjajsd lkaj sdlajsdl ajjd laks dasdj aljs dad laks jdlajsldj lask dja sd asd', 'USD', '54100', 'Dhammika', '789456123', 'test@test.test', 6, 5, '6.934023, 79.845219', '2014-12-24 11:08:11', 1, '2015-03-13 00:00:00', 1),
+(48, 17, 28, '""', 'asdasd asd asdas d', 'sdfs fsdf sldf sf   jsfjsdf lsf jsldfj sdf sdhfsdfh s fshdf sod foshfo s oishf oshdfh sodfhos dfoh sohdfoh sf', 'QR', '123456', 'test name', '874512369', 'test@sdfsdf', 6, 1, '6.934023, 79.845219', '2014-12-24 11:08:15', 1, '2015-03-13 00:00:00', 1),
+(49, 17, 28, '""', 'asdasdd asd asd asd asd', 'sdfs dfsdfn lsdf sf s df s sld fls fs fso f', 'QR', '8745', 'test ssdf', '987654', 'test@sdfsdf', 6, 6, '6.934023, 79.845219', '2014-12-24 11:08:19', 1, '2015-03-13 00:00:00', 1),
+(50, 15, 26, '""', 'Nikon d3200', 'sfsd sdf slf lsd jsf sdj fo sdof osof osd hfi isd fj jps pjf spjd f', 'USD', '12333', 'test', '123456', 'test@123', 6, 6, '6.934023, 79.845219', '2015-01-02 18:48:36', 1, '2015-03-14 00:00:00', 31),
+(51, 3, 24, '""', 'test testte', 'test test test test etst set set set', 'USD', '123', 'test test', '234234', 'test@test.test', 6, 3, '6.934023, 79.845219', '2015-01-02 18:48:39', 1, '2015-03-14 00:00:00', 31),
+(52, 15, 25, '""', 'asd asd', 'sdfsdf sdf sdf', 'QR', '123', 'wewer', '123', 'sdf@sdf', 6, 1, '6.934023, 79.845219', '2015-01-02 18:48:44', 1, '2015-03-15 00:00:00', 31),
+(53, 17, 28, '""', 'asdasd asd asd', 'dsdfsdfsdf', 'QR', '234', 'asdasddasd', '12312', 'sdfsd@sdfsd', 6, 5, '6.934023, 79.845219', '2015-01-02 18:48:48', 1, '2015-03-15 00:00:00', 31),
+(54, 23, 29, '{"brand":"apple","touchscreen":"Touchscreen"}', 'Apple 2', 'sdsd sd ad asd asd', 'QR', '23', 'asdasdasd', '344234', 'sdsdfs@sdfsdf', 6, 1, '6.934023, 79.845219', '2015-01-02 18:48:52', 1, '2015-03-15 00:00:00', 31),
+(55, 17, 28, '""', 'test test', 'test description test description test description test description', 'QR', '12500', 'test name', '987654321', 'test@test', 6, 4, '6.934023, 79.845219', '2015-01-02 18:48:55', 1, '2015-03-15 00:00:00', 31),
+(56, 17, 28, '""', 'ssfdfsdf', 'sdfsdfsdfsdf sdfsdf', 'USD', '123', 'sfsdfsdf', '123123123', 'sdf@sdf', 6, 4, '6.934023, 79.845219', '2015-01-02 18:49:03', 1, '2015-03-15 00:00:00', 31),
+(57, 23, 29, '{"brand":"samsung","touchscreen":"Touchscreen"}', 'Samsung 1', 'awesome phone, test test', 'QR', '1234', 'test name', '987654321', 'test@test.com', 6, 1, '6.934023, 79.845219', '2015-01-02 18:49:06', 1, '2015-03-16 00:00:00', 31),
+(58, 23, 29, '{"brand":"sony","touchscreen":"Touchscreen"}', 'Sony', 'sdfsdf sdf sdf sdf sdf', 'USD', '123', 'estset setset', '23423', 'tesst@sdfsdf', 6, 4, '6.934023, 79.845219', '2015-01-02 18:49:10', 1, '2015-03-16 00:00:00', 31),
+(59, 23, 29, '{"brand":"lg","touchscreen":"Touchscreen"}', 'LG', 'asdasdasd asdasdasd', 'USD', '456123', 'asdasd asd asd', 'ssdcsdf sdf', 'tesd@sdfsdf', 6, 5, '6.934023, 79.845219', '2015-01-02 18:49:14', 1, '2015-03-16 00:00:00', 31),
+(60, 28, 33, '{"brand":"suzuki","model":"Wagon R","year":"2004","bodyType":"SUV","condition":"Recondition","transmission":"Manual","fuelType":"Patrol"}', 'test car advertisement', 'A/C, Power steering, Power shutters, Rivers Camera, TV/ DVD Mint Condition', 'USD', '120000', 'Dhammika Gunaratne', '777339803', 'dhammika9@gmail.com', 6, 1, '6.934023, 79.845219', '2015-01-02 18:49:17', 1, '2015-03-17 00:00:00', 31),
+(61, 29, 34, '{"applyEmail":"dhammika97@gmail.com","companyName":"company name","jobType":"Full time","salary":"20000"}', 'test advertisement', 'test description', 'QR', '123456', 'test name', '789456', 'test@test.test', 6, 1, '6.934023, 79.845219', '2015-01-02 18:49:20', 1, '2015-03-17 00:00:00', 31),
+(62, 28, 33, '{"brand":"tata","model":"Corolla","year":"2000","bodyType":"Station wagon","condition":"Recondition","transmission":"Manual","fuelType":"Patrol"}', 'AE 110', 'this is test description', 'QR', '150000', 'test nm', '987654', 'test@test', 6, 5, '6.934023, 79.845219', '2015-01-02 18:49:23', 1, '2015-03-17 00:00:00', 31),
+(63, 28, 33, '{"brand":"toyota","model":"test","year":"1234","bodyType":"Station wagon","condition":"Recondition","transmission":"Automatic","fuelType":"Diesel"}', 'test test tteste', 'ssdf sdf sdf sdfs f\ns dfsdf \ns dfsf\ns dfs df\n sf sdf\n sdf', 'QR', '123456', '123', '123', 'sdfsd@sdf', 6, 3, '6.934023, 79.845219', '2015-01-02 18:49:26', 1, '2015-03-17 00:00:00', 31),
+(64, 29, 34, '{"jobType":"Full time","companyName":"test test test","applyEmail":"dsdf@sdfsdf","salary":"123456"}', 'test', 'test description, test description 2<div>test new line</div><div><br></div><div>est new line after new line</div><div><br></div><div><br></div><div>test test test</div>', 'USD', '123', 'ssdfsd sdfsdf', '234234', 'sdfsd@ssfsdf', 6, 3, '6.934023, 79.845219', '2015-01-02 18:49:29', 1, '2015-03-17 00:00:00', 31),
+(65, 23, 30, '""', 'test accessory item', 'Test Accessory Item will be going here', 'USD', '123', 'test contact', '123456', 'test@test.test', 6, 5, '6.934023, 79.845219', '2015-01-02 18:49:43', 1, '2015-03-21 00:00:00', 31),
+(66, 15, 25, '""', 'Nikon Camera - D3200', 'camera with all the accessories.<div>Mint condition</div><div>price negotiable</div>', 'USD', '70000', 'Dhammika', '789456123', 'dhammika97@gmail.com', 6, 5, '6.934023, 79.845219', '2015-01-02 18:49:45', 1, '2015-03-24 00:00:00', 31),
+(67, 29, 34, '{"jobType":"Full time","companyName":"Zone24x7.com","salary":"50000"}', 'Audit clark', '<span style="font-family: Roboto, sans-serif; font-size: 17px; font-style: normal; font-variant: normal; line-height: 24px;">test description</span><div style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;"><br></div><div style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;<span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;</span><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;</span><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;</span><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;</span><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;</span><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;</span><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;</span><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;</span><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;</span><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description&nbsp;</span><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;">test package description</span></div><div style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;"><span style="font-family: Roboto, sans-serif; font-style: normal; font-variant: normal; line-height: 24px; font-size: 17px;"><br></span></div>', 'QR', '50000', 'Test', '123456789', 'dhammikag@zone24x7.com', 6, 5, '6.934023, 79.845219', '2015-01-02 18:49:48', 1, '2015-03-24 00:00:00', 31);
 
 -- --------------------------------------------------------
 
@@ -284,21 +289,25 @@ CREATE TABLE IF NOT EXISTS `fixedads` (
   `fixedads_status` int(1) NOT NULL,
   `fixedads_title` varchar(100) NOT NULL,
   PRIMARY KEY (`fixedads_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `fixedads`
 --
 
 INSERT INTO `fixedads` (`fixedads_id`, `fixedads_type`, `fixedads_image`, `fixedads_enetredDate`, `fixedads_url`, `fixedads_status`, `fixedads_title`) VALUES
-(12, 4, 'FDD2B152BF31CD4FF1FC8F47D4D6F002728-x-90 - Copy.jpg', '2014-12-05 13:39:22', 'http://www.dialog.lk', 1, 'Dialog top add'),
-(13, 5, '5E6045B8FAA2D56E1F99420BB40A1D0B728-x-90.gif', '2014-12-05 13:38:55', 'http://www.dialog.lk/', 1, 'dialog bottom add'),
-(14, 2, '370BD900C5B3241F25F2E5780BD946706591726479222682286.gif', '2014-12-05 13:48:37', 'www.shuboothi.com', 1, 'leftadd'),
-(15, 3, '4DDDCEA17574A6DE92A0D29A88E431DC7483126944720115748.png', '2014-12-05 13:49:21', 'www.google.com', 1, 'right'),
-(16, 2, 'AECE2071AE28FEB5E17CE3B88AD8276815441498865313608811.gif', '2014-12-05 13:56:35', 'www.google.com', 1, 'left'),
-(17, 1, '99A10816C85217D40013C052535F8B38TalkFloor_CRIBanner5.jpg', '2014-12-05 14:07:48', 'www.dialog.lk', 1, 'top'),
-(18, 3, '29E272A9B35816BCD853E3A47BFFF9E77483126944720115748.png', '2014-12-05 15:11:50', 'dfgsdfgsd', 1, 'dagd'),
-(19, 1, '02A1BA8443B8E1DE6C8B1DBCE658ACD9728-x-90.gif', '2014-12-05 15:51:29', 'sfagsdf', 1, 'top');
+(25, 2, 'F88485FB9F81F8A7666FBDE5A3460EB9.gif', '2014-12-26 11:06:46', '', 1, 'aadasd'),
+(27, 2, '639B87D3D6007B024A03593049E54865.gif', '2014-12-26 13:06:39', '', 1, 'asdasd'),
+(29, 3, '5929CE126C744EC789C27631CE4AFE0C.gif', '2014-12-26 13:10:31', '', 1, 'ssdf'),
+(30, 2, '88CAA9AAE2D1892CA4D741FCBF0766FA.gif', '2014-12-26 13:12:24', 'ass', 1, 'asdasd'),
+(31, 2, 'CCD7CBF8EBEF037B813D5529CC83594F.gif', '2014-12-26 13:16:22', '', 1, 'cs'),
+(32, 3, '1F704DCE35CBDA0A0273C91F920A2DDF.gif', '2014-12-26 13:16:53', '', 1, 'ssc'),
+(33, 3, '1C9BA02EFC3BB5EE8DC3A3FA49092CA4.gif', '2014-12-26 13:17:32', '', 1, 'sdcsc'),
+(34, 3, '1E7373C3E4AE0850D3666AE5C82011FD.gif', '2014-12-26 13:23:07', '', 1, 'asd'),
+(35, 2, '7DFD7AA3A4011F7A34557034D782AF0C.gif', '2014-12-26 13:31:09', '', 1, 'gfdgfg'),
+(37, 4, 'A47E910CAEE7F18852483043AF6F7F27.jpg', '2014-12-26 13:41:27', '', 1, ''),
+(38, 6, '1FC419545673BF3D2720D1BFE2D3DFB8.gif', '2014-12-26 13:44:29', '', 1, 'asdasd'),
+(39, 1, 'D6717EC5356C91A9CD13B90489A5EC19.jpg', '2014-12-26 13:51:54', '', 1, '');
 
 -- --------------------------------------------------------
 
@@ -315,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `item_comments` (
   `comment_addedBy` int(11) NOT NULL,
   `Comment` varchar(255) NOT NULL,
   PRIMARY KEY (`comment_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `item_comments`
@@ -327,7 +336,11 @@ INSERT INTO `item_comments` (`comment_Id`, `advertisment_Id`, `comment_Date`, `c
 (3, 60, '2014-12-17', '21:25:08', 1, 33, 'jjshfks dfskdhfs df sd fh sdf'),
 (4, 46, '2014-12-17', '21:27:41', 1, 33, 'sksj dfhsoh fo sho sodhf osdf'),
 (5, 60, '2014-12-17', '21:32:28', 1, 33, ''),
-(6, 48, '2014-12-23', '19:01:14', 1, 33, 'wow. ilove this ad');
+(6, 48, '2014-12-23', '19:01:14', 1, 33, 'wow. ilove this ad'),
+(7, 46, '2014-12-23', '21:22:06', 1, 33, 'test comment'),
+(8, 46, '2014-12-23', '22:17:56', 2, 33, ''),
+(9, 46, '2014-12-23', '22:22:08', 1, 33, 'sdsd'),
+(10, 52, '2014-12-24', '02:31:04', 1, 33, 'test comment');
 
 -- --------------------------------------------------------
 
@@ -459,7 +472,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
 
 INSERT INTO `pages` (`page_id`, `page_title`, `page_content`, `page_status`, `page_addedBy`) VALUES
 (1, 'About Us', '<p><b>Qatar One is the fast and easy way to buy and sell your</b> &nbsp;in more than 30 different categories. It can be your car, job vacancy, real estate, and everything else. Also find what you''re looking for or create your own <b>Itâ€™s free</b>.</p><ul><li>Within seconds you can list an item for sale.</li><li>Within minutes your item will appear on Qatar One</li><li>Within hours youâ€™ll hear from interested buyers</li><li>Within days youâ€™ll meet up with buyers and trade your stuff for cash</li><li>Within weeks you will have simplified and improved your life</li></ul><div><br></div><div><br></div><p>Sell your used phone sitting in your drawer.<br></p><p>Sell the guitar you never really play.<br></p><p>Sell your sisterâ€™s baby stroller thatâ€™s hiding in her closet.<br></p><p>Sell your motorcycle and upgrade to a newer one.<br></p><p>Sell those shoes that donâ€™t quite fit.<br></p><p><br></p><p>On Qatar One, there are buyers for almost anything you have to sell.</p><p>Millions have already sold their stuff Qatar One. You can too.</p><p>Donâ€™t just let it sit there. START SELLING YOUR STUFF that you don''t need</p><p><br></p><p>We invest a great deal of time and effort in monitoring and filtering the content posted to the website, so you can be confident that you''ll find only quality, relevant listings. We also carefully review all ads that are being published, to make sure the quality is up to our standards.<br></p>', 0, 1),
-(2, 'Site Map', '<ul type=''disc''>\n    <li><a href=''/qatarone/web/site/''>Home</a></li>\n    <li><a href=''/qatarone/web/site/app/#/login''>Login</a></li>\n <li><a href=''/qatarone/web/site/app/#/settings''>User Profile</a></li>\n    <li><a href=''/qatarone/web/site/app/#/portal/classified''>Classified</a></li>\n    <li><a href=''/qatarone/web/site/app/#/portal/jobs''>Jobs</a></li>\n    <li><a href=''/qatarone/web/site/app/#/packages-view''>Packages</a></li>    \n    <li><a href=''/qatarone/web/site/app/#/post-ad''>Post Advertisment</a></li>\n    <li><a href=''/qatarone/web/site/app/#/pages/AboutUs''>About Us</a></li>\n    <li><a href=''/qatarone/web/site/app/#/pages/SiteMap''>Sitemap</a></li>        <li><a href=''/qatarone/web/site/app/#/pages/TermsOfUse''>Terms Of Use</a></li>\n    <li><a href=''/qatarone/web/site/app/#/pages/PrivacyPolicy''>Privacy Policy</a></li>\n<li><a href=''/qatarone/web/site/app/#/pages/FAQ''>FAQ</a></li>\n<li><a href=''/qatarone/web/site/app/#/contact-us''>Contact Us</a></li>\n</ul>', 0, 1),
+(2, 'Site Map', '<ul>\n    <li><a href=''/qatarone/web/site/''>Home</a>\n           <ul>\n                     <li><a href=''/qatarone/web/site/app/#/portal/classified''>Classified</a></li>\n                     <li><a href=''/qatarone/web/site/app/#/portal/jobs''>Jobs</a></li>\n                     <li><a href=''/qatarone/web/site/app/#/login''>Login</a>\n                          <ul>\n                                <li><a href=''/qatarone/web/site/app/#/settings''>My Advertisment</a></li>\n                                <li><a href=''/qatarone/web/site/app/#/post-ad''>Post Advertisment</a></li>\n                                 <li><a href=''/qatarone/web/site/app/#/packages-view''>Packages</a></li>\n                          </ul>\n                     </li>               \n          </ul>\n    </li>\n    <li><a href=''/qatarone/web/site/app/#/pages/AboutUs''>About Us</a></li>\n    <li><a href=''/qatarone/web/site/app/#/pages/SiteMap''>Sitemap</a></li> \n    <li><a href=''/qatarone/web/site/app/#/pages/TermsOfUse''>Terms Of Use</a></li>\n    <li><a href=''/qatarone/web/site/app/#/pages/PrivacyPolicy''>Privacy Policy</a></li>\n    <li><a href=''/qatarone/web/site/app/#/pages/FAQ''>FAQ</a></li>\n    <li><a href=''/qatarone/web/site/app/#/contact-us''>Contact Us</a></li>\n</ul>', 0, 1),
 (3, 'Terms of Use', '<p>Qatar One is a service provided by Black Shadow Group (subject to your compliance with the Terms and Conditions set forth below). Please read these Terms and Conditions before using this Web Site.<br></p><p>General: Advertisers and users are responsible for ensuring that advertising content, text, images, graphics, video (''Content'') uploaded for inclusion on Qatar One complies with all applicable laws. Qatar One assumes no responsibility for any illegality or any inaccuracy of the Content.<br></p><p>The advertisers and user guarantees that his or her Content do not violate any copyright, intellectual property rights or other rights of any person or entity, and agrees to release Qatar One and Black Shadow Group from all obligations, liabilities and claims arising in connection with the use of (or the inability to use) the service.<br></p><p>Advertisers agree that their Content can may be presented through Qatar Oneâ€™s partner sites under the same terms and conditions as on Qatar One.&nbsp;<br></p><p>Copyright: Advertisers grant Qatar One and Black Shadow Group a perpetual, royalty-free, irrevocable, non-exclusive right and license to use, reproduce, modify, adapt, publish, translate, create derivative works from and distribute such Content or incorporate such Content into any form, medium, or technology now known or later developed.<br></p><p>The material (including the Content, and any other content, software or services) contained on Qatar One are the property of Black Shadow Group, its subsidiaries, affiliates and/or third party licensors. Any intellectual property rights, such as copyright, trademarks, service marks, trade names and other distinguishing brands on the Web Site are the property of Black Shadow Group. To be clear: No material on this site may be copied, reproduced, republished, installed, posted, transmitted, stored or distributed without written permission from Black Shadow Group.<br></p><p>Watermarks: All images on Qatar One are watermarked, which prevents the images to be used for other purposes, without the consent of the advertiser.<br></p><p>Safety and images: Qatar One and Black Shadow Group reserves the right to change the title of the Content, for editorial purposes. Qatar One and Black Shadow Group reserves the right not to publish images that are irrelevant or images that violate Qatar One''s rules.<br></p><p>Personal: Qatar One and Black Shadow Group has the right to cooperate with authorities in the case any Content violates the law. The identity of advertisers, users or buyers may be determined, for example by an ISP. IP addresses may also be registered in order to ensure compliance with the terms and conditions.<br></p><p>Privacy: Qatar One and Black Shadow Group will collect information from Users and Advertisers. It is a condition of use of the Qatar One that each User and advertiser consents and authorises Qatar One and Black Shadow Group to collect and use this information. Qatar One and Black Shadow Group also reserves the right to disclose it to Company Affiliates and any other person for the purposes of administering, supporting and maintaining Qatar One, as well as for improving Qatar One, for example by using the information for research, marketing, product development and planning.<br></p><p>Cookies: This site uses cookies, which means that you must have cookies enabled on your computer in order for all functionality on this site to work properly. A cookie is a small data file that is written to your hard drive when you visit certain Web sites. Cookie files contain certain information, such as a random number user ID that the site assigns to a visitor to track the pages visited. A cookie cannot read data off your hard disk or read cookie files created by other sites. Cookies, by themselves, cannot be used to find out the identity of any user.<br></p><p>Email Address of Users: Users are required to submit a valid email address, before they are allowed to post advertisements. The email address of the User shall not be publicly displayed and other users are permitted to send email to the User through Qatar One.<br></p><p>Site availability: Qatar One and Black Shadow Group does not guarantee continuous or secure access to the Web Site. The Web Site is provided ''as is'' and as and when available.<br></p><p>Links to third party websites: Qatar One may contain links or references to other websites (''Third Party Websites''). Qatar One or Black Shadow Group shall not be responsible for the contents in Third Party Websites. Third Party Websites are not investigated or monitored. In the event the user decides to leave Qatar One and access Third Party Sites, the user does so at his/her own risk.<br></p><p>Paid content: Advertisers and Users wishing to post content on Qatar One that requires payment (''Paid Content''), may be required to transmit information through a third-party service provider, which may be governed by its own terms of use. Linking to any third party service providers is at the Users'' and Advertisers'' own risk and Qatar One disclaims all liability related thereto. Under no circumstances shall Qatar One be obliged to refund any payments made in respect of Paid Content.<br></p><p>In the event that Paid Content violates any aspect of these Terms &amp; Conditions, Qatar One may, in its sole discretion and without refund, remove the Paid Content from Qatar One. Users and Advertisers may delete any Paid Content prior to the end of the paid-for period, and Qatar One shall have no further responsibility to display the deleted content. Qatar One is neither responsible nor liable for the perceived success or failure of any Paid Content posted on Qatar One.<br></p><p>Disclaimer: Qatar One and Black Shadow Group assume no responsibility what so ever for the use of Qatar One and disclaims all responsibility for any injury, claim, liability, or damage of any kind resulting from or arising out of or any way related to (a) any errors on Qatar One or the Content, including but not limited to technical errors and typographical errors, (b) any third party web sites or content directly or indirectly accessed through links in Qatar One, (c) the unavailability of Qatar One, (d) your use of Qatar One or the Content, or (e) your use of any equipment (or software) in connection with Qatar One<br></p><p>Indemnification: Advertisers and users agree to indemnify Qatar One &amp; Black Shadow Group as well as its officers, directors, employees, agents, from and against all losses, expenses, damages and costs, including attorneyâ€™s fees, resulting from any violation of this Terms and Conditions (including negligent or wrongful conduct).<br></p><p>Modifications: Qatar One &amp; Black Shadow Group reserves the right to modify these Terms and Conditions. Such modifications shall be effective immediately upon posting on Qatar One. You are responsible for the reviewing of such modifications. Your continued access or use of Qatar One shall be deemed your acceptance of the modified terms and conditions.<br></p><p>Governing Law: Qatar One is operated under the laws and regulations of Sweden. Advertisers and users agree that Swedish courts, with the district court of Gothenburg as the court of first instance, will have jurisdiction over any dispute or claim relating to the use of Qatar One.<br></p><p><br></p>', 0, 1),
 (4, 'Privacy Policy', '<p>This policy details how data about you is collected/used/disclosed when you visit our websites and services (together, ''Qatar One'') or otherwise interact with us. If we update it, we will revise the date, place notices on Qatar One if a change is material, and/or obtain your consent as required by law.<br></p><p></p><ol><li>Protecting your privacy<br></li></ol><ul><li>We take precautions to prevent unauthorized access to or misuse of data about you.<br></li><li>We do not run ads, other than classified ads posted by our users.<br></li><li>We do not share your data with third parties for marketing purposes.<br></li><li>We do not engage in cross-marketing or link-referral programs with other sites.<br></li><li>We do not employ tracking devices for marketing purposes.<br></li><li>We do not send you unsolicited communications for marketing purposes.<br></li><li>We do not engage in affiliate marketing (and prohibit it on Qatar One).<br></li><li>We do provide email proxy &amp; relay to reduce unwanted mail.<br></li><li>Qatar One links to third party sites - please review their privacy policies.</li></ul><p></p>', 0, 31),
 (5, 'FAQ', 'FAQs will be going here...', 0, 1);
@@ -476,7 +489,7 @@ CREATE TABLE IF NOT EXISTS `rating` (
   `rating_user_id` int(11) NOT NULL,
   `rating_rate` int(2) NOT NULL,
   PRIMARY KEY (`rating_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `rating`
@@ -485,14 +498,20 @@ CREATE TABLE IF NOT EXISTS `rating` (
 INSERT INTO `rating` (`rating_id`, `rating_ad_id`, `rating_user_id`, `rating_rate`) VALUES
 (1, 43, 31, 2),
 (2, 43, 31, 4),
-(3, 42, 31, 3),
+(3, 42, 31, 4),
 (4, 48, 31, 5),
 (5, 48, 31, 2),
 (6, 48, 31, 1),
 (7, 46, 31, 2),
 (8, 46, 31, 3),
 (9, 54, 31, 2),
-(10, 45, 31, 3);
+(10, 45, 31, 3),
+(11, 46, 31, 4),
+(12, 46, 31, 3),
+(13, 46, 31, 2),
+(14, 46, 31, 2),
+(15, 46, 31, 2),
+(16, 52, 31, 2);
 
 -- --------------------------------------------------------
 
@@ -567,7 +586,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_status` int(1) NOT NULL,
   `user_accessToken` text NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `user`
@@ -575,9 +594,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `user_username`, `user_password`, `user_email`, `user_firstname`, `user_lastname`, `user_address1`, `user_address2`, `user_city`, `user_contactNo`, `user_registeredDate`, `user_type`, `user_status`, `user_accessToken`) VALUES
 (1, 'dhammika97', '202cb962ac59075b964b07152d234b70', 'dhammika97@gmail.com', 'dhammika', 'gunaratne', '176/4, walatenna', 'gallellagama', 'kandy', '777339803', '2014-11-20 00:00:00', 0, 1, 'kjsjjdfshdfhsdbfjhsbdfsdfsf'),
-(31, '', '202cb962ac59075b964b07152d234b70', 'dhammika9@gmail.com', 'Dumi', 'gunaratne', '', '', '', '', '2014-12-06 00:00:00', 3, 1, '1C078C9F93582F9D780C55507BB274B6'),
+(31, '', '202cb962ac59075b964b07152d234b70', 'dhammika9@gmail.com', 'Dumi', 'Gunaratne', '', '', '', '', '2014-12-06 00:00:00', 3, 1, '1C078C9F93582F9D780C55507BB274B6'),
 (32, '', '202cb962ac59075b964b07152d234b70', 'damn@123.com', '123', '123', '', '', '', '', '2014-12-09 00:00:00', 3, 1, 'BD9EC52A01EF7DD33EFE5AB92EC7D99F'),
-(33, '', '202cb962ac59075b964b07152d234b70', 'dumi@gmail.com', 'dumi', 'lastname', '', '', '', '', '2014-12-14 00:00:00', 3, 1, 'B64060E5C17D421C572B92A4E3B9CFB0');
+(33, '', '202cb962ac59075b964b07152d234b70', 'dumi@gmail.com', 'dumi', 'lastname', '', '', '', '', '2014-12-14 00:00:00', 3, 1, 'B64060E5C17D421C572B92A4E3B9CFB0'),
+(34, '', '202cb962ac59075b964b07152d234b70', 'test@test.com', 'test', 'test', 'qwrtu', '', '', '789456123', '2015-01-02 00:00:00', 1, 1, 'A1EE25EC9DDFD536208DDEF350E734FD');
 
 -- --------------------------------------------------------
 
