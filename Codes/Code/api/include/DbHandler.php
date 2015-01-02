@@ -92,7 +92,7 @@ class DbHandler {
 					  '" . $user_contactNo . "', 
 					  '" . $date . "', 
 					  '" . $users['user_type'] . "',
-					  '1',
+					  '0',
 					  '" . strtoupper(md5(uniqid(rand(), true))) . "'";
 
         $rows = "user_password,
