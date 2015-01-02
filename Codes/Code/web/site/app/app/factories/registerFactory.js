@@ -28,7 +28,7 @@ App.factory('registerFactory',function($resource, $location){
 			}).then(
 			function(value){
 				$scope.userId = value.user_id;
-				$scope.sendmail();
+				//$scope.sendmail();
 				$scope.addAlert('success',value.message)
 				ngProgress.complete()
 				$timeout(function(){
