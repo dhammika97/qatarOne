@@ -54,9 +54,9 @@ App.factory('loginFactory',function($resource){
     });
 	
 	var factory = {}
-	
+	 
 	factory.userLogin = function($scope, ngProgress, $timeout){
-		return tld = login.query({'email':$scope.login.email, 'password':$scope.login.password },
+		return tld = login.query({'email':$scope.login.email, 'password':$scope.login.password, 'type': '3' },
 		function(data){
 			if(data.error==false){
 				$scope.addAlert('success',data.message)

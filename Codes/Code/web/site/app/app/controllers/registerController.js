@@ -10,8 +10,9 @@ controllers.registerUser = function($scope, registerFactory, ngProgress, $timeou
 	}
 }
 
-controllers.loginController = function($scope,loginFactory,ngProgress, $timeout){
+controllers.loginController = function($scope,loginFactory,ngProgress, $timeout, $routeParams){
 	$scope.loginAuth = function(){
+                console.log($routeParams)
 		loginFactory.userLogin($scope, ngProgress, $timeout);
 		
 		//$scope.username = sessionStorage.getItem("username")

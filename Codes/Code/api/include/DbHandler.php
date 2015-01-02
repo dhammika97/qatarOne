@@ -565,11 +565,11 @@ class DbHandler {
         return $page;
     }
 
-    public function checkLogin($user_email, $user_password) {
+    public function checkLogin($user_email, $user_password, $user_type) {
         $db = new database();
         $table = 'user';
         $rows = '*';
-        $where = 'user_email= "' . $user_email . '" AND user_status = 1';
+        $where = 'user_email= "' . $user_email . '" AND user_status = 1 AND user_type = "'.$user_type.'" ';
 
         $db->select($table, $rows, $where, '', '');
         $logged_User = $db->getResults();
