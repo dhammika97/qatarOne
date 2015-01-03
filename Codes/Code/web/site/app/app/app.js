@@ -83,6 +83,10 @@ window.routes =
 		controller:'controllers.settingController',
 		templateUrl:'app/partials/login/forgortPassword.html'		
 	},
+	'/confirm-forgot-password': {
+		controller:'controllers.settingController',
+		templateUrl:'app/partials/login/confirmForgotPassword.html'		
+	},
 	'/my-ads': {
 		controller:'controllers.myAdsController',
 		templateUrl:'app/partials/settings/my-ads.html',
