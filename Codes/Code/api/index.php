@@ -2507,7 +2507,7 @@ $app->post ( '/sendforgotPSWDLink',  function () use($app) {
                     $content['mailType'] = "forgotPasswordActivation";
                     $content['key'] = (($forgotPSWDUser['user_id']*300)/2)+1603894240973228;
                                                   
-                    //sendMail($content, $headers);
+                    sendMail($content, $headers);
 				    $response["error"] = false;
 				    $response["message"] = "Congradulations! We have sent an password reset email link to ".$forgotPSWDUser['user_email']."";
 				    echoRespnse(200, $response);
