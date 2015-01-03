@@ -2478,7 +2478,50 @@ $app->get('/advertismentsAdmin/:id', function($id)  {
 
 			echoRespnse(200, $response);
 		}
-});		
+});
+
+
+/**
+ * Send User forgot password link
+ * url - /sendforgotPSWDLink
+ * method - POST
+ * params - $userforgotPSWDEmail  object
+ */
+$app->post ( '/sendforgotPSWDLink',  function () use($app) {
+	
+	
+			$response = array();
+			$request = \Slim\Slim::getInstance()->request();
+			$userforgotPSWDEmail = $request->getBody();
+			$db = new DbHandler();
+			
+			$forgotPSWDUser = $db->getUserByEmail($userforgotPSWDEmail);
+			
+			if ($forgotPSWDUser != NULL) {
+				
+					$headers  = 'MIME-Version: 1.0' . "\r\n";
+                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                    $headers .= 'From: qatarone <qatarq1@gmail.com>' . "\r\n";
+                    $content['fname'] = $forgotPSWDUser['user_firstname'];
+                    $content['to'] = $forgotPSWDUser['user_email'];
+                    $content['mailType'] = "forgotPasswordActivation";
+                    $content['key'] = (($forgotPSWDUser['user_id']*300)/2)+1603894240973228;
+                                                  
+                    //sendMail($content, $headers);
+				    $response["error"] = false;
+				    $response["message"] = "Congradulations! We have sent an password reset email link to ".$forgotPSWDUser['user_email']."";
+				    echoRespnse(200, $response);
+					
+
+			} else {
+				// unknown error occurred
+				$response['error'] = true;
+				$response['message'] = "User Does not exist";
+				echoRespnse(404, $response);
+			}
+
+		
+} );		
 
 $app->run();
 		

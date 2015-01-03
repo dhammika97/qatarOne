@@ -182,6 +182,26 @@ function sendMail($content, $headers){
                             </html>';
              
              break;
+            case 'forgotPasswordActivation':
+             $subject ='Qatar One - Forgot Password E-mail';
+             $message = '
+    
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'<br>
+                                </p> 
+                                <a href=" http://kasunengineers.com/qone/web/site/app/#/login"> Click here to change your password.</a>                               
+                                
+                                <p>
+                                Best Regards!<br>
+                                Team Qatar One
+                                </p>
+                                  
+                            </body>
+                            </html>';
+             
+             break;
              case 'subscribe':
              $subject ='Qatar One - You have successfully subscribed';
              $message = '

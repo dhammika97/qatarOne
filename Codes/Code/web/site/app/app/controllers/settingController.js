@@ -13,6 +13,11 @@ controllers.settingController = function($scope, settingFactory, ngProgress, $ti
 	$scope.updateUserPw=function(id){
 		settingFactory.updatePassWordInfo($scope, id,ngProgress,$timeout);
 	}
+	
+	$scope.sendforgotPSWDLink=function(id){
+		settingFactory.verifyAndsendforgotPSWDLink($scope, id,ngProgress,$timeout);
+		
+	}
 }
 
 controllers.myAdsController = function($scope, myAdsFactory){

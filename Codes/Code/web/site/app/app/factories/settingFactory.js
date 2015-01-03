@@ -94,6 +94,33 @@ App.factory('settingFactory',function($resource){
 						}, 2000);
 					})	
 			}
+
+
+	var userforgotPSWDLink = $resource('../../../api/sendforgotPSWDLink', {}, {
+		save:{method: 'POST'}
+   });
+	
+	
+	factory.verifyAndsendforgotPSWDLink = function($scope,ngProgress,$timeout){		
+		
+		return userforgotPSWDLink.save($scope.user.user_email)
+			.$promise.catch(function(e){
+				$scope.addAlert('danger',e.data.message)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert();
+				}, 3000);
+			}).then(
+			function(value){
+				$scope.addAlert('success',value.message)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert();
+
+					//$location.path('/packages-view')
+				}, 2000);
+			})	
+			}
 	
 	
 	return factory

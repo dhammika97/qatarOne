@@ -79,6 +79,10 @@ window.routes =
 		templateUrl:'app/partials/settings/passwordChange.html',
 		requireLogin: true
 	},
+	'/forgot-password': {
+		controller:'controllers.settingController',
+		templateUrl:'app/partials/login/forgortPassword.html'		
+	},
 	'/my-ads': {
 		controller:'controllers.myAdsController',
 		templateUrl:'app/partials/settings/my-ads.html',
