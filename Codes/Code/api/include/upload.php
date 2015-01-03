@@ -92,9 +92,10 @@ if (!empty($_FILES)) {
         $unique = strtoupper(md5(uniqid(rand(), true)));
         $ext = pathinfo($_FILES['resume']['name'], PATHINFO_EXTENSION);
         if ($ext == "pdf" || $ext == "docx" ) {
-           $dir = '../uploads/resume/' . $unique . '.' . pathinfo($_FILES["resume"]["name"], PATHINFO_EXTENSION);
+            $dir = '../uploads/resume/' . $unique . '.' . pathinfo($_FILES["resume"]["name"], PATHINFO_EXTENSION);
+            $file = $unique . '.' . pathinfo($_FILES["resume"]["name"], PATHINFO_EXTENSION);
             move_uploaded_file($_FILES["resume"]["tmp_name"], $dir) or die("not uploaded");
-            $response = array('error' => false, 'message' => 'File transfered completed!', 'file' => '../../../api/uploads/resume/' . $unique . '.' . pathinfo($_FILES["resume"]["name"], PATHINFO_EXTENSION));
+            $response = array('error' => false, 'message' => 'File transfered completed!', 'file' => $unique . '.' . pathinfo($_FILES["resume"]["name"], PATHINFO_EXTENSION));
             $json = json_encode($response);
             echo $json;
             

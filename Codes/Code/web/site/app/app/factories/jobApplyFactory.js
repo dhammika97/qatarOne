@@ -7,7 +7,7 @@ App.factory('jobApplyFactory',function($resource){
         var factory = {}
         
         factory.applyjobAPICall = function($scope,id){
-                console.log($scope.resume);
+                //console.log($scope.resume);
 		return applyJobMail.query({"advertisement_id":id,
 			"employee_fname":$scope.employee.name,
 			"employee_email":'test@test.test',
@@ -18,9 +18,9 @@ App.factory('jobApplyFactory',function($resource){
 		.$promise.catch(function(e){
 			
 		}).then(function(e){
-                        console.log(e);
+                        $scope.employee=''
 			alert(e.message);
-			$scope.employee=''
+			
 		})
 	}
         

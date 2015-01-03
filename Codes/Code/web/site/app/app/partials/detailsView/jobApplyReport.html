@@ -23,6 +23,7 @@
         <th>Contact No</th>
         <th>Email</th>
         <th>applied on</th>
+        <th>View resume</th>
         <th> </th>
       </tr>
     </thead>
@@ -35,6 +36,7 @@
         <td>{{jobsinfo.contactnum}}</td>
          <td>{{jobsinfo.email}}</td>
          <td>{{jobsinfo.applydate}}</td>
+         <td><a href="../../../api/uploads/resume/{{jobsinfo.jobapplydetails_resume}}" target="blank">Resume</a></td>
        <td><a href="#/contact-applicant/{{jobsinfo.epmloyeeuserid}}" class="btn btn-warning"> Contact Applicant</a></td>
        
       </tr>

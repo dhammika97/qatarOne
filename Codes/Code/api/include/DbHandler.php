@@ -1969,7 +1969,7 @@ class DbHandler {
     	//$user_id=40;
         $db = new database();
         $table = ' advertisment a, jobapplydetails j, user u ';
-        $rows = ' j.jobapplydetails_ad_id as ad_id, a.advertisement_title as title,u.user_firstname as name, j.jobapplydetails_employee_email as email, j.jobapplydetails_employee_phoneno contactnum, 
+        $rows = 'j.jobapplydetails_resume, j.jobapplydetails_ad_id as ad_id, a.advertisement_title as title,u.user_firstname as name, j.jobapplydetails_employee_email as email, j.jobapplydetails_employee_phoneno contactnum, 
 		j.jobapplydetails_employee_massage message, j.jobapplydetails_appliedon applydate, j.jobapplydetails_employee_userid as epmloyeeuserid ';
         $where = ' a.advertisment_id=j.jobapplydetails_ad_id
 		AND u.user_id=j.jobapplydetails_employee_userid
