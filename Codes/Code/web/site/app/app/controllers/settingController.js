@@ -18,6 +18,10 @@ controllers.settingController = function($scope, settingFactory, ngProgress, $ti
 		settingFactory.verifyAndsendforgotPSWDLink($scope, id,ngProgress,$timeout);
 		
 	}
+	$scope.updateNewForgotpassword=function(){
+		//alert($scope.userforgotPWD.newPassword);
+		settingFactory.updateNewForgotpassword($scope, $scope.userEncrypedID,ngProgress,$timeout);
+	}
 }
 
 controllers.myAdsController = function($scope, myAdsFactory){

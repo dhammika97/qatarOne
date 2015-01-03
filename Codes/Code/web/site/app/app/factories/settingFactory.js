@@ -122,6 +122,29 @@ App.factory('settingFactory',function($resource){
 			})	
 			}
 	
+		var userForgotPasswordUpdate = $resource('../../../api/forgotPasswordUpdate/:id', {}, {
+		 update: { method: 'PUT', params: { id: '@id' } }
+   });
+	
+	
+	factory.updateNewForgotpassword = function($scope,id,ngProgress,$timeout){
+		console.log($scope.userforgotPWD);
+		return userForgotPasswordUpdate.update({id:id},$scope.userforgotPWD)
+					.$promise.catch(function(e){	
+						$scope.addAlert('danger',e.data.message)
+						ngProgress.complete()
+						$timeout(function(){
+							$scope.closeAlert();
+						}, 3000);
+					}).then(
+					function(value){
+						$scope.addAlert('success',value.message)
+						ngProgress.complete()
+						$timeout(function(){
+							$scope.closeAlert();					
+						}, 2000);
+					})	
+			}
 	
 	return factory
 })
