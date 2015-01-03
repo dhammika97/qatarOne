@@ -1907,6 +1907,7 @@ class DbHandler {
 
             $rows = "jobapplydetails_ad_id,
 			jobapplydetails_employee_email,
+                        jobapplydetails_resume,
 			jobapplydetails_employee_phoneno,
 			jobapplydetails_employee_massage,
 			jobapplydetails_employee_userid,
@@ -1916,6 +1917,7 @@ class DbHandler {
 
             $values = "'" . $jobApplyDetails ['advertisement_id'] . "',
 				'" . $jobApplyDetails ['employee_email'] . "',
+                                '" . $jobApplyDetails ['resume'] . "',    
 				'" . $jobApplyDetails ['employee_phoneno'] . "',
 				'" . $jobApplyDetails ['employee_massage'] . "',
 				'" . $user_id . "',

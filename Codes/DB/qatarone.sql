@@ -358,6 +358,7 @@ CREATE TABLE IF NOT EXISTS `jobapplydetails` (
   `jobapplydetails_employer_userid` int(11) NOT NULL,
   `jobapplydetails_appliedon` datetime NOT NULL,
   `jobapplydetails_status` int(1) NOT NULL DEFAULT '0',
+  `jobapplydetails_resume` varchar(255) NOT NULL,
   PRIMARY KEY (`jobapplydetails_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci' AUTO_INCREMENT=6 ;
 

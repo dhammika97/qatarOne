@@ -13,7 +13,7 @@ App.factory('jobApplyFactory',function($resource){
 			"employee_email":'test@test.test',
 			"employee_phoneno":$scope.employee.telephone, 
 			"employee_massage":$scope.employee.message,
-                        "resume" : $scope.employee.resume,
+                        "resume" : $scope.resume,
 			"mailType" :"jobapply"})
 		.$promise.catch(function(e){
 			
