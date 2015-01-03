@@ -18,6 +18,7 @@ App.factory('jobApplyFactory',function($resource){
 		.$promise.catch(function(e){
 			
 		}).then(function(e){
+                        console.log(e);
 			alert(e.message);
 			$scope.employee=''
 		})
