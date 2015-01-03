@@ -2523,6 +2523,37 @@ $app->post ( '/sendforgotPSWDLink',  function () use($app) {
 		
 } );		
 
+/**
+ * User reset password update
+ * url - /forgotPasswordUpdate/:id
+ * method - PUT
+ * params - $hash user's new hashed password
+ */
+$app->put ( '/forgotPasswordUpdate/:id', function ($hash) use($app) {
+	
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+		$response = array();
+		$userProfile= array();
+
+		$forgotPSWDUser =  $request->getBody();		
+		$userProfile['user_New_password']=$forgotPSWDUser['newPassword'];
+
+		$id = (($hash-1603894240973228)*2)/300;		
+		
+		$result = $DbHandler->updatePassWord($id,$userProfile);		
+		//$result=true;	
+		if (!$result) {
+			$response["error"] = TRUE;
+			$response["message"] = "User password resetting failed";
+			echoRespnse(404, $response);
+		} else {
+			$response["error"] = false;
+			$response["message"] = "User password reset done successfully";
+			echoRespnse(200, $response);
+		}
+} );
+
 $app->run();
 		
 		
