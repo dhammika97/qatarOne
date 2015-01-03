@@ -191,7 +191,7 @@ function sendMail($content, $headers){
                                 <p>
                                 Hi,'.$content['fname'].'<br>
                                 </p> 
-                                <a href=" http://kasunengineers.com/qone/web/site/app/#/login"> Click here to change your password.</a>                               
+                                <a href=" http://kasunengineers.com/qone/web/site/app/#/confirm-forgot-password "> Click here to change your password.</a>                               
                                 
                                 <p>
                                 Best Regards!<br>
