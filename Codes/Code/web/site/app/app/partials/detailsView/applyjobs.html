@@ -38,6 +38,12 @@
               <div class="col-md-9">
                 <textarea class="form-control" id="message" required ng-model="employee.message" name="message" placeholder="Please enter your message here..." rows="5"></textarea>
               </div>
+            </div>uploader
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="resume">Attach Your Resume</label>
+              <div class="col-md-9">
+                 <input id="resume" name="resume" type="file"  nv-file-select=""  uploader="uploader" options="{'alias':'resume'}"   ng-model="employee.resume" class="form-control">
+              </div>
             </div>
     
             <!-- Form actions -->

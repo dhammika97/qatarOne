@@ -7,12 +7,13 @@ App.factory('jobApplyFactory',function($resource){
         var factory = {}
         
         factory.applyjobAPICall = function($scope,id){
-
+                console.log($scope.resume);
 		return applyJobMail.query({"advertisement_id":id,
 			"employee_fname":$scope.employee.name,
 			"employee_email":'test@test.test',
 			"employee_phoneno":$scope.employee.telephone, 
 			"employee_massage":$scope.employee.message,
+                        "resume" : $scope.employee.resume,
 			"mailType" :"jobapply"})
 		.$promise.catch(function(e){
 			

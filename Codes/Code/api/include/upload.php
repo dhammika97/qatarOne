@@ -88,6 +88,13 @@ if ( !empty( $_FILES ) ) {
 		$response = array('error' => false, 'message'=>'File transfered completed!','video' => '../../../api/uploads/video/'.$unique.'.'.pathinfo($_FILES["video_id"]["name"],PATHINFO_EXTENSION));
 		$json = json_encode($response);
 		echo $json;
+	}elseif(isset($_FILES['resume']['name']) != ''){		
+		$unique = strtoupper(md5(uniqid(rand(), true)));	
+		$dir = '../uploads/resume/'.$unique.'.'.pathinfo($_FILES["resume"]["name"],PATHINFO_EXTENSION);
+		move_uploaded_file($_FILES["resume"]["tmp_name"],  $dir)  or die ("not uploaded");
+		$response = array('error' => false, 'message'=>'File transfered completed!','file' => '../../../api/uploads/resume/'.$unique.'.'.pathinfo($_FILES["resume"]["name"],PATHINFO_EXTENSION));
+		$json = json_encode($response);
+		echo $json;
 	}else{
 		$response = array('error' => true, 'message'=>'Bad Request');
 		$json = json_encode($response);
