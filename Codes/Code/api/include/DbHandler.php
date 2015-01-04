@@ -1073,12 +1073,15 @@ class DbHandler {
 				a.advertisement_contactNo,
 				a.advertisement_categoryId as catId, 
 				date(a.advertisement_date) as date, 
-				time(a.advertisement_date) as time, 
+				time(a.advertisement_date) as time,
+				a.advertisement_location,
+				a.advertisement_suburb,
 				l.location_name, 
 				l.location_cordinates, 
 				s.suburb_name,
 				s.suburb_cordinates, 
-				c.category_sub_name';
+				c.category_sub_name,
+				a.advertisement_addedBy as adby';
         $where = 'a.advertisement_location= l.location_id
 				 AND a.advertisement_suburb = s.suburb_id
 				 AND a.advertisement_subCategoryId	 = c.category_sub_id
@@ -1091,12 +1094,21 @@ class DbHandler {
     public function adImages($id) {
         $db = new database();
         $table = 'advertisement_images';
-        $rows = 'advertisement_image';
+        $rows = 'advertisement_image, advertisement_imageId';
         $where = 'advertisement_id = "' . $id . '"';
         $db->selectJson($table, $rows, $where, '', '');
         $images = $db->getJson();
         return $images;
     }
+	
+	public function deleteImage($image){
+		$db = new database();
+        $table = 'advertisement_images';
+        $where = 'advertisement_image = "' . $image . '" ';
+        if ($db->delete($table, $where)) {
+            return true;
+        }
+	}
 
     public function advertisments($params) {
         //$catid = $params['categoryID'];
@@ -2142,7 +2154,7 @@ class DbHandler {
         $db = new database ();
         $table = 'advertisment ';
         $rows = 'advertisment_id, advertisement_title, advertisement_expire, advertisement_date';
-        $where = ' advertisement_addedBy=' . $user_id . ' and advertisement_expire>=current_date';
+        $where = ' advertisement_addedBy=' . $user_id . ' and advertisement_expire>=current_date and advertisement_status = 1';
         $db->selectJson($table, $rows, $where, '', '');
         $add = $db->getJson();
         return $add;
@@ -2162,6 +2174,19 @@ class DbHandler {
         $advertismentDetail = $db->getJson();
         return $advertismentDetail;
     }
+	
+	public function updateAdvertisement($id, $params){
+		//print_r($params);
+		$db = new database();
+		$table = 'advertisment';
+        $rows = $params;
+        $where = 'advertisment_id = "' . $id . '"';
+        if ($db->update($table, $rows, $where)) {
+            return true;
+        } else {
+            return false;
+        }
+	}
 
 }
 

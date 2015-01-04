@@ -92,18 +92,26 @@ window.routes =
 		templateUrl:'app/partials/settings/my-ads.html',
 		requireLogin: true
 	},
+	'/myAdEdit/:id': {
+		controller:'controllers.myAdsUpdateController',
+		templateUrl:'app/partials/settings/my-ads-edit.html',
+		requireLogin: true
+	},
 	'/contact-us': {
 		templateUrl:'app/partials/contact/contactus.html',
 		requireLogin: false
-	},'/appyjobs': {
+	},
+	'/appyjobs': {
 		controller:'controllers.jobApplyController',
 		templateUrl:'app/partials/detailsView/applyjobs.html',
 		requireLogin: false
-	},'/view-applyjobs': {
+	},
+	'/view-applyjobs': {
 		controller:'controllers.viewJobApplyController',
 		templateUrl:'app/partials/detailsView/jobApplyReport.html',
 		requireLogin: false
-	},'/contact-applicant/:id': {
+	},
+	'/contact-applicant/:id': {
 		controller:'controllers.contactApplicantController',
 		templateUrl:'app/partials/detailsView/contactJobApplicant.html',
 		requireLogin: false
@@ -116,7 +124,7 @@ App.config(function($routeProvider, $httpProvider){
         $routeProvider.when(path, window.routes[path]);
     }
 	$routeProvider.otherwise({
-		redirectTo:'/portal/classified'
+		//redirectTo:'/portal/classified'
 	});
 	
 })

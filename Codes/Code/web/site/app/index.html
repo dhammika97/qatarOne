@@ -13,6 +13,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/ngProgress.css" rel="stylesheet">
     <link href="css/angular-slider.min.css" rel="stylesheet">
+    <link href="css/jcarousel.css" rel="stylesheet">
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,7 +28,7 @@
        <div class="container">
         <div class="row">
           <div class="top-nav">
-            <div class="logo pull-left"><a href="/qatarone/web/site"><img src="images/logo.png"></a></div>
+            <div class="logo pull-left"><a href="/qatarone/web/site"><img src="images/logo.png" height="45"></a></div>
             <div class="pull-right">
               <ul>
                 <li ng-class="{active:isActive('/login'), active:isActive('/my-profile')}" >
@@ -40,12 +42,12 @@
           </div>
         </div>
       </div>
-      <div class="shadow"></div>      
+      <!--<div class="shadow"></div>-->      
     </header>
     
     
 	<div ng-view class="main-container" data-autoscroll></div>
-    <div class="shadow"></div>
+    <!--<div class="shadow"></div>-->
     <footer>
       <div class="container">
         <div class="row">
@@ -73,6 +75,7 @@
 <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.1.2/textAngular.min.js'></script>
 
 
+
 <script type="text/javascript" src="libs/angular/angular-resource.min.js"></script>
 <script type="text/javascript" src="app/app.js"></script>
 <script type="text/javascript" src="app/controllers/controllers.js"></script>
@@ -95,6 +98,7 @@
 <script type="text/javascript" src="app/controllers/viewJobApplyController.js"></script> 
 <script type="text/javascript" src="app/controllers/contactApplicantController.js"></script> 
 
+<script type="text/javascript" src="app/directives/directives.js"></script>
 
 <script type="text/javascript" src="app/factories/eventFactory.js"></script>
 <script type="text/javascript" src="app/factories/newsFactory.js"></script>
@@ -114,11 +118,14 @@
 <script type="text/javascript" src="app/factories/contactApplicantFactory.js"></script>
 
 
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg3GKzo854QvgBFgtFpzase9dqSBTfIFg"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="libs/bootstrap/bootstrap.min.js"></script>
+<script src="libs/jcarousel/jcarousellite_1.0.1c4.js"></script>
+
 <alert class="text-center" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 </body>
 </html>

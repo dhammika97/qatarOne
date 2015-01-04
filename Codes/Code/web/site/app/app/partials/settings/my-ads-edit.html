@@ -1,15 +1,23 @@
-<section class="post-single-ad">
-  <div class="container">
-    <div class="row top-breadcrumb">
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 active"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Fill In Details</div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Check Your Ad</div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Confirmation</div>
-    </div>
-     <div class="col-sm-12">
-        <h3 class="panel-title message">You can post up to  {{packageList.packageDetails.ads}} Ads with your current account <br>
-           You can post up to {{packageList.packageDetails.jobs}} Jobs with your current account </h3>     
-              </div>
+<section class="login-page post-single-ad">
+  <div class="container"> 
     <div class="row">
+      <div class="col-lg-5"><h1>Edit Ad</h1></div>
+      <div class="col-lg-7 settings-heading">
+        <div class="row">
+          <div class="col-lg-3 heading-tab"><a href="#/my-profile">My Profile</a></div>
+          <div class="col-lg-3 heading-tab"><a href="#/change-password">Change Password</a></div>
+          <div class="col-lg-3 heading-tab active"><a href="#/my-ads">My Ads</a></div>
+          <div class="col-lg-3 heading-tab"><a href="#/view-applyjobs">Job Applicants</a></div>
+        </div>
+      </div>
+    </div>      
+    <div class="row"> 
+      <div class="settings-tab">          
+
+        <!-- Tab panes -->
+        <div class="tab-content">          
+            
+          <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -18,12 +26,6 @@
           <div class="panel-body">
           <form class="form-horizontal" name="adUpload" role="form">
             <div class="form-group">
-              <label for="category" class="col-sm-2 control-label" >Category</label>
-              <div class="col-sm-10">
-                <select class="form-control" ng-model="ad.advertisement_subCategoryId" required ng-options="obj.category_sub_id as obj.category_sub_name group by obj.category_name for obj in catList.categorymatrix" ng-change="changeTpl()"></select>
-              </div>
-            </div>
-            <div class="form-group">
               <label for="title" class="col-sm-2 control-label">Ad Title</label>
               <div class="col-sm-10">
                 <input type="title" class="form-control" ng-model="ad.advertisement_title" required >
@@ -31,10 +33,35 @@
             </div>
             <ng-include src="templatePath"></ng-include>
             <div class="form-group">
+              <label for="Description" class="col-sm-2 control-label">Description</label>
+              <div class="col-sm-10">
+                <!--<textarea class="form-control" ng-model="ad.advertisement_description" rows="10"></textarea>-->
+                <div text-angular="text-angular" name="htmlcontent" ng-model="ad.advertisement_description"  ta-toolbar="[]"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="price" class="col-sm-2 control-label">Price</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-sm price-selection">                	
+                  	<input type="text" class="form-control price-tag" ng-model="ad.advertisement_price">
+                     <select class="form-control price-tag" required ng-model="ad.currency">
+                        <option value="QR" selected>QR</option>
+                          <option value="USD">USD</option>
+                      </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
               <label for="Description" class="col-sm-2 control-label">Images</label>
               <div class="col-sm-10">
+              	<span ng-repeat="images in adImages">
+                	<img ng-src="../../../api/uploads/advertisement/{{images.advertisement_image}}" width="150"> 
+                	<a href="" ng-click="deleteImage(images.advertisement_image)" class="badge">X</a>
+                </span>
+                <br/>
               	<input type="file" multiple nv-file-select=""  uploader="uploader" options="{'alias':'advertismentImage','queueLimit':5}" ng-model="ad.advertismentImage" />
               </div>
+              
             </div>
             <div class="form-group">
               <label for="contactName" class="col-sm-2 control-label">Contact Name</label>
@@ -60,30 +87,17 @@
               <label for="contactNo" class="col-sm-2 control-label">Suburb</label>
               <div class="col-sm-10">
               	<select class="form-control" ng-model="ad.advertisement_suburb" ng-disabled="!ad.advertisement_location" required ng-options="{{suburbOptions}}">
+
                 	<option>test</option>
                 </select>
               </div>
             </div>
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox terms">
-                  <label>
-                    <input type="checkbox" ng-model="ad.terms" required>
-                    I accept terms and conditions </label>
-                </div>
-              </div>
-            </div>
           </form>
+        </div>          
         </div>
-        <div class="panel-footer" style="overflow:hidden;text-align:right;">
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button  class="btn btn-success" ng-click="addAdvertisment()" ng-disabled="adUpload.$invalid">Check Your Ad</button>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      </div>        
+      
     </div>
-  </div>
   </div>
 </section>

@@ -1518,6 +1518,38 @@ $app->post('/subscription',  function() use ($app) {
 /**
  * Get advertisment by id
  * url - /advertisment
+ * method - PUT
+ * params -advertisment id*/		
+$app->put('/advertisment/:id', 'authenticate' ,function($id) use ($app) {
+	$request = $app->request();
+	$DbHandler = new DbHandler();
+	$response = array();
+	$params =  $request->getBody();
+	$user = $DbHandler->advertismentDetail($id);
+	$t = json_decode($user,true);
+	global $user_id;
+	if($user_id == $t[0]['adby']){
+		$result = $DbHandler->updateAdvertisement($id, $params);
+		if ($result) {
+			$response["error"] = false;
+			$response["message"] = "Advertisement un-published successfully";
+			echoRespnse(200, $response);
+		} else {                
+			$response["error"] = true;
+			$response["message"] = "Advertisement failed to un-publish. Please try again!";
+			echoRespnse(404, $response);
+		}
+	}else{
+		$response["error"] = true;
+		$response["message"] = "Advertisement failed to un-publish. Please try again!";
+		echoRespnse(404, $response);
+	}
+});
+
+
+/**
+ * Get advertisment by id
+ * url - /advertisment
  * method - GET
  * params -advertisment id*/		
 $app->get('/advertisment/:id', function($id) {
@@ -1597,6 +1629,33 @@ $app->post('/advertisment', 'authenticate', function() use ($app) {
 			echoRespnse(400, $response);
 		}	           
 });
+
+$app->delete('/postAdImage/:id', 'authenticate', function($id) use ($app){
+	$response = array();
+	$db = new DbHandler();
+	try{
+		unlink('uploads/advertisement/thumb/'.$id);	
+	}catch(Exception $e){
+	
+	}
+	try{
+		unlink('uploads/advertisement/'.$id);
+	}catch(exception $e){
+		
+	}
+	
+	if($db->deleteImage($id)){
+		$response["error"] = false;
+		$response["message"] = "Image deleted successfully";
+		echoRespnse(200, $response);
+	}else{
+		$response["error"] = true;
+		$response["message"] = "Image Delete failed!";
+		echoRespnse(400, $response);
+	}
+	
+});
+
 
 $app->post('/postAdImage', function() use ($app){
 	$response = array();

@@ -1,29 +1,38 @@
 <section class="login-page">
-      <div class="container"> 
+  <div class="container"> 
+    <div class="row">
+      <div class="col-lg-5"><h1>Manage Your Account</h1></div>
+      <div class="col-lg-7 settings-heading">
         <div class="row">
-          <div class="col-lg-5"><h1>Manage Your Account</h1></div>
-          <div class="col-lg-7 settings-heading">
-            <div class="row">
-              <div class="col-lg-3 heading-tab"><a href="#/my-profile">My Profile</a></div>
-              <div class="col-lg-3 heading-tab"><a href="#/change-password">Change Password</a></div>
-              <div class="col-lg-3 heading-tab active"><a href="#/my-ads">My Ads</a></div>
-              <div class="col-lg-3 heading-tab"><a href="#/view-applyjobs">Job Applicants</a></div>
-            </div>
-          </div>
-        </div>      
-        <div class="row"> 
-          <div class="settings-tab">          
-
-            <!-- Tab panes -->
-            <div class="tab-content">          
-                
-              <div class="list-group">
-                    <a href="#/details-view/{{advertisment.advertisment_id}}" class="list-group-item" ng-repeat="advertisment in advertisments.myadvertisments" ><span class="badge">#{{advertisment.advertisment_id}}</span>{{advertisment.advertisement_title}} ::  <span style="color:#999">Added on : {{advertisment.advertisement_date}}</span> :: <span style="color:#999">Expiry : {{advertisment.advertisement_expire}}</span></a>
-              </div>          
-            </div>
-
-          </div>        
-          
+          <div class="col-lg-3 heading-tab"><a href="#/my-profile">My Profile</a></div>
+          <div class="col-lg-3 heading-tab"><a href="#/change-password">Change Password</a></div>
+          <div class="col-lg-3 heading-tab active"><a href="#/my-ads">My Ads</a></div>
+          <div class="col-lg-3 heading-tab"><a href="#/view-applyjobs">Job Applicants</a></div>
         </div>
       </div>
-    </section>
+    </div>      
+    <div class="row"> 
+      <div class="settings-tab">          
+
+        <!-- Tab panes -->
+        <div class="tab-content">          
+            
+          <div class="list-group">
+          	<!--href="#/details-view/{{advertisment.advertisment_id}}"-->
+                <div class="list-group-item" ng-repeat="advertisment in advertisments.myadvertisments" >
+                	<button ng-click="deleteMyad(advertisment.advertisment_id)" class="label label-danger pull-right"><i class="fa fa-trash"></i> Delete</button>
+                    <button ng-click="go('myAdEdit/'+advertisment.advertisment_id)" class="label label-success pull-right"><i class="fa fa-pencil-square-o"></i> Edit</button>
+                    
+                    <!--<span class="badge">#{{advertisment.advertisment_id}}</span>-->
+                    {{advertisment.advertisement_title}} ::  
+                    <span style="color:#999">Added on : {{advertisment.advertisement_date}}</span> :: 
+                    <span style="color:#999">Expiry : {{advertisment.advertisement_expire}}</span>
+                </div>
+          </div>          
+        </div>
+
+      </div>        
+      
+    </div>
+  </div>
+</section>

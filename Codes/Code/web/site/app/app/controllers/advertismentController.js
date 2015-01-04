@@ -1,12 +1,10 @@
-controllers.addvertismentController= function($scope,advertismentFactory, $routeParams, ngProgress, $timeout){
+controllers.addvertismentController= function($scope, advertismentFactory, $routeParams, ngProgress, $timeout){
 	//ngProgress.start()
 	advertismentFactory.getAdd($routeParams.id, ngProgress, $scope);
 	
 	advertismentFactory.getSimilarItems($scope,$routeParams.id); 
 	
 	$scope.testfunction = function(data){
-	 	
-	 	//console.log(data);
 	 	$scope.item1	= data[0];
 	 	$scope.item2	= data[1];
 	 	$scope.item3	= data[2];
@@ -19,27 +17,13 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	 	$scope.item10	= data[9];
 	 	$scope.item11	= data[10];
 	 	$scope.item12	= data[11];
-
-/*	 	var i,j,temparray,chunk = 4;
-		for (i=0,j=data.length; i<j; i+=chunk) {
-			temparray = data.slice(i,i+chunk);
-			console.log(temparray)// do whatever
-		}
-*/		
 	 }
 	
 	$scope.ratingMax = 5;
 
 //-------------------------------------------------------------------------//
 	$scope.comments = advertismentFactory.getComments($routeParams.id);
-	//setTimeout(function(){ngProgress.complete()},500)
 	$scope.addComment = function(){
-               // console.log($scope.comments);
-//                var comment = $scope.comments.bodyz
-//                 console.log($scope.comments.bodyz);
-//                if (comment == ''){
-//                    alert("please enter a comment before submit");
-//                }
 		advertismentFactory.addComment($scope, $routeParams.id, $timeout);
 	}
 	
@@ -68,10 +52,8 @@ controllers.addvertismentController= function($scope,advertismentFactory, $route
 	
 	$scope.Addrate = function(){
 		if(typeof $scope.rateAdd != 'undefined'){
-		//ngProgress.start()
-		advertismentFactory.saveRating($routeParams.id, $scope.rateAdd, ngProgress, $scope, $timeout)
+			advertismentFactory.saveRating($routeParams.id, $scope.rateAdd, ngProgress, $scope, $timeout)
 		}
-		//console.log($scope.rateAdd)	
 	}
 	
 }

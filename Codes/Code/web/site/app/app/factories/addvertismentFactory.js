@@ -7,7 +7,8 @@ App.factory('advertismentFactory', function ($resource, $location) {
 
     var adImage = $resource('../../../api/postAdImage/:id', {}, {
         query: {method: 'GET', params: {}, isArray: false},
-        save: {method: 'POST'}
+        save: {method: 'POST'},
+		delete:{ method: 'DELETE', params:{id:'@id'}}
     });
 
     var adPublish = $resource('../../../api/publishAd/:id', {}, {
@@ -25,8 +26,15 @@ App.factory('advertismentFactory', function ($resource, $location) {
 
     var factory = {}
 
+	factory.deleteImage = function(image, $scope){
+		return adImage.delete({'id':image}, {}).$promise.
+		then(function(e){
+			window.location.reload()
+		})
+	}
+
     factory.saveRating = function (id, rate, ngProgress, $scope, $timeout) {
-        console.log(rate)
+        //console.log(rate)
         return rating.save({'ad_id': id, 'rate': rate}).$promise.then(function (e) {
             $scope.addAlert('success', e.message)
             ngProgress.complete()

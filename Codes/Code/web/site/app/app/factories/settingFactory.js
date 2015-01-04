@@ -150,9 +150,14 @@ App.factory('settingFactory',function($resource){
 })
 
 App.factory('myAdsFactory',function($resource){
-	var myAds = $resource('../../../api/myAdvertisments', {}, {
-		get: {method: 'GET', params: {}, isArray: false}	
+	var myAds = $resource('../../../api/myAdvertisments/:id', {}, {
+		get: {method: 'GET', params: {}, isArray: false}
     });
+	
+	var advertisments = $resource('../../../api/advertisment/:id', {}, {
+		update: { method: 'PUT', params: { id: '@id' } }
+	});
+	
 	var factory = {}
 	
 	factory.getMyAds = function($scope){
@@ -160,6 +165,21 @@ App.factory('myAdsFactory',function($resource){
 			alert(e.message)	
 		}).then(function(e){
 			$scope.myAds(e)
+		})
+	}
+	
+	factory.deleteMyAd = function($scope, id, ngProgress, $timeout){
+		return advertisments.update({id:id}, {'advertisement_status':'2'}).$promise
+		.then(function(e){
+			$scope.addAlert('success',e.message)
+			return myAds.get().$promise
+			.then(function(e){
+				$scope.myAds(e)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert();
+				}, 3000);
+			})
 		})
 	}
 	
