@@ -67,7 +67,7 @@
             function ScaleSlider() {
                 var bodyWidth = document.body.clientWidth;
                 if (bodyWidth)
-                    jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 1980));
+                    jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 1920));
                 else
                     window.setTimeout(ScaleSlider, 30);
             }
