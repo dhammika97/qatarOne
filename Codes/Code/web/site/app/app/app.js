@@ -6,6 +6,7 @@ var App = angular.module('QatartOneApp',[
 	'angularFileUpload',
 	'ngSanitize',
 	'uiSlider',
+	'ngDialog',
 	'checklist-model',
 	'textAngular',
 	'ui.bootstrap',
