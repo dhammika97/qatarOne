@@ -48,8 +48,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--<div class="shadow"></div>-->      
+            </div>     
         </header>
         <section class="home-bg" style="margin-top:58px">
             <div class="container">
@@ -68,6 +67,8 @@
             </div>
         </section>
         <section>
+
+				<div id="slider" class="sl-slider-wrapper">
 
 				<div class="sl-slider">
 				
@@ -148,9 +149,7 @@
         
         <script type="text/javascript">	
 			$(function() {
-			
 				var Page = (function() {
-
 					var $nav = $( '#nav-dots > span' ),
 						slitslider = $( '#slider' ).slitslider( {
 							onBeforeChange : function( slide, pos ) {
@@ -158,7 +157,6 @@
 								$nav.eq( pos ).addClass( 'nav-dot-current' );
 							}
 						} ),
-
 						init = function() {
 							initEvents();
 							i = 0
@@ -171,40 +169,26 @@
 										i=0
 									}
 									test();
-								},4000)
+								},3500)
 							}
 							test()
-							
 						},
 						initEvents = function() {
-
 							$nav.each( function( i ) {
-							
 								$( this ).on( 'click', function( event ) {
-									
 									var $dot = $( this );
-									
 									if( !slitslider.isActive() ) {
-
 										$nav.removeClass( 'nav-dot-current' );
 										$dot.addClass( 'nav-dot-current' );
-									
 									}
 									slitslider.jump( i + 1 );
 									return false;
-								
 								} );
-								
 							} );
-							
 						};
-						
 						return { init : init };
-
 				})();
-				
 				Page.init();
-			
 			});
 		</script>
     </body>
