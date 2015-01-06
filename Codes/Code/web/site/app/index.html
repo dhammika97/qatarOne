@@ -13,7 +13,6 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/ngProgress.css" rel="stylesheet">
     <link href="css/angular-slider.min.css" rel="stylesheet">
-    <link href="css/jcarousel.css" rel="stylesheet">
     
     <!--Slider-->
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
@@ -36,6 +35,15 @@
         <div class="row">
           <div class="top-nav">
             <div class="logo pull-left"><a href="/qatarone/web/site"><img src="images/logo.png" height="45"></a></div>
+            <div class="pull-left " style="margin-left:20px">
+              <ul style="padding-top:10px;">
+                <li><a href="/qatarone/web/site">Home</a></li>
+                <li><a href="#/pages/AboutUs">About Us</a></li>
+                <li><a href="#/portal/classified">Classifieds</a></li>
+                <li><a href="#/portal/jobs">Jobs</a></li>
+                <li><a href="#/contact-us" >Contact</a></li>
+              </ul>
+            </div>
             <div class="pull-right">
               <ul>
                 <li ng-class="{active:isActive('/login'), active:isActive('/my-profile')}" >
@@ -80,7 +88,6 @@
 <script src='libs/angular/slider/angular-slider.min.js'></script>
 <script src='libs/angular/checklist/checklist-model.js'></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.1.2/textAngular.min.js'></script>
-
 
 
 <script type="text/javascript" src="libs/angular/angular-resource.min.js"></script>
@@ -131,7 +138,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="libs/bootstrap/bootstrap.min.js"></script>
-<script src="libs/jcarousel/jcarousellite_1.0.1c4.js"></script>
+
 
 <alert class="text-center" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 </body>

@@ -1,3 +1,3 @@
 controllers.topVideoBannerController = function($scope,videoBannerFactory){
-	$scope.videoBanner = videoBannerFactory.getvideoBanner();		
+	$scope.videoBanner = videoBannerFactory.getvideoBanner();
 }

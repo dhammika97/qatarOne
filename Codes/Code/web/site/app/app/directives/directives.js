@@ -1,25 +1,30 @@
 // JavaScript Document
-App.directive('newsticker', function() {
+App.directive('helloWorld', function() {
   return {
     restrict: 'AE',
     replace: true,
-    template: '<div class="newsticker-jcarousellite"><ul>\
-        	<li>One</li>\
-			<li>One</li>\
-			<li>One</li>\
-			<li>One</li>\
-			<li>One</li>\
-			<li>One</li>\
-			<li>One</li>\
-        </ul></div>',
+	//template:'<div>Hello World!</div>',
+    templateUrl: "app/directives/templates/sliderTemplate.html",
     link: function(scope, elem, attrs) {
-		$(".newsticker-jcarousellite").jCarouselLite({
-			vertical: true,
-			hoverPause:true,
-			visible: 4,
-			auto:1000,
-			speed:1000
-		});
+		scope.test = function(){
+			$('.carousel[data-type="multi"] .item').each(function(){
+			  var next = $(this).next();
+			  if (!next.length) {
+				next = $(this).siblings(':first');
+			  }
+			  next.children(':first-child').clone().appendTo($(this));
+			  
+			  for (var i=0;i<2;i++) {
+				next=next.next();
+				if (!next.length) {
+					next = $(this).siblings(':first');
+				}
+				
+				next.children(':first-child').clone().appendTo($(this));
+			  }
+			});
+		}
+		scope.test()
 	}
   };
 });
