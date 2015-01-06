@@ -11,15 +11,8 @@
         <!-- Bootstrap -->
         <link href="app/css/font-awesome.min.css" rel="stylesheet">
         <link href="app/css/bootstrap.min.css" rel="stylesheet">
+        <link href="app/css/slitslider.css" rel="stylesheet">
         <link href="app/css/style.css" rel="stylesheet">
-
-        <!--Slider-->
-        <script type="text/javascript" src="slider/js/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" src="slider/js/jssor.js"></script>
-        <script type="text/javascript" src="slider/js/jssor.slider.js"></script>
-        <script type="text/javascript" src="slider/js/slider.js"></script>
-        <link rel="stylesheet" type="text/css" href="slider/css/style.css" />
-        <!--Slider End-->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,22 +27,31 @@
                 <div class="row">
                     <div class="top-nav">
                         <div class="logo pull-left"><a href="/qatarone/web/site"><img src="app/images/logo.png" height="45"></a></div>
+                        <div class="pull-left " style="margin-left:20px">
+                          <ul style="padding-top:10px;">
+                            <li><a href="/qatarone/web/site">Home</a></li>
+                            <li><a href="#/pages/AboutUs">About Us</a></li>
+                            <li><a href="#/portal/classified">Classifieds</a></li>
+                            <li><a href="#/portal/jobs">Jobs</a></li>
+                            <li><a href="#/contact-us" >Contact</a></li>
+                          </ul>
+                        </div>
                         <div class="pull-right">
-                            <!--<ul>
-                              <li ng-class="{active:isActive('/login'), active:isActive('/my-profile')}" >
-                                      <a href="#/login" ng-if="!username"><i class="fa fa-user fa-lg"></i>Login</a>
-                                      <a href="#/my-profile" ng-if="username"><i class="fa fa-user fa-lg"></i>{{username}}</a>
-                              </li>
-                              <li ng-class="{ active: isActive('/post-ad')}"><a href="#/post-ad"><i class="fa fa-pencil-square-o fa-lg"></i>Post Your Ad</a></li>
-                              <li><a href="" ng-if="username" ng-click="logout()"><i class="fa fa-power-off fa-lg"></i>Logout</a></li>
-                            </ul>-->
+                          <ul>
+                            <li ng-class="{active:isActive('/login'), active:isActive('/my-profile')}" >
+                                <a href="#/login" ng-if="!username"><i class="fa fa-user fa-lg"></i>Login</a>
+                                <a href="#/my-profile" ng-if="username"><i class="fa fa-user fa-lg"></i>{{username}}</a>
+                            </li>
+                            <li ng-class="{ active: isActive('/post-ad')}"><a href="#/post-ad"><i class="fa fa-pencil-square-o fa-lg"></i>Post Your Ad</a></li>
+                            <li><a href="" ng-if="username" ng-click="logout()"><i class="fa fa-power-off fa-lg"></i>Logout</a></li>
+                          </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <!--<div class="shadow"></div>-->      
         </header>
-        <section class="home-bg" style="margin-top:60px">
+        <section class="home-bg" style="margin-top:58px">
             <div class="container">
                 <div class="row">
                     <div class="nav-buttons">
@@ -65,57 +67,60 @@
                 </div>
             </div>
         </section>
-        <section class="post-ads">
-            <div class="container" id="slider1_container" style="position: relative; margin: 0 auto;
-                         top: 0px; left: 0px; width: 1300px; height: 300px; overflow: hidden;">
-                
-                    <!-- Jssor Slider Begin -->
-                    
-                        <!-- Loading Screen -->
-                        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
-                            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block;
-                                 top: 0px; left: 0px; width: 100%; height: 100%;">
-                            </div>
-                            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
-                                 top: 0px; left: 0px; width: 100%; height: 100%;">
-                            </div>
-                        </div>
-                        <!-- Slides Container -->
-                        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1300px;
-                             height: 300px; overflow: hidden;">
-                            <div>
-                                <img u="image" src="slider/img/1920/red.jpg" />
-                            </div>
-                            <div>
-                                <img u="image" src="slider/img/1920/purple.jpg" />
-                               
-                            </div>
-                            <div>
-                                <img u="image" src="slider/img/1920/blue.jpg" />
-                              
-                            </div>
-                        </div>
+        <section>
 
+				<div class="sl-slider">
+				
+					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+						<div class="sl-slide-inner">
+							<div class="bg-img bg-img-1"></div>
+							<h2>A bene placito.</h2>
+							<blockquote><p>You have just dined, and however scrupulously the slaughterhouse is concealed in the graceful distance of miles, there is complicity.</p><cite>Ralph Waldo Emerson</cite></blockquote>
+						</div>
+					</div>
+					
+					<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
+						<div class="sl-slide-inner">
+							<div class="bg-img bg-img-2"></div>
+							<h2>Regula aurea.</h2>
+							<blockquote><p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p><cite>Albert Schweitzer</cite></blockquote>
+						</div>
+					</div>
+					
+					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
+						<div class="sl-slide-inner">
+							<div class="bg-img bg-img-3"></div>
+							<h2>Dum spiro, spero.</h2>
+							<blockquote><p>Thousands of people who say they 'love' animals sit down once or twice a day to enjoy the flesh of creatures who have been utterly deprived of everything that could make their lives worth living and who endured the awful suffering and the terror of the abattoirs.</p><cite>Dame Jane Morris Goodall</cite></blockquote>
+						</div>
+					</div>
+					
+					<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
+						<div class="sl-slide-inner">
+							<div class="bg-img bg-img-4"></div>
+							<h2>Donna nobis pacem.</h2>
+							<blockquote><p>The human body has no more need for cows' milk than it does for dogs' milk, horses' milk, or giraffes' milk.</p><cite>Michael Klaper M.D.</cite></blockquote>
+						</div>
+					</div>
+					
+					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
+						<div class="sl-slide-inner">
+							<div class="bg-img bg-img-5"></div>
+							<h2>Acta Non Verba.</h2>
+							<blockquote><p>I think if you want to eat more meat you should kill it yourself and eat it raw so that you are not blinded by the hypocrisy of having it processed for you.</p><cite>Margi Clarke</cite></blockquote>
+						</div>
+					</div>
+				</div><!-- /sl-slider -->
 
-                        <div u="navigator" class="jssorb21" style="position: absolute; bottom: 26px; left: 6px;">
-                            <!-- bullet navigator item prototype -->
-                            <div u="prototype" style="POSITION: absolute; WIDTH: 19px; HEIGHT: 19px; text-align:center; line-height:19px; color:White; font-size:12px;"></div>
-                        </div>
+				<nav id="nav-dots" class="nav-dots">
+					<span class="nav-dot-current"></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</nav>
 
-                        <!-- Arrow Left -->
-                        <span u="arrowleft" class="jssora21l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
-                        </span>
-                        <!-- Arrow Right -->
-                        <span u="arrowright" class="jssora21r" style="width: 55px; height: 55px; top: 123px; right: 8px">
-                        </span>
-                        <!-- Arrow Navigator Skin End -->
-
-                   
-                    <!-- Jssor Slider End -->
-                    <div class="main-text">  sit amet, consectetur adipiscing elit. Vestibulum dignissim mauris eu lectus sagittis, vel egestas nulla iaculis. Pellentesque vestibulum velit vitae tempor commodo</div>
-                    <a class="post-ad-btn" href="app/#/post-ad"><i class="fa fa-pencil-square-o"></i> Post an ad</a>
-                
-            </div>
+			</div>
         </section>
         <footer>
             <div class="container">
@@ -134,8 +139,73 @@
         </footer>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="app/libs/jquery/modernizr.custom.79639.js"></script>
+		<script src="app/libs/jquery/jquery.ba-cond.min.js"></script>
+		<script src="app/libs/jquery/jquery.slitslider.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="app/libs/bootstrap/bootstrap.min.js"></script>
+        
+        <script type="text/javascript">	
+			$(function() {
+			
+				var Page = (function() {
+
+					var $nav = $( '#nav-dots > span' ),
+						slitslider = $( '#slider' ).slitslider( {
+							onBeforeChange : function( slide, pos ) {
+								$nav.removeClass( 'nav-dot-current' );
+								$nav.eq( pos ).addClass( 'nav-dot-current' );
+							}
+						} ),
+
+						init = function() {
+							initEvents();
+							i = 0
+							var test = function(){
+								setTimeout(function(){
+									slitslider.jump( i + 1 );
+									if(slitslider.slidesCount>i){
+										i++
+									}else{
+										i=0
+									}
+									test();
+								},4000)
+							}
+							test()
+							
+						},
+						initEvents = function() {
+
+							$nav.each( function( i ) {
+							
+								$( this ).on( 'click', function( event ) {
+									
+									var $dot = $( this );
+									
+									if( !slitslider.isActive() ) {
+
+										$nav.removeClass( 'nav-dot-current' );
+										$dot.addClass( 'nav-dot-current' );
+									
+									}
+									slitslider.jump( i + 1 );
+									return false;
+								
+								} );
+								
+							} );
+							
+						};
+						
+						return { init : init };
+
+				})();
+				
+				Page.init();
+			
+			});
+		</script>
     </body>
 </html>
