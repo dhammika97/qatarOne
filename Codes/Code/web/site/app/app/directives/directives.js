@@ -1,30 +1,22 @@
 // JavaScript Document
-App.directive('helloWorld', function() {
+App.directive('helloWorld', function(ngDialog) {
   return {
     restrict: 'AE',
     replace: true,
-	//template:'<div>Hello World!</div>',
+	scope:{
+		videoT: '='
+	},
     templateUrl: "app/directives/templates/sliderTemplate.html",
     link: function(scope, elem, attrs) {
-		scope.test = function(){
-			$('.carousel[data-type="multi"] .item').each(function(){
-			  var next = $(this).next();
-			  if (!next.length) {
-				next = $(this).siblings(':first');
-			  }
-			  next.children(':first-child').clone().appendTo($(this));
-			  
-			  for (var i=0;i<2;i++) {
-				next=next.next();
-				if (!next.length) {
-					next = $(this).siblings(':first');
-				}
-				
-				next.children(':first-child').clone().appendTo($(this));
-			  }
-			});
+		setTimeout(function(){
+			$('.crsl-items').carousel({ autoRotate: 3000, visible: 4});
+		},1000)
+		
+		scope.openWindow = function(id){
+			ngDialog.open({ template: '<iframe id="player" type="text/html" width="480" height="320" src="http://www.youtube.com/embed/'+id+'" frameborder="0"></iframe>',
+    		plain: true,
+			className: 'ngdialog-theme-default' });	
 		}
-		scope.test()
 	}
   };
 });

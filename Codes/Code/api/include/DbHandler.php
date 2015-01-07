@@ -1620,17 +1620,14 @@ class DbHandler {
 
         (isset($video['video_title']) ? $video_title = $video['video_title'] : $video_title = "" );
         (isset($video['video_url']) ? $video_url = $video['video_url'] : $video_url = "" );
-        (isset($video['video_filename']) ? $video_filename = $video['video_filename'] : $video_filename = '');
 
         $db = new database();
         $table = "video";
         $values = "'" . $video_title . "',
-				'" . $video_url . "',
-				'" . $video_filename . "',			
+				'" . $video_url . "',		
 				'1'";
         $rows = "video_title,
-				   video_url,
-				   video_filename, 				
+				   video_url,			
 				   video_status";
         if ($db->insert($table, $values, $rows)) {
             return true;

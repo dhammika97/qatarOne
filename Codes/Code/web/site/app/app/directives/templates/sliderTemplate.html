@@ -1,36 +1,13 @@
 <div class="col-md-12">
-<div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
-  <div class="carousel-inner">
-    <div class="item active">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=1" class="img-responsive"></a></div>
+<!--	<div id="NAV-ID" class="crsl-nav">
+        <a href="" class="previous">Previous</a>
+        <a href="" class="next">Next</a>
+    </div>-->
+    <div class="crsl-items" data-navigation="NAV-ID">
+        <div class="crsl-wrap">
+            <figure class="crsl-item col-lg-3 col-md-3 col-sm-12" ng-model="videoT" ng-repeat="video in videoT">
+                <a href="" ng-click="openWindow(video.video_url)"><img class="img-responsive" src="http://img.youtube.com/vi/{{video.video_url}}/hqdefault.jpg"></a>
+            </figure>
+        </div>
     </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=2" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=3" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=4" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=5" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=6" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=7" class="img-responsive"></a></div>
-    </div>
-    <div class="item">
-      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=8" class="img-responsive"></a></div>
-    </div>
-  </div>
-  <a class="left carousel-control" role="button" ng-swipe-right="showPrev()">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-  </a>
-  <a class="right carousel-control" role="button" ng-swipe-right="showNext()">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-  </a>
-</div>
 </div>

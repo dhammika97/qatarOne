@@ -6,7 +6,7 @@
     <thead>
       <tr>
         <th>Video Title</th>
-        <th>Video URl </th>       
+        <th>Video</th>       
         <th>Video status</th>
         <th></th>
       </tr>
@@ -14,7 +14,7 @@
     <tbody>
       <tr ng-repeat="video in video.video">
    		<td>{{video.video_title}}</td>
-        <td>{{video.video_url}}</td>   
+        <td><img class="img-responsive" src="http://img.youtube.com/vi/{{video.video_url}}/default.jpg"></td>   
         <td>{{video.video_status}}</td>
         <td><a href="#/editVideo/{{video.video_id}}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" ng-click="deleteVideo(video.video_id)">Delete</button></td> 
       </tr>

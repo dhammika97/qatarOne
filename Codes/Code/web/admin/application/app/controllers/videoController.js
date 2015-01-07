@@ -19,26 +19,7 @@ controllers.videoAddController = function($scope, videoFactory, FileUploader){
 	})
 	
 	$scope.addVideo = function(){
-		if(uploader.queue.length !=0){
-
-			uploader.uploadAll();
-
-			uploader.onCompleteItem = function(fileItem, response, status, headers) {	
-
-				if(response.error == false){
-					console.log(response);
-					 $scope.video.video_filename = response.video
-					 
-					//alert('Video upload successfull!')
-					videoFactory.saveVideo($scope);
-				}else{
-					console.log(response);
-					alert('Video upload failed!')
-				}
-			};
-		}else{
-			alert('Video should be selected')
-		}
+		videoFactory.saveVideo($scope);
 	}
 }
 
@@ -48,17 +29,6 @@ controllers.videoDetailsController = function($scope, $routeParams, videoFactory
 		url: '../../../api/include/upload.php'
 	})
 	$scope.updateVideo= function(id){
-		if(uploader.queue.length !=0){
-			uploader.uploadAll()
-			uploader.onCompleteItem = function(fileItem, response, status, headers) {	
-				if(response.error==false){
-					videoFactory.updateVideo($scope,id);
-				}else{
-					alert('video upload failed!')
-				}
-			};
-		}else{
-			videoFactory.updateVideo($scope,id);
-		}
+		videoFactory.updateVideo($scope,id);
 	}
 }
