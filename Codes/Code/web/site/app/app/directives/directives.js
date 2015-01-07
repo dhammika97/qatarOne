@@ -10,13 +10,40 @@ App.directive('helloWorld', function(ngDialog) {
     link: function(scope, elem, attrs) {
 		setTimeout(function(){
 			$('.crsl-items').carousel({ autoRotate: 3000, visible: 4});
-		},100)
+		},1000)
 		
 		scope.openWindow = function(id){
-			ngDialog.open({ template: '<iframe id="player" type="text/html" width="480" height="320" src="http://www.youtube.com/embed/'+id+'" frameborder="0"></iframe>',
+			ngDialog.open({ template: '<iframe id="player" type="text/html" width="640" height="480" src="http://www.youtube.com/embed/'+id+'" frameborder="0"></iframe>',
     		plain: true,
 			className: 'ngdialog-theme-default' });	
 		}
 	}
   };
+}).directive('newsTicker',function($location){
+	return {
+		restrict: 'E',
+		replace: true,
+		scope:{
+			newsM: '='
+		},
+		templateUrl: "app/directives/templates/newsTickerTemplate.html",
+		link: function(scope,elem,attrs){
+			scope.init = function(){
+				$(elem).jCarouselLite({
+						vertical: true,
+						hoverPause:true,
+						visible: 2,
+						auto:500,
+						speed:2000
+				});
+			}
+			setTimeout(function(){
+				scope.init();
+			},1200)
+			
+			scope.go = function(url){
+				$location.path(url)
+			}
+		}
+	}
 });
