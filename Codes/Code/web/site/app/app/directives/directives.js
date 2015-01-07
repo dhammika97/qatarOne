@@ -10,7 +10,7 @@ App.directive('helloWorld', function(ngDialog) {
     link: function(scope, elem, attrs) {
 		setTimeout(function(){
 			$('.crsl-items').carousel({ autoRotate: 3000, visible: 4});
-		},1000)
+		},100)
 		
 		scope.openWindow = function(id){
 			ngDialog.open({ template: '<iframe id="player" type="text/html" width="480" height="320" src="http://www.youtube.com/embed/'+id+'" frameborder="0"></iframe>',
