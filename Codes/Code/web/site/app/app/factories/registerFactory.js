@@ -67,8 +67,8 @@ App.factory('loginFactory',function($resource){
 					//$scope.$parent.username = data.username;
 					$scope.setUser(data);
 					$scope.closeAlert();
-					//$scope.go('/classifieds')
-					window.location.replace('#/classifieds')
+					$scope.go('/portal/classified')
+					//window.location.replace('#/classifieds')
 					location.reload()
 				}, 2000);
 				
