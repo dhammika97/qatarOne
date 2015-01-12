@@ -34,8 +34,9 @@ if (!empty($_FILES)) {
         $image = new SimpleImage();
         $image->load($_FILES['category_image']['tmp_name']);
         $ext = pathinfo($_FILES['category_image']['name'], PATHINFO_EXTENSION);
-        $image->save($dir . $unique . '.' . $ext);
-        $response = array('error' => false, 'message' => 'File transfered completed!', 'image' => $unique . '.' . $ext);
+        $image->save($dir . $_FILES['category_image']['name']);
+       // move_uploaded_file($_FILES["category_image"]["tmp_name"], $dir) or die("not uploaded");
+        $response = array('error' => false, 'message' => 'File transfered completed!', 'image' => $_FILES['category_image']['name']);
         $json = json_encode($response);
         echo $json;
     } elseif (isset($_FILES['event_image']['name']) != '') {
