@@ -8,10 +8,10 @@
     <div ng-repeat="category in categories.categories" class="flip-container col-lg-3 col-md-3 col-sm-3 category-item" ontouchstart="this.classList.toggle('hover');">
         <div class="flipper">
             <div class="front">
-                <div class="category-heading"><!--<span class="category-icon"><i class="fa fa-bicycle"></i></span>--><img src="images/books.png" /><br/><a href="#/show-list/{{category.category_alias}}-in-qatar">{{category.category_name}}</a><!--<span class="category-count"> {{category.addCount}} </span>--></div>
+                <div class="category-heading"><img  ng-src="../../../api/uploads/category/{{category.category_image}}"><br/><a href="#/show-list/{{category.category_alias}}-in-qatar">{{category.category_name}}</a><!--<span class="category-count"> {{category.addCount}} </span>--></div>
             </div>
             <div class="back">
-                <div class="category-heading"><!--<span class="category-icon"><i class="fa fa-bicycle"></i></span>--><img src="images/books.png" /><br/><a href="#/show-list/{{category.category_alias}}-in-qatar">{{category.category_name}}</a><!--<span class="category-count"> {{category.addCount}} </span>--></div>
+                <div class="category-heading"><img ng-src="../../../api/uploads/category/{{category.category_image}}"><br/><br/><a href="#/show-list/{{category.category_alias}}-in-qatar">{{category.category_name}}</a><!--<span class="category-count"> {{category.addCount}} </span>--></div>
             </div>
         </div>
     </div>
