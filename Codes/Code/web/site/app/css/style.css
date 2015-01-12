@@ -24,11 +24,11 @@ body { font-family: "Roboto", sans-serif; font-size: 14px; line-height: 20px; fo
 header { background: #CCCCCC ; border-top:5px solid #A50344 !important; }
 header .top-nav ul { display: inline; }
 header .top-nav ul li { display: inline-block; text-align: center; padding: 0.5rem 0.4rem 0.2rem 0.4rem; }
-header .top-nav ul li a { display: inline-block; color: #666; text-decoration: none; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; }
+.navbar-fixed-top ul li a { color: #666; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; }
 header .top-nav ul li a i { display: block; }
-header .top-nav ul li a:hover { text-decoration: none; color: #a50344; }
-header .top-nav ul li.active { background: #a50344; }
-header .top-nav ul li.active a { color: white; }
+.navbar-fixed-top ul li a:hover { text-decoration: none; color: #a50344; }
+.navbar-fixed-top ul li.active { background: #a50344; }
+.navbar-fixed-top ul li.active a { color: white; }
 
 .btn { background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #BD0A51), color-stop(100%, #A50344)); background: -webkit-linear-gradient(#BD0A51, #A50344); background: -moz-linear-gradient(#BD0A51, #A50344); background: -o-linear-gradient(#BD0A51, #A50344); background: linear-gradient(#BD0A51, #A50344); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; color: #F5F5F5; border: none; font-size: 14px; line-height: 18px; font-size: 1.4rem; line-height: 1.8rem; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; }
 .btn:hover, .btn:focus, .btn.disabled { background: #747474; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; }
@@ -533,7 +533,7 @@ body { top: 0px !important; }
 
 #google_translate_element{
 	position:relative;
-	top:-11px;	
+	top:7px;	
 }
 
 .goog-te-gadget-simple{
@@ -542,4 +542,13 @@ body { top: 0px !important; }
 
 #google_translate_element .goog-te-menu-value{
 	padding:0 10px;	
+}
+
+.navbar-toggle{
+	background:rgba(165, 3, 68, 1);
+	border: 1px solid rgba(165, 3, 68, 1);	
+}
+
+.navbar-toggle .icon-bar{
+	background:#FFF;
 }
