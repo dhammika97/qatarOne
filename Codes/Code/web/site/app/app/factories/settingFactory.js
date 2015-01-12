@@ -101,7 +101,7 @@ App.factory('settingFactory',function($resource){
    });
 	
 	
-	factory.verifyAndsendforgotPSWDLink = function($scope,ngProgress,$timeout){		
+	factory.verifyAndsendforgotPSWDLink = function($scope, id,ngProgress,$timeout){		
 		
 		return userforgotPSWDLink.save($scope.user.user_email)
 			.$promise.catch(function(e){
