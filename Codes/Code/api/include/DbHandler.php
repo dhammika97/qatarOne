@@ -309,15 +309,16 @@ class DbHandler {
             return false;
         }
         $table = "category";
+        $category_image = $category['category_image'];
         (isset($category['category_name']) ? $category_name = $category['category_name'] : $category_name = "" );
         (isset($category['category_parentId']) ? $category_parentId = $category['category_parentId'] : $category_parentId = "" );
         (isset($category['category_alias']) ? $cat_alias = $category['category_alias'] : $cat_alias = "" );
 
-        $values = "'" . $category_name . "', 
+        $values = "'" . $category_name . "', '".$category_image."',
 				  '" . $user_id . "' , 
 				  '" . $category_parentId . "',
 				  '" . $cat_alias . "'";
-        $rows = "category_name, category_enteredBy, category_parentId,category_alias";
+        $rows = "category_name, category_image,  category_enteredBy, category_parentId,category_alias";
         if ($db->insert($table, $values, $rows)) {
             return true;
         }

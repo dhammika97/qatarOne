@@ -155,6 +155,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `category_enteredDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category_enteredBy` int(11) NOT NULL,
   `category_status` int(1) NOT NULL,
+  `category_image` varchar(255) NOT NULL,	
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 

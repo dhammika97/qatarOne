@@ -11,11 +11,29 @@ controllers.categoryController = function($scope, categoryFactry){
 	}
 	
 }
-controllers.addCategoryController = function($scope, categoryFactry){
+controllers.addCategoryController = function($scope, categoryFactry, FileUploader){
 	$scope.parentCategory = categoryFactry.getCategory({'category_parentId':0,'category_status':1})
-	
+        
+        var uploader = $scope.uploader = new FileUploader({
+		url: '../../../api/include/upload.php'
+	})
+        
 	$scope.addCategory = function(){
-		categoryFactry.saveCategory($scope)
+            if(uploader.queue.length !=0){
+                uploader.uploadAll()
+                uploader.onCompleteItem = function(fileItem, response, status, headers) {
+                    if(response.error==false){
+					$scope.category.category_image = response.image
+					categoryFactry.saveCategory($scope)
+				}else{
+					alert('image upload failed!')
+				}
+                }
+               
+            }else{
+                alert('image should be selected')
+            }
+		
 	}
 }
 

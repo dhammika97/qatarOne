@@ -28,6 +28,16 @@ if (!empty($_FILES)) {
         $response = array('error' => false, 'message' => 'File transfered completed!', 'image' => $unique . '.' . $ext);
         $json = json_encode($response);
         echo $json;
+    }elseif (isset($_FILES['category_image']['name']) != '') {//catimage
+        $dir = '../uploads/category/';
+        $unique = strtoupper(md5(uniqid(rand(), true)));
+        $image = new SimpleImage();
+        $image->load($_FILES['category_image']['tmp_name']);
+        $ext = pathinfo($_FILES['category_image']['name'], PATHINFO_EXTENSION);
+        $image->save($dir . $unique . '.' . $ext);
+        $response = array('error' => false, 'message' => 'File transfered completed!', 'image' => $unique . '.' . $ext);
+        $json = json_encode($response);
+        echo $json;
     } elseif (isset($_FILES['event_image']['name']) != '') {
         $dir = '../uploads/events/';
         $unique = strtoupper(md5(uniqid(rand(), true)));

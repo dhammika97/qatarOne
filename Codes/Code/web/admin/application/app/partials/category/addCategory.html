@@ -1,37 +1,43 @@
 <h1>Add New Category</h1>
 <ol class="breadcrumb">
-  <li class="active"> <a href="#/categories">Categories</a>	</li>
-  <li class="active"> Add new category</li>
+    <li class="active"> <a href="#/categories">Categories</a>	</li>
+    <li class="active"> Add new category</li>
 </ol>
 <div class="row">
-	<div class="col-lg-5 col-lg-offset-1">
-    	<form name="myForm" class="form-horizontal" role="form" novalidate>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Parent Category</label>
-            <div class="col-sm-8">
-				<select class="form-control" ng-model="category.category_parentId" ng-options="obj.category_id as obj.category_name for obj in parentCategory.categories" required>
-                  <!--<option value="0">Classified</option>
-                  <option value="1">Job Advertisment</option>-->
-                </select>
+    <div class="col-lg-5 col-lg-offset-1">
+        <form name="myForm" class="form-horizontal" role="form" novalidate>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Parent Category</label>
+                <div class="col-sm-8">
+                    <select class="form-control" ng-model="category.category_parentId" ng-options="obj.category_id as obj.category_name for obj in parentCategory.categories" required>
+                        <!--<option value="0">Classified</option>
+                        <option value="1">Job Advertisment</option>-->
+                    </select>
+                </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Category Name</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" ng-model="category.category_name" required>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Category Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="category.category_name" required>
+                </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Category Alias</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" ng-model="category.category_alias" required>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Slider Image</label>
+                <div class="col-sm-8">
+                    <input type="file" nv-file-select=""  uploader="uploader" options="{'alias':'category_image'}" ng-model="category.category_image" >
+                </div>
             </div>
-          </div>
-		  <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-10">
-              <button type="submit" class="btn btn-primary" ng-click="addCategory()" ng-disabled="myForm.$invalid" >Add Category</button>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Category Alias</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="category.category_alias" required>
+                </div>
             </div>
-          </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-10">
+                    <button type="submit" class="btn btn-primary" ng-click="addCategory()" ng-disabled="myForm.$invalid" >Add Category</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
