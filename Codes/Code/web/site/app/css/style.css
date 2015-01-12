@@ -64,10 +64,16 @@ header .top-nav ul li.active a { color: white; }
 .main-page .ad-placeholder .category-item { -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; }
 .main-page .ad-placeholder .category-item .category-count { text-align: center; color: #333333; font-size: 14px; line-height: 20px; font-size: 1.4rem; line-height: 2rem; }
 .main-page .ad-placeholder .category-item .category-heading { background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f3f3f3)); background: -webkit-linear-gradient(#fefefe, #f3f3f3); background: -moz-linear-gradient(#fefefe, #f3f3f3); background: -o-linear-gradient(#fefefe, #f3f3f3); background: linear-gradient(#fefefe, #f3f3f3); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; padding: 0; @inlcude clearfix; text-align: center; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; font-family: "Roboto Condensed", sans-serif; text-align: center; min-height:100px;}
+.main-page .ad-placeholder .category-item .category-heading img{
+	border:none;
+	box-shadow:none;
+	margin-top:15px;
+	line-height:normal;
+}
 .main-page .ad-placeholder .category-item .category-heading span { display: inline-block; padding-bottom: .5rem; padding: 10px; width: 45px; background: #a50344; color: #ffffff; }
 .main-page .ad-placeholder .category-item .category-heading span.category-icon { float: left; margin-right: 10px; border-radius:5px 0 0 5px}
 .main-page .ad-placeholder .category-item .category-heading span.category-count { float: right; border-radius:0 5px 5px 0}
-.main-page .ad-placeholder .category-item .category-heading a { font-size: 10px; line-height: 34px; font-size: 1rem; line-height: 3.4rem; text-decoration: none; color: #333333; display: inline-block; }
+.main-page .ad-placeholder .category-item .category-heading a { font-size: 10px; line-height: 34px; font-size: 1rem; line-height: 2.4rem; text-decoration: none; color: #333333; display: inline-block; }
 .main-page .ad-placeholder .category-item .category-heading a:hover { color: #ffffff; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; font-size: 10px; line-height: 34px; font-size: 1rem; line-height: 3.4rem; }
 .main-page .ad-placeholder .category-item .category-heading:hover { background: #a50344; }
 .main-page .ad-placeholder .category-item .category-heading:hover a { color: #ffffff; font-size: 10px; line-height: 35px; font-size: 1rem; line-height: 3.5rem; }
