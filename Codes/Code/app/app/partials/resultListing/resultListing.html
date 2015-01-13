@@ -1,0 +1,136 @@
+<div ng-controller="resultsListingController">
+<section class="search-bar" >
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 keyword">
+        <input type="text" class="form-control" ng-model="searchproduct.title" placeholder="What are you lookig for ?">
+      </div>
+      <div class="col-lg-3  col-md-3 category">
+        <select ng-options="obj.category_sub_alias as obj.category_sub_name for obj in catList.subcategories" class="form-control" ng-model="searchproduct.category" ng-init="searchproduct.category = options[0]">
+        	<option value=''>- Select Category -</option>
+        </select>
+      </div>
+      <div class="col-lg-3  col-md-3 location">
+        <select ng-options="obj.location_alias as obj.location_name for obj in locationList.locations" class="form-control" ng-model="searchproduct.location">
+        	<option value=''>- Select Location -</option>
+        </select>
+      </div>
+      <div class="col-lg-2  col-md-2"> <a class="search-btn" href="" ng-click='searchProduct()'><i class="fa fa-search"></i> Search</a> </div>
+    </div>
+  </div>
+</section>
+<!--<section class="main-slider hidden-xs hidden-sm">
+	<ng-include src="'app/partials/resultListing/slider.html'"></ng-include>
+</section>-->
+
+<section class="main-page">  
+    <div class="breadcrumb-bar">
+    <div class="container">
+      <div class="row">
+        <ul class="pull-left">
+          <li ng-if="resultList.category[0].category_parentId == 1"><a href="#/portal/classified">All Classifieds</a></li>
+          <li ng-if="resultList.category[0].category_parentId == 2"><a href="#/portal/jobs">All Jobs</a></li>
+          <li><a href="">{{resultList.category[0].category_name}}</a></li>
+        </ul>
+        <!--<a class="pull-right back-link">Back to categories</a> --></div>
+    </div>
+  </div>
+  <div class="filter-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="pull-left count">{{resultList.category[0].category_name}}</div>
+          
+        </div>
+        <div class="col-lg-6 filters">
+          <ul class="nav nav-pills pull-right">
+            <!--<li class="dropdown"> <a id="drop6" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false"> Filter By <span class="caret"></span> </a>
+              <ul id="menu3" class="dropdown-menu" role="menu" aria-labelledby="drop6">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Lowest Price</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Highest Price</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">...</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">...</a></li>
+              </ul>
+            </li>-->
+            <li ><a href="" ng-click="changeView('grid')"><i class="fa fa-th-large fa-lg"></i></a></li>
+            <li ><a href="" ng-click="changeView('list')"><i class="fa fa-th-list fa-lg"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="shadow"></div>
+  <div class="cateogry-listing">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 filter-side-bar">
+          <div class="filter-heading"> <i class="fa fa-th-list"></i> Category </div>
+          <ul >
+          	<li><a href="" ng-click="resetParams('subcategory')">All {{resultList.category[0].category_name}}</a></li>
+            <li ng-repeat="resultList in resultList.advertisments | unique:'category' " style="padding-left:15px;">
+            	<a href="" ng-click='setParams("subcategory",resultList.scalias)'>{{resultList.category}}<!--<span>20500</span>--></a>
+            </li>
+          </ul>
+
+          <div class="filter-heading"> <i class="fa fa-map-marker"></i> Location </div>
+          <ul>
+          	<li><a href="" ng-click="resetParams('location')">All of Qatar</a></li>
+            <li ng-repeat="resultList in resultList.advertisments | unique:'location'" style="padding-left:15px;">
+            	<a href="" ng-click='setParams("location",resultList.lalias); resetParams("suburb")'>{{resultList.location}}<!--<span>20500</span>--></a>
+            </li>
+            <li ng-if="!loc()" ng-repeat="resultList in resultList.advertisments | unique:'suburbid'" style="padding-left:30px">
+                <a href="" ng-click='setParams("suburb",resultList.sub_alias)'>{{resultList.suberb}}<!--<span>20500</span>--></a>
+            </li>
+          </ul>
+          
+          
+          <div class="filter-heading"> <i class="fa fa-usd"></i> Price Range </div>
+          <div class="filter-content price-range-selector">
+			<input type="number" class="form-control price-min" ng-value="price_less" ng-model="price_less" placeholder="Min"> 
+            <input type="number" class="form-control" min="{{price_less+1}}" ng-model="price_maxim" placeholder="Max">
+            <button class="btn btn-default" type="button" ng-click="setPriceParams(price_less, price_maxim)" ><i class="fa fa-arrow-circle-right fa-lg"></i></button>
+		  </div>
+          <div class="filter-content " ng-if="resultList.brands" >
+          <div class="filter-heading"> <i class="fa fa-usd"></i> Brand </div>
+			<ul class="brands-list" ng-class="{show: show}">
+            	<li ng-repeat="brand in resultList.brands">
+            		<input type="checkbox" checklist-model="filter.brands" checklist-value="brand" ng-click="filterBrands()" /> {{brand}}
+            	</li>
+          	</ul>
+            <div class="show-more" ng-click="show = true">+ See More</div>
+          </div>
+          <ng-include src="'app/partials/resultListing/subscribe.html'"></ng-include>
+        </div>
+        <div class="col-lg-9" >
+          <div id="products" class="row" >
+          	{{error}}
+            <div class="item  col-xs-6 col-sm-6 col-md-3 col-lg-3" ng-class="{'grid-group-item':isList, 'list-group-item':!isList}"  ng-repeat="resultList in resultList.advertisments | filter:searchText">
+              <div class="thumbnail" ng-click="go('/details-view/'+resultList.aid)"> <img class="group list-group-image" ng-src="../api/uploads/advertisement/thumb/{{resultList.image}}" alt="" onerror="this.onerror=null;this.src='images/no_image.jpg';" height="163" width="260" />
+                <div class="caption">
+                  <div class="details">
+                    <h4 class="group inner list-group-item-heading"> {{resultList.advertisement_title}}</h4>
+                    <p class="group inner list-group-item-text"> <span class="datestamp"> {{resultList.date}} </span>									
+						<span>{{resultList.suberb}}, {{resultList.location}}</span>
+                    </p>
+                  </div>
+                  <div class="price">
+                    <div class="row">
+                      <!--<div class="col-xs-12 col-sm-6 col-md-6"> <span class="rating">######</span> <span class="comments">5 Comments</span> </div>-->
+                      <div class="col-xs-12 col-sm-12 col-md-12"> <span class="price-tag">{{resultList.currency}} {{resultList.price}}</span> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pagination pull-right">
+        	<pagination boundary-links="true" ng-change="pageChanged()" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="itemsPerPage" first-text="&laquo;" last-text="&raquo;"></pagination>
+        </div>
+        <!--<div class="pagination pull-right"> << < 1 | 2 | 3 > >></div>-->
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+</div>
