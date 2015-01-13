@@ -104,7 +104,7 @@
         <div class="col-lg-9" >
           <div id="products" class="row" >
           	{{error}}
-            <div class="item  col-xs-6 col-sm-6 col-md-4 col-lg-4" ng-class="{'grid-group-item':isList, 'list-group-item':!isList}"  ng-repeat="resultList in resultList.advertisments | filter:searchText">
+            <div class="item  col-xs-6 col-sm-6 col-md-3 col-lg-3" ng-class="{'grid-group-item':isList, 'list-group-item':!isList}"  ng-repeat="resultList in resultList.advertisments | filter:searchText">
               <div class="thumbnail" ng-click="go('/details-view/'+resultList.aid)"> <img class="group list-group-image" ng-src="../../../api/uploads/advertisement/thumb/{{resultList.image}}" alt="" onerror="this.onerror=null;this.src='images/no_image.jpg';" height="163" width="260" />
                 <div class="caption">
                   <div class="details">
