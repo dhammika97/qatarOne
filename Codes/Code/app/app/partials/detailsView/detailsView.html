@@ -63,7 +63,9 @@
                 <li ng-repeat="(key, value) in attr">{{value}}</li>
               </ul>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 contact-no"> <i class="fa fa-phone fa-2x"></i> {{adversiment.advertisment[0].advertisement_contactNo}} </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 comments-btn text-right"></div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 comments-btn text-right">
+              	<i class="fa fa-envelope-o fa-2x"></i> {{adversiment.advertisment[0].advertisement_contactEmail}}
+              </div>
             </div>
           </div>
         </div>

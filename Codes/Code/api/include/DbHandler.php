@@ -171,7 +171,7 @@ class DbHandler {
                     break;
 
                 default:
-                    $limit = '2';
+                    $limit = '';
             }
         }
 
