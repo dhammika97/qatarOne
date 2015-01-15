@@ -263,6 +263,7 @@ App.config(function ($routeProvider, $httpProvider) {
 })
 
         .run(function ($rootScope, $location, User) {
+			//console.log(User)
             // register listener to watch route changes
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
                 if ($rootScope.accessToken == null) {

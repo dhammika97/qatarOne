@@ -2,8 +2,24 @@
 var controllers = {};
 ///ng-controller="masterController"
 controllers.masterController = function($scope){
-	$scope.loggedInUser = "Usama"
+	var ArrayCookies = document.cookie.split(';')
+    for (i = 0; i < ArrayCookies.length; i++) {
+        if (ArrayCookies[i].indexOf('user') != -1) {
+            $scope.loggedInUser = ArrayCookies[i].substr(ArrayCookies[i].indexOf('=') + 1)
+        }
+    }
 	
+	$scope.logout = function(){
+		$scope.del_cookie('accessKey','/qatarone/web/admin', 'localhost')
+		$scope.del_cookie('user','/qatarone/web/admin', 'localhost')
+		window.location.replace("/qatarone/web/admin")
+	}
+	
+	$scope.del_cookie = function (name,path,domain) {
+  		//if (GetCookie(name)) {
+    		document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") +"; expires=Thu, 01-Jan-70 00:00:01 GMT";
+    	//}
+  	}
 }
 
 controllers.userController = function($scope, usersFactory){

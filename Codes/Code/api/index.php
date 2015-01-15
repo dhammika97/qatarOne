@@ -843,14 +843,12 @@ $app->post('/login', function() use ($app) {
 		if($app->request()->post('email')){
 			$email = $app->request()->post('email');
 			$password = $app->request()->post('password');
-                        $type = $app->request()->post('type');
+            $type = $app->request()->post('type');
 		}else{ 
 			$params = $app->request()->getBody();
 			$email= $params['email'];
 			$password = $params['password'];
-                        $type = $params['type'];
-                        
-                      
+            $type = $params['type'];
 		}
 		$response = array();
 		$db = new DbHandler();
