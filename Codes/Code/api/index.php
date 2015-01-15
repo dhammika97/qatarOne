@@ -2524,6 +2524,7 @@ $app->get('/advertismentsAdmin/:id', function($id)  {
 		
 		$DbHandler = new DbHandler();
 		$response = array();
+		$images = $DbHandler->adImages($id);
 		$result = $DbHandler->getPendingAdvertismentDetail($id);
 		if (!$result) {
 			$response["error"] = TRUE;
@@ -2531,6 +2532,7 @@ $app->get('/advertismentsAdmin/:id', function($id)  {
 			echoRespnse(404, $response);
 		} else {
 			$response["error"] = false;
+			$response["images"] = json_decode($images);
 			$response["advertisment"] = json_decode($result);
 
 			echoRespnse(200, $response);

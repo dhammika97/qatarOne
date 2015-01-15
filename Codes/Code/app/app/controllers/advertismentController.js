@@ -77,7 +77,7 @@ controllers.advertismentAddController = function($scope, advertismentFactory, Fi
 	}
 	
 	var uploader = $scope.uploader = new FileUploader({
-		url: '../../../api/include/upload.php'
+		url: '../api/include/upload.php'
 	})
 	
 	$scope.addAdvertisment = function(){
