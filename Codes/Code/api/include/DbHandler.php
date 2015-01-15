@@ -1566,9 +1566,10 @@ class DbHandler {
     public function getComments($params) {
         $id = $params['advertisment_Id'];
         $db = new database ();
-        $table = 'advertisment a, item_comments  c';
-        $rows = ' c.* , a.advertisment_id';
+        $table = 'advertisment a, item_comments  c, user u';
+        $rows = ' c.* , a.advertisment_id, u.user_firstname as user';
         $where = 'c.advertisment_Id = a.advertisment_id
+				  AND c.comment_addedBy = u.user_id
 				  AND c.advertisment_Id = "' . $id . '"
 				  AND comment_status = "1"';
         $order_by = "c.comment_Id DESC";

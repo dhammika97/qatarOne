@@ -73,10 +73,10 @@ header .top-nav ul li a i { display: block; }
 .main-page .ad-placeholder .category-item .category-heading span { display: inline-block; padding-bottom: .5rem; padding: 10px; width: 45px; background: #a50344; color: #ffffff; }
 .main-page .ad-placeholder .category-item .category-heading span.category-icon { float: left; margin-right: 10px; border-radius:5px 0 0 5px}
 .main-page .ad-placeholder .category-item .category-heading span.category-count { float: right; border-radius:0 5px 5px 0}
-.main-page .ad-placeholder .category-item .category-heading a { font-size: 10px; line-height: 34px; font-size: 1rem; line-height: 2.4rem; text-decoration: none; color: #333333; display: inline-block; }
+.main-page .ad-placeholder .category-item .category-heading a { font-size: 10px; line-height: 34px; font-size: 0.9rem; line-height: 2.4rem; text-decoration: none; color: #333333; display: inline-block; }
 .main-page .ad-placeholder .category-item .category-heading a:hover { color: #ffffff; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; font-size: 10px; font-size: 1rem; line-height: 2.4rem; }
-.main-page .ad-placeholder .category-item .category-heading:hover { background: #a50344; }
-.main-page .ad-placeholder .category-item .category-heading:hover a { color: #ffffff; font-size: 10px; line-height: 35px; font-size: 1rem; line-height: 3.5rem; }
+.main-page .ad-placeholder .category-item:hover .category-heading { background: #a50344; cursor:pointer}
+.main-page .ad-placeholder .category-item:hover a { color: #ffffff; font-size: 10px; line-height: 35px; font-size: 0.9rem; }
 .main-page .ad-placeholder .category-item:hover { -webkit-transform: scale(1.1, 1.1); -moz-transform: scale(1.1, 1.1); -ms-transform: scale(1.1, 1.1); -o-transform: scale(1.1, 1.1); transform: scale(1.1, 1.1); }
 .main-page .news-holder {/*padding: 1rem; background: #f5f5f5; margin-bottom: 1.5rem;*/ }
 .main-page .news-holder:hover { border:1px solid #CCC; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f2f2f2)); background: -webkit-linear-gradient(#fefefe, #f2f2f2); background: -moz-linear-gradient(#fefefe, #f2f2f2); background: -o-linear-gradient(#fefefe, #f2f2f2); background: linear-gradient(#fefefe, #f2f2f2); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; cursor: pointer; }
