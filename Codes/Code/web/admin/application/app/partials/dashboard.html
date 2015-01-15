@@ -3,30 +3,55 @@
   <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
   <li class="active"> Overview</li>
 </ol>
-<h3>Advertisments</h3>	
-<ol class="breadcrumb">
-  <li class="active"> Advertisments </li>
-</ol>
-<table class="table table-hover tablesorter">
-    <thead>
-      <tr>
-        <th>Advertisment Title</th>
-        <th>Advertisment Date</th>
-        <th>Advertisment Subcategory</th>
-        <th>Advertisment Contact Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="adds in  advertisments.advertisments">
-   		<td>{{adds.advertisement_title}}</td>
-        <td>{{adds.advertisement_date}}</td>
-        <td>{{adds.category_sub_name}}</td>
-         <td>{{adds.advertisement_contactEmail}}</td>
-        <td><a href="" ng-click = "approve(adds.advertisment_id)" class="btn btn-warning">Approve</a></td>
-        <td><a href="" ng-click = "deny(adds.advertisment_id)" class="btn btn-danger">deny</a></td>
-        <td><a href="#/viewAdd/{{adds.advertisment_id}}" class="btn btn-success">View</a></td>
-      </tr>
-    </tbody>
-</table>
+<div class="row">
+	<div class="col-lg-6">
+    	<div class="well">
+    	<h3>New Ads</h3>	
+    	<table class="table table-hover tablesorter">
+            <thead>
+              <tr>
+                <th>Advertisment Title</th>
+                <th>Date</th>
+                <th>Subcategory</th>
+                <th>Contact Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="adds in  advertisments.advertisments">
+                <td>{{adds.advertisement_title}}</td>
+                <td>{{adds.advertisement_date}}</td>
+                <td>{{adds.category_sub_name}}</td>
+                 <td>{{adds.advertisement_contactEmail}}</td>
+                <td><a href="" ng-click = "approve(adds.advertisment_id)" class="btn btn-warning">Approve</a></td>
+                <td><a href="" ng-click = "deny(adds.advertisment_id)" class="btn btn-danger">deny</a></td>
+                <td><a href="#/viewAdd/{{adds.advertisment_id}}" class="btn btn-success">View</a></td>
+              </tr>
+            </tbody>
+        </table>
+		</div>
+    </div>
+    <div class="col-lg-6">
+    	<div class="well" ng-controller="commentsController">
+    	<h3>New Comments</h3>
+        <table class="table table-hover tablesorter">
+            <thead>
+                <tr>
+                    <th>Comment</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="comment in comments.comments">
+        
+                    <td>{{comment.Comment}}</td>
+        
+                    <td><a href="" ng-click = "approve(comment.comment_Id)" class="btn btn-warning">Approve</a></td>
+                    <td><a href="" ng-click = "deny(comment.comment_Id)" class="btn btn-danger">deny</a></td>
+                </tr>
+            </tbody>
+        </table>
+		</div>
+    </div>
+</div>
 
 
