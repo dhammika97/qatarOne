@@ -20,7 +20,12 @@ controllers.commentsController = function ($scope, commentFactory) {
     $scope.comments = commentFactory.showComments();
     //console.log($scope.comments)
     $scope.approve = function (id) {
-        commentFactory.approve(id, $scope);
+		if (id != '') {
+            var r = confirm("Do you want to Approve this Comment");
+            if (r == true) {
+        		commentFactory.approve(id, $scope);
+			}
+		}
     }
     $scope.deny = function (id) {
         if (id != '') {

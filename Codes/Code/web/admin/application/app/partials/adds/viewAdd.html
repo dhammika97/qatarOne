@@ -1,4 +1,10 @@
-<section class="post-single-ad review">
+<h1>Approve/ Deny Advertisement</h1>
+<ol class="breadcrumb">
+  <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+  <li class="active"> Approve/ Deny Advertisement</li>
+</ol>
+<div class="row">
+	<section class="post-single-ad review">
   <div class="container">
    
     <div class="row">
@@ -72,12 +78,22 @@
                 {{add.location_name}}
               </div>
             </div>
-      <div class="form-group">
+      		<div class="form-group">
               <label for="contactNo" class="col-sm-2 control-label">Suburb</label>
               <div class="col-sm-10">
                 {{add.suburb_name}}
               </div>
-            </div>            
+            </div>
+            
+            
+            <div class="form-group">
+              <label for="contactNo" class="col-sm-2 control-label"></label>
+              <div class="col-sm-10">
+                <a href="" ng-click = "approve(adds.advertisment_id)" class="btn btn-warning">Approve</a>
+                <a href="" ng-click = "deny(adds.advertisment_id)" class="btn btn-danger">Deny</a>
+              </div>
+            </div>
+                      
           </form>
         </div>
       
@@ -86,3 +102,5 @@
   </div>
   </div>
 </section>
+
+</div>
