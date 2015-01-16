@@ -64,7 +64,16 @@ controllers.myAdsUpdateController = function($scope, $routeParams, FileUploader,
 	}
 	
 	$scope.deleteImage = function(image, $scope){
-		advertismentFactory.deleteImage(image)
+		if(image!=null){
+			var r = confirm("Do you want to delete this Image? \n\Note: this action cannot be undo");
+			if (r == true) {
+				advertismentFactory.deleteImage(image)
+			}
+		}
+	}
+	
+	$scope.updateAd = function(){
+		alert('sdsdf')
 	}
 }
 

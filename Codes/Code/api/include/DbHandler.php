@@ -2180,11 +2180,11 @@ class DbHandler {
 		$table = 'advertisment';
         $rows = $params;
         $where = 'advertisment_id = "' . $id . '"';
-        if ($db->update($table, $rows, $where)) {
+        /*if ($db->update($table, $rows, $where)) {
             return true;
         } else {
             return false;
-        }
+        }*/
 	}
 
 }
