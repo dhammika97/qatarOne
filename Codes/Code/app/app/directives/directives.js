@@ -1,5 +1,5 @@
 // JavaScript Document
-App.directive('helloWorld', function(ngDialog) {
+App.directive('helloWorld', function(ngDialog, $window) {
   return {
     restrict: 'AE',
     replace: true,
@@ -9,7 +9,7 @@ App.directive('helloWorld', function(ngDialog) {
     templateUrl: "app/directives/templates/sliderTemplate.html",
     link: function(scope, elem, attrs) {
 		setTimeout(function(){
-			$('.crsl-items').carousel({ autoRotate: 3000, visible: 4});
+			scope.onResizeFunction();
 		},1000)
 		
 		scope.openWindow = function(id){
@@ -17,6 +17,28 @@ App.directive('helloWorld', function(ngDialog) {
     		plain: true,
 			className: 'ngdialog-theme-default' });	
 		}
+		
+		angular.element($window).bind('resize', function() {
+			scope.onResizeFunction();
+			//scope.$apply();
+		});
+		
+		scope.onResizeFunction = function(){
+			var width = window.innerWidth;
+			if(width > 900) {
+			   // desktop
+			   $('.crsl-items').carousel({ autoRotate: 3000, visible: 4});
+			} else if(width <= 900 && width > 480) {
+			   // tablet
+			   $('.crsl-items').carousel({ autoRotate: 3000, visible: 3});
+			} else {
+			   // phone
+			   $('.crsl-items').carousel({ autoRotate: 3000, visible: 2});
+			}
+			// don't forget manually trigger $digest()
+			//scope.$digest();
+		}
+		
 	}
   };
 }).directive('newsTicker',function($location){
