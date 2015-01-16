@@ -5,7 +5,7 @@ controllers.afterNewsfixedAddsController = function($scope, fixedAddsFactory){
 }
 controllers.aftereventfixedAddsController = function($scope, fixedAddsFactory){
 
-	$scope.fixedAdd = fixedAddsFactory.getfixedAdd(5);	
+	//$scope.fixedAdd = fixedAddsFactory.getfixedAdd(5);	
 	
 }
 controllers.leftfixedAddsController = function($scope, fixedAddsFactory){
