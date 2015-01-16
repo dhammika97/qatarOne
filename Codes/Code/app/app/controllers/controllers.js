@@ -4,6 +4,7 @@ var controllers = {};
 controllers.masterController = function($scope, $location, ngProgress, $timeout){
 	$scope.username = ''
 	$scope.username = sessionStorage.getItem("username")
+	$scope.isCollapsed = true;
 	
 	$scope.isActive = function (viewLocation) { 
         return viewLocation === $location.path();
@@ -30,6 +31,7 @@ controllers.masterController = function($scope, $location, ngProgress, $timeout)
 	
 	$scope.$on('$viewContentLoaded', function(){
 		ngProgress.complete()//Here your view content is fully loaded !!
+		$scope.isCollapsed = true;
 	});
 	
 	$scope.logout = function(){
