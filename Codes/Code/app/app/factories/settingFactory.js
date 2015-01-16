@@ -149,7 +149,7 @@ App.factory('myAdsFactory',function($resource){
 	
 	factory.getMyAds = function($scope){
 		return myAds.get().$promise.catch(function(e){
-			alert(e.message)	
+			//alert(e.message)	
 		}).then(function(e){
 			$scope.myAds(e)
 		})
