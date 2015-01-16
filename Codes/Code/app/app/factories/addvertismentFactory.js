@@ -2,7 +2,8 @@ App.factory('advertismentFactory', function ($resource, $location) {
     var advertisment = $resource('../api/advertisment/:id', {}, {
         query: {method: 'GET', params: {}, isArray: false},
         get: {method: 'GET', params: {id: '@id'}},
-        save: {method: 'POST'}
+        save: {method: 'POST'},
+		update: {method: 'PUT', params: {id: '@id'}}
     });
 
     var adImage = $resource('../api/postAdImage/:id', {}, {
@@ -16,7 +17,7 @@ App.factory('advertismentFactory', function ($resource, $location) {
     });
 
     var adPublish = $resource('../api/publishAd/:id', {}, {
-        update: {method: 'PUT', params: {id: '@id'}},
+        update: {method: 'PUT', params: {id: '@id'}}
     });
 
     var rating = $resource('../api/rating/:id', {}, {
@@ -25,6 +26,16 @@ App.factory('advertismentFactory', function ($resource, $location) {
     })
 
     var factory = {}
+	
+	factory.updateAd = function($scope, id){
+		return advertisment.update({'id':id},$scope.ad).$proise
+		.catch(function(e){
+			alert(e.message)
+		})
+		.then(function(e){
+			alert(e.message)
+		})
+	}
 
 	factory.deleteImage = function(image, $scope){
 		return adImage.delete({'id':image}, {}).$promise.

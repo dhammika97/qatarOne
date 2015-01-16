@@ -73,7 +73,7 @@ controllers.myAdsUpdateController = function($scope, $routeParams, FileUploader,
 	}
 	
 	$scope.updateAd = function(){
-		alert('sdsdf')
+		advertismentFactory.updateAd($scope, $routeParams.id)
 	}
 }
 
