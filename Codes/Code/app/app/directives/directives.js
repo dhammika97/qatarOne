@@ -10,7 +10,7 @@ App.directive('helloWorld', function(ngDialog, $window) {
     link: function(scope, elem, attrs) {
 		setTimeout(function(){
 			scope.onResizeFunction();
-		},1000)
+		},2000)
 		
 		scope.openWindow = function(id){
 			ngDialog.open({ template: '<iframe id="player" type="text/html" width="640" height="480" src="http://www.youtube.com/embed/'+id+'" frameborder="0"></iframe>',
