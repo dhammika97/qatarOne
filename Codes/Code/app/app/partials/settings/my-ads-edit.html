@@ -10,7 +10,7 @@
           <div class="col-lg-3 heading-tab"><a href="#/view-applyjobs">Job Applicants</a></div>
         </div>
       </div>
-    </div>      
+    </div>    
     <div class="row"> 
       <div class="settings-tab">          
 
@@ -59,9 +59,13 @@
                 	<a href="" ng-click="deleteImage(images.advertisement_image)" class="badge">X</a>
                 </span>
                 <br/>
-              	<input type="file" multiple nv-file-select=""  uploader="uploader" options="{'alias':'advertismentImage','queueLimit':5}" ng-model="ad.advertismentImage" />
+              	<input type="file" multiple nv-file-select=""  uploader="uploader" options="{'alias':'advertismentImage','queueLimit':5}" ng-model="ad.advertismentImage"/>
+           {{ad.advertismentImage}}
               </div>
-              
+            <!--     <div class="col-sm-8">
+              <input type="file" file-model="news.news_image">
+              <input type="file" nv-file-select=""  uploader="uploader" options="{'alias':'news_image'}" ng-model="news.news_image" />
+            </div> -->
             </div>
             <div class="form-group">
               <label for="contactName" class="col-sm-2 control-label">Contact Name</label>
@@ -92,10 +96,14 @@
                 </select>
               </div>
             </div>
+
             <div class="form-group">
               <label for="contactNo" class="col-sm-2 control-label"></label>
-              <div class="col-sm-10">
-              	<button  class="btn btn-success pull-left" ng-click="updateAd()" >Update Ad</button>
+              <div class="col-lg-5">
+          <a href="#/review-ad/{{adId}}">	<button class="btn btn-success pull-left" ng-click="updateAd()" >Update Ad</button></a>
+              </div>
+              <div class="col-lg-3" style="font-style: italic;">
+           <a href="javascript:history.go(-1)">Go Back</a>
               </div>
             </div>
           </form>

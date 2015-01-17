@@ -75,6 +75,7 @@ controllers.myAdsUpdateController = function($scope, $routeParams, FileUploader,
 	$scope.updateAd = function(){
 		advertismentFactory.updateAd($scope, $routeParams.id)
 	}
+	$scope.adId = $routeParams.id
 }
 
 App.controller(controllers)

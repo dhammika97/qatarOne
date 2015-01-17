@@ -1164,7 +1164,7 @@ class DbHandler {
         $mode = self::GetCategoryParentId($category[0]['category_sub_parentId']);
         $ads = self::checkPackageAvailability($user_id, $mode);
         if ($ads !== '0') {
-
+//echo 'teeeeeeeeee';
             (isset($adDetail['advertisement_attributes']) ? $attr = json_encode($adDetail['advertisement_attributes']) : $attr = "" );
             (isset($adDetail['advertisement_price']) ? $price = $adDetail['advertisement_price'] : $price = "" );
 
@@ -2173,21 +2173,29 @@ class DbHandler {
         $advertismentDetail = $db->getJson();
         return $advertismentDetail;
     }
+
 	
-	public function updateAdvertisement($id, $params){
-		//print_r($params);
-		$db = new database();
-		$table = 'advertisment';
-        $rows = $params;
-        $where = 'advertisment_id = "' . $id . '"';
-		//print_r($params);
+	public function updateAdvertisement($id, $adDetail) {
+		$db = new database(); //$user_id,$mode
+		//advertisement_status,
+		//echo $adDetail['advertisement_title'];
+		$query = 'update advertisment set advertisement_title="' . $adDetail['advertisement_title'] . '",
+				advertisement_description="' . $adDetail['advertisement_description'] . '",
+				advertisement_currency="' . $adDetail['currency'] . '",
+				advertisement_price=' . $adDetail['advertisement_price'] . ',
+				advertisement_contactName="' . $adDetail['advertisement_contactName'] . '",
+				advertisement_contactNo="' . $adDetail['advertisement_contactNo'] . '",
+				advertisement_location="' . $adDetail['advertisement_location'] . '",
+				advertisement_suburb="' . $adDetail['advertisement_suburb'] . '",
+				advertisement_googleCodes="' . $adDetail['suburb_cordinates'] . '",
+				advertisement_modify_date=CURRENT_TIMESTAMP
+				where advertisment_id = ' . $id . '';
 		
-		
-        if ($db->update($table, $rows, $where)) {
-            return true;
-        } else {
-            return false;
-        }
+		if ($db->updatePreparedStatment($query)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
