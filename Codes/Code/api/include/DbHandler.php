@@ -2264,18 +2264,6 @@ class DbHandler {
 		}else{
 			return false;
 		}
-		
-	/* 	
-		$db = new database();
-		$query = 'update advertisment set
-				advertisement_date=CURRENT_TIMESTAMP
-				where advertisment_id = ' . $id . '';
-	
-		if ($db->updatePreparedStatment($query)) {
-			return true;
-		} else {
-			return false;
-		} */
 	}
 	
 	
