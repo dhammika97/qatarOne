@@ -54,7 +54,7 @@
             <div class="form-group">
               <label for="Description" class="col-sm-2 control-label">Images</label>
               <div class="col-sm-10">
-              	<span ng-repeat="images in adImages">
+              	<span ng-repeat="images in imageList">
                 	<img ng-src="../api/uploads/advertisement/{{images.advertisement_image}}" width="150"> 
                 	<a href="" ng-click="deleteImage(images.advertisement_image)" class="badge">X</a>
                 </span>
@@ -100,7 +100,9 @@
             <div class="form-group">
               <label for="contactNo" class="col-sm-2 control-label"></label>
               <div class="col-lg-5">
-          <a href="#/review-ad/{{adId}}">	<button class="btn btn-success pull-left" ng-click="updateAd()" >Update Ad</button></a>
+      <!--     <a href="#/review-ad/{{adId}}">	<button class="btn btn-success pull-left" ng-click="updateAd()" >Update Ad</button></a>
+       -->  <button class="btn btn-success pull-left" ng-click="updateAd()" >Update Ad</button>
+        
               </div>
               <div class="col-lg-3" style="font-style: italic;">
            <a href="javascript:history.go(-1)">Go Back</a>

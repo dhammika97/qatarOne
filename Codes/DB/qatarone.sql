@@ -672,6 +672,22 @@ CREATE TABLE IF NOT EXISTS `video` (
   PRIMARY KEY (`video_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advertisementrefresh`
+--
+
+CREATE TABLE IF NOT EXISTS `advertisementrefresh` (
+  `advertisementrefresh_id` int(11) NOT NULL AUTO_INCREMENT,
+  `advertisementrefresh_refreshby` int(11) NOT NULL DEFAULT '0',
+  `advertisementrefresh_refresh_attempt` int(11) NOT NULL DEFAULT '0',
+  `advertisementrefresh_date` date NOT NULL,
+  PRIMARY KEY (`advertisementrefresh_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci'
+
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -2613,6 +2613,70 @@ $app->put ( '/forgotPasswordUpdate/:id', function ($hash) use($app) {
 		}
 } );
 
+	/**
+	 * put editAd by id
+	 * url - /editAd
+	 * method - PUT
+	 * params -advertisment id*/
+	$app->put('/editAd/:id', 'authenticate' ,function($id) use ($app) {
+		$request = $app->request();
+		$DbHandler = new DbHandler();
+		$response = array();
+		$params =  $request->getBody();
+		$user = $DbHandler->advertismentDetail($id);
+		$t = json_decode($user,true);
+		global $user_id;
+		if($user_id == $t[0]['adby']){
+			$result = $DbHandler->editAdvertisement($id, $params);
+			if ($result) {
+				$response["error"] = false;
+				$response["message"] = "Advertisement updated successfully";
+				echoRespnse(200, $response);
+			} else {
+				$response["error"] = true;
+				$response["message"] = "Advertisement failed to update. Please try again!";
+				echoRespnse(404, $response);
+			}
+		}else{
+			$response["error"] = true;
+			$response["message"] = "Advertisement failed to update. Please try again!";
+			echoRespnse(404, $response);
+		}
+	});
+	
+
+		/**
+		 * put adRefresh by id
+		 * url - /adRefresh
+		 * method - PUT
+		 * params -advertisment id*/
+		$app->put('/adRefresh/:id', 'authenticate' ,function($id) use ($app) {
+			//$request = $app->request();
+			$DbHandler = new DbHandler();
+			$response = array();
+			//$params =  $request->getBody();
+			$user = $DbHandler->advertismentDetail($id);
+			$t = json_decode($user,true);
+			global $user_id;
+			if($user_id == $t[0]['adby']){
+				$result = $DbHandler->refreshAd($id, $user_id);
+				if ($result) {
+					$response["error"] = false;
+					$response["message"] = "Advertisement refreshed successfully";
+					echoRespnse(200, $response);
+				} else {
+					$response["error"] = true;
+					$response["message"] = "Advertisement failed to refresh. Refresh attempts are exceeded for the day..!";
+					echoRespnse(200, $response);
+				}
+			}else{
+				$response["error"] = true;
+				$response["message"] = "Advertisement failed to refresh. Please try again!";
+				echoRespnse(404, $response);
+			}
+		});
+	
+
 $app->run();
 		
 		

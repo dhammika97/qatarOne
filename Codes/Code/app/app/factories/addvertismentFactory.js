@@ -25,17 +25,56 @@ App.factory('advertismentFactory', function ($resource, $location) {
         get: {method: 'GET', params: {id: '@id'}}
     })
 
+    var editadvertisment = $resource('../api/editAd/:id', {}, {
+		update: { method: 'PUT', params: { id: '@id' } }
+	});
+    
+    
     var factory = {}
 	
-	factory.updateAd = function($scope, id){
-		return advertisment.update({'id':id},$scope.ad).$proise
+    factory.updateAd = function ($scope, id, ngProgress, $timeout) {
+        //alert($scope.imageList)			
+		return editadvertisment.update({'id':id},$scope.ad).$promise
 		.catch(function(e){
-			alert(e.message)
-		})
-		.then(function(e){
-			alert(e.message)
-		})
-	}
+                    $scope.addAlert('danger', e.message)
+                    ngProgress.complete()
+                    $timeout(function () {
+                        $scope.closeAlert();
+                    }, 3000);
+                }).then(
+                function (e) {
+                    var tmpId = id
+                    if ($scope.imageList.length > 0) {
+                    	//alert(e.insertedId)
+                        return adImage.save($scope.imageList, id)
+                                .$promise.catch(function (e) {
+                                    $scope.addAlert('danger', e.message)
+                                    ngProgress.complete()
+                                    $timeout(function () {
+                                        $scope.closeAlert();
+                                    }, 3000);
+                                }).then(function (e) {
+                          //  $scope.advertismentAddMail();
+                            $scope.addAlert('success', 'Advertisment updated successfully.')
+                            ngProgress.complete()
+                            $scope.ad = ''
+                            $timeout(function () {
+                                $scope.closeAlert();
+                                $location.path('/review-ad/' + tmpId)
+                            }, 3000);
+                        })
+                    } else {
+                        //alert(e.message)
+                        $scope.addAlert('success', 'Advertisment updated successfully!')
+                        ngProgress.complete()
+                        $timeout(function () {
+                            $scope.closeAlert();
+                            $location.path('/review-ad/' + id)
+                        }, 3000);
+                    }
+                })
+    }
+
 
 	factory.deleteImage = function(image, $scope){
 		return adImage.delete({'id':image}, {}).$promise.

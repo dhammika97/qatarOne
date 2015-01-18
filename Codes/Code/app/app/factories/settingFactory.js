@@ -145,6 +145,10 @@ App.factory('myAdsFactory',function($resource){
 		update: { method: 'PUT', params: { id: '@id' } }
 	});
 	
+	var myAdsRefresh = $resource('../api/adRefresh/:id', {}, {
+		update: { method: 'PUT', params: { id: '@id' } }
+	});
+	
 	var factory = {}
 	
 	factory.getMyAds = function($scope){
@@ -159,6 +163,25 @@ App.factory('myAdsFactory',function($resource){
 		return advertisments.update({id:id}, {'advertisement_status':'2'}).$promise
 		.then(function(e){
 			$scope.addAlert('success',e.message)
+			return myAds.get().$promise
+			.then(function(e){
+				$scope.myAds(e)
+				ngProgress.complete()
+				$timeout(function(){
+					$scope.closeAlert();
+				}, 3000);
+			})
+		})
+	}
+	
+	factory.refreshMyad = function($scope, id, ngProgress, $timeout){
+		return myAdsRefresh.update({id:id}).$promise
+		.then(function(e){
+			if(!e.error){
+			$scope.addAlert('success',e.message)
+			}else{
+				$scope.addAlert('danger',e.message)
+			}
 			return myAds.get().$promise
 			.then(function(e){
 				$scope.myAds(e)

@@ -2174,8 +2174,23 @@ class DbHandler {
         return $advertismentDetail;
     }
 
+    public function updateAdvertisement($id, $params){
+    	//print_r($params);
+    	$db = new database();
+    	$table = 'advertisment';
+    	$rows = $params;
+    	$where = 'advertisment_id = "' . $id . '"';
+    	//print_r($params);
+    
+    
+    	if ($db->update($table, $rows, $where)) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
 	
-	public function updateAdvertisement($id, $adDetail) {
+	public function editAdvertisement($id, $adDetail) {
 		$db = new database(); //$user_id,$mode
 		//advertisement_status,
 		//echo $adDetail['advertisement_title'];
@@ -2198,6 +2213,90 @@ class DbHandler {
 		}
 	}
 
+	public function refreshAdvertisement($id) {
+		$db = new database();
+		$query = 'update advertisment set 
+				advertisement_date=CURRENT_TIMESTAMP
+				where advertisment_id = ' . $id . '';
+	
+		if ($db->updatePreparedStatment($query)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public function insertRecordAdRefresh($user_id) {
+		$db = new database();
+		$query = 'insert into advertisementrefresh values ("auto_increment",'.$user_id.',1,current_date)';
+		if ($db->updatePreparedStatment($query)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public function updateRecordAdRefresh($user_id) {
+		$db = new database();
+		$query = 'update advertisementrefresh set advertisementrefresh_refresh_attempt=advertisementrefresh_refresh_attempt+1
+					where
+					advertisementrefresh_refreshby='.$user_id.'
+					and advertisementrefresh_date=current_date';
+		if ($db->updatePreparedStatment($query)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public function refreshAd($id, $user_id) {
+		
+		$refreshattempts=self::checkRefreshAdAttempts($user_id);
+		//echo $refreshattempts; 
+		if ($refreshattempts==0) {
+			self::refreshAdvertisement($id);
+			//echo 'insert';
+			self::insertRecordAdRefresh($user_id);
+			return true;
+		}else if ($refreshattempts<2) {
+			self::refreshAdvertisement($id);
+			self::updateRecordAdRefresh($user_id);
+			return true;
+		}else{
+			return false;
+		}
+		
+	/* 	
+		$db = new database();
+		$query = 'update advertisment set
+				advertisement_date=CURRENT_TIMESTAMP
+				where advertisment_id = ' . $id . '';
+	
+		if ($db->updatePreparedStatment($query)) {
+			return true;
+		} else {
+			return false;
+		} */
+	}
+	
+	
+	public function checkRefreshAdAttempts($user_id) {
+		//echo $user_id;
+		$db = new database ();
+		$table = 'advertisementrefresh ';
+		$rows = ' advertisementrefresh_refresh_attempt ';
+		$where = 'advertisementrefresh_refreshby= "' . $user_id . '"
+				  AND advertisementrefresh_date=current_date ';
+		
+		$db->select($table, $rows, $where, '', '');
+		$resultsset = $db->getResults();
+		if ($resultsset != NULL) {
+			$response = $resultsset [0];
+		} else {
+			$response = 0;
+		}
+		return $response;
+	}
+	
 }
 
 ?>
