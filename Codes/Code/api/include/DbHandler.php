@@ -2268,7 +2268,6 @@ class DbHandler {
 	
 	
 	public function checkRefreshAdAttempts($user_id) {
-		//echo $user_id;
 		$db = new database ();
 		$table = 'advertisementrefresh ';
 		$rows = ' advertisementrefresh_refresh_attempt ';
