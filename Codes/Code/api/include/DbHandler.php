@@ -2151,9 +2151,10 @@ class DbHandler {
         //global  $userid;
 
         $db = new database ();
-        $table = 'advertisment ';
-        $rows = 'advertisment_id, advertisement_title, advertisement_expire, advertisement_date';
-        $where = ' advertisement_addedBy=' . $user_id . ' and advertisement_expire>=current_date and advertisement_status = 1';
+        $table = ' advertisment a, advertisement_images i ';
+        $rows = 'i.advertisement_image, advertisment_id, advertisement_title, advertisement_expire, advertisement_date ';
+        $where = ' a.advertisment_id=i.advertisement_id
+		and advertisement_addedBy='.$user_id.'  and advertisement_expire>=current_date and advertisement_status = 1 group by advertisment_id ';
         $db->selectJson($table, $rows, $where, '', '');
         $add = $db->getJson();
         return $add;
@@ -2226,20 +2227,21 @@ class DbHandler {
 		}
 	}
 	
-	public function insertRecordAdRefresh($user_id) {
+	public function insertRecordAdRefresh($user_id,$id) {
 		$db = new database();
-		$query = 'insert into advertisementrefresh values ("auto_increment",'.$user_id.',1,current_date)';
+		$query = 'insert into advertisementrefresh values ("auto_increment",'.$id.','.$user_id.',1,current_date)';
 		if ($db->updatePreparedStatment($query)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	public function updateRecordAdRefresh($user_id) {
+	public function updateRecordAdRefresh($user_id,$id) {
 		$db = new database();
 		$query = 'update advertisementrefresh set advertisementrefresh_refresh_attempt=advertisementrefresh_refresh_attempt+1
 					where
 					advertisementrefresh_refreshby='.$user_id.'
+					and advertisementrefresh_adid='.$id.'		
 					and advertisementrefresh_date=current_date';
 		if ($db->updatePreparedStatment($query)) {
 			return true;
@@ -2250,16 +2252,16 @@ class DbHandler {
 	
 	public function refreshAd($id, $user_id) {
 		
-		$refreshattempts=self::checkRefreshAdAttempts($user_id);
+		$refreshattempts=self::checkRefreshAdAttempts($user_id,$id);
 		//echo $refreshattempts; 
 		if ($refreshattempts==0) {
 			self::refreshAdvertisement($id);
 			//echo 'insert';
-			self::insertRecordAdRefresh($user_id);
+			self::insertRecordAdRefresh($user_id,$id);
 			return true;
 		}else if ($refreshattempts<2) {
 			self::refreshAdvertisement($id);
-			self::updateRecordAdRefresh($user_id);
+			self::updateRecordAdRefresh($user_id,$id);
 			return true;
 		}else{
 			return false;
@@ -2267,11 +2269,12 @@ class DbHandler {
 	}
 	
 	
-	public function checkRefreshAdAttempts($user_id) {
+	public function checkRefreshAdAttempts($user_id,$id) {
 		$db = new database ();
 		$table = 'advertisementrefresh ';
 		$rows = ' advertisementrefresh_refresh_attempt ';
 		$where = 'advertisementrefresh_refreshby= "' . $user_id . '"
+				  and advertisementrefresh_adid='.$id.'
 				  AND advertisementrefresh_date=current_date ';
 		
 		$db->select($table, $rows, $where, '', '');

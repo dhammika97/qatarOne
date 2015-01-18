@@ -55,7 +55,7 @@ controllers.myAdsController = function($scope, myAdsFactory, ngProgress, $timeou
 controllers.myAdsUpdateController = function($scope, $routeParams, FileUploader, advertismentFactory, ngProgress , $timeout){
 	
 	var uploader = $scope.uploader = new FileUploader({
-		url: '../../../Codes/Code/api/include/upload.php'
+		url: '../../../api/include/upload.php'
 	})
 	$scope.catList = advertismentFactory.getCategoryPackage()
 	$scope.locationList = advertismentFactory.getLocations()
@@ -69,7 +69,8 @@ controllers.myAdsUpdateController = function($scope, $routeParams, FileUploader,
 	
 	$scope.mapLoad = function(e){
 		$scope.ad = e.advertisment[0]
-		$scope.imageList = e.images
+		//alert(e.images)
+		$scope.imagesList = e.images
 		$scope.changeLoc()
 	}
 	

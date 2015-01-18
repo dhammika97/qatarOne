@@ -680,6 +680,7 @@ CREATE TABLE IF NOT EXISTS `video` (
 
 CREATE TABLE IF NOT EXISTS `advertisementrefresh` (
   `advertisementrefresh_id` int(11) NOT NULL AUTO_INCREMENT,
+  `advertisementrefresh_adid` int(11) NOT NULL DEFAULT '0',
   `advertisementrefresh_refreshby` int(11) NOT NULL DEFAULT '0',
   `advertisementrefresh_refresh_attempt` int(11) NOT NULL DEFAULT '0',
   `advertisementrefresh_date` date NOT NULL,

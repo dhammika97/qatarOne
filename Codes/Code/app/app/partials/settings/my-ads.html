@@ -25,6 +25,8 @@
                     <button ng-click="go('myAdEdit/'+advertisment.advertisment_id)" class="label label-success pull-right"><i class="fa fa-pencil-square-o"></i> Edit</button>
                     
                     <!--<span class="badge">#{{advertisment.advertisment_id}}</span>-->
+                    
+                    <img ng-src="../api/uploads/advertisement/{{advertisment.advertisement_image}}" width="100">
                     {{advertisment.advertisement_title}} ::  
                     <span style="color:#999">Added on : {{advertisment.advertisement_date}}</span> :: 
                     <span style="color:#999">Expiry : {{advertisment.advertisement_expire}}</span>

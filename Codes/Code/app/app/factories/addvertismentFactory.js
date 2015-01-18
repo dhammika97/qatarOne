@@ -44,7 +44,7 @@ App.factory('advertismentFactory', function ($resource, $location) {
                 }).then(
                 function (e) {
                     var tmpId = id
-                    if ($scope.imageList.length > 0) {
+                    if (typeof $scope.imageList!="undefined") {
                     	//alert(e.insertedId)
                         return adImage.save($scope.imageList, id)
                                 .$promise.catch(function (e) {
