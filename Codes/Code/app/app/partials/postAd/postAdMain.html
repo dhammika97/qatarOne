@@ -16,18 +16,21 @@
             <h3 class="panel-title">Fill Your Details</h3>
           </div>
           <div class="panel-body">
-          <form class="form-horizontal" name="adUpload" role="form">
-            <div class="form-group">
+          <form class="form-horizontal" name="adUpload" role="form" ng-submit="addAdvertisment(adUpload.$valid)" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : adUpload.category.$invalid && submitted}">
               <label for="category" class="col-sm-2 control-label" >Category</label>
               <div class="col-sm-10">
-                <select class="form-control" ng-model="ad.advertisement_subCategoryId" required ng-options="obj.category_sub_id as obj.category_sub_name group by obj.category_name for obj in catList.categorymatrix" ng-change="changeTpl()"></select>
+                <select class="form-control" name="category" ng-model="ad.advertisement_subCategoryId" required ng-options="obj.category_sub_id as obj.category_sub_name group by obj.category_name for obj in catList.categorymatrix" ng-change="changeTpl()"></select>
+               <p class="help-block" ng-show="adUpload.category.$invalid && submitted">Select a Category</p>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : adUpload.title.$invalid && submitted}">
               <label for="title" class="col-sm-2 control-label">Ad Title</label>
               <div class="col-sm-10">
-                <input type="title" class="form-control" ng-model="ad.advertisement_title" required >
+                <input type="text" name="title" class="form-control" ng-model="ad.advertisement_title" required >
+                <p class="help-block" ng-show="adUpload.title.$invalid && submitted">Enter a title for your advertisement</p>
               </div>
+              
             </div>
             <ng-include src="templatePath"></ng-include>
             <div class="form-group">
@@ -36,52 +39,57 @@
               	<input type="file" multiple nv-file-select=""  uploader="uploader" options="{'alias':'advertismentImage','queueLimit':5}" ng-model="ad.advertismentImage" />
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : adUpload.contactName.$invalid && submitted}">
               <label for="contactName" class="col-sm-2 control-label">Contact Name</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="ad.advertisement_contactName" required >
+                <input type="text" name="contactName" class="form-control" ng-model="ad.advertisement_contactName" required >
+                <p class="help-block" ng-show="adUpload.contactName.$invalid && submitted">Enter contact name</p>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : adUpload.contactNo.$invalid && submitted}">
               <label for="contactNo" class="col-sm-2 control-label">Contact No</label>
               <div class="col-sm-10">
-                <input type="tel" class="form-control" ng-model="ad.advertisement_contactNo" required >
+                <input type="tel" class="form-control" name="contactNo" ng-model="ad.advertisement_contactNo" required >
+                <p class="help-block" ng-show="adUpload.contactNo.$invalid && submitted">Enter a valid Telephone No.</p>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : adUpload.location.$invalid && submitted}">
               <label for="contactNo" class="col-sm-2 control-label">Location</label>
               <div class="col-sm-10">
-              	<select class="form-control" ng-model="ad.advertisement_location" required ng-options="location.location_id as location.location_name for location in locationList.locations" ng-change="changeLoc()">
+              	<select class="form-control" name="location" ng-model="ad.advertisement_location" required ng-options="location.location_id as location.location_name for location in locationList.locations" ng-change="changeLoc()">
                 	<option>location</option>
                 </select>
+                <p class="help-block" ng-show="adUpload.location.$invalid && submitted">Select a location</p>
               </div>
             </div>
-			<div class="form-group">
+			<div class="form-group" ng-class="{ 'has-error' : adUpload.suburbs.$invalid && submitted}">
               <label for="contactNo" class="col-sm-2 control-label">Suburb</label>
               <div class="col-sm-10">
-              	<select class="form-control" ng-model="ad.advertisement_suburb" ng-disabled="!ad.advertisement_location" required ng-options="{{suburbOptions}}">
+              	<select class="form-control" name="suburbs" ng-model="ad.advertisement_suburb" ng-disabled="!ad.advertisement_location" required ng-options="{{suburbOptions}}">
                 	<option>test</option>
                 </select>
+                <p class="help-block" ng-show="adUpload.suburbs.$invalid && submitted">Select a suburb</p>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : adUpload.terms.$invalid && submitted}">
               <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox terms" style="font-style: italic;">
                   <label>
-                    <input type="checkbox" ng-model="ad.terms" required>
-                    I accept <a href="#/post-ad">terms and conditions </a></label>
+                    <input name="terms" type="checkbox" ng-model="ad.terms" required>
+                    I accept <a href="#/pages/TermsOfUse">terms and conditions </a></label>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer" style="overflow:hidden;text-align:right;">
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <input type="submit" class="btn btn-success" value="Check Your Ad" />
                 </div>
               </div>
             </div>
           </form>
         </div>
-        <div class="panel-footer" style="overflow:hidden;text-align:right;">
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button  class="btn btn-success" ng-click="addAdvertisment()" ng-disabled="adUpload.$invalid">Check Your Ad</button>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>

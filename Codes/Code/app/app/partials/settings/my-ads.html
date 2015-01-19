@@ -20,7 +20,7 @@
           <div class="list-group">
           	<!--href="#/details-view/{{advertisment.advertisment_id}}"-->
                 <div class="list-group-item" ng-repeat="advertisment in advertisments.myadvertisments" >
-                    <button ng-click="refreshMyad(advertisment.advertisment_id)" class="lable label-info pull-right"><i class="fa fa-refresh"></i> Refresh</button>
+                    <button ng-click="refreshMyad(advertisment.advertisment_id)" class="label label-info pull-right"><i class="fa fa-refresh"></i> Refresh</button>
                 	<button ng-click="deleteMyad(advertisment.advertisment_id)" class="label label-danger pull-right"><i class="fa fa-trash"></i> Delete</button>
                     <button ng-click="go('myAdEdit/'+advertisment.advertisment_id)" class="label label-success pull-right"><i class="fa fa-pencil-square-o"></i> Edit</button>
                     

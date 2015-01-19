@@ -80,27 +80,30 @@ controllers.advertismentAddController = function($scope, advertismentFactory, Fi
 		url: '../api/include/upload.php'
 	})
 	
-	$scope.addAdvertisment = function(){
-		ngProgress.start()
-		var imageArray = new Array
-		if(uploader.queue.length !=0){
-			uploader.uploadAll()
-			uploader.onCompleteItem = function(fileItem, response, status, headers) {
-				if(response.error==false){
-					imageArray.push(response.image)
-				}else{
-					$scope.addAlert('danger','fail to upload the images!')
-					$timeout(function(){
-						$scope.closeAlert();
-					}, 3000);
-				}
-			};
-			uploader.onCompleteAll = function() {
-				$scope.imageList = imageArray
-				advertismentFactory.saveAdvertisment($scope, ngProgress, $timeout)
-			};
-		}else{
-			advertismentFactory.saveAdvertisment($scope)
+	$scope.addAdvertisment = function(isValid){
+		$scope.submitted = true
+		if(isValid){
+			ngProgress.start()
+			var imageArray = new Array
+			if(uploader.queue.length !=0){
+				uploader.uploadAll()
+				uploader.onCompleteItem = function(fileItem, response, status, headers) {
+					if(response.error==false){
+						imageArray.push(response.image)
+					}else{
+						$scope.addAlert('danger','fail to upload the images!')
+						$timeout(function(){
+							$scope.closeAlert();
+						}, 3000);
+					}
+				};
+				uploader.onCompleteAll = function() {
+					$scope.imageList = imageArray
+					advertismentFactory.saveAdvertisment($scope, ngProgress, $timeout)
+				};
+			}else{
+				advertismentFactory.saveAdvertisment($scope)
+			}
 		}
 	}
 	$scope.advertismentAddMail = function(){

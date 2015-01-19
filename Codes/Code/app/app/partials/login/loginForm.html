@@ -1,15 +1,17 @@
 <h2><i class="fa fa-user"></i> Login</h2>
 <div class="form-wrap">
-  <form role="form" name="loginForm" autocomplete="off" ng-controller="loginController">
-    <div class="form-group">
-      <label for="email" class="">Email</label>
+  <form role="form" name="loginForm" autocomplete="off" ng-controller="loginController" ng-submit="loginAuth(loginForm.$valid)" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' : loginForm.email.$invalid && submitted}">
+      <label for="email" >Email</label>
       <input type="email" name="email" class="form-control" placeholder="somebody@example.com" ng-model="login.email" required>
+      <p class="help-block" ng-show="loginForm.email.$invalid && submitted">Enter valid email address</p>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && submitted}">
       <label for="key" class="">Password</label>
-      <input type="password" name="key" class="form-control" placeholder="Password" ng-model="login.password" required>
+      <input type="password" name="password" class="form-control" placeholder="Password" ng-model="login.password" required>
+      <p class="help-block" ng-show="loginForm.password.$invalid && submitted">Password cannot be blank</p>
     </div>
-    <input type="button" ng-click="loginAuth()" ng-disabled="loginForm.$invalid" class="btn btn-custom btn-lg btn-block pull-right" value="Log in">
+    <input type="submit" class="btn btn-custom btn-lg btn-block pull-right" value="Log in">
   </form>
   <a href="#/forgot-password" class="forgot-pass" > Forgot your password?</a>
   <hr>
