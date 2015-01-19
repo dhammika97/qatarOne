@@ -4,6 +4,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 html { line-height: 1; }
 
+.ad-description table{
+	width:100% !important;	
+}
+
 ol, ul { list-style: none; }
 
 table { border-collapse: collapse; border-spacing: 0; }
@@ -131,7 +135,7 @@ header .top-nav ul li a i { display: block; }
 .main-page .item.list-group-item .list-group-item-text { padding-top: 0; }
 .main-page .item.grid-group-item .thumbnail { padding: 0; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f2f2f2)); background: -webkit-linear-gradient(#fefefe, #f2f2f2); background: -moz-linear-gradient(#fefefe, #f2f2f2); background: -o-linear-gradient(#fefefe, #f2f2f2); background: linear-gradient(#fefefe, #f2f2f2); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; border-radius: 0px; max-height: 323px; min-height: 268px; cursor: pointer; }
 .main-page .item.grid-group-item .thumbnail:hover { background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f1f1f1), color-stop(100%, #fefefe)); background: -webkit-linear-gradient(#f1f1f1, #fefefe); background: -moz-linear-gradient(#f1f1f1, #fefefe); background: -o-linear-gradient(#f1f1f1, #fefefe); background: linear-gradient(#f1f1f1, #fefefe); }
-.main-page .item.grid-group-item .thumbnail .list-group-item-heading { position: absolute; margin-top: 0; background: #747474; margin-top: -36px; margin-left: 0px; padding: 0px 10px; color: white; font-size: 14px; line-height: 26px; font-size: 1.2rem; line-height: 2rem; }
+.main-page .item.grid-group-item .thumbnail .list-group-item-heading { position: absolute; margin-top: 0; background: #747474; margin-top: -36px; margin-left: 0px; padding: 0px 10px; color: white; font-size: 1rem; line-height: 1.4rem; max-height:40px; overflow:hidden }
 .main-page .item.grid-group-item .thumbnail .caption { padding: 0; }
 .main-page .item.grid-group-item .price { background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #dbd9d9)); background: -webkit-linear-gradient(#fefefe, #dbd9d9); background: -moz-linear-gradient(#fefefe, #dbd9d9); background: -o-linear-gradient(#fefefe, #dbd9d9); background: linear-gradient(#fefefe, #dbd9d9); border-top: 1px solid #cccccc; }
 .main-page .item.grid-group-item .price span { display: block; padding: 0 5px 0 10px; }
