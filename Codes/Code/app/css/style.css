@@ -564,3 +564,8 @@ body { top: 0px !important; }
 .navbar-toggle .icon-bar{
 	background:#FFF;
 }
+@media (min-width: 320px) {
+	.goog-te-gadget-simple{
+		display:block !important
+	}
+}
