@@ -6,7 +6,7 @@ App.factory('jobApplyFactory',function($resource){
         
         var factory = {}
         
-        factory.applyjobAPICall = function($scope,id){
+        factory.applyjobAPICall = function($scope,id, ngProgress){
                 //console.log($scope.resume);
 		return applyJobMail.query({"advertisement_id":id,
 			"employee_fname":$scope.employee.name,
@@ -16,9 +16,12 @@ App.factory('jobApplyFactory',function($resource){
                         "resume" : $scope.resume,
 			"mailType" :"jobapply"})
 		.$promise.catch(function(e){
-			
+			ngProgress.complete() 
+			alert(e.message);
 		}).then(function(e){
+			ngProgress.complete() 
                         $scope.employee=''
+
 			alert(e.message);
 			
 		})

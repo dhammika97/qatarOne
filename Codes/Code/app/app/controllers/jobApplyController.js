@@ -1,4 +1,4 @@
-controllers.jobApplyController = function ($scope, $routeParams, jobApplyFactory, FileUploader) {
+controllers.jobApplyController = function ($scope, $routeParams, jobApplyFactory, FileUploader, ngProgress) {
      var uploader = $scope.uploader = new FileUploader({
             url: '../../../api/include/upload.php'
         })
@@ -9,7 +9,7 @@ controllers.jobApplyController = function ($scope, $routeParams, jobApplyFactory
                // console.log(response.file);
                 $scope.resume = response.file;
                 if (response.error == false) {
-                    jobApplyFactory.applyjobAPICall($scope, $routeParams.id);
+                    jobApplyFactory.applyjobAPICall($scope, $routeParams.id, ngProgress);
                 } else {
                     alert('File upload failed!')
                 }
