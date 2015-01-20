@@ -8,6 +8,7 @@ App.factory('jobApplyFactory',function($resource){
         
         factory.applyjobAPICall = function($scope,id, ngProgress){
                 //console.log($scope.resume);
+           	ngProgress.complete() 
 		return applyJobMail.query({"advertisement_id":id,
 			"employee_fname":$scope.employee.name,
 			"employee_email":'test@test.test',
