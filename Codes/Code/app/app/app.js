@@ -119,8 +119,9 @@ window.routes =
 	}
 };
 
-App.config(function($routeProvider, $httpProvider){
+App.config(function($routeProvider, $httpProvider, $locationProvider){
 	$httpProvider.defaults.headers.common.Authorization = sessionStorage.getItem("accessKey");
+	$locationProvider.html5Mode(true);
 	for(var path in window.routes) {
         $routeProvider.when(path, window.routes[path]);
     }
