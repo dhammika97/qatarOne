@@ -2316,13 +2316,13 @@ class DbHandler {
     	$ads = self::checkPackageAvailability($user_id, 1); //check ads =1
     	$jobs = self::checkPackageAvailability($user_id, 2); //check jobs =2
     	if ($ads == '0') {
-    		$where_atri = $where_atri . ' AND c.category_parentId != 1 ';
+    		$where_atri = $where_atri . ' AND category_parentId != 1 ';
     	}
     	if ($jobs == '0') {
-    		$where_atri = $where_atri . ' AND c.category_parentId != 2 ';
+    		$where_atri = $where_atri . ' AND category_parentId != 2 ';
     	}
     
-    	$where = 'category_status=1' . $where_atri.' AND c.category_parentId != 0';
+    	$where = 'category_status=1' . $where_atri.' AND category_parentId != 0';
     	$db = new database();
     	$table = 'category ';
     	$rows = 'category_id,category_name ';
