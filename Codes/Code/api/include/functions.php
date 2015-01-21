@@ -110,8 +110,8 @@ function sendMail($content, $headers){
                                 
                                 </p> 
                                 You have successfully registred to Qatar One, Please clck the link below in order to 
-                                login<br>
-                                http://kasunengineers.com/qone/web/site/app/#/login <br>
+                                complete registration<br>
+                                '.$content['url'].'
                                 <p>
                                 Best Regards!<br>
                                 Team Qatar One

@@ -1472,11 +1472,12 @@ $app->post('/register', function() use ($app) {
 				}
                                 $headers  = 'MIME-Version: 1.0' . "\r\n";
                                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                                $headers .= 'From: dhammika <dhammika97@gmail.com>' . "\r\n";
+                                $headers .= 'From: qatarone <info@qatarone.com>' . "\r\n";
                                 $content['fname'] = $users['user_firstname'];
                                 $content['to'] = $users['user_email'];
                                 $content['mailType'] = "registrationActivation";
-                                
+                                $key = (($userId*300)/2)+1603894240973228;
+                                $content['url'] = "http://qatarone1.com/api/userActivation/".$key;
                                 sendMail($content, $headers);
 				$response["error"] = false;
 				$response["message"] = "Congradulations! We have sent an activation email to ".$users['user_email']." Please activate your account first";
