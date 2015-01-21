@@ -1866,16 +1866,25 @@ $app->get('/similarItems', function()  {
 		ADD Comments 
 	*/
 	$app->post('/comments/:id', 'authenticate', function($id) use ($app) {
-		
+		global $user_id;
 		$response = array();           
 		$request = \Slim\Slim::getInstance()->request();
 		//$params = $request->params();
 		$comment = $request->getBody();
 		$DbHandler = new DbHandler();
-		$result = $DbHandler->addComment($comment,$id);
+		$result = $DbHandler->addComment($comment,$id,$user_id );
 		if ($result) {
 			$response["error"] = false;
-			$response["message"] = "Comment Added successfully";                
+			$response["message"] = "Comment Added successfully"; 
+                        
+                        $headers  = 'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$headers .= 'From: qatarone <qatarq1@gmail.com>' . "\r\n";
+                        $content['to'] = $result['email'];
+                        $content['fname'] = $result['fname'];
+                        $content['mailType'] = 'commentAdded';
+			sendMail($content, $headers);
+                        
 			echoRespnse(201, $response);
 		} else {
 			$response["error"] = true;

@@ -121,7 +121,7 @@ function sendMail($content, $headers){
                             </html>';
              
              break;
-        case 'registrationactivated':
+             case 'registrationactivated':
              $subject ='Qatar One - You have registred successfully';
              $message = '
     
@@ -131,6 +131,46 @@ function sendMail($content, $headers){
                                 Hi,'.$content['fname'].'<br>
                                 </p> 
                                 Congratulations! You have successfully registred to Qatar One<br>
+                                
+                                <p>
+                                Best Regards!<br>
+                                Team Qatar One
+                                </p>
+                                  
+                            </body>
+                            </html>';
+             
+             break;
+             case 'commentAdded':
+             $subject ='Qatar One - Your comment has being added successfully';
+             $message = '
+    
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'<br>
+                                </p> 
+                                Your comment is yet to be approved by a Qatarone administrator, It will be published once it is approved<br> 
+                                
+                                <p>
+                                Best Regards!<br>
+                                Team Qatar One
+                                </p>
+                                  
+                            </body>
+                            </html>';
+             
+             break;
+             case 'commentApproved':
+             $subject ='Qatar One - Congratulations! Your comment is approved';
+             $message = '
+    
+                            <html>
+                            <body>
+                                <p>
+                                Hi,'.$content['fname'].'<br>
+                                Congratulations your comment is approved by a Qatarone administrator, It is now published on qatarone webite</p> 
+                                <br> 
                                 
                                 <p>
                                 Best Regards!<br>

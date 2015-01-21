@@ -314,7 +314,7 @@ class DbHandler {
         (isset($category['category_parentId']) ? $category_parentId = $category['category_parentId'] : $category_parentId = "" );
         (isset($category['category_alias']) ? $cat_alias = $category['category_alias'] : $cat_alias = "" );
 
-        $values = "'" . $category_name . "', '".$category_image."',
+        $values = "'" . $category_name . "', '" . $category_image . "',
 				  '" . $user_id . "' , 
 				  '" . $category_parentId . "',
 				  '" . $cat_alias . "'";
@@ -570,7 +570,7 @@ class DbHandler {
         $db = new database();
         $table = 'user';
         $rows = '*';
-        $where = 'user_email= "' . $user_email . '" AND user_status = 1 AND user_type = "'.$user_type.'" ';
+        $where = 'user_email= "' . $user_email . '" AND user_status = 1 AND user_type = "' . $user_type . '" ';
 
         $db->select($table, $rows, $where, '', '');
         $logged_User = $db->getResults();
@@ -1101,15 +1101,15 @@ class DbHandler {
         $images = $db->getJson();
         return $images;
     }
-	
-	public function deleteImage($image){
-		$db = new database();
+
+    public function deleteImage($image) {
+        $db = new database();
         $table = 'advertisement_images';
         $where = 'advertisement_image = "' . $image . '" ';
         if ($db->delete($table, $where)) {
             return true;
         }
-	}
+    }
 
     public function advertisments($params) {
         //$catid = $params['categoryID'];
@@ -1532,7 +1532,7 @@ class DbHandler {
         return $add;
     }
 
-    public function addComment($comment, $id) {
+    public function addComment($comment, $id, $user_id) {
         $db = new database();
 
         $advertisment_Id = $id;
@@ -1540,7 +1540,7 @@ class DbHandler {
         $comment_Time = date("H:i:s");
         $comment_status = "0";
         //$commentBody = $params;
-        $comment_addedBy = '33';
+        $comment_addedBy = $user_id;
 
         $table = "item_comments";
         $values = "'" . $advertisment_Id . "',
@@ -1557,7 +1557,13 @@ class DbHandler {
 			   comment_addedBy,
 			   Comment";
         if ($db->insert($table, $values, $rows)) {
-            return true;
+
+            $table = 'item_comments c, user u';
+            $rows = 'u.user_email as email, u.user_firstname as fname';
+            $where = 'u.user_id = c.comment_addedBy AND u.user_id= "'.$user_id.'" group by u.user_email';
+            $db->select($table, $rows, $where, '', '');
+            $userEmail = $db->getResults();
+            return $userEmail;
         } else {
             return false;
         }
@@ -1826,7 +1832,7 @@ class DbHandler {
         $table = 'advertisment';
         $rows = $status;
         $where = 'advertisment_id = "' . $id . '"';
-        if ($db->update($table, $rows, $where)){
+        if ($db->update($table, $rows, $where)) {
 
             $table = 'advertisment a, user u';
             $rows = 'u.user_firstname as name, u.user_email as email';
@@ -1838,7 +1844,7 @@ class DbHandler {
 
 
             //return true;
-        }else
+        } else
             return false;
     }
 
@@ -1987,14 +1993,14 @@ class DbHandler {
     }
 
     public function getJobsApplyInformation($user_id) {
-    	//$user_id=40;
+        //$user_id=40;
         $db = new database();
         $table = ' advertisment a, jobapplydetails j, user u ';
         $rows = 'j.jobapplydetails_resume, j.jobapplydetails_ad_id as ad_id, a.advertisement_title as title,u.user_firstname as name, j.jobapplydetails_employee_email as email, j.jobapplydetails_employee_phoneno contactnum, 
 		j.jobapplydetails_employee_massage message, j.jobapplydetails_appliedon applydate, j.jobapplydetails_employee_userid as epmloyeeuserid ';
         $where = ' a.advertisment_id=j.jobapplydetails_ad_id
 		AND u.user_id=j.jobapplydetails_employee_userid
-        AND u.user_id='.$user_id.'		
+        AND u.user_id=' . $user_id . '		
 		AND jobapplydetails_status = 0';
         $db->selectJson($table, $rows, $where, '', '', '');
         $advertisment = $db->getJson();
@@ -2164,7 +2170,7 @@ class DbHandler {
         $table = ' advertisment a, advertisement_images i ';
         $rows = 'i.advertisement_image, advertisment_id, advertisement_title, advertisement_expire, advertisement_date ';
         $where = ' a.advertisment_id=i.advertisement_id
-		and advertisement_addedBy='.$user_id.'  and advertisement_expire>=current_date and advertisement_status = 1 group by advertisment_id ';
+		and advertisement_addedBy=' . $user_id . '  and advertisement_expire>=current_date and advertisement_status = 1 group by advertisment_id ';
         $db->selectJson($table, $rows, $where, '', '');
         $add = $db->getJson();
         return $add;
@@ -2179,33 +2185,33 @@ class DbHandler {
         $where = ' a.advertisement_subCategoryId = sc.category_sub_id 
                    AND a.advertisement_location = l.location_id
                    AND a.advertisement_suburb = s.suburb_id
-                   AND a.advertisement_status = 0 AND a.advertisment_id = "'.$id.'"';
+                   AND a.advertisement_status = 0 AND a.advertisment_id = "' . $id . '"';
         $db->selectJson($table, $rows, $where, '', '', '');
         $advertismentDetail = $db->getJson();
         return $advertismentDetail;
     }
 
-    public function updateAdvertisement($id, $params){
-    	//print_r($params);
-    	$db = new database();
-    	$table = 'advertisment';
-    	$rows = $params;
-    	$where = 'advertisment_id = "' . $id . '"';
-    	//print_r($params);
-    
-    
-    	if ($db->update($table, $rows, $where)) {
-    		return true;
-    	} else {
-    		return false;
-    	}
+    public function updateAdvertisement($id, $params) {
+        //print_r($params);
+        $db = new database();
+        $table = 'advertisment';
+        $rows = $params;
+        $where = 'advertisment_id = "' . $id . '"';
+        //print_r($params);
+
+
+        if ($db->update($table, $rows, $where)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-	
-	public function editAdvertisement($id, $adDetail) {
-		$db = new database(); //$user_id,$mode
-		//advertisement_status,
-		//echo $adDetail['advertisement_title'];
-		$query = 'update advertisment set advertisement_title="' . $adDetail['advertisement_title'] . '",
+
+    public function editAdvertisement($id, $adDetail) {
+        $db = new database(); //$user_id,$mode
+        //advertisement_status,
+        //echo $adDetail['advertisement_title'];
+        $query = 'update advertisment set advertisement_title="' . $adDetail['advertisement_title'] . '",
 				advertisement_description="' . $adDetail['advertisement_description'] . '",
 				advertisement_currency="' . $adDetail['currency'] . '",
 				advertisement_price=' . $adDetail['advertisement_price'] . ',
@@ -2216,87 +2222,87 @@ class DbHandler {
 				advertisement_googleCodes="' . $adDetail['suburb_cordinates'] . '",
 				advertisement_modify_date=CURRENT_TIMESTAMP
 				where advertisment_id = ' . $id . '';
-		
-		if ($db->updatePreparedStatment($query)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
-	public function refreshAdvertisement($id) {
-		$db = new database();
-		$query = 'update advertisment set 
+        if ($db->updatePreparedStatment($query)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function refreshAdvertisement($id) {
+        $db = new database();
+        $query = 'update advertisment set 
 				advertisement_date=CURRENT_TIMESTAMP
 				where advertisment_id = ' . $id . '';
-	
-		if ($db->updatePreparedStatment($query)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public function insertRecordAdRefresh($user_id,$id) {
-		$db = new database();
-		$query = 'insert into advertisementrefresh values ("auto_increment",'.$id.','.$user_id.',1,current_date)';
-		if ($db->updatePreparedStatment($query)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	public function updateRecordAdRefresh($user_id,$id) {
-		$db = new database();
-		$query = 'update advertisementrefresh set advertisementrefresh_refresh_attempt=advertisementrefresh_refresh_attempt+1
+
+        if ($db->updatePreparedStatment($query)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function insertRecordAdRefresh($user_id, $id) {
+        $db = new database();
+        $query = 'insert into advertisementrefresh values ("auto_increment",' . $id . ',' . $user_id . ',1,current_date)';
+        if ($db->updatePreparedStatment($query)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateRecordAdRefresh($user_id, $id) {
+        $db = new database();
+        $query = 'update advertisementrefresh set advertisementrefresh_refresh_attempt=advertisementrefresh_refresh_attempt+1
 					where
-					advertisementrefresh_refreshby='.$user_id.'
-					and advertisementrefresh_adid='.$id.'		
+					advertisementrefresh_refreshby=' . $user_id . '
+					and advertisementrefresh_adid=' . $id . '		
 					and advertisementrefresh_date=current_date';
-		if ($db->updatePreparedStatment($query)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public function refreshAd($id, $user_id) {
-		
-		$refreshattempts=self::checkRefreshAdAttempts($user_id,$id);
-		//echo $refreshattempts; 
-		if ($refreshattempts==0) {
-			self::refreshAdvertisement($id);
-			//echo 'insert';
-			self::insertRecordAdRefresh($user_id,$id);
-			return true;
-		}else if ($refreshattempts<2) {
-			self::refreshAdvertisement($id);
-			self::updateRecordAdRefresh($user_id,$id);
-			return true;
-		}else{
-			return false;
-		}
-	}
-	
-	
-	public function checkRefreshAdAttempts($user_id,$id) {
-		$db = new database ();
-		$table = 'advertisementrefresh ';
-		$rows = ' advertisementrefresh_refresh_attempt ';
-		$where = 'advertisementrefresh_refreshby= "' . $user_id . '"
-				  and advertisementrefresh_adid='.$id.'
+        if ($db->updatePreparedStatment($query)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function refreshAd($id, $user_id) {
+
+        $refreshattempts = self::checkRefreshAdAttempts($user_id, $id);
+        //echo $refreshattempts; 
+        if ($refreshattempts == 0) {
+            self::refreshAdvertisement($id);
+            //echo 'insert';
+            self::insertRecordAdRefresh($user_id, $id);
+            return true;
+        } else if ($refreshattempts < 2) {
+            self::refreshAdvertisement($id);
+            self::updateRecordAdRefresh($user_id, $id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function checkRefreshAdAttempts($user_id, $id) {
+        $db = new database ();
+        $table = 'advertisementrefresh ';
+        $rows = ' advertisementrefresh_refresh_attempt ';
+        $where = 'advertisementrefresh_refreshby= "' . $user_id . '"
+				  and advertisementrefresh_adid=' . $id . '
 				  AND advertisementrefresh_date=current_date ';
-		
-		$db->select($table, $rows, $where, '', '');
-		$resultsset = $db->getResults();
-		if ($resultsset != NULL) {
-			$response = $resultsset [0];
-		} else {
-			$response = 0;
-		}
-		return $response;
-	}
-	
+
+        $db->select($table, $rows, $where, '', '');
+        $resultsset = $db->getResults();
+        if ($resultsset != NULL) {
+            $response = $resultsset [0];
+        } else {
+            $response = 0;
+        }
+        return $response;
+    }
+
 }
 
 ?>
