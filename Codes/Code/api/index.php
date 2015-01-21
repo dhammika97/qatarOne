@@ -1875,7 +1875,7 @@ $app->get('/similarItems', function()  {
 		$result = $DbHandler->addComment($comment,$id,$user_id );
 		if ($result) {
 			$response["error"] = false;
-			$response["message"] = "Comment Added successfully"; 
+			
                         
                         $headers  = 'MIME-Version: 1.0' . "\r\n";
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -1883,7 +1883,11 @@ $app->get('/similarItems', function()  {
                         $content['to'] = $result['email'];
                         $content['fname'] = $result['fname'];
                         $content['mailType'] = 'commentAdded';
-			sendMail($content, $headers);
+                        if(!sendMail($content, $headers)){
+                            $response["message"] = "Mail not delevered"; 
+                        }else{
+                            $response["message"] = "Comment Added successfully";
+                        }
                         
 			echoRespnse(201, $response);
 		} else {
