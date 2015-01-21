@@ -2302,6 +2302,44 @@ class DbHandler {
         }
         return $response;
     }
+    
+
+    public function getCategoryPackageBinding($user_id) {
+    	//global $user_id;
+    	$where_atri = '';
+    	$ads = self::checkPackageAvailability($user_id, 1); //check ads =1
+    	$jobs = self::checkPackageAvailability($user_id, 2); //check jobs =2
+    	if ($ads == '0') {
+    		$where_atri = $where_atri . ' AND c.category_parentId != 1 ';
+    	}
+    	if ($jobs == '0') {
+    		$where_atri = $where_atri . ' AND c.category_parentId != 2 ';
+    	}
+    
+    	$where = 'category_status=1' . $where_atri;
+    	$db = new database();
+    	$table = 'category ';
+    	$rows = 'category_id,category_name ';
+    	$db->selectJson($table, $rows, $where, 'category_name', '', '');
+    	$subcategories = $db->getJson();
+    
+    	return $subcategories;
+    }
+    
+    public function getSubCategoryPackage($user_id,$id) {
+
+    	$where = 'category_sub_status=0 and category_sub_parentId=' . $id;
+    	$db = new database();
+    	$table = ' category_sub ';
+    	$rows = 'category_sub_id,category_sub_name,category_sub_tplType';
+    	$db->selectJson($table, $rows, $where, 'category_sub_name', '', '');
+    	//echo 'select '.$rows.' from '.$table.' '.$where;
+    	$subcategories = $db->getJson();
+    
+    	return $subcategories;
+    }
+    
+    
 
 }
 

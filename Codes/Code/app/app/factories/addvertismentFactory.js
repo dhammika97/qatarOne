@@ -175,13 +175,31 @@ App.factory('advertismentFactory', function ($resource, $location) {
         return tld = packageDetails.query();
     }
 
+    //OLD development - its has single dropdown for select category
     var category = $resource('../api/categoryMatrixPackageBinding/:id', {}, {
         query: {method: 'GET', params: {}, isArray: false}
     });
     factory.getCategoryPackage = function () {
         return tld = category.query();
     }
-
+    
+    //New development - seperate dropdown for select category and sub category 
+    var mainCategory = $resource('../api/getCategoryPackageBinding/:id', {}, {
+        query: {method: 'GET', params: {}, isArray: false}
+    });
+    factory.getMainCategoryPackage = function () {
+        return tld = mainCategory.query();
+    }
+    
+  //New development - seperate dropdown for select category and sub category 
+    var subCategory = $resource('../api/getSubCategoryPackage/:id', {}, {
+        query: {method: 'GET', params: {}, isArray: false}
+    });
+    factory.getSubCategoryPackage = function (id) {
+        return tld = subCategory.query({"id": id});
+    }
+    
+    
     /*	var category = $resource('../../../api/categoryMatrix/:id', {}, {
      query: { method: 'GET', params: {}, isArray: false }
      });

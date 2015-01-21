@@ -2696,7 +2696,58 @@ $app->put ( '/forgotPasswordUpdate/:id', function ($hash) use($app) {
 			}
 		});
 	
+			// * list of Category
+			// * url - /getCategoryPackageBinding
+			// * method - get
+			// * params -
+			
+			$app->get('/getCategoryPackageBinding','authenticate', function()  {
+				global $user_id;
+				$request = \Slim\Slim::getInstance()->request();
+				$params = $request->params();
+				$DbHandler = new DbHandler();
+				$response = array();
+				$result = $DbHandler->getCategoryPackageBinding($user_id);
+					
+				if (!$result) {
+					$response["error"] = TRUE;
+					$response["message"] = "The requested resource doesn't exists";
+					echoRespnse(404, $response);
+				} else {
+					$response["error"] = false;
+					$response['categorymatrix']=json_decode($result);
+			
+					echoRespnse(200, $response);
+				}
+			});
+					
+				// * list of sub-categories of a particular category
+				// * url - /getSubCategoryPackage
+				// * method - get
+				// * params -
+					
+				$app->get('/getSubCategoryPackage/:id','authenticate', function($id) {
+					global $user_id;
+					$request = \Slim\Slim::getInstance()->request();
+					$params = $request->params();
+					$DbHandler = new DbHandler();
+					$response = array();
+					$result = $DbHandler->getSubCategoryPackage($user_id,$id);
+						
+					if (!$result) {
+						$response["error"] = TRUE;
+						$response["message"] = "The requested resource doesn't exists";
+						echoRespnse(404, $response);
+					} else {
+						$response["error"] = false;
+						$response['categorymatrix']=json_decode($result);
+							
+						echoRespnse(200, $response);
+					}
+				});
 
+		
+		
 $app->run();
 		
 		
