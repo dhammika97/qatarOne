@@ -2069,7 +2069,7 @@ $app->get('/userActivation/:id', function($hash)  {
 		} else {
 			$response["error"] = false;
 			$response["message"] = "User activated successfully";
-
+			header('location:http://qatarone1.com/app/login');
 			echoRespnse(200, $response);
 		}
 });
