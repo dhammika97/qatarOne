@@ -1,4 +1,4 @@
-controllers.addvertismentController= function($scope, advertismentFactory, $routeParams, ngProgress, $timeout){
+controllers.addvertismentController= function($scope, advertismentFactory, $routeParams, ngProgress, $timeout, $location){
 	//ngProgress.start()
 	advertismentFactory.getAdd($routeParams.id, ngProgress, $scope);
 	
@@ -26,7 +26,7 @@ controllers.addvertismentController= function($scope, advertismentFactory, $rout
 	$scope.addComment = function(){
 		advertismentFactory.addComment($scope, $routeParams.id, $timeout);
 	}
-	
+	$scope.url = $location.path()
 	$scope.mapLoad = function(e){
 		$scope.rate = e.rating;
 		$scope.isReadonly = true;
@@ -60,17 +60,26 @@ controllers.addvertismentController= function($scope, advertismentFactory, $rout
 
 controllers.advertismentAddController = function($scope, advertismentFactory, FileUploader, ngProgress, $timeout){
 	$scope.packageList = advertismentFactory.getPackageDetails()
-	$scope.catList = advertismentFactory.getCategoryPackage()
+	//$scope.catList = advertismentFactory.getCategoryPackage()
+	$scope.catList = advertismentFactory.getMainCategoryPackage()
 	$scope.locationList = advertismentFactory.getLocations()
 	$scope.suburbOptions = "item.suburb_id as item.suburb_name for item in list.suburbs"
+	$scope.subCatOptions= "value.category_sub_id as value.category_sub_name for (key,value) in subcatList.categorymatrix"
 	$scope.changeLoc = function(){
 		 $scope.list = advertismentFactory.getSuburbs($scope.ad.advertisement_location)
 	}
 
+	$scope.changesubCategory = function($catId){
+		$scope.templatePath = ""
+		$scope.catTemplatePath =""
+		$scope.subcatList = advertismentFactory.getSubCategoryPackage($scope.ad.advertisement_CategoryId)
+		$scope.catTemplatePath = "app/partials/postAd/subCategory.html"
+	}
+	
 	$scope.changeTpl = function(){
-		for(i=0; i<$scope.catList.categorymatrix.length; i++){
-			if($scope.ad.advertisement_subCategoryId==$scope.catList.categorymatrix[i].category_sub_id){
-				$scope.templatePath = "app/partials/postAd/adTemplate-"+$scope.catList.categorymatrix[i].category_sub_tplType+".html"
+		for(i=0; i<$scope.subcatList.categorymatrix.length; i++){
+			if($scope.ad.advertisement_subCategoryId==$scope.subcatList.categorymatrix[i].category_sub_id){
+				$scope.templatePath = "app/partials/postAd/adTemplate-"+$scope.subcatList.categorymatrix[i].category_sub_tplType+".html"
 				$scope.ad.advertisement_attributes=""
 			}
 		}

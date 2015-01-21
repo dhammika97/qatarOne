@@ -78,7 +78,7 @@ header .top-nav ul li a i { display: block; }
 .main-page .ad-placeholder .category-item .category-heading span.category-icon { float: left; margin-right: 10px; border-radius:5px 0 0 5px}
 .main-page .ad-placeholder .category-item .category-heading span.category-count { float: right; border-radius:0 5px 5px 0}
 .main-page .ad-placeholder .category-item .category-heading a { font-size: 10px; line-height: 34px; font-size: 0.9rem; line-height: 2.4rem; text-decoration: none; color: #333333; display: inline-block; }
-.main-page .ad-placeholder .category-item .category-heading a:hover { color: #ffffff; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; font-size: 10px; font-size: 1rem; line-height: 2.4rem; }
+.main-page .ad-placeholder .category-item .category-heading a:hover { color: #ffffff; -webkit-transition: all 0.7s ease-in-out; -moz-transition: all 0.7s ease-in-out; -o-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out; line-height: 2.4rem; }
 .main-page .ad-placeholder .category-item:hover .category-heading { background: #a50344; cursor:pointer}
 .main-page .ad-placeholder .category-item:hover a { color: #ffffff; font-size: 10px; line-height: 35px; font-size: 0.9rem; }
 .main-page .ad-placeholder .category-item:hover { -webkit-transform: scale(1.1, 1.1); -moz-transform: scale(1.1, 1.1); -ms-transform: scale(1.1, 1.1); -o-transform: scale(1.1, 1.1); transform: scale(1.1, 1.1); }
@@ -88,7 +88,7 @@ header .top-nav ul li a i { display: block; }
 .main-page .ad-placeholder .news-holder .details h4 { font-size: 14px; line-height: 18px; font-size: 1.4rem; line-height: 1.8rem; color: #333333; padding-bottom: 1rem; }
 .main-page .ad-placeholder .news-item { @inlcude clearfix; font-size: 12px; line-height: 16px; font-size: 1.2rem; line-height: 1.6rem; padding: 10px; }
 .main-page .ad-placeholder .news-item P { font-size: 11px; line-height: 14px; font-size: 1.1rem; line-height: 1.4rem; }
-.main-page .ad-placeholder .events-item { @inlcude clearfix; font-size: 12px; line-height: 16px; font-size: 1.2rem; line-height: 1.6rem; }
+.main-page .ad-placeholder .events-item { @inlcude clearfix; font-size: 12px; line-height: 16px; font-size: 1.2rem; line-height: 1.6rem; max-height: 524px; min-height: 524px; overflow: hidden;}
 .main-page .ad-placeholder .events-item:hover{
 	border:1px solid #CCC; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f2f2f2)); background: -webkit-linear-gradient(#fefefe, #f2f2f2); background: -moz-linear-gradient(#fefefe, #f2f2f2); background: -o-linear-gradient(#fefefe, #f2f2f2); background: linear-gradient(#fefefe, #f2f2f2); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; cursor: pointer;
 }

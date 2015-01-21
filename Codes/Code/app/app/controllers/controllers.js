@@ -1,7 +1,7 @@
 // JavaScript Document
 var controllers = {};
 ///ng-controller="masterController"
-controllers.masterController = function($scope, $location, ngProgress, $timeout){
+controllers.masterController = function($scope, $location, ngProgress, $timeout, $window){
 	$scope.username = ''
 	$scope.username = sessionStorage.getItem("username")
 	$scope.isCollapsed = true;
@@ -40,6 +40,10 @@ controllers.masterController = function($scope, $location, ngProgress, $timeout)
 		$scope.username = ''
 		$scope.go('/login')
 	}
+	$scope.$on('$viewContentLoaded', function(event) {
+		//$window._gaq.push(['_trackPageview', $location.path()]);
+		$window.ga('send', 'pageview', { page: $location.path() });
+	});
 }
 
 controllers.dashController = function($scope, dashFactory){
