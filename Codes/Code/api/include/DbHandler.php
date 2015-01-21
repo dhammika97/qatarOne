@@ -2316,7 +2316,7 @@ class DbHandler {
     		$where_atri = $where_atri . ' AND c.category_parentId != 2 ';
     	}
     
-    	$where = 'category_status=1' . $where_atri;
+    	$where = 'category_status=1' . $where_atri.' AND c.category_parentId != 0';
     	$db = new database();
     	$table = 'category ';
     	$rows = 'category_id,category_name ';
