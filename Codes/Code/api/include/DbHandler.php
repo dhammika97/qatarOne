@@ -1879,9 +1879,15 @@ class DbHandler {
         $table = 'item_comments';
         $rows = $status;
         $where = 'comment_Id = "' . $id . '"';
-        if ($db->update($table, $rows, $where))
+        if ($db->update($table, $rows, $where)) {
+
+            $table = 'item_comments c, user u';
+            $rows = 'u.user_firstname as fname, u.user_email as email';
+            $where = 'c.comment_addedBy = u.user_id and c.comment_Id="'.$id.'"';
+            $db->select($table, $rows, $where, 'u.user_email', '');
+            $add = $db->getResults();
             return true;
-        else
+        } else
             return false;
     }
 

@@ -169,7 +169,7 @@ function sendMail($content, $headers){
                             <body>
                                 <p>
                                 Hi,'.$content['fname'].'<br>
-                                Congratulations your comment is approved by a Qatarone administrator, It is now published on qatarone webite</p> 
+                                Congratulations your comment is approved by a Qatarone administrator, And It is now published on qatarone webite</p> 
                                 <br> 
                                 
                                 <p>
@@ -343,7 +343,6 @@ function sendMail($content, $headers){
                             </html>';
              	break;
      } 
-
     if(mail($content['to'], $subject, $message, $headers)) return true; else return false;
 }
 
