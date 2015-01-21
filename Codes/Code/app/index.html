@@ -59,12 +59,12 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" collapse="isCollapsed">
       		<ul class="nav navbar-nav">
-                <li><a href="#/portal/classified" ng-click="isCollapsed = !isCollapsed">Classifieds</a></li>
-                <li><a href="#/portal/jobs" ng-click="isCollapsed = !isCollapsed">Jobs</a></li>
-                <li><a href="#/pages/AboutUs" ng-click="isCollapsed = !isCollapsed">About Us</a></li>
-                <li><a href="#/contact-us" ng-click="isCollapsed = !isCollapsed">Contact</a></li>
+                <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><a href="#/portal/classified" >Classifieds</a></li>
+                <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><a href="#/portal/jobs" >Jobs</a></li>
+                <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><a href="#/pages/AboutUs" >About Us</a></li>
+                <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><a href="#/contact-us" >Contact</a></li>
             </ul>
-            
+             <!--data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"-->
             <ul class="nav navbar-nav navbar-right">
         		<li><div id="google_translate_element"></div><script type="text/javascript">
 function googleTranslateElementInit() {
@@ -72,12 +72,12 @@ function googleTranslateElementInit() {
 }
 </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
         </li>
-                <li ng-class="{active:isActive('/login'), active:isActive('/my-profile')}" >
-                	<a href="#/login" ng-if="!username" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-user fa-lg"></i> Login</a>
-                	<a href="#/my-profile" ng-if="username" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-user fa-lg"></i> {{username}}</a>
+                <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                	<a href="#/login" ng-if="!username" ><i class="fa fa-user fa-lg"></i> Login</a>
+                	<a href="#/my-profile" ng-if="username" ><i class="fa fa-user fa-lg"></i> {{username}}</a>
                 </li>
-                <li ng-class="{ active: isActive('/post-ad')}"><a href="#/post-ad" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-pencil-square-o fa-lg"></i> Post Your Ad</a></li>
-                <li><a href="" ng-if="username" ng-click="logout()" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-power-off fa-lg"></i> Logout</a></li>
+                <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><a href="#/post-ad" ><i class="fa fa-pencil-square-o fa-lg"></i> Post Your Ad</a></li>
+                <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><a href="" ng-if="username" ng-click="logout()" ><i class="fa fa-power-off fa-lg"></i> Logout</a></li>
             </ul>
         </div>
       </div>     

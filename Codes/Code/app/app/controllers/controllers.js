@@ -31,7 +31,7 @@ controllers.masterController = function($scope, $location, ngProgress, $timeout,
 	
 	$scope.$on('$viewContentLoaded', function(){
 		ngProgress.complete()//Here your view content is fully loaded !!
-		$scope.isCollapsed = true;
+		//$scope.isCollapsed = true;
 	});
 	
 	$scope.logout = function(){
