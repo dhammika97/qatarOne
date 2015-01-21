@@ -1,4 +1,4 @@
-controllers.addvertismentController= function($scope, advertismentFactory, $routeParams, ngProgress, $timeout){
+controllers.addvertismentController= function($scope, advertismentFactory, $routeParams, ngProgress, $timeout, $location){
 	//ngProgress.start()
 	advertismentFactory.getAdd($routeParams.id, ngProgress, $scope);
 	
@@ -26,7 +26,7 @@ controllers.addvertismentController= function($scope, advertismentFactory, $rout
 	$scope.addComment = function(){
 		advertismentFactory.addComment($scope, $routeParams.id, $timeout);
 	}
-	
+	$scope.url = $location.path()
 	$scope.mapLoad = function(e){
 		$scope.rate = e.rating;
 		$scope.isReadonly = true;
