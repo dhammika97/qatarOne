@@ -109,8 +109,8 @@ function sendMail($content, $headers){
                                 Hi,'.$content['fname'].'<br>
                                 
                                 </p> 
-                                You have successfully registred to Qatar One, Please clck the link below in order to 
-                                complete registration<br>
+                                You have successfully registred to Qatar One, Please click the link below in order to 
+                                complete the registration<br>
                                 '.$content['url'].'
                                 <p>
                                 Best Regards!<br>
