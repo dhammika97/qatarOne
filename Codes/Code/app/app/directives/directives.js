@@ -68,4 +68,20 @@ App.directive('helloWorld', function(ngDialog, $window) {
 			}
 		}
 	}
-});
+}).directive('fbLike', ['$window', function ($window) {
+    return {
+        restrict: 'A',
+		scope:{
+			shareM:'='
+		},
+        template: '<div class="fb-share-button" data-href="http://qatarone1.com/app{{shareM}}" data-layout="button"></div>',
+        link: function (scope, element, attrs) {
+            scope.$watch(function () { return !!$window.FB; },
+                function (fbIsReady) {
+                    if (fbIsReady) {
+                        $window.FB.XFBML.parse(element.parent()[0]);
+                    }
+                });
+        }
+    };
+}]);

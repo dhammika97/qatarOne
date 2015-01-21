@@ -1,4 +1,4 @@
-controllers.addvertismentController= function($scope, advertismentFactory, $routeParams, ngProgress, $timeout, $location){
+controllers.addvertismentController= function($scope, advertismentFactory, $routeParams, ngProgress, $timeout, $location, $window){
 	//ngProgress.start()
 	advertismentFactory.getAdd($routeParams.id, ngProgress, $scope);
 	
