@@ -2261,7 +2261,13 @@ $app->put('/advertismentsAdmin/:id', 'authenticate', function($id)  {
 		} else {
 			$response["error"] = false;
 			$response["message"] = "Advertisement Approved";
-
+					$headers  = 'MIME-Version: 1.0' . "\r\n";
+                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                    $headers .= 'From: qatarone <qatarq1@gmail.com>' . "\r\n";
+                    $content['fname'] = $result['name'];
+                    $content['to'] = $result['email'];
+                    $content['mailType'] = "advertismentStatusUpdate";                               
+                    sendMail($content, $headers);
 			echoRespnse(200, $response);
 		}
 });	

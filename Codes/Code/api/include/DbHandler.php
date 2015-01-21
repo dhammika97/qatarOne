@@ -1826,9 +1826,19 @@ class DbHandler {
         $table = 'advertisment';
         $rows = $status;
         $where = 'advertisment_id = "' . $id . '"';
-        if ($db->update($table, $rows, $where))
-            return true;
-        else
+        if ($db->update($table, $rows, $where)){
+
+            $table = 'advertisment a, user u';
+            $rows = 'u.user_firstname as name, u.user_email as email';
+            $where = 'a.advertisement_addedBy = u.user_id AND advertisment_id = "' . $id . '"';
+
+            $db->select($table, $rows, $where, '', '', '');
+            $user = $db->getResults();
+            return $user;
+
+
+            //return true;
+        }else
             return false;
     }
 
