@@ -1932,7 +1932,7 @@ $app->post('/mail', function() {
 			$response = array();
 			$headers  = 'MIME-Version: 1.0' . "\r\n";
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-			$headers .= 'From: dhammika <dhammika97@gmail.com>' . "\r\n";
+			$headers .= 'From: qatarone <qatarq1@gmail.com>' . "\r\n";
 			if (sendMail($content, $headers)) {
 				$response["error"] = false;
 				$response["message"] = "Mail successfully sent";
