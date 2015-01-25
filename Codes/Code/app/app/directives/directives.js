@@ -13,17 +13,18 @@ App.directive('helloWorld', function(ngDialog, $window) {
 		},2000)
 		
 		scope.openWindow = function(id){
-			ngDialog.open({ template: '<iframe id="player" type="text/html" width="640" height="480" src="http://www.youtube.com/embed/'+id+'" frameborder="0"></iframe>',
+			ngDialog.open({ template: '<iframe id="player" type="text/html" style="max-width:100%" width="640" height="480" src="http://www.youtube.com/embed/'+id+'" frameborder="0"></iframe>',
     		plain: true,
 			className: 'ngdialog-theme-default' });	
 		}
 		
 		angular.element($window).bind('resize', function() {
-			scope.onResizeFunction();
+			//scope.onResizeFunction();
 			//scope.$apply();
 		});
 		
 		scope.onResizeFunction = function(){
+			console.log($('.crsl-items').css('display','block'))
 			var width = window.innerWidth;
 			if(width > 900) {
 			   // desktop
@@ -56,7 +57,7 @@ App.directive('helloWorld', function(ngDialog, $window) {
 						hoverPause:true,
 						visible: 2,
 						auto:500,
-						speed:2000
+						speed:3000
 				});
 			}
 			setTimeout(function(){

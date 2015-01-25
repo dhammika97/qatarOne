@@ -82,7 +82,7 @@ header .top-nav ul li a i { display: block; }
 .main-page .ad-placeholder .category-item:hover .category-heading { background: #a50344; cursor:pointer}
 .main-page .ad-placeholder .category-item:hover a { color: #ffffff; font-size: 10px; line-height: 35px; font-size: 0.9rem; }
 .main-page .ad-placeholder .category-item:hover { -webkit-transform: scale(1.1, 1.1); -moz-transform: scale(1.1, 1.1); -ms-transform: scale(1.1, 1.1); -o-transform: scale(1.1, 1.1); transform: scale(1.1, 1.1); }
-.main-page .news-holder {/*padding: 1rem; background: #f5f5f5; margin-bottom: 1.5rem;*/ }
+.main-page .news-holder {/*padding: 1rem; background: #f5f5f5; margin-bottom: 1.5rem;*/ min-height:135px;}
 .main-page .news-holder:hover { border:1px solid #CCC; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f2f2f2)); background: -webkit-linear-gradient(#fefefe, #f2f2f2); background: -moz-linear-gradient(#fefefe, #f2f2f2); background: -o-linear-gradient(#fefefe, #f2f2f2); background: linear-gradient(#fefefe, #f2f2f2); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px; cursor: pointer; }
 .main-page .ad-placeholder .news-holder .details { font-size: 11px; line-height: 13px; font-size: 1.1rem; line-height: 1.3rem; }
 .main-page .ad-placeholder .news-holder .details h4 { font-size: 14px; line-height: 18px; font-size: 1.4rem; line-height: 1.8rem; color: #333333; padding-bottom: 1rem; }
@@ -338,11 +338,26 @@ footer .footer-text a:hover { color: #a50344; text-decoration: none; }
 
 @media only screen and (max-width: 1199px) { .contact-no, .comments-btn { font-size: 12px; line-height: 20px; font-size: 1.2rem; line-height: 2rem; padding: 10px; } }
 @media only screen and (max-width: 991px) { html { font-size: 87.5%; }
-  .home-bg { background-size: cover; }
+  .home-bg {  }
   .search-bar .keyword, .search-bar .category, .search-bar .location { padding: 10px 15px; }
   .search-bar .location { padding-bottom: 20px; }
   .ad-description { padding-top: 20px; }
-  .ad-description .contact-no, .ad-description .comments-btn { font-size: 10px; line-height: 20px; font-size: 1rem; line-height: 2rem; padding: 10px; } }
+  .ad-description .contact-no, .ad-description .comments-btn { font-size: 10px; line-height: 20px; font-size: 1rem; line-height: 2rem; padding: 10px; } 
+  .home-bg .nav-buttons .main-selecter {
+	min-width: 105px;
+	line-height: 34px;
+	font-size: 1.3rem;
+	line-height: 2rem;
+	min-height:75px;
+	}
+	.home-bg .nav-buttons .main-selecter span{
+		margin: 25% 0 25% 0;	
+	}
+	.main-page .ad-placeholder{
+		padding:0;
+		margin:0;	
+	}
+}
 
 .form-control{
 	border-radius:5px;	

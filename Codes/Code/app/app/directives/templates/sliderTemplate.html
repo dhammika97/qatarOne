@@ -3,7 +3,7 @@
         <a href="" class="previous">Previous</a>
         <a href="" class="next">Next</a>
     </div>-->
-    <div class="crsl-items" data-navigation="NAV-ID">
+    <div class="crsl-items" style="display:none" data-navigation="NAV-ID">
         <div class="crsl-wrap">
             <figure class="crsl-item col-lg-3" ng-model="videoT" ng-repeat="video in videoT">
                 <a href="" ng-click="openWindow(video.video_url)"><img width="220"  src="http://img.youtube.com/vi/{{video.video_url}}/default.jpg"><span class="visible-lg">{{video.video_title}}</span></a>
