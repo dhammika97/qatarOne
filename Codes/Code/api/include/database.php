@@ -132,7 +132,7 @@ private $numrows;
 			$insert .= " (".$rows.")";
 		}
 		if($values != ""){
-			$insert .= " values (".$values.");";
+			$insert .= " values (".mysql_escape_string($values).");";
 		}
 		//echo $insert;
 		$ins = mysqli_query($this->con,$insert);
@@ -169,9 +169,10 @@ private $numrows;
 		$keys = array_keys($rows);
 		for($i=0; $i<count($rows); $i++){
 			if(is_string($rows[$keys[$i]])){
-				$update .= $keys[$i].'="'.$rows[$keys[$i]].'"';
+				//echo "sdfsdfsdf";
+				$update .= ($keys[$i]."='".mysql_escape_string($rows[$keys[$i]])."'");
 			}else{
-				$update .= $keys[$i].'='.$rows[$keys[$i]];
+				$update .= ($keys[$i].'='.mysql_escape_string($rows[$keys[$i]]));
 			}
 			if($i != count($rows)-1){
 				$update .= ',';
