@@ -675,7 +675,7 @@ class DbHandler {
         (isset($event['event_shortDescription']) ? $event_shortDescription = $event['event_shortDescription'] : $event_shortDescription = "" );
         (isset($event['event_image']) ? $event_image = $event['event_image'] : $event_image = "" );
         $values = "'" . $event_title . "', '" . $event_date . "', 
-				  '" . $event_shortDescription . "', '" . $event_description . "', '" . $event_image . "'";
+				  '" . $event_shortDescription . "', '" . mysql_escape_string($event_description) . "', '" . $event_image . "'";
         $rows = "event_title, event_date, event_shortDescription, event_description,event_image";
         if ($db->insert($table, $values, $rows)) {
             return true;
@@ -808,7 +808,7 @@ class DbHandler {
         $table = "news";
         $values = "'" . $news['news_title'] . "', 
 				'" . $news['news_shortDescription'] . "',
-				'" . $news['news_Description'] . "',
+				'" . mysql_escape_string($news['news_Description']) . "',
 				'" . $news_image . "',
 				'" . $date . "',
 				'1'";
@@ -1173,7 +1173,7 @@ class DbHandler {
 				'" . $adDetail['advertisement_subCategoryId'] . "',
 				'" . json_encode($adDetail['advertisement_attributes']) . "',
 				'" . $adDetail['advertisement_title'] . "',
-				'" . $adDetail['advertisement_description'] . "',
+				'" . mysql_escape_string($adDetail['advertisement_description']) . "',
 				'" . $adDetail['currency'] . "',
 				'" . $price . "',
 				'" . $adDetail['advertisement_contactName'] . "',

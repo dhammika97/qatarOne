@@ -132,7 +132,7 @@ private $numrows;
 			$insert .= " (".$rows.")";
 		}
 		if($values != ""){
-			$insert .= " values (".mysql_escape_string($values).");";
+			$insert .= " values (".$values.");";
 		}
 		//echo $insert;
 		$ins = mysqli_query($this->con,$insert);
