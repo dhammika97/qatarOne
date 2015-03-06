@@ -715,7 +715,7 @@ class DbHandler {
         }
         $db = new database();
         $table = 'events';
-        $rows = '*';
+        $rows = 'evenet_id, event_title, event_shortDescription, event_image, event_date';
 
         $db->selectJson($table, $rows, $where, '', '', '');
         $pages_list = $db->getJson();
@@ -837,7 +837,7 @@ class DbHandler {
         }
         $db = new database();
         $table = 'news';
-        $rows = '*';
+        $rows = 'news_id,news_title,news_shortDescription, news_image';
         $db->selectJson($table, $rows, $where, '', '');
         $location_list = $db->getJson();
         return $location_list;
